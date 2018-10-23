@@ -12,34 +12,9 @@ class Events extends React.Component {
       events: []
     }
   }
-  componentWillMount() {
-    window["eventsLoaded"] = (response) => {
-      let eventData = response.results.map((event) => {
-        const date = new Date(event.time);
-
-        return {
-          id: event.id,
-          title: event.name,
-          desc: event.description,
-          time: this.daysOfWeek[date.getDay()] + ' ' + date.toLocaleString(),
-          rsvp: event["yes_rsvp_count"],
-          url: event["event_url"]
-        };
-      });
-
-      // remove duplicate future events.
-      eventData = _.uniqBy(eventData, 'title');
-
-      this.setState({
-        events: eventData,
-        loading: false
-      })
-
-      document.getElementById('eventLoaderScript').remove();
-    }
-  }
+  
   componentDidMount() {
-
+    this.addJsonpResponseHandler();
     this.invokeRequest();
   }
 
@@ -77,6 +52,32 @@ class Events extends React.Component {
     )
   }
 
+  addJsonpResponseHandler() {
+    window["eventsLoaded"] = (response) => {
+      let eventData = response.results.map((event) => {
+        const date = new Date(event.time);
+
+        return {
+          id: event.id,
+          title: event.name,
+          desc: event.description,
+          time: this.daysOfWeek[date.getDay()] + ' ' + date.toLocaleString(),
+          rsvp: event["yes_rsvp_count"],
+          url: event["event_url"]
+        };
+      });
+
+      // remove duplicate future events.
+      eventData = _.uniqBy(eventData, 'title');
+
+      this.setState({
+        events: eventData,
+        loading: false
+      })
+
+      document.getElementById('eventLoaderScript').remove();
+    }
+  }
   invokeRequest = _.once(() => {
     // Load using script tag (jsonp) to avoid cors issues
     const s = document.createElement("script");
