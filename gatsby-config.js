@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: "/project-oolong",
   siteMetadata: {
     title: "RVNUG",
     author: "Roanoke Valley .Net User Group Officers",
