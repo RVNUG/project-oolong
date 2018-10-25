@@ -804,12 +804,12 @@
       "host": "localhost",
       "pathPrefix": "/project-oolong",
       "polyfill": true,
-      "buildTime": "2018-10-25T02:44:40.360Z",
+      "buildTime": "2018-10-25T03:10:33.547Z",
       "id": "Site",
       "parent": "SOURCE",
       "children": [],
       "internal": {
-        "contentDigest": "442a9a20a3ff717c024d035d9b74c635",
+        "contentDigest": "6b5bb89f8ab5ac61b8dcc5be2902ea6f",
         "type": "Site",
         "owner": "internal-data-bridge"
       }
