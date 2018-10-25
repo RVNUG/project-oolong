@@ -76,7 +76,7 @@ class Index extends React.Component {
             </header>
 
             <div className="content">
-              <ul>
+              <ul className="officers-list">
                 <li>Bret Shawn, President</li>
                 <li>Derek Pinkerton</li>
                 <li>Tolga Balci</li>

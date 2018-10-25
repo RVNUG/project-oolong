@@ -31,12 +31,12 @@ class Events extends React.Component {
               <h3>loading...</h3>
             </div>
           :
-            <ul className="features">
+            <ul className="events">
               {
                 this.state.events.map(event =>
                   <li key={event.id}>
-                    <h3>{event.title}</h3>
-                    <h6>{event.time}</h6>
+                    <h3>{event.time}</h3>
+                    <h4>{event.title}</h4>
                     <div dangerouslySetInnerHTML={{ __html: event.desc }} />
                     <a href={event.url} target="meetup" className="button"><i className="fa fa-meetup"></i> RVSP on Meetup</a>
                   </li>)
