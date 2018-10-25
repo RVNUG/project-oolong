@@ -56,8 +56,7 @@ class Index extends React.Component {
                 </p>
                 <p>
                   We meet on the first Thursday of each month at the Grandin CoLab, next to
-                  Roanoke Natural Foods Co-op
-                  <a href="https://goo.gl/maps/jwsnC">on Grandin Ave.</a>
+                  Roanoke Natural Foods Co-op <a href="https://goo.gl/maps/jwsnC">on Grandin Ave.</a>
                 </p>
                 <p>
                   <a href="https://secure.meetup.com/Roanoke-Valley-NET-User-Group/contribute/" className="btn btn-large">Click
