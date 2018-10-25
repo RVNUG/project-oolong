@@ -602,7 +602,7 @@
       "resolve": "/Users/derek/dev/rvnug/project-oolong",
       "id": "Plugin default-site-plugin",
       "name": "default-site-plugin",
-      "version": "0fcd8a0dc0b0d1372306987931e3bb20",
+      "version": "88651c752ed1a6fea6e65af80cc84606",
       "pluginOptions": {
         "plugins": []
       },
@@ -642,6 +642,10 @@
           },
           {
             "name": "gatsby-plugin-sass",
+            "version": "^2.0.1"
+          },
+          {
+            "name": "gh-pages",
             "version": "^2.0.1"
           },
           {
@@ -690,7 +694,7 @@
       "parent": "SOURCE",
       "children": [],
       "internal": {
-        "contentDigest": "84d3e7cfdaa45c37f0339b2794b16eb7",
+        "contentDigest": "a35242dd85519848aad342b7e89f9dd8",
         "type": "SitePlugin",
         "owner": "internal-data-bridge"
       }
@@ -799,12 +803,13 @@
       "port": "8000",
       "host": "localhost",
       "pathPrefix": "/project-oolong",
-      "buildTime": "2018-10-23T11:22:32.424Z",
+      "polyfill": true,
+      "buildTime": "2018-10-25T02:44:40.360Z",
       "id": "Site",
       "parent": "SOURCE",
       "children": [],
       "internal": {
-        "contentDigest": "8c6341d3edc93285c176eb6e6e3565cf",
+        "contentDigest": "442a9a20a3ff717c024d035d9b74c635",
         "type": "Site",
         "owner": "internal-data-bridge"
       }
@@ -892,7 +897,7 @@
   },
   "status": {
     "plugins": {},
-    "PLUGINS_HASH": "b5415785c166083a259d32f25f38a1d9"
+    "PLUGINS_HASH": "98d1dd5262cd37159b9242bfeb4fae95"
   },
   "componentDataDependencies": {
     "nodes": {},
@@ -903,13 +908,10 @@
     "index": "173/path---index-6a9-NZuapzHg3X9TaN1iIixfv1W23E",
     "dev-404-page-5f9": "920/path---dev-404-page-5-f-9-fab-NZuapzHg3X9TaN1iIixfv1W23E",
     "generic-bbb": "520/path---generic-bbb-df1-NZuapzHg3X9TaN1iIixfv1W23E",
-    "404-html-516": "164/path---404-html-516-62a-NZuapzHg3X9TaN1iIixfv1W23E"
+    "404-html-516": "164/path---404-html-516-62a-NZuapzHg3X9TaN1iIixfv1W23E",
+    "offline-plugin-app-shell-fallback-a30": "520/path---offline-plugin-app-shell-fallback-a-30-c5a-NZuapzHg3X9TaN1iIixfv1W23E"
   },
   "components": {
-    "/Users/derek/dev/rvnug/project-oolong/.cache/dev-404-page.js": {
-      "query": "",
-      "componentPath": "/Users/derek/dev/rvnug/project-oolong/.cache/dev-404-page.js"
-    },
     "/Users/derek/dev/rvnug/project-oolong/src/pages/404.js": {
       "query": "",
       "componentPath": "/Users/derek/dev/rvnug/project-oolong/src/pages/404.js"
@@ -921,6 +923,10 @@
     "/Users/derek/dev/rvnug/project-oolong/src/pages/index.js": {
       "query": "",
       "componentPath": "/Users/derek/dev/rvnug/project-oolong/src/pages/index.js"
+    },
+    "/Users/derek/dev/rvnug/project-oolong/.cache/dev-404-page.js": {
+      "query": "",
+      "componentPath": "/Users/derek/dev/rvnug/project-oolong/.cache/dev-404-page.js"
     }
   },
   "staticQueryComponents": {}

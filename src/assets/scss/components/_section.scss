@@ -10,6 +10,12 @@
 		&.special {
 			text-align: center;
 		}
+
+		.officers-list {
+			li {
+				list-style: none;
+			}
+		}
 	}
 
 	header {
