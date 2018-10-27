@@ -12,7 +12,7 @@ const Footer = (props) => (
                 {/*<li><Link to="/generic" className="button">Learn More</Link></li>*/}
             {/*</ul>*/}
         {/*</section>*/}
-        <section>
+        <section id="cta">
             <h2>Contact</h2>
             <dl className="alt">
                 <dt>Address</dt>
