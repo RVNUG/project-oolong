@@ -40,4 +40,4 @@ jobs:
 
       # Deploy to Github Pages
       - run: npm run predeploy
-      - run: npm run deploy
+      #- run: npm run deploy
