@@ -27,7 +27,7 @@ jobs:
           - v1-dependencies-
 
       # install the gatsby cli 
-      - run: npm install --global gatsby-cli
+      - run: sudo npm install --global gatsby-cli
       - run: npm install
 
       - save_cache:
