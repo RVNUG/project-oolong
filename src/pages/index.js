@@ -6,9 +6,11 @@ import Waypoint from 'react-waypoint'
 import Layout from '../components/layout'
 import Header from '../components/Header'
 import Nav from '../components/Nav'
-import starPic from '../assets/images/roanoke-star-128.png'
-
 import Events from '../components/Events'
+
+import starPic from '../assets/images/roanoke-star-128.png'
+import apex from '../assets/images/sponsors/apex.png'
+import colab from '../assets/images/sponsors/colab.png'
 
 class Index extends React.Component {
   constructor(props) {
@@ -71,7 +73,7 @@ class Index extends React.Component {
 
           <section id="officers" className="main special">
             <header className="major">
-              <h2>2018 RV.NUG Board</h2>
+              <h2>2019 RV.NUG Board</h2>
             </header>
 
             <div className="content">
@@ -87,6 +89,18 @@ class Index extends React.Component {
             </div>
           </section>
 
+          <section id="sponsors" className="main special">
+            <header className="major">
+              <h2>2019 Sponsors</h2>
+            </header>
+            <a href="https://www.apexsystems.com/" target="_blank">
+                <img src={apex} alt="Apex Systems" />
+            </a>
+
+            <a href="https://www.colabroanoke.com/" target="_blank">
+                <img src={colab} alt="Co-Lab" />
+            </a>
+          </section>
         </div>
 
       </Layout>
