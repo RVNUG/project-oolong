@@ -1,23 +1,26 @@
-# gatsby-starter-stellar
+# Roanoke Valley .Net User Group website.
 
-**This starter has been updated for Gatsby.js V2.**
+Based on the Stellar site template, designed by HTML5 UP. Check out [https://codebushi.com/gatsby-starters/](https://codebushi.com/gatsby-starters/) for more Gatsby starters and templates.
 
-**The older V1 version of this starter can be found in the V1 branch**
 
-Gatsby.js V2 starter based on the Stellar site template, designed by HTML5 UP. Check out [https://codebushi.com/gatsby-starters/](https://codebushi.com/gatsby-starters/) for more Gatsby starters and templates.
+## Running the site for local development
 
-## Template Preview
+This site uses gatsby js. You can run the gatsby build and development webserver by executing the following command.
 
-[https://gatsby-stellar.surge.sh/](https://gatsby-stellar.surge.sh/)
+```shell
+npm run develop
+```
 
-## Installation
 
-Install this starter (assuming Gatsby is installed) by running from your CLI:
-<br>
-`gatsby new gatsby-starter-stellar https://github.com/codebushi/gatsby-starter-stellar`
+## Deployment to production
 
-Run `gatsby develop` in the terminal to start the dev site.
+The RVNUG website is hosted on Github Pages. To deploy you must have permission to commit to the gh-pages branch.
+Deployments are automated using the [gh-pages](https://www.npmjs.com/package/gh-pages) npm module.
 
-## Running demo
+To deploy whatever is in the current active branch on your machine run the following command.
 
-[https://rvnug.github.io/project-oolong](https://rvnug.github.io/project-oolong)
+```shell
+npm run deploy
+```
+
+This will run the gatsby build and then commit the built files to the gh-pages branch and push that to the remote origin (github.com).
