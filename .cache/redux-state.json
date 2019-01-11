@@ -1,22 +1,13 @@
 {
   "nodes": {
     "SitePage /dev-404-page/": {
-      "jsonName": "dev-404-page-5f9",
-      "internalComponentName": "ComponentDev404Page",
       "path": "/dev-404-page/",
-      "component": "/Users/derek/dev/rvnug/project-oolong/.cache/dev-404-page.js",
-      "componentChunkName": "component---cache-dev-404-page-js",
-      "context": {},
-      "pluginCreator___NODE": "Plugin dev-404-page",
-      "pluginCreatorId": "Plugin dev-404-page",
-      "componentPath": "/Users/derek/dev/rvnug/project-oolong/.cache/dev-404-page.js",
       "id": "SitePage /dev-404-page/",
       "parent": "SOURCE",
       "children": [],
       "internal": {
         "type": "SitePage",
-        "contentDigest": "a00d052b33753546863a077dbbdec0df",
-        "description": "Plugin dev-404-page",
+        "contentDigest": "f91d29e10ba680b413138cf9ed86e655",
         "owner": "internal-data-bridge"
       }
     },
@@ -800,17 +791,35 @@
         "author": "Roanoke Valley .Net User Group Officers",
         "description": ""
       },
-      "port": "8000",
-      "host": "localhost",
       "pathPrefix": "/project-oolong",
       "polyfill": true,
-      "buildTime": "2019-01-10T04:04:16.676Z",
+      "buildTime": "2019-01-10T04:45:53.740Z",
       "id": "Site",
       "parent": "SOURCE",
       "children": [],
       "internal": {
-        "contentDigest": "320e25c57a3afa556b180a59eabccf2f",
+        "contentDigest": "dcc5f40b8d6e5f4ea11654e900a503df",
         "type": "Site",
+        "owner": "internal-data-bridge"
+      }
+    },
+    "SitePage /offline-plugin-app-shell-fallback/": {
+      "jsonName": "offline-plugin-app-shell-fallback-a30",
+      "internalComponentName": "ComponentOfflinePluginAppShellFallback",
+      "path": "/offline-plugin-app-shell-fallback/",
+      "component": "/Users/derek/dev/rvnug/project-oolong/node_modules/gatsby-plugin-offline/app-shell.js",
+      "componentChunkName": "component---node-modules-gatsby-plugin-offline-app-shell-js",
+      "context": {},
+      "pluginCreator___NODE": "Plugin gatsby-plugin-offline",
+      "pluginCreatorId": "Plugin gatsby-plugin-offline",
+      "componentPath": "/Users/derek/dev/rvnug/project-oolong/node_modules/gatsby-plugin-offline/app-shell.js",
+      "id": "SitePage /offline-plugin-app-shell-fallback/",
+      "parent": "SOURCE",
+      "children": [],
+      "internal": {
+        "type": "SitePage",
+        "contentDigest": "844bb15b397abe060a068ad1f036970a",
+        "description": "Plugin gatsby-plugin-offline",
         "owner": "internal-data-bridge"
       }
     },
@@ -912,10 +921,6 @@
     "offline-plugin-app-shell-fallback-a30": "520/path---offline-plugin-app-shell-fallback-a-30-c5a-NZuapzHg3X9TaN1iIixfv1W23E"
   },
   "components": {
-    "/Users/derek/dev/rvnug/project-oolong/.cache/dev-404-page.js": {
-      "query": "",
-      "componentPath": "/Users/derek/dev/rvnug/project-oolong/.cache/dev-404-page.js"
-    },
     "/Users/derek/dev/rvnug/project-oolong/src/pages/404.js": {
       "query": "",
       "componentPath": "/Users/derek/dev/rvnug/project-oolong/src/pages/404.js"
@@ -927,6 +932,10 @@
     "/Users/derek/dev/rvnug/project-oolong/src/pages/index.js": {
       "query": "",
       "componentPath": "/Users/derek/dev/rvnug/project-oolong/src/pages/index.js"
+    },
+    "/Users/derek/dev/rvnug/project-oolong/node_modules/gatsby-plugin-offline/app-shell.js": {
+      "query": "",
+      "componentPath": "/Users/derek/dev/rvnug/project-oolong/node_modules/gatsby-plugin-offline/app-shell.js"
     }
   },
   "staticQueryComponents": {}
