@@ -284,8 +284,8 @@
       "version": "2.0.5",
       "pluginOptions": {
         "plugins": [],
-        "name": "gatsby-starter-default",
-        "short_name": "starter",
+        "name": "Roanoke Valley .Net User Group",
+        "short_name": "RVNUG",
         "start_url": "/",
         "background_color": "#663399",
         "theme_color": "#663399",
@@ -359,7 +359,7 @@
       "parent": "SOURCE",
       "children": [],
       "internal": {
-        "contentDigest": "75bc9cfe0d66bd64f12f2578fa2cf1df",
+        "contentDigest": "18dd96908867223bdee02285e83f964f",
         "type": "SitePlugin",
         "owner": "internal-data-bridge"
       }
@@ -602,7 +602,7 @@
       "resolve": "/Users/derek/dev/rvnug/project-oolong",
       "id": "Plugin default-site-plugin",
       "name": "default-site-plugin",
-      "version": "88651c752ed1a6fea6e65af80cc84606",
+      "version": "6b1aea8da02f8cdd55d057dcdceeb379",
       "pluginOptions": {
         "plugins": []
       },
@@ -694,7 +694,7 @@
       "parent": "SOURCE",
       "children": [],
       "internal": {
-        "contentDigest": "a35242dd85519848aad342b7e89f9dd8",
+        "contentDigest": "5181c55a4b630d1711b280a9e275a672",
         "type": "SitePlugin",
         "owner": "internal-data-bridge"
       }
@@ -804,12 +804,12 @@
       "host": "localhost",
       "pathPrefix": "/project-oolong",
       "polyfill": true,
-      "buildTime": "2018-11-11T02:50:59.079Z",
+      "buildTime": "2019-01-10T04:04:16.676Z",
       "id": "Site",
       "parent": "SOURCE",
       "children": [],
       "internal": {
-        "contentDigest": "2249259357b6ceb2ae4607c384ad7088",
+        "contentDigest": "320e25c57a3afa556b180a59eabccf2f",
         "type": "Site",
         "owner": "internal-data-bridge"
       }
@@ -897,7 +897,7 @@
   },
   "status": {
     "plugins": {},
-    "PLUGINS_HASH": "98d1dd5262cd37159b9242bfeb4fae95"
+    "PLUGINS_HASH": "57481707e6f4ecaf3e67efe6d7426829"
   },
   "componentDataDependencies": {
     "nodes": {},
@@ -912,6 +912,10 @@
     "offline-plugin-app-shell-fallback-a30": "520/path---offline-plugin-app-shell-fallback-a-30-c5a-NZuapzHg3X9TaN1iIixfv1W23E"
   },
   "components": {
+    "/Users/derek/dev/rvnug/project-oolong/.cache/dev-404-page.js": {
+      "query": "",
+      "componentPath": "/Users/derek/dev/rvnug/project-oolong/.cache/dev-404-page.js"
+    },
     "/Users/derek/dev/rvnug/project-oolong/src/pages/404.js": {
       "query": "",
       "componentPath": "/Users/derek/dev/rvnug/project-oolong/src/pages/404.js"
@@ -923,10 +927,6 @@
     "/Users/derek/dev/rvnug/project-oolong/src/pages/index.js": {
       "query": "",
       "componentPath": "/Users/derek/dev/rvnug/project-oolong/src/pages/index.js"
-    },
-    "/Users/derek/dev/rvnug/project-oolong/.cache/dev-404-page.js": {
-      "query": "",
-      "componentPath": "/Users/derek/dev/rvnug/project-oolong/.cache/dev-404-page.js"
     }
   },
   "staticQueryComponents": {}
