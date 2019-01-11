@@ -93,11 +93,11 @@ class Index extends React.Component {
             <header className="major">
               <h2>2019 Sponsors</h2>
             </header>
-            <a href="https://www.apexsystems.com/" target="_blank">
+            <a href="https://www.apexsystems.com/" target="_blank" rel="noopener noreferrer">
                 <img src={apex} alt="Apex Systems" />
             </a>
 
-            <a href="https://www.colabroanoke.com/" target="_blank">
+            <a href="https://www.colabroanoke.com/" target="_blank" rel="noopener noreferrer">
                 <img src={colab} alt="Co-Lab" />
             </a>
           </section>
