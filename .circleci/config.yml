@@ -63,6 +63,8 @@ jobs:
 
       # Deploy to Github Pages
       - run: npm run predeploy
+      - run: git config --global user.email "$GH_EMAIL" > /dev/null 2>&1
+      - run: git config --global user.name "$GH_NAME" > /dev/null 2>&1
       - run: npm run deploy
 workflows:
   version: 2
