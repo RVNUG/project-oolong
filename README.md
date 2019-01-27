@@ -2,6 +2,8 @@
 
 Based on the Stellar site template, designed by HTML5 UP. Check out [https://codebushi.com/gatsby-starters/](https://codebushi.com/gatsby-starters/) for more Gatsby starters and templates.
 
+Build Status
+[![CircleCI](https://circleci.com/gh/RVNUG/project-oolong.svg?style=svg)](https://circleci.com/gh/RVNUG/project-oolong)
 
 ## Running the site for local development
 
