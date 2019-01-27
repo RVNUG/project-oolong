@@ -102,7 +102,7 @@ class Index extends React.Component {
             </a>
 
             <a href="https://www.discountasp.net" target="_blank" rel="noopener noreferrer">
-              <img src="{discountASPNET}" alt="Discount ASP.NET" />
+                <img src={discountASPNET} alt="Discount ASP.NET" />
             </a>
           </section>
         </div>
