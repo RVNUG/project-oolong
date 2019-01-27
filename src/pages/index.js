@@ -1,5 +1,4 @@
 import React from 'react'
-// import { Link } from 'gatsby'
 import Helmet from 'react-helmet'
 import Waypoint from 'react-waypoint'
 
@@ -32,7 +31,7 @@ class Index extends React.Component {
 
     return (
       <Layout>
-        <Helmet title="Roanoke Valley .Net User Group" />
+        <Helmet title="Roanoke Valley .NET User Group" />
 
         <Header />
 
@@ -52,7 +51,7 @@ class Index extends React.Component {
                   <h2>What we're about</h2>
                 </header>
                 <p>
-                  The Roanoke Valley .Net User Group was formed to support the .NET users
+                  The Roanoke Valley .NET User Group was formed to support the .NET users
                   in the Roanoke Valley and beyond. We're a friendly group that welcomes
                   both questions...and answers!
                 </p>
