@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: "RVNUG",
-    author: "Roanoke Valley .Net User Group Officers",
+    author: "Roanoke Valley .NET User Group Officers",
     description: ""
   },
   plugins: [
@@ -9,7 +9,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'Roanoke Valley .Net User Group',
+        name: 'Roanoke Valley .NET User Group',
         short_name: 'RVNUG',
         start_url: '/',
         background_color: '#663399',

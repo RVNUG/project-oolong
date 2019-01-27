@@ -1,8 +1,8 @@
 {
   "name": "gatsby-starter-stellar",
-  "description": "Roanoke Valley .Net User Group",
+  "description": "Roanoke Valley .NET User Group",
   "version": "1.0.0",
-  "author": "Roanoke Valley .Net User Group Officers",
+  "author": "Roanoke Valley .NET User Group Officers",
   "homepage": "https://RVNUG.github.io/project-oolong",
   "dependencies": {
     "gatsby": "^2.0.0",
@@ -29,7 +29,7 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "predeploy": "gatsby build",
-    "deploy": "gh-pages -d public",
+    "deploy": "gh-pages -d public -m '[ci skip] Automated deployment'",
     "format": "prettier --write '**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
