@@ -1,4 +1,4 @@
-# Roanoke Valley .Net User Group website.
+# Roanoke Valley .NET User Group website.
 
 Based on the Stellar site template, designed by HTML5 UP. Check out [https://codebushi.com/gatsby-starters/](https://codebushi.com/gatsby-starters/) for more Gatsby starters and templates.
 
