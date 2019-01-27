@@ -10,6 +10,7 @@ import Events from '../components/Events'
 import starPic from '../assets/images/roanoke-star-128.png'
 import apex from '../assets/images/sponsors/apex.png'
 import colab from '../assets/images/sponsors/colab.png'
+import discountASPNET from '../assets/images/sponsors/discountASPNET.png'
 
 class Index extends React.Component {
   constructor(props) {
@@ -98,6 +99,10 @@ class Index extends React.Component {
 
             <a href="https://www.colabroanoke.com/" target="_blank" rel="noopener noreferrer">
                 <img src={colab} alt="Co-Lab" />
+            </a>
+
+            <a href="https://www.discountasp.net" target="_blank" rel="noopener noreferrer">
+              <img src="{discountASPNET}" alt="Discount ASP.NET" />
             </a>
           </section>
         </div>
