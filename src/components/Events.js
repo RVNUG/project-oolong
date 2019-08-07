@@ -2,7 +2,8 @@ import React from 'react'
 import _ from 'lodash'
 
 class Events extends React.Component {
-  eventsUrl = 'https://api.meetup.com/2/events?offset=0&format=json&limited_events=False&group_urlname=Roanoke-Valley-NET-User-Group&callback=eventsLoaded&page=200&fields=&order=time&desc=false&status=upcoming&sig_id=199537590&sig=185fa3b3783205398c68577a1a6567b41e1c8c1d';
+  //eventsUrl = 'https://api.meetup.com/2/events?offset=0&format=json&limited_events=False&group_urlname=Roanoke-Valley-NET-User-Group&callback=eventsLoaded&page=200&fields=&order=time&desc=false&status=upcoming&sig_id=199537590&sig=185fa3b3783205398c68577a1a6567b41e1c8c1d';
+  eventsUrl = 'https://api.meetup.com/Roanoke-Valley-NET-User-Group/events?format=json&callback=eventsLoaded&order=time&desc=false&status=upcoming';
   daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
   constructor(props) {
@@ -54,7 +55,7 @@ class Events extends React.Component {
 
   addJsonpResponseHandler() {
     window["eventsLoaded"] = (response) => {
-      let eventData = response.results.map((event) => {
+      let eventData = response.data.map((event) => {
         const date = new Date(event.time);
 
         return {
@@ -63,7 +64,7 @@ class Events extends React.Component {
           desc: event.description,
           time: this.daysOfWeek[date.getDay()] + ' ' + date.toLocaleString(),
           rsvp: event["yes_rsvp_count"],
-          url: event["event_url"]
+          url: event["link"]
         };
       });
 

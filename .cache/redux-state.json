@@ -804,12 +804,12 @@
       "host": "localhost",
       "pathPrefix": "",
       "polyfill": true,
-      "buildTime": "2019-01-27T14:17:23.576Z",
+      "buildTime": "2019-08-07T16:53:20.571Z",
       "id": "Site",
       "parent": "SOURCE",
       "children": [],
       "internal": {
-        "contentDigest": "116cd44b939ff8227690fb3e028b982f",
+        "contentDigest": "8df63aee960ec96ca4729a50a3a450d8",
         "type": "Site",
         "owner": "internal-data-bridge"
       }
@@ -912,10 +912,6 @@
     "offline-plugin-app-shell-fallback-a30": "520/path---offline-plugin-app-shell-fallback-a-30-c5a-NZuapzHg3X9TaN1iIixfv1W23E"
   },
   "components": {
-    "/Users/derek/dev/rvnug/project-oolong/.cache/dev-404-page.js": {
-      "query": "",
-      "componentPath": "/Users/derek/dev/rvnug/project-oolong/.cache/dev-404-page.js"
-    },
     "/Users/derek/dev/rvnug/project-oolong/src/pages/404.js": {
       "query": "",
       "componentPath": "/Users/derek/dev/rvnug/project-oolong/src/pages/404.js"
@@ -927,6 +923,10 @@
     "/Users/derek/dev/rvnug/project-oolong/src/pages/index.js": {
       "query": "",
       "componentPath": "/Users/derek/dev/rvnug/project-oolong/src/pages/index.js"
+    },
+    "/Users/derek/dev/rvnug/project-oolong/.cache/dev-404-page.js": {
+      "query": "",
+      "componentPath": "/Users/derek/dev/rvnug/project-oolong/.cache/dev-404-page.js"
     }
   },
   "staticQueryComponents": {}
