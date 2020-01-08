@@ -83,7 +83,6 @@ class Index extends React.Component {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {' '}
                     our Meetup site
                   </a>{' '}
                   to take part in group discussions or to sign up for our
@@ -97,7 +96,7 @@ class Index extends React.Component {
                     rel="noopener noreferrer"
                   >
                     our GitHub organization
-                  </a>
+                  </a>{' '}
                   to see code snippets from our past meetings.
                 </p>
                 <p>
