@@ -14,22 +14,21 @@ import discountASPNET from '../assets/images/sponsors/discountASPNET.png'
 
 class Index extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      stickyNav: false
+      stickyNav: false,
     }
   }
 
-  _handleWaypointEnter= () => {
-    this.setState(() => ({ stickyNav: false }));
+  _handleWaypointEnter = () => {
+    this.setState(() => ({ stickyNav: false }))
   }
 
   _handleWaypointLeave = () => {
-    this.setState(() => ({ stickyNav: true }));
+    this.setState(() => ({ stickyNav: true }))
   }
 
   render() {
-
     return (
       <Layout>
         <Helmet title="Roanoke Valley .NET User Group" />
@@ -39,12 +38,10 @@ class Index extends React.Component {
         <Waypoint
           onEnter={this._handleWaypointEnter}
           onLeave={this._handleWaypointLeave}
-        >
-        </Waypoint>
+        ></Waypoint>
         <Nav sticky={this.state.stickyNav} />
 
         <div id="main">
-
           <section id="intro" className="main">
             <div className="spotlight">
               <div className="content">
@@ -52,20 +49,41 @@ class Index extends React.Component {
                   <h2>What we're about</h2>
                 </header>
                 <p>
-                  The Roanoke Valley .NET User Group was formed to support the .NET users
-                  in the Roanoke Valley and beyond. We're a friendly group that welcomes
-                  both questions...and answers!
+                  The Roanoke Valley .NET User Group was formed to support the
+                  .NET users in the Roanoke Valley and beyond. We're a friendly
+                  group that welcomes both questions...and answers!
                 </p>
                 <p>
-                  We meet on the first Thursday of each month at the Grandin CoLab, next to
-                  Roanoke Natural Foods Co-op <a href="https://goo.gl/maps/jwsnC">on Grandin Ave.</a>
+                  We meet on the first Thursday of each month at the &nbsp;
+                  <a href="https://goo.gl/maps/dWgNx3mbxU9BzS1o6">
+                    GE Digital building
+                  </a>
+                  , in downtown Roanoke:
                 </p>
                 <p>
-                  <a href="https://secure.meetup.com/Roanoke-Valley-NET-User-Group/contribute/" className="btn btn-large">Click
-                    here</a> to contribute to our group!
+                  <address>
+                    <strong>
+                      GE Digital
+                      <br />
+                      207 Bullitt Ave SE
+                      <br />
+                      Roanoke, VA 24013
+                    </strong>
+                  </address>
+                </p>
+                <p>
+                  <a
+                    href="https://secure.meetup.com/Roanoke-Valley-NET-User-Group/contribute/"
+                    className="btn btn-large"
+                  >
+                    Click here
+                  </a>{' '}
+                  to contribute to our group!
                 </p>
               </div>
-              <span className="image"><img src={starPic} alt="" /></span>
+              <span className="image">
+                <img src={starPic} alt="" />
+              </span>
             </div>
           </section>
 
@@ -85,7 +103,10 @@ class Index extends React.Component {
                 <li>Alex Mikhail</li>
               </ul>
               <br />
-              <p>To contact us please email: <a href="mailto:officers@rvnug.org">officers@rvnug.org</a></p>
+              <p>
+                To contact us please email:{' '}
+                <a href="mailto:officers@rvnug.org">officers@rvnug.org</a>
+              </p>
             </div>
           </section>
 
@@ -93,20 +114,31 @@ class Index extends React.Component {
             <header className="major">
               <h2>2019 Sponsors</h2>
             </header>
-            <a href="https://www.apexsystems.com/" target="_blank" rel="noopener noreferrer">
-                <img src={apex} alt="Apex Systems" />
+            <a
+              href="https://www.apexsystems.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={apex} alt="Apex Systems" />
             </a>
 
-            <a href="https://www.colabroanoke.com/" target="_blank" rel="noopener noreferrer">
-                <img src={colab} alt="Co-Lab" />
+            <a
+              href="https://www.colabroanoke.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={colab} alt="Co-Lab" />
             </a>
 
-            <a href="https://www.discountasp.net" target="_blank" rel="noopener noreferrer">
-                <img src={discountASPNET} alt="Discount ASP.NET" />
+            <a
+              href="https://www.discountasp.net"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={discountASPNET} alt="Discount ASP.NET" />
             </a>
           </section>
         </div>
-
       </Layout>
     )
   }
