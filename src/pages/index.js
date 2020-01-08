@@ -9,7 +9,8 @@ import Events from '../components/Events'
 
 import starPic from '../assets/images/roanoke-star-128.png'
 import apex from '../assets/images/sponsors/apex.png'
-import colab from '../assets/images/sponsors/colab.png'
+import teksystems from '../assets/images/sponsors/teksystems.png'
+import gedigital from '../assets/images/sponsors/gedigital.png'
 import discountASPNET from '../assets/images/sponsors/discountASPNET.png'
 
 class Index extends React.Component {
@@ -55,7 +56,11 @@ class Index extends React.Component {
                 </p>
                 <p>
                   We meet on the first Thursday of each month at the &nbsp;
-                  <a href="https://goo.gl/maps/dWgNx3mbxU9BzS1o6">
+                  <a
+                    href="https://goo.gl/maps/dWgNx3mbxU9BzS1o6"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     GE Digital building
                   </a>
                   , in downtown Roanoke:
@@ -91,7 +96,7 @@ class Index extends React.Component {
 
           <section id="officers" className="main special">
             <header className="major">
-              <h2>2019 RV.NUG Board</h2>
+              <h2>2020 RV.NUG Board</h2>
             </header>
 
             <div className="content">
@@ -112,7 +117,7 @@ class Index extends React.Component {
 
           <section id="sponsors" className="main special">
             <header className="major">
-              <h2>2019 Sponsors</h2>
+              <h2>2020 Sponsors</h2>
             </header>
             <a
               href="https://www.apexsystems.com/"
@@ -123,11 +128,19 @@ class Index extends React.Component {
             </a>
 
             <a
-              href="https://www.colabroanoke.com/"
+              href="https://www.teksystems.com/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={colab} alt="Co-Lab" />
+              <img src={teksystems} alt="TekSystems" />
+            </a>
+
+            <a
+              href="https://www.ge.com/digital/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={gedigital} alt="GE Digital" />
             </a>
 
             <a
