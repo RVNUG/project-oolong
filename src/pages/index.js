@@ -55,19 +55,6 @@ class Index extends React.Component {
                   group that welcomes both questions...and answers!
                 </p>
                 <p>
-                  Visit{' '}
-                  <a href="https://meetup.com/Roanoke-Valley-NET-User-Group">
-                    {' '}
-                    our Meetup site
-                  </a>{' '}
-                  for discussions or to sign up for our Meetup.
-                </p>
-                <p>
-                  Visit{' '}
-                  <a href="https://github.com/rvnug">our GitHub organization</a>{' '}
-                  to see code snippets from our past meetings.
-                </p>
-                <p>
                   We meet on the first Thursday of each month at the &nbsp;
                   <a
                     href="https://goo.gl/maps/dWgNx3mbxU9BzS1o6"
@@ -88,6 +75,20 @@ class Index extends React.Component {
                       Roanoke, VA 24013
                     </strong>
                   </address>
+                </p>
+                <p>
+                  Visit{' '}
+                  <a href="https://meetup.com/Roanoke-Valley-NET-User-Group">
+                    {' '}
+                    our Meetup site
+                  </a>{' '}
+                  to take part in group discussions or to sign up for our
+                  Meetup.
+                </p>
+                <p>
+                  Visit{' '}
+                  <a href="https://github.com/rvnug">our GitHub organization</a>{' '}
+                  to see code snippets from our past meetings.
                 </p>
                 <p>
                   Would you like to&nbsp;
