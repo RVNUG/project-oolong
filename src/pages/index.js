@@ -55,6 +55,19 @@ class Index extends React.Component {
                   group that welcomes both questions...and answers!
                 </p>
                 <p>
+                  Visit{' '}
+                  <a href="https://meetup.com/Roanoke-Valley-NET-User-Group">
+                    {' '}
+                    our Meetup site
+                  </a>{' '}
+                  for discussions or to sign up for our Meetup.
+                </p>
+                <p>
+                  Visit{' '}
+                  <a href="https://github.com/rvnug">our GitHub organization</a>{' '}
+                  to see code snippets from our past meetings.
+                </p>
+                <p>
                   We meet on the first Thursday of each month at the &nbsp;
                   <a
                     href="https://goo.gl/maps/dWgNx3mbxU9BzS1o6"
@@ -77,13 +90,14 @@ class Index extends React.Component {
                   </address>
                 </p>
                 <p>
+                  Would you like to&nbsp;
                   <a
                     href="https://secure.meetup.com/Roanoke-Valley-NET-User-Group/contribute/"
                     className="btn btn-large"
                   >
-                    Click here
-                  </a>{' '}
-                  to contribute to our group!
+                    donate to our group
+                  </a>
+                  ?
                 </p>
               </div>
               <span className="image">
