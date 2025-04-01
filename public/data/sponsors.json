@@ -2,17 +2,29 @@
   {
     "id": 0,
     "name": ".NET Foundation",
-    "level": "Platinum",
     "description": "The .NET Foundation is an independent, non-profit organization established to support the .NET open source ecosystem and foster open development.",
     "logo": "dotnetfoundation-logo-white.png",
     "website": "https://dotnetfoundation.org/"
   },
   {
     "id": 1,
+    "name": "Medeco Security Locks",
+    "description": "Medeco Security Locks, based in Salem, VA, is a leader in high security locking systems, providing advanced protection for facilities worldwide.",
+    "logo": "medeco-logo.svg",
+    "website": "https://www.medeco.com/en"
+  },
+  {
+    "id": 2,
     "name": "Ozmo",
-    "level": "Gold",
     "description": "Ozmo provides digital support solutions that solve customer problems across all digital channels, helping organizations enhance customer satisfaction and operational efficiency.",
     "logo": "ozmo.svg?v=2",
     "website": "https://ozmo.com/"
+  },
+  {
+    "id": 3,
+    "name": "Docker",
+    "description": "Docker is a platform designed to help developers build, share, and run container applications, streamlining the development process and application deployment.",
+    "logo": "./docker-logos/PNG/docker-logo-blue.png",
+    "website": "https://docker.com"
   }
 ] 

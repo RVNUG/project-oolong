@@ -68,7 +68,6 @@ export interface TeamMember {
 export interface Sponsor {
   id: number;
   name: string;
-  level: 'Platinum' | 'Gold' | 'Silver' | 'Bronze';
   description: string;
   logo: string;
   website: string;

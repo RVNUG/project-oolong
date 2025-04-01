@@ -26,8 +26,8 @@
 }
 
 /* Special case for .NET Foundation logo with white background */
-.sponsor-platinum .sponsor-logo-container img[src*="dotnetfoundation-logo-white"] {
-  background-color: #512BD4; /* .NET purple color */
+.sponsor-logo-container img[src*="dotnetfoundation-logo-white"] {
+  background-color: var(--color-primary-700); /* Primary color background */
   padding: 1rem;
   border-radius: 8px;
   max-height: 100px;
@@ -105,8 +105,8 @@
 
 /* Size variations */
 .sponsor-card.size-normal {
-  /* Default sizing */
-  max-width: 350px;
+  /* Default sizing - remove max-width for better grid fit */
+  width: 100%;
 }
 
 .sponsor-card.size-large {

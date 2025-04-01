@@ -97,6 +97,13 @@
   gap: 2rem;
 }
 
+/* Add media query for large screens to show 4 cards in a row */
+@media (min-width: 1200px) {
+  .sponsors-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 /* Special styling for platinum sponsors */
 .sponsors-grid.platinum {
   grid-template-columns: 1fr;
@@ -107,7 +114,7 @@
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 }
 
-/* Styling for single sponsor in any level */
+/* Special styling for when there's only one sponsor */
 .sponsors-grid .sponsor-card:only-child {
   grid-column: 1 / -1;
   max-width: 800px;

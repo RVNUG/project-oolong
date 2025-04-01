@@ -23,7 +23,7 @@ const SponsorCard = ({ sponsor, size = 'normal' }: SponsorCardProps) => {
   };
 
   return (
-    <div className={`sponsor-card sponsor-${sponsor.level.toLowerCase()} size-${size}`}>
+    <div className={`sponsor-card size-${size}`}>
       <div className="sponsor-logo-container">
         <a href={sponsor.website} target="_blank" rel="noopener noreferrer" aria-label={`${sponsor.name} website`}>
           {imageError ? (
@@ -43,7 +43,6 @@ const SponsorCard = ({ sponsor, size = 'normal' }: SponsorCardProps) => {
       
       <div className="sponsor-content">
         <h3 className="sponsor-name">{sponsor.name}</h3>
-        <span className="sponsor-level">{sponsor.level} Sponsor</span>
         <p className="sponsor-description" style={{ textTransform: 'none' }}>{sponsor.description}</p>
         <a 
           href={sponsor.website} 

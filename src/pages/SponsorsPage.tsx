@@ -11,10 +11,7 @@ import { FaHandshake, FaBuilding, FaRocket, FaChartLine } from 'react-icons/fa';
 
 const SponsorsPage = () => {
   const location = useLocation();
-  const { sponsors, sponsorsByLevel, loading, error } = useSponsors();
-
-  // Sponsor levels in display order
-  const sponsorLevels = ['platinum', 'gold', 'silver', 'bronze'];
+  const { sponsors, loading, error } = useSponsors();
 
   // Create breadcrumb structured data
   const baseUrl = getCanonicalUrl();
@@ -59,22 +56,15 @@ const SponsorsPage = () => {
           </div>
         ) : (
           <div className="sponsors-container">
-            {sponsorLevels.map(level => 
-              sponsorsByLevel[level] && sponsorsByLevel[level].length > 0 && (
-                <div key={level} className={`sponsor-level ${level}`}>
-                  <h2 className="level-title">{level.charAt(0).toLocaleUpperCase() + level.slice(1)} Sponsors</h2>
-                  <div className={`sponsors-grid ${level}`}>
-                    {sponsorsByLevel[level].map((sponsor: Sponsor) => (
-                      <SponsorCard 
-                        key={sponsor.id} 
-                        sponsor={sponsor} 
-                        size={sponsorsByLevel[level].length === 1 ? "large" : "normal"}
-                      />
-                    ))}
-                  </div>
-                </div>
-              )
-            )}
+            <div className="sponsors-grid">
+              {sponsors.map((sponsor: Sponsor) => (
+                <SponsorCard 
+                  key={sponsor.id} 
+                  sponsor={sponsor} 
+                  size="normal"
+                />
+              ))}
+            </div>
           </div>
         )}
       </div>
@@ -116,7 +106,7 @@ const SponsorsPage = () => {
       <div className="become-sponsor-section">
         <div className="become-sponsor-content">
           <h2>Interested in becoming a sponsor?</h2>
-          <p>Support the local tech community and gain visibility for your organization. We offer various sponsorship levels to fit your goals and budget.</p>
+          <p>Support the local tech community and gain visibility for your organization.</p>
           <Link to="/contact" className="btn btn-primary">Contact Us About Sponsorship</Link>
         </div>
       </div>

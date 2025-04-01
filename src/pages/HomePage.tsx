@@ -45,7 +45,7 @@ const typedVideosData = videosData as LocalVideoData[];
 const HomePage = () => {
   const location = useLocation();
   const { loading: eventsLoading, error: eventsError, upcomingEvents } = useEvents();
-  const { loading: sponsorsLoading, error: sponsorsError, platinumSponsors } = useSponsors();
+  const { loading: sponsorsLoading, error: sponsorsError, sponsors } = useSponsors();
   const [latestVideo, setLatestVideo] = useState<YouTubeVideo | null>(null);
   const [loadingVideo, setLoadingVideo] = useState<boolean>(true);
   const [videoError, setVideoError] = useState<string | null>(null);
@@ -407,10 +407,10 @@ const HomePage = () => {
           <div className="loading">Loading sponsors...</div>
         ) : sponsorsError ? (
           <div className="error-message">{sponsorsError}</div>
-        ) : platinumSponsors.length > 0 ? (
+        ) : sponsors.length > 0 ? (
           <div className="sponsors-preview">
-            {platinumSponsors.map(sponsor => (
-              <SponsorCard key={sponsor.id} sponsor={sponsor} />
+            {sponsors.map(sponsor => (
+              <SponsorCard key={sponsor.id} sponsor={sponsor} size="normal" />
             ))}
           </div>
         ) : (
