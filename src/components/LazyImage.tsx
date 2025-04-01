@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import '../assets/css/LazyImage.css';
 
 interface LazyImageProps {
   src: string;
@@ -43,45 +44,43 @@ const LazyImage = ({
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [src]);
 
   const handleImageLoad = () => {
     setIsLoaded(true);
   };
   
   const handleImageError = () => {
-    console.warn(`Failed to load image: ${src}`);
+    console.error('Failed to load image:', {
+      src,
+      absolutePath: new URL(src, window.location.href).href,
+      currentLocation: window.location.href
+    });
     setImageFailed(true);
     // Load fallback image
-    const fallbackImage = '/images/generic-member.svg';
+    const fallbackImage = '/images/team/generic-member.svg';
     const img = new Image();
     img.onload = handleImageLoad;
     img.src = fallbackImage;
   };
 
+  // Convert width and height to CSS variables
+  const containerStyle = {
+    '--lazy-image-width': typeof width === 'number' ? `${width}px` : width,
+    '--lazy-image-height': typeof height === 'number' ? `${height}px` : height,
+  } as React.CSSProperties;
+
   return (
     <div 
-      style={{ 
-        position: 'relative', 
-        width, 
-        height,
-        overflow: 'hidden',
-      }}
-      className={className}
+      className={`lazy-image-container ${className}`}
+      style={containerStyle}
     >
       {/* Placeholder image */}
       <img
         ref={imgRef}
         src={placeholderSrc}
         alt={alt}
-        style={{
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          opacity: isLoaded ? 0 : 1,
-          transition: 'opacity 0.3s ease-in-out',
-          position: isLoaded ? 'absolute' : 'relative',
-        }}
+        className={`lazy-image-placeholder ${isLoaded ? 'lazy-image-placeholder--hidden' : 'lazy-image-placeholder--visible'}`}
         width={width}
         height={height}
       />
@@ -89,18 +88,9 @@ const LazyImage = ({
       {/* Actual image - only loads when in viewport */}
       {isIntersecting && (
         <img
-          src={imageFailed ? '/images/generic-member.svg' : src}
+          src={imageFailed ? '/images/team/generic-member.svg' : src}
           alt={alt}
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            opacity: isLoaded ? 1 : 0,
-            transition: 'opacity 0.3s ease-in-out',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-          }}
+          className={`lazy-image ${isLoaded ? 'lazy-image--loaded' : 'lazy-image--loading'}`}
           onLoad={handleImageLoad}
           onError={handleImageError}
           width={width}

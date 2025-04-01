@@ -16,7 +16,7 @@ import logo from '../assets/images/roanoke-star-128-logo.png';
 // Import icons
 import { FaMicrochip, FaUsers, FaCode, FaLaptopCode, FaGithub, FaYoutube, FaMeetup, FaDiscord } from 'react-icons/fa';
 // Import videos data
-import videosData from '../data/videos.json';
+import videosData from '../assets/data/videos.json';
 
 // YouTube channel ID for RVNUG
 const YOUTUBE_CHANNEL_ID = import.meta.env.VITE_RVNUG_YT_CHANNEL_ID;

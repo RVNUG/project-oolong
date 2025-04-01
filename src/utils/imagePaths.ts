@@ -5,7 +5,7 @@
  */
 export const resolveImagePath = (path: string | undefined): string => {
   if (!path) {
-    return '/images/generic-member.svg';
+    return '/images/team/generic-member.svg';
   }
 
   // If the path already starts with http/https, it's an external URL
@@ -16,13 +16,12 @@ export const resolveImagePath = (path: string | undefined): string => {
   // Get the base URL from Vite
   const base = import.meta.env.VITE_APP_BASE_URL || '';
   
-  // If the path starts with a slash, it's relative to the public directory
-  if (path.startsWith('/')) {
-    return `${base}${path}`;
-  }
+  // Remove any leading slashes from the path
+  const cleanPath = path.replace(/^\/+/, '');
   
-  // Otherwise, it's relative to the public directory but missing the leading slash
-  return `${base}/${path}`;
+  // Combine base and path, ensuring exactly one slash between them
+  const resolvedPath = base ? `${base.replace(/\/+$/, '')}/${cleanPath}` : `/${cleanPath}`;
+  return resolvedPath;
 };
 
 /**
@@ -33,7 +32,7 @@ export const resolveImagePath = (path: string | undefined): string => {
  */
 export const getImageWithFallback = (
   path: string | undefined, 
-  fallback: string = '/images/generic-member.svg'
+  fallback: string = '/images/team/generic-member.svg'
 ): string => {
   if (!path) {
     return resolveImagePath(fallback);

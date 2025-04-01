@@ -10,12 +10,12 @@
   "start_url": "/",
   "icons": [
     {
-      "src": "src/assets/images/roanoke-star-128-logo.png",
+      "src": "/images/roanoke-star-128-logo.png",
       "sizes": "128x128",
       "type": "image/png"
     },
     {
-      "src": "src/assets/images/website-icon.png",
+      "src": "/images/website-icon.png",
       "sizes": "512x512",
       "type": "image/png"
     }

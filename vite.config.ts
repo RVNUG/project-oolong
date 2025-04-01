@@ -69,7 +69,8 @@ export default defineConfig({
         // Exclude specific problematic files that cause errors
         const excludeList = [
           'images/IMG_4105.jpeg', 
-          'images/IMG_4105 (1).jpeg'
+          'images/IMG_4105 (1).jpeg',
+          'images/team/62387302.jpeg'
         ];
         
         // Return false for files that should be excluded
@@ -98,8 +99,8 @@ export default defineConfig({
         'favicon.ico', 
         'robots.txt', 
         'apple-touch-icon.png',
-        'src/assets/images/*.png',
-        'src/assets/images/*.svg'
+        'images/*.png',
+        'images/*.svg'
       ],
       manifest: {
         name: 'Roanoke Valley .NET User Group',
@@ -109,14 +110,10 @@ export default defineConfig({
         background_color: '#ffffff',
         icons: [
           {
-            src: 'src/assets/images/roanoke-star-128-logo.png',
+            src: '/images/roanoke-star-128-logo.png',
             sizes: '128x128',
-            type: 'image/png'
-          },
-          {
-            src: 'src/assets/images/roanoke-star-128-logo.png',
-            sizes: '512x512',
-            type: 'image/png'
+            type: 'image/png',
+            purpose: 'any maskable'
           }
         ]
       }

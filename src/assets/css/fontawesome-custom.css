@@ -122,4 +122,23 @@
 
 .fa-sun:before {
   content: "\f185";
+}
+
+/* Navigation Icons */
+.fa-bars:before {
+  content: "\f0c9";
+}
+
+/* Carousel Icons */
+.fa-chevron-left:before {
+  content: "\f053";
+}
+
+.fa-chevron-right:before {
+  content: "\f054";
+}
+
+/* Video Icons */
+.fa-play-circle:before {
+  content: "\f144";
 } 

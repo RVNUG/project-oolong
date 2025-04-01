@@ -1,5 +1,5 @@
 import { TeamMember } from '../types';
-import teamData from '../data/team.json';
+import teamData from '../assets/data/team.json';
 
 /**
  * Fetch team members data - always uses team.json data

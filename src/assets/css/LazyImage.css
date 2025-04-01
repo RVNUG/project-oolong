@@ -1,0 +1,44 @@
+/* LazyImage Container */
+.lazy-image-container {
+  position: relative;
+  overflow: hidden;
+  width: var(--lazy-image-width, 100%);
+  height: var(--lazy-image-height, auto);
+}
+
+/* Placeholder Image */
+.lazy-image-placeholder {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.lazy-image-placeholder--hidden {
+  opacity: 0;
+  position: absolute;
+}
+
+.lazy-image-placeholder--visible {
+  opacity: 1;
+  position: relative;
+}
+
+/* Actual Image */
+.lazy-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.lazy-image--loaded {
+  opacity: 1;
+}
+
+.lazy-image--loading {
+  opacity: 0;
+} 
