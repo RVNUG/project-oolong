@@ -1112,4 +1112,163 @@ section[id] {
     margin-top: var(--space-3);
     align-self: flex-end;
   }
+}
+
+/* Video Carousel Styling */
+.video-carousel-container {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.video-carousel {
+  position: relative;
+  width: 100%;
+}
+
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--color-primary-800), var(--color-primary-700));
+  border-bottom-left-radius: var(--border-radius-md);
+  border-bottom-right-radius: var(--border-radius-md);
+  color: white;
+}
+
+.carousel-control {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.carousel-control:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.carousel-control:active {
+  transform: translateY(0);
+}
+
+.carousel-indicators {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.carousel-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.carousel-indicator.active {
+  width: 14px;
+  height: 14px;
+  background: white;
+}
+
+.youtube-embed {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* Add slide transition effect */
+.youtube-thumbnail {
+  transition: opacity 0.4s ease;
+}
+
+.dark-theme .carousel-controls {
+  background: linear-gradient(135deg, var(--color-primary-900), var(--color-primary-800));
+}
+
+.dark-theme .carousel-control {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.dark-theme .carousel-control:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.dark-theme .carousel-indicator {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive adjustments for the carousel */
+@media (max-width: 768px) {
+  .youtube-content {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+  
+  .youtube-description {
+    text-align: center;
+    margin-bottom: var(--space-4);
+  }
+  
+  .youtube-btn {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .video-carousel-container {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .carousel-control {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .carousel-indicator {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .carousel-indicator.active {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-controls {
+    padding: 0.75rem;
+  }
+  
+  .carousel-control {
+    width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+  }
+  
+  .carousel-indicator {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .carousel-indicator.active {
+    width: 10px;
+    height: 10px;
+  }
 } 

@@ -8,7 +8,7 @@ import JsonLd from '../components/JsonLd';
 import { createBreadcrumbStructuredData } from '../utils/structuredData';
 import { getCanonicalUrl } from '../utils/seo';
 import '../assets/css/home.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 
 // Import logo for use in hero section
@@ -47,25 +47,30 @@ const HomePage = () => {
   const { loading: eventsLoading, error: eventsError, upcomingEvents } = useEvents();
   const { loading: sponsorsLoading, error: sponsorsError, sponsors } = useSponsors();
   const [latestVideo, setLatestVideo] = useState<YouTubeVideo | null>(null);
+  const [videos, setVideos] = useState<YouTubeVideo[]>([]);
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [loadingVideo, setLoadingVideo] = useState<boolean>(true);
   const [videoError, setVideoError] = useState<string | null>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   // Function to fetch the latest YouTube video
   useEffect(() => {
-    const fetchLatestVideo = async () => {
+    const fetchVideos = async () => {
       setLoadingVideo(true);
       setVideoError(null);
       
       try {
         // First, try to use the imported videos data
         if (typedVideosData && typedVideosData.length > 0) {
-          const latestLocalVideo = typedVideosData[0];
-          setLatestVideo({
-            id: latestLocalVideo.video_id,
-            title: latestLocalVideo.title,
-            thumbnail: latestLocalVideo.thumbnail_url,
-            publishedAt: latestLocalVideo.published_at
-          });
+          const videosList = typedVideosData.map(localVideo => ({
+            id: localVideo.video_id,
+            title: localVideo.title,
+            thumbnail: localVideo.thumbnail_url,
+            publishedAt: localVideo.published_at
+          }));
+          
+          setVideos(videosList);
+          setLatestVideo(videosList[0]);
           setLoadingVideo(false);
           return;
         }
@@ -130,7 +135,9 @@ const HomePage = () => {
         const cachedVideo = localStorage.getItem('rvnug_latest_video');
         if (cachedVideo) {
           try {
-            setLatestVideo(JSON.parse(cachedVideo));
+            const parsedVideo = JSON.parse(cachedVideo);
+            setLatestVideo(parsedVideo);
+            setVideos([parsedVideo]);
           } catch (e) {
             console.error('Error parsing cached video data:', e);
           }
@@ -140,7 +147,7 @@ const HomePage = () => {
       }
     };
     
-    fetchLatestVideo();
+    fetchVideos();
   }, []);
   
   // Cache the latest video when it changes
@@ -153,6 +160,36 @@ const HomePage = () => {
       }
     }
   }, [latestVideo]);
+
+  // Function to navigate to the next video
+  const nextVideo = () => {
+    if (videos.length <= 1) return;
+    setCurrentVideoIndex(prevIndex => (prevIndex + 1) % videos.length);
+  };
+
+  // Function to navigate to the previous video
+  const prevVideo = () => {
+    if (videos.length <= 1) return;
+    setCurrentVideoIndex(prevIndex => (prevIndex - 1 + videos.length) % videos.length);
+  };
+
+  // Update active video when currentVideoIndex changes
+  useEffect(() => {
+    if (videos.length > 0) {
+      setLatestVideo(videos[currentVideoIndex]);
+      
+      // Apply animation effect
+      if (carouselRef.current) {
+        const thumbnail = carouselRef.current.querySelector('.youtube-thumbnail') as HTMLElement;
+        if (thumbnail) {
+          thumbnail.style.opacity = '0';
+          setTimeout(() => {
+            thumbnail.style.opacity = '1';
+          }, 50);
+        }
+      }
+    }
+  }, [currentVideoIndex, videos]);
 
   // Function to open video in a new tab
   const openVideo = () => {
@@ -337,7 +374,7 @@ const HomePage = () => {
               onClick={openVideo}
               disabled={loadingVideo || !latestVideo}
             >
-              <i className="fas fa-play-circle"></i> Watch Latest Video
+              <i className="fas fa-play-circle"></i> Watch This Video
             </button>
           </div>
           
@@ -348,7 +385,7 @@ const HomePage = () => {
                 <p>Loading video data...</p>
               </div>
             </div>
-          ) : videoError && !latestVideo ? (
+          ) : videoError && videos.length === 0 ? (
             <div className="youtube-placeholder youtube-error">
               <div className="placeholder-content">
                 <i className="fas fa-exclamation-circle"></i>
@@ -356,33 +393,67 @@ const HomePage = () => {
                 <p className="error-details">{videoError}</p>
               </div>
             </div>
-          ) : latestVideo ? (
-            <div className="youtube-embed">
-              <div 
-                className="youtube-thumbnail" 
-                onClick={openVideo}
-                tabIndex={0}
-                role="button"
-                aria-label={`Watch ${latestVideo.title}`}
-              >
-                <img 
-                  src={latestVideo.thumbnail} 
-                  alt={latestVideo.title}
-                  className="thumbnail-img"
-                />
-                <div className="play-button-overlay">
-                  <i className="fas fa-play-circle"></i>
+          ) : videos.length > 0 ? (
+            <div className="video-carousel-container">
+              <div className="video-carousel" ref={carouselRef}>
+                <div className="youtube-embed">
+                  <div 
+                    className="youtube-thumbnail" 
+                    onClick={openVideo}
+                    tabIndex={0}
+                    role="button"
+                    aria-label={`Watch ${latestVideo?.title}`}
+                  >
+                    <img 
+                      src={latestVideo?.thumbnail} 
+                      alt={latestVideo?.title}
+                      className="thumbnail-img"
+                    />
+                    <div className="play-button-overlay">
+                      <i className="fas fa-play-circle"></i>
+                    </div>
+                    <div className="video-title-overlay">
+                      <h4>{latestVideo?.title}</h4>
+                      <span>
+                        {latestVideo?.publishedAt && new Date(latestVideo.publishedAt).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        })}
+                      </span>
+                    </div>
+                  </div>
                 </div>
-                <div className="video-title-overlay">
-                  <h4>{latestVideo.title}</h4>
-                  <span>
-                    {new Date(latestVideo.publishedAt).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    })}
-                  </span>
-                </div>
+
+                {videos.length > 1 && (
+                  <div className="carousel-controls">
+                    <button 
+                      className="carousel-control prev" 
+                      onClick={prevVideo}
+                      aria-label="Previous video"
+                    >
+                      <i className="fas fa-chevron-left"></i>
+                    </button>
+                    <div className="carousel-indicators">
+                      {videos.map((_, index) => (
+                        <button 
+                          key={index} 
+                          className={`carousel-indicator ${index === currentVideoIndex ? 'active' : ''}`}
+                          onClick={() => setCurrentVideoIndex(index)}
+                          aria-label={`Go to video ${index + 1}`}
+                          aria-current={index === currentVideoIndex}
+                        ></button>
+                      ))}
+                    </div>
+                    <button 
+                      className="carousel-control next" 
+                      onClick={nextVideo}
+                      aria-label="Next video"
+                    >
+                      <i className="fas fa-chevron-right"></i>
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           ) : (
