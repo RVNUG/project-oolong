@@ -4,21 +4,21 @@
     "name": "Tolga Balci",
     "role": "President",
     "bio": "Tolga Balci is an enthusiast in Data Analytics, Data Science, and various computer-related fields. He is currently expanding his knowledge in electronics and is open to collaborations on ESP8266, Arduino, and Raspberry Pi development projects. Tolga is active on social media platforms and maintains a personal website on WordPress.",
-    "image": "images/highres_283684233.jpeg"
+    "image": "/images/highres_283684233.jpeg"
   },
   {
     "id": 2,
     "name": "Alex Mikhail",
     "role": "Co-Officer",
     "bio": "Alex Mikhail is a IT Manager at Ziiva, wearing many hats from IT to Manager to Software Developer. He is a self taught developer with a passion for learning and building.",
-    "image": "images/generic-member.svg"
+    "image": "/images/generic-member.svg"
   },
   {
     "id": 3,
     "name": "Ron Bruintjes",
     "role": "Co-Officer",
     "bio": "Ron organizes our monthly meetings and special events. With a background in project management and .NET development, they ensure our events run smoothly.",
-    "image": "images/62387302.jpeg",
+    "image": "/images/62387302.jpeg",
     "linkedin": "https://linkedin.com/in/ronald-bruintjes",
     "github": "https://github.com/ronbruintjes"
   },
@@ -27,7 +27,7 @@
     "name": "Sean Hoar",
     "role": "Co-Officer",
     "bio": "Sean Hoar is a Full-Stack Software Engineer at Booz Allen Hamilton with 7 years of experience in the industry. He is a React.js specialist and is passionate about building scalable and maintainable systems, and hopes to become one with the spoon before the Agents take over.",
-    "image": "images/IMG_4105 (1).jpeg",
+    "image": "/images/team/sean-hoar.jpeg",
     "linkedin": "https://linkedin.com/in/seanhoar",
     "github": "https://github.com/SHoar"
   }

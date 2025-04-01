@@ -23,20 +23,3 @@ export const fetchSponsors = async (): Promise<Sponsor[]> => {
     return [];
   }
 };
-
-/**
- * Fetch sponsors filtered by level
- * @param level Sponsor level to filter by
- * @returns Promise with filtered sponsors data
- */
-export const fetchSponsorsByLevel = async (level: string): Promise<Sponsor[]> => {
-  try {
-    const sponsors = await fetchSponsors();
-    return sponsors.filter(sponsor => 
-      sponsor.level.toLowerCase() === level.toLowerCase()
-    );
-  } catch (error) {
-    console.error(`Error fetching sponsors by level ${level}:`, error);
-    throw error;
-  }
-}; 

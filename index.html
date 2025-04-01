@@ -6,9 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Roanoke Valley .NET User Group (RVNUG)</title>
     <meta name="description" content="The Roanoke Valley .NET User Group (RVNUG) is a community of developers passionate about .NET technologies in the Roanoke Valley area." />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/src/assets/css/theme.css" as="style">
+    <link rel="preload" href="/src/assets/css/main.css" as="style">
+    <link rel="preload" href="/src/assets/css/footer.css" as="style">
+    <link rel="preload" href="/src/assets/css/fontawesome-custom.css" as="style">
+    
+    <!-- Preload font files -->
+    <link rel="preload" href="/src/assets/fonts/fontawesome/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/src/assets/fonts/fontawesome/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+    
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <!-- Font loading strategy for better performance -->
+    <style>
+      /* Font loading optimization */
+      .fab, .fas {
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        width: 1em;
+        height: 1em;
+        overflow: visible;
+        vertical-align: -0.125em;
+      }
+    </style>
     
     <!-- Open Graph Tags -->
     <meta property="og:title" content="Roanoke Valley .NET User Group (RVNUG)">
@@ -22,6 +51,9 @@
     <meta name="twitter:title" content="Roanoke Valley .NET User Group (RVNUG)">
     <meta name="twitter:description" content="Roanoke Valley .NET User Group (RVNUG) is a technology user group serving the Roanoke Valley area.">
     <meta name="twitter:image" content="/src/assets/images/roanoke-star-128-logo.png">
+    
+    <!-- Meta theme color -->
+    <meta name="theme-color" content="#5c2d91">
     
     <!-- JSONP callback function for Meetup API -->
     <script>

@@ -1,19 +1,26 @@
 import { TeamMember } from '../types';
 import '../assets/css/team-member-card.css';
 import { FaLinkedin, FaTwitter, FaGithub } from 'react-icons/fa';
+import LazyImage from './LazyImage';
+import { getImageWithFallback } from '../utils/imagePaths';
 
 interface TeamMemberCardProps {
   member: TeamMember;
 }
 
 const TeamMemberCard = ({ member }: TeamMemberCardProps) => {
+  // Use the utility to get the correct image path with fallback
+  const imageSrc = getImageWithFallback(member.image);
+
   return (
     <div className="team-member-card">
       <div className="member-image-container">
-        <img 
-          src={member.image || '/images/default-profile.png'} 
+        <LazyImage 
+          src={imageSrc} 
           alt={member.name}
           className="member-image"
+          width="100%"
+          height="100%"
         />
       </div>
       <div className="member-content">

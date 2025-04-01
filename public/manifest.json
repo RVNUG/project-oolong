@@ -1,0 +1,23 @@
+{
+  "name": "Roanoke Valley .NET User Group",
+  "short_name": "RVNUG",
+  "description": "The Roanoke Valley .NET User Group (RVNUG) is a community of developers passionate about .NET technologies in the Roanoke Valley area.",
+  "theme_color": "#5c2d91",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "src/assets/images/roanoke-star-128-logo.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "src/assets/images/website-icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+} 

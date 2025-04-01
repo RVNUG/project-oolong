@@ -3,11 +3,12 @@
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-md);
   overflow: hidden;
-  transition: all 0.4s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
   height: 100%;
   display: flex;
   flex-direction: column;
   border: 1px solid var(--border-color);
+  contain: content;
 }
 
 .team-member-card:hover {
@@ -20,6 +21,9 @@
   height: 280px;
   overflow: hidden;
   position: relative;
+  background-color: var(--color-neutral-100);
+  min-height: 280px;
+  width: 100%;
 }
 
 .member-image {
@@ -27,6 +31,10 @@
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .team-member-card:hover .member-image {
@@ -45,6 +53,7 @@
   font-size: 1.4rem;
   color: var(--color-primary-700);
   font-weight: 600;
+  min-height: 1.6rem;
 }
 
 .member-role {
@@ -55,6 +64,7 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   opacity: 0.8;
+  min-height: 1.2rem;
 }
 
 .member-bio {
@@ -63,18 +73,20 @@
   font-size: 0.95rem;
   color: var(--text-medium);
   flex: 1;
+  min-height: 5rem;
 }
 
 .member-social {
   display: flex;
   gap: 1rem;
   margin-top: auto;
+  min-height: 40px;
 }
 
 .member-social a {
   color: var(--text-medium);
   font-size: 1.2rem;
-  transition: all 0.3s;
+  transition: transform 0.3s, opacity 0.3s, background-color 0.3s;
   opacity: 0.7;
   display: flex;
   align-items: center;
@@ -83,6 +95,7 @@
   height: 40px;
   border-radius: 50%;
   background-color: var(--color-primary-50);
+  will-change: transform;
 }
 
 .member-social a:hover {
@@ -90,6 +103,12 @@
   opacity: 1;
   background-color: var(--color-primary-100);
   transform: translateY(-3px);
+}
+
+/* Placeholder styles for LazyImage */
+.team-member-card .member-image-container > div {
+  width: 100%;
+  height: 100%;
 }
 
 /* Dark mode */
@@ -123,10 +142,15 @@
   background-color: var(--color-primary-800);
 }
 
+.dark-theme .member-image-container {
+  background-color: var(--color-neutral-700);
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .member-image-container {
     height: 240px;
+    min-height: 240px;
   }
   
   .member-content {
@@ -141,6 +165,7 @@
 @media (max-width: 480px) {
   .member-image-container {
     height: 220px;
+    min-height: 220px;
   }
   
   .member-content {
