@@ -84,7 +84,7 @@ const ContactPage = () => {
               Join our Discord server to chat with other members and get real-time updates.
             </p>
             <a 
-              href="https://discord.gg/b4hAu9Pdg5" 
+              href={import.meta.env.VITE_APP_DISCORD_URL} 
               className="btn btn-secondary"
               target="_blank"
               rel="noopener noreferrer"

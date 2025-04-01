@@ -14,7 +14,7 @@ The RVNUG website dynamically fetches events from the [RVNUG Meetup page](https:
 4. All events are listed in the events section with appropriate labels
 5. If the API request fails, the site falls back to using local event data from `src/data/events.json`
 
-## CORS Challenges & Solutions
+<!-- ## CORS Challenges & Solutions
 
 Due to browser security restrictions (CORS), directly accessing the Meetup API from a browser is not allowed. Three solutions are provided:
 
@@ -72,7 +72,7 @@ If events are not loading from Meetup:
 1. Check browser console for errors
 2. Verify the Meetup group URL name is correct (`roanoke-valley-net-user-group`)
 3. Test the proxy function directly by visiting: `https://your-netlify-site.netlify.app/api/meetup-events`
-4. Verify Meetup API hasn't changed (check [Meetup API documentation](https://www.meetup.com/api/))
+4. Verify Meetup API hasn't changed (check [Meetup API documentation](https://www.meetup.com/api/)) -->
 
 ### Fallback to Local Data
 

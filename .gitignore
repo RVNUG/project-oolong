@@ -58,4 +58,15 @@ lerna-debug.log*
 *.sln
 *.sw?
 
+# python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyw
+*.pyz
+.venv/
+venv/
+
+
 .PROMPT.txt

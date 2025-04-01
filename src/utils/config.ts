@@ -8,7 +8,7 @@
  * @returns The base URL for the application
  */
 export const getBaseUrl = (): string => {
-  return import.meta.env.VITE_APP_BASE_URL || '/rvnugorg_rewrite2025/';
+  return import.meta.env.VITE_APP_BASE_URL || '/';
 };
 
 /**

@@ -6,8 +6,8 @@ import ErrorBoundary from './components/ErrorBoundary';
 import { routes } from './config/routes';
 import './assets/css/main.css';
 
-// Get basename from environment variables or default to /rvnugorg_rewrite2025
-const basename = import.meta.env.VITE_APP_BASE_URL || '/rvnugorg_rewrite2025';
+// Get basename from environment variables or default to ''
+const basename = import.meta.env.VITE_APP_BASE_URL || '';
 
 function AppRoutes() {
   return useRoutes(routes);

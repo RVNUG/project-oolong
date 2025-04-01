@@ -4,20 +4,14 @@
     "name": "Tolga Balci",
     "role": "President",
     "bio": "Tolga Balci is an enthusiast in Data Analytics, Data Science, and various computer-related fields. He is currently expanding his knowledge in electronics and is open to collaborations on ESP8266, Arduino, and Raspberry Pi development projects. Tolga is active on social media platforms and maintains a personal website on WordPress.",
-    "image": "images/highres_283684233.jpeg",
-    "linkedin": "https://linkedin.com/in/alex-rodriguez",
-    "twitter": "https://twitter.com/alexrodriguez",
-    "github": "https://github.com/alexrodriguez"
+    "image": "images/highres_283684233.jpeg"
   },
   {
     "id": 2,
     "name": "Alex Mikhail",
     "role": "Co-Officer",
-    "bio": "Alex Mikhail is a Computer Science graduate from DePaul University with a strong foundation in Python, Java, and JavaScript. He has experience leading client-facing projects and enhancing software platforms for Fortune 500 companies. Alex's background includes internships at Planview and Kolpak Lerner & Grcic LLC, where he demonstrated skills in database management, software testing, and client engagement.",
-    "image": "images/generic-member.svg",
-    "linkedin": "https://linkedin.com/in/taylor-kim",
-    "twitter": "https://twitter.com/taylorkim",
-    "github": "https://github.com/taylorkim"
+    "bio": "Alex Mikhail is a IT Manager at Ziiva, wearing many hats from IT to Manager to Software Developer. He is a self taught developer with a passion for learning and building.",
+    "image": "images/generic-member.svg"
   },
   {
     "id": 3,
