@@ -34,63 +34,14 @@ src/
 ├── utils/            # Utility functions
 │   └── seo.ts        # SEO utility functions
 ├── App.tsx           # Main App component
-└── main.tsx          # Entry point
+└── main.tsx         # Entry point
 ```
-
-## Linting with ESLint
-
-The project uses ESLint v9 with its new flat configuration format for linting JavaScript and TypeScript files. The ESLint configuration helps maintain consistent code quality and prevents common errors.
-
-### Configuration
-
-The ESLint setup is defined in `eslint.config.js` and includes:
-
-- TypeScript support via `typescript-eslint`
-- React-specific rules via `eslint-plugin-react` and `eslint-plugin-react-hooks`
-- Fast Refresh optimization with `eslint-plugin-react-refresh`
-- Global environment settings for browser and Node.js
-- Custom rules for controlling console statements and handling TypeScript types
-
-### Running ESLint Locally
-
-```bash
-# Run ESLint on the entire project
-npm run lint
-
-# Fix automatically fixable issues
-npm run lint -- --fix
-```
-
-### CI Integration
-
-ESLint is integrated into the CI pipeline via GitHub Actions. The `pr-checks.yml` workflow:
-
-1. Runs ESLint on all pull requests
-2. Adds detailed annotations to PR for any issues found
-3. Blocks PR merging if there are ESLint errors (warnings are allowed)
-4. Provides a summary of error and warning counts
-
-Pull requests must pass ESLint checks before they can be merged, ensuring code quality standards are maintained.
-
-## Features
-
-- **Event Management**: Display upcoming and past events from Meetup
-- **Team Directory**: Showcase the RVNUG leadership team
-- **Sponsor Showcase**: Display and categorize sponsors by level
-- **Feature Flags**: Control feature availability through environment variables and GitHub Secrets
-- **Responsive Design**: Mobile-friendly layout
-- **SEO Optimization**: Comprehensive search engine optimization with meta tags, Open Graph, Twitter Card, and JSON-LD structured data support
-- **Automated YouTube Updates**: Latest videos automatically fetched and updated daily
-- **Automated Meetup Updates**: Events automatically scraped and updated daily
-- **Online/In-Person Event Detection**: Events are automatically categorized as online or in-person
-- **Quality Assurance**: Required build verifications on pull requests to maintain code quality
-- **Project Card Image Fallback**: Graceful fallback for missing project images in the Community Showcase, displaying project title and code icon with a styled background
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js 18 or higher
+- Node.js 20 or higher
 - npm or yarn
 - Python 3.11 (for local development of API scripts)
 - Playwright (for Meetup scraping)
@@ -99,24 +50,18 @@ Pull requests must pass ESLint checks before they can be merged, ensuring code q
 
 1. Clone the repository
 ```bash
-git clone https://github.com/rvnug/rvnugorg_rewrite2025.git
-cd rvnugorg_rewrite2025
+git clone https://github.com/rvnug/project-oolong.git
+cd project-oolong
 ```
 
 2. Install dependencies
 ```bash
-npm install
+npm install --legacy-peer-deps
 ```
 
 3. Set up environment variables
 ```bash
 cp .env.example .env
-```
-
-Note: The application uses a base URL of `/rvnugorg_rewrite2025` by default. This can be configured through the `VITE_APP_BASE_URL` environment variable in your `.env` file:
-
-```bash
-VITE_APP_BASE_URL=/rvnugorg_rewrite2025  # Default value
 ```
 
 4. For local development of scripts:
@@ -130,47 +75,7 @@ python -m playwright install chromium
 npm run dev
 ```
 
-6. Open your browser and navigate to http://localhost:5173/rvnugorg_rewrite2025
-
-### Building for Production
-
-```bash
-npm run build
-```
-
-The built files will be in the `dist/` directory.
-
-## Deployment
-
-The website is deployed to GitHub Pages using GitHub Actions. The deployment process includes:
-
-1. **Automated Builds**: Triggered on:
-   - Push to main branch
-   - Pull requests to main branch
-   - Manual workflow dispatch
-   - Specifically triggered when data files are updated in main
-
-2. **Data Updates**:
-   - YouTube videos are automatically fetched and updated daily
-   - Meetup events are automatically scraped and updated daily
-   - Data is stored in `public/data/` directory as JSON files
-   - When either data file is updated and merged to main, deployment is automatically triggered
-
-3. **Deployment Process**:
-   - Verifies the build succeeds (required to pass before merging)
-   - Updates external API data
-   - Deploys to GitHub Pages (only on main branch)
-
-### GitHub Actions Workflows
-
-- `.github/workflows/deploy.yml`: Main deployment workflow
-  - Triggered on push to main branch (specifically watching for data file changes)
-  - Runs verification, build and deployment
-- `.github/workflows/update_yt_videos.yml`: Daily YouTube data updates
-  - Includes logic to trigger deployment when data changes
-- `.github/workflows/update_meetup_events.yml`: Daily Meetup events updates
-  - Includes logic to trigger deployment when data changes
-- `.github/workflows/pr-checks.yml`: Pull request verification checks
+6. Open your browser and navigate to http://localhost:5173/
 
 ## Development Workflow
 
@@ -183,76 +88,84 @@ The repository is configured with branch protection rules to ensure code quality
    - TypeScript checks must pass to ensure type safety
    
 2. **Pull Request Process**:
-   - Create a feature branch from `main`
+   - Create a feature branch from `master`
    - Make your changes and commit them
-   - Open a pull request to `main`
+   - Open a pull request to `master`
    - Automated checks will run to verify the build
    - Once approved and all checks pass, the PR can be merged
 
 3. **Post-Merge**:
-   - After merging to `main`, the deployment workflow automatically runs
+   - After merging to `master`, the deployment workflow automatically runs
    - The site is built and deployed to GitHub Pages
    - External API data is updated
 
-For more details, see [branch-protection-setup.md](docs/branch-protection-setup.md).
+## Feature Flag Management
+
+The website uses a feature flag system to control the availability of certain features:
+
+### Local Development
+
+To manage feature flags during local development:
+
+1. Copy `.env.example` to `.env` if you haven't already:
+```bash
+cp .env.example .env
+```
+
+2. Edit your `.env` file to enable/disable features:
+```bash
+# Feature Flags
+VITE_FEATURE_COMMUNITY_SHOWCASE=true  # Set to false to disable
+```
+
+### Production Environment
+
+Feature flags in production are managed through GitHub Secrets:
+
+1. Go to your repository's Settings > Secrets and variables > Actions
+2. Add or update the following secrets:
+   - `FEATURE_COMMUNITY_SHOWCASE`: Set to `true` to enable the Community Showcase feature
+
+## Deployment
+
+The website is deployed to GitHub Pages using GitHub Actions. The deployment process includes:
+
+1. **Automated Builds**: Triggered on:
+   - Push to master branch
+   - Pull requests to master branch
+   - Manual workflow dispatch
+   - Specifically triggered when data files are updated in master
+
+2. **Data Updates**:
+   - YouTube videos are automatically fetched and updated daily
+   - Meetup events are automatically scraped and updated daily
+   - Data is stored in `public/data/` directory as JSON files
+
+3. **Deployment Process**:
+   - Verifies the build succeeds (required to pass before merging)
+   - Updates external API data
+   - Deploys to GitHub Pages (only on master branch)
 
 ## Additional Documentation
 
 - [Branch Protection Setup](docs/branch-protection-setup.md): Details on branch protection rules
 - [Meetup Integration](docs/MEETUP_INTEGRATION.md): Information on Meetup API integration
 - [GitHub Pages Integration](docs/GITHUB_PAGES_INTEGRATION.md): Details on GitHub Pages deployment
-- [Testing Meetup](docs/TESTING_MEETUP.md): Guide for testing Meetup integration
-- [Updating Content](docs/UPDATING.md): Instructions for updating website content
+- [Migration Plan](docs/MIGRATION_2025.md): Current migration status and plan
 - [SEO Documentation](docs/SEO_DOCUMENTATION.md): Comprehensive guide to the SEO implementation
 
-## API Integration
+## Contributing
 
-### Meetup Integration
-The website integrates with Meetup using a multi-layered approach:
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-1. **Primary Method**: GitHub Actions uses Playwright to scrape Meetup events directly from the website
-   - No API key required
-   - Extracts events from both past and upcoming pages
-   - Cleans and formats event titles and descriptions
-   - Detects online vs. in-person events automatically
-   - Events saved to `public/data/events.json`
-   - Preserves existing data if scraping fails
+## License
 
-2. **Fallback Methods**:
-   - If local JSON fails, try JSONP API call from the browser
-   - If JSONP fails, try using a CORS proxy
-   - If all API methods fail, use existing cached data
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-This approach ensures:
-- No API key needed
-- No CORS issues
-- Events are always available even if Meetup website changes
-- Maintained data integrity with proper cleaning and formatting
+## Team
 
-#### Debug Mode
-
-For troubleshooting the Meetup scraper, you can enable debug mode:
-
-```bash
-MEETUP_DEBUG=true python scripts/meetup_events.py
-```
-
-This will save screenshots and HTML dumps that help identify issues with the scraping process.
-
-### YouTube API
-The homepage features our latest YouTube videos using the YouTube Data API v3. The integration includes:
-
-1. Automated daily updates via GitHub Actions
-2. Fallback to cached data if API fails
-3. Local development support
-
-To set up YouTube API locally:
-
-1. Create a Google Developer Console project
-2. Enable the YouTube Data API v3
-3. Create an API key with appropriate restrictions
-4. Add your API key to `.env`:
-```
-YOUTUBE_DATA_API_KEY=your_youtube_api_key_here
-YOUTUBE_CHANNEL_ID=your_channel_id_here
-```
+- RVNUG Development Team
