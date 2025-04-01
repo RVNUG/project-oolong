@@ -1,0 +1,192 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write  # Updated to allow writing to repository
+  pages: write
+  id-token: write
+  pull-requests: write # Added to allow status updates on PRs
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Verify Build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Verify package-lock.json exists
+        run: |
+          if [ -f "package-lock.json" ]; then
+            echo "✅ package-lock.json found"
+            ls -la package-lock.json
+          else
+            echo "⚠️ package-lock.json NOT found, creating it..."
+            npm install --package-lock-only
+            ls -la package-lock.json
+          fi
+      
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      
+      # Make sure npm is at the latest version
+      - name: Update npm
+        run: npm install -g npm@latest
+      
+      - name: Node and NPM Info
+        run: |
+          echo "Node version: $(node -v)"
+          echo "NPM version: $(npm -v)"
+      
+      - name: Install dependencies with legacy peer deps
+        run: npm ci --legacy-peer-deps || npm install --legacy-peer-deps
+      
+      - name: Create .env file for build
+        run: |
+          echo "VITE_APP_MEETUP_GROUP_NAME=roanoke-valley-net-user-group" >> .env
+          echo "VITE_APP_RVNUG_YT_CHANNEL_ID=${YOUTUBE_CHANNEL_ID:-UCturJIv_9ubJTcRgwoHdP-g}" >> .env
+          echo "VITE_APP_YOUTUBE_DATA_API_KEY=${YOUTUBE_API_KEY:-AIzaSyBQNF8iTrfUYldLuUm8p92mCsOBRYYC_Bo}" >> .env
+          echo "VITE_APP_BASE_URL=${BASE_URL:-/rvnugorg_rewrite2025}" >> .env
+          echo "VITE_FEATURE_COMMUNITY_SHOWCASE=${FEATURE_COMMUNITY_SHOWCASE:-false}" >> .env
+        env:
+          YOUTUBE_CHANNEL_ID: ${{ secrets.RVNUG_YT_CHANNEL_ID }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_DATA_API_KEY }}
+          BASE_URL: ${{ secrets.BASE_URL }}
+          FEATURE_COMMUNITY_SHOWCASE: ${{ secrets.FEATURE_COMMUNITY_SHOWCASE }}
+      
+      - name: Build Verification
+        run: |
+          export NODE_OPTIONS=--max_old_space_size=4096
+          npm run build
+        env:
+          NODE_ENV: production
+  
+  build:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    needs: verify  # This job will only run if verify job succeeds
+    if: github.event_name != 'pull_request'  # Skip deployment steps for PRs
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Set up Python for API data fetching
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests python-dotenv playwright
+
+      - name: Install Playwright browsers
+        run: |
+          python -m playwright install chromium
+
+      - name: Update YouTube videos data
+        env:
+          YOUTUBE_DATA_API_KEY: ${{ secrets.YOUTUBE_DATA_API_KEY }}
+          YOUTUBE_CHANNEL_ID: ${{ secrets.RVNUG_YT_CHANNEL_ID }}
+        run: |
+          python scripts/youtube_latest_videos.py
+        
+      - name: Update Meetup events data
+        env:
+          MEETUP_GROUP_NAME: ${{ secrets.MEETUP_GROUP_NAME || 'roanoke-valley-net-user-group' }}
+        run: |
+          python scripts/meetup_events.py
+      
+      - name: Commit updated data files
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add public/data/videos.json public/data/events.json
+          git commit -m "Update API data" || echo "No changes to commit"
+          git push origin main || echo "No changes to push"
+      
+      - name: Verify package-lock.json exists
+        run: |
+          if [ -f "package-lock.json" ]; then
+            echo "✅ package-lock.json found"
+            ls -la package-lock.json
+          else
+            echo "⚠️ package-lock.json NOT found, creating it..."
+            npm install --package-lock-only
+            ls -la package-lock.json
+          fi
+      
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      
+      # Make sure npm is at the latest version
+      - name: Update npm
+        run: npm install -g npm@latest
+      
+      - name: Node and NPM Info
+        run: |
+          echo "Node version: $(node -v)"
+          echo "NPM version: $(npm -v)"
+      
+      - name: Install dependencies with legacy peer deps
+        run: npm ci --legacy-peer-deps || npm install --legacy-peer-deps
+      
+      - name: Create .env file for build
+        run: |
+          echo "VITE_APP_MEETUP_GROUP_NAME=roanoke-valley-net-user-group" >> .env
+          echo "VITE_APP_RVNUG_YT_CHANNEL_ID=${YOUTUBE_CHANNEL_ID:-UCturJIv_9ubJTcRgwoHdP-g}" >> .env
+          echo "VITE_APP_YOUTUBE_DATA_API_KEY=${YOUTUBE_API_KEY:-AIzaSyBQNF8iTrfUYldLuUm8p92mCsOBRYYC_Bo}" >> .env
+          echo "VITE_APP_BASE_URL=${BASE_URL:-/rvnugorg_rewrite2025}" >> .env
+          echo "VITE_FEATURE_COMMUNITY_SHOWCASE=${FEATURE_COMMUNITY_SHOWCASE:-false}" >> .env
+        env:
+          YOUTUBE_CHANNEL_ID: ${{ secrets.RVNUG_YT_CHANNEL_ID }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_DATA_API_KEY }}
+          BASE_URL: ${{ secrets.BASE_URL }}
+          FEATURE_COMMUNITY_SHOWCASE: ${{ secrets.FEATURE_COMMUNITY_SHOWCASE }}
+      
+      - name: Build
+        run: |
+          export NODE_OPTIONS=--max_old_space_size=4096
+          npm run build
+        env:
+          NODE_ENV: production
+      
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
+  deploy:
+    name: Deploy
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main'  # Only deploy on main branch
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

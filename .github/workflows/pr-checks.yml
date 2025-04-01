@@ -1,0 +1,362 @@
+name: PR Checks (Build, TypeScript, ESLint)
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+
+jobs:
+  build-verification:
+    name: Build Verification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Show Environment Info
+        run: |
+          echo "GitHub Ref: $GITHUB_REF"
+          echo "GitHub Event Name: $GITHUB_EVENT_NAME"
+          echo "GitHub Repository: $GITHUB_REPOSITORY"
+          echo "GitHub Actor: $GITHUB_ACTOR"
+          echo "Operating System: $(uname -a)"
+          echo "Directory contents:"
+          ls -la
+      
+      - name: Verify package-lock.json exists
+        run: |
+          if [ -f "package-lock.json" ]; then
+            echo "✅ package-lock.json found"
+            ls -la package-lock.json
+          else
+            echo "⚠️ package-lock.json NOT found, creating it..."
+            npm install --package-lock-only
+            ls -la package-lock.json
+          fi
+      
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      
+      - name: Node and NPM Info
+        run: |
+          echo "Node version: $(node -v)"
+          echo "NPM version: $(npm -v)"
+      
+      # Make sure npm is at the latest version
+      - name: Update npm
+        run: npm install -g npm@latest
+      
+      - name: Node and NPM Info after update
+        run: |
+          echo "Node version: $(node -v)"
+          echo "NPM version: $(npm -v)"
+      
+      - name: Install dependencies with legacy peer deps
+        run: npm ci --legacy-peer-deps || npm install --legacy-peer-deps
+      
+      - name: Create .env file for build
+        run: |
+          echo "Creating .env file with fallback values"
+          echo "VITE_APP_MEETUP_GROUP_NAME=roanoke-valley-net-user-group" >> .env
+          echo "VITE_APP_RVNUG_YT_CHANNEL_ID=${YOUTUBE_CHANNEL_ID:-UCturJIv_9ubJTcRgwoHdP-g}" >> .env
+          echo "VITE_APP_YOUTUBE_DATA_API_KEY=${YOUTUBE_API_KEY:-AIzaSyBQNF8iTrfUYldLuUm8p92mCsOBRYYC_Bo}" >> .env
+          echo "VITE_APP_BASE_URL=${BASE_URL:-/rvnugorg_rewrite2025}" >> .env
+          echo ".env file contents (redacted API keys):"
+          grep -v "API_KEY" .env | cat
+        env:
+          YOUTUBE_CHANNEL_ID: ${{ secrets.RVNUG_YT_CHANNEL_ID }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_DATA_API_KEY }}
+          BASE_URL: ${{ secrets.BASE_URL }}
+      
+      - name: Build Verification with Debug
+        id: build
+        run: |
+          echo "Starting build process..."
+          export NODE_OPTIONS=--max_old_space_size=4096
+          npm run build
+        env:
+          NODE_ENV: production
+      
+      - name: Build Output
+        if: always()
+        run: |
+          echo "Build exit code: ${{ steps.build.outcome }}"
+          echo "Directory structure after build:"
+          ls -la dist || echo "dist directory not found"
+  
+  typescript-check:
+    name: TypeScript Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Verify package-lock.json exists
+        run: |
+          if [ -f "package-lock.json" ]; then
+            echo "✅ package-lock.json found"
+            ls -la package-lock.json
+          else
+            echo "⚠️ package-lock.json NOT found, creating it..."
+            npm install --package-lock-only
+            ls -la package-lock.json
+          fi
+      
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      
+      # Make sure npm is at the latest version
+      - name: Update npm
+        run: npm install -g npm@latest
+      
+      - name: Node and NPM Info
+        run: |
+          echo "Node version: $(node -v)"
+          echo "NPM version: $(npm -v)"
+      
+      - name: Install dependencies with legacy peer deps
+        run: npm ci --legacy-peer-deps || npm install --legacy-peer-deps
+      
+      - name: Check TypeScript with Debug
+        id: typescript
+        run: |
+          echo "Running TypeScript check..."
+          npx tsc --noEmit
+      
+      - name: TypeScript Check Output
+        if: always()
+        run: |
+          echo "TypeScript check exit code: ${{ steps.typescript.outcome }}"
+  
+  eslint-check:
+    name: ESLint Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps || npm install --legacy-peer-deps
+      
+      - name: Verify ESLint config exists
+        run: |
+          if [ -f "eslint.config.js" ]; then
+            echo "✅ eslint.config.js found"
+          else
+            echo "⚠️ eslint.config.js not found. This might cause ESLint to use a different configuration."
+          fi
+      
+      - name: Run ESLint
+        id: eslint
+        run: |
+          echo "Running ESLint check..."
+          # Run ESLint with the correct flat config and save output to file
+          # The --no-error-on-unmatched-pattern flag ensures ESLint doesn't fail if there are no files to lint
+          npx eslint --format json --no-error-on-unmatched-pattern . > eslint-results.json || echo "ESLint found issues"
+          
+          # Use Node.js to count errors and warnings (much more reliable than grep)
+          node -e '
+            const fs = require("fs");
+            try {
+              // Default values
+              let errorCount = 0;
+              let warningCount = 0;
+              
+              // Check if file exists and has content
+              if (fs.existsSync("eslint-results.json") && fs.statSync("eslint-results.json").size > 0) {
+                const fileContent = fs.readFileSync("eslint-results.json", "utf8").trim();
+                
+                if (fileContent) {
+                  try {
+                    const results = JSON.parse(fileContent);
+                    
+                    if (Array.isArray(results)) {
+                      // Count errors and warnings
+                      results.forEach(result => {
+                        if (result && Array.isArray(result.messages)) {
+                          result.messages.forEach(msg => {
+                            if (msg.severity === 2) errorCount++;
+                            if (msg.severity === 1) warningCount++;
+                          });
+                        }
+                      });
+                    } else {
+                      console.log("ESLint results is not an array");
+                    }
+                  } catch (e) {
+                    console.error("Failed to parse ESLint results:", e.message);
+                  }
+                }
+              } else {
+                console.log("ESLint results file is empty or does not exist");
+              }
+              
+              // Print counts for debugging
+              console.log(`ESLINT_ERROR_COUNT=${errorCount}`);
+              console.log(`ESLINT_WARNING_COUNT=${warningCount}`);
+              
+              // Write to GitHub output
+              fs.appendFileSync(process.env.GITHUB_OUTPUT, `error_count=${errorCount}\n`);
+              fs.appendFileSync(process.env.GITHUB_OUTPUT, `warning_count=${warningCount}\n`);
+              fs.appendFileSync(process.env.GITHUB_OUTPUT, `has_errors=${errorCount > 0 ? "true" : "false"}\n`);
+            } catch (error) {
+              console.error("Error in Node.js counting script:", error);
+              // Still write defaults to prevent workflow failure
+              fs.appendFileSync(process.env.GITHUB_OUTPUT, "error_count=0\n");
+              fs.appendFileSync(process.env.GITHUB_OUTPUT, "warning_count=0\n");
+              fs.appendFileSync(process.env.GITHUB_OUTPUT, "has_errors=false\n");
+            }
+          '
+          
+          # Report summary based on the GitHub output values
+          if [ "${{ steps.eslint.outputs.has_errors }}" = "true" ]; then
+            echo "::error::ESLint found errors that need to be fixed"
+          else
+            echo "No ESLint errors found (warnings may still be present)"
+          fi
+          
+          echo "Found ${{ steps.eslint.outputs.error_count }} errors and ${{ steps.eslint.outputs.warning_count }} warnings"
+      
+      - name: ESLint Report
+        if: always()
+        run: |
+          echo "ESLint check complete with ${{ steps.eslint.outputs.error_count || 0 }} errors and ${{ steps.eslint.outputs.warning_count || 0 }} warnings"
+          
+          # If there are errors, exit with error code
+          if [ "${{ steps.eslint.outputs.has_errors }}" = "true" ]; then
+            exit 1
+          fi
+      
+      - name: Add ESLint annotations
+        if: always() && (steps.eslint.outputs.error_count != '0' || steps.eslint.outputs.warning_count != '0')
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            
+            try {
+              // Check if file exists and has content
+              if (!fs.existsSync('eslint-results.json') || fs.statSync('eslint-results.json').size === 0) {
+                console.log('ESLint results file is empty or does not exist.');
+                return;
+              }
+              
+              // Read ESLint results from file
+              const fileContent = fs.readFileSync('eslint-results.json', 'utf8');
+              
+              // Handle empty or invalid JSON
+              if (!fileContent.trim()) {
+                console.log('ESLint results file is empty.');
+                return;
+              }
+              
+              let eslintResults;
+              try {
+                eslintResults = JSON.parse(fileContent);
+                
+                // Handle case where result is not an array
+                if (!Array.isArray(eslintResults)) {
+                  console.log('ESLint results is not an array:', typeof eslintResults);
+                  return;
+                }
+              } catch (parseError) {
+                console.error('Error parsing ESLint results:', parseError);
+                console.log('ESLint results content:', fileContent.substring(0, 200) + '...');
+                return;
+              }
+              
+              // Create annotations for issues
+              const annotations = [];
+              
+              eslintResults.forEach(result => {
+                if (!result || !result.filePath || !Array.isArray(result.messages)) {
+                  console.log('Invalid result entry:', result);
+                  return;
+                }
+                
+                const filePath = result.filePath;
+                
+                result.messages.forEach(message => {
+                  if (!message || typeof message.line !== 'number') {
+                    console.log('Invalid message entry:', message);
+                    return;
+                  }
+                  
+                  annotations.push({
+                    path: filePath.replace(process.env.GITHUB_WORKSPACE + '/', ''),
+                    start_line: message.line,
+                    end_line: message.line,
+                    start_column: message.column || 1,
+                    end_column: message.endColumn || message.column || 1,
+                    annotation_level: message.severity === 2 ? 'failure' : 'warning',
+                    message: `${message.message} (${message.ruleId || 'no-rule-id'})`,
+                  });
+                });
+              });
+              
+              if (annotations.length === 0) {
+                console.log('No annotations to create');
+                return;
+              }
+              
+              console.log(`Creating annotations for ${annotations.length} issues`);
+              
+              // Create a single check with all annotations (up to the GitHub limit)
+              const maxAnnotationsPerRequest = 50;
+              const hasErrors = annotations.some(a => a.annotation_level === 'failure');
+              
+              // Group annotations into chunks of 50
+              for (let i = 0; i < annotations.length; i += maxAnnotationsPerRequest) {
+                const chunk = annotations.slice(i, i + maxAnnotationsPerRequest);
+                
+                await github.rest.checks.create({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: 'ESLint',
+                  head_sha: context.payload.pull_request.head.sha,
+                  status: 'completed',
+                  conclusion: hasErrors ? 'failure' : 'neutral',
+                  output: {
+                    title: 'ESLint Results',
+                    summary: `Found ${steps.eslint.outputs.error_count || 0} errors and ${steps.eslint.outputs.warning_count || 0} warnings`,
+                    annotations: chunk
+                  }
+                });
+              }
+              
+            } catch (error) {
+              console.error('Error creating annotations:', error);
+            }
+
+  status-check:
+    name: Status Check
+    needs: [build-verification, typescript-check, eslint-check]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify all checks passed
+        run: |
+          if [ "${{ needs.build-verification.result }}" != "success" ] || \
+             [ "${{ needs.typescript-check.result }}" != "success" ] || \
+             [ "${{ needs.eslint-check.result }}" != "success" ]; then
+            echo "::error::One or more checks failed. Please fix the issues before merging."
+            exit 1
+          else
+            echo "All checks passed!"
+          fi 

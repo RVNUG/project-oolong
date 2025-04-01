@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="80" viewBox="0 0 200 80">
+  <style>
+    .text { font-family: 'Segoe UI', Arial, sans-serif; font-weight: bold; }
+    .primary { fill: white; }
+    .secondary { fill: #44c8f5; }
+  </style>
+  <rect x="10" y="10" width="180" height="60" rx="10" fill="none" stroke="white" stroke-width="2" />
+  <text x="30" y="50" class="text" font-size="28" fill="white">RVNUG</text>
+  <path d="M155 30 L175 50 L155 50 Z" class="secondary" />
+</svg>

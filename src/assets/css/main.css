@@ -1,0 +1,404 @@
+/* 
+ * Main CSS file for the Roanoke Valley .NET User Group website 
+ */
+
+/* Base styles and resets */
+:root {
+  /* Legacy variables for backwards compatibility - will be deprecated */
+  --primary-color: var(--color-primary-700);
+  --secondary-color: var(--color-accent-blue-500);
+  --accent-color: var(--color-accent-orange-500);
+  --text-color-dark: var(--text-light);
+  --text-color-light: var(--text-dark);
+  --light-text: var(--text-light);
+  --border-color: var(--border-color);
+  --error-color: var(--color-error);
+  --success-color: var(--color-success);
+  --background-color: var(--background-body);
+  --card-background: var(--background-card);
+  --shadow: var(--shadow-md);
+  --border-radius: var(--border-radius-md);
+  --font-family: var(--font-family-base);
+  --focus-outline: var(--focus-ring);
+  --focus-outline-offset: var(--focus-ring-offset);
+}
+
+/* Skip to main content link for keyboard users */
+.skip-to-main {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  background-color: var(--color-primary-700);
+  color: var(--text-on-primary);
+  padding: 10px 15px;
+  z-index: 9999;
+  text-decoration: none;
+  border-radius: 0 0 var(--border-radius-md) 0;
+  font-weight: bold;
+  transition: top 0.3s ease;
+}
+
+.skip-to-main:focus {
+  top: 0;
+  left: 0;
+  height: auto;
+  width: auto;
+  overflow: visible;
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family-base);
+  line-height: var(--line-height-normal);
+  color: var(--text-dark);
+  background-color: var(--background-body);
+}
+
+:focus {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding: var(--space-4);
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: var(--space-4);
+  font-weight: 600;
+  line-height: var(--line-height-tight);
+  color: var(--text-dark);
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+p {
+  margin-bottom: var(--space-4);
+}
+
+a {
+  color: var(--color-primary-700);
+  text-decoration: underline;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: var(--color-primary-800);
+}
+
+a:focus {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+  box-shadow: var(--shadow-sm);
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.btn:hover {
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn:focus {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-text);
+}
+
+.btn-primary:hover {
+  background-color: var(--button-primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--button-secondary-bg);
+  color: var(--button-secondary-text);
+  border: 1px solid var(--button-secondary-border);
+}
+
+.btn-secondary:hover {
+  background-color: var(--button-secondary-hover);
+}
+
+/* Common layout elements */
+.page-header {
+  margin-bottom: var(--space-6);
+  text-align: center;
+  padding: var(--space-4) 0;
+}
+
+.loading {
+  text-align: center;
+  padding: var(--space-8);
+  font-size: 1.2rem;
+  color: var(--color-primary-700);
+}
+
+.error-message {
+  background-color: #ffeeee;
+  border: 1px solid var(--color-error);
+  color: var(--color-error);
+  padding: var(--space-4);
+  border-radius: var(--border-radius-md);
+  margin-bottom: var(--space-4);
+}
+
+.success-message {
+  background-color: #eeffee;
+  border: 1px solid var(--color-success);
+  color: var(--color-success);
+  padding: var(--space-4);
+  border-radius: var(--border-radius-md);
+  margin-bottom: var(--space-4);
+}
+
+/* Section styles */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.view-all {
+  font-size: 0.9rem;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--border-radius-sm);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: var(--color-primary-700);
+  border: 1px solid var(--color-primary-700);
+}
+
+.view-all:hover {
+  background-color: var(--color-primary-50);
+  color: var(--color-primary-800);
+}
+
+/* Card styling */
+.card {
+  background-color: var(--background-card);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: var(--space-4);
+  color: var(--text-dark);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card:focus-within {
+  box-shadow: 0 0 0 3px var(--color-primary-700);
+  transform: translateY(-5px);
+}
+
+.card-body {
+  padding: var(--space-4);
+}
+
+.card-title {
+  color: var(--color-primary-700);
+  margin-bottom: var(--space-3);
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.card-text {
+  color: var(--text-medium);
+}
+
+.card h1, .card h2, .card h3, .card h4, .card h5, .card h6 {
+  color: var(--color-primary-700);
+}
+
+.card a {
+  color: var(--color-primary-700);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.card a:hover {
+  color: var(--color-primary-800);
+  text-decoration: underline;
+}
+
+.card a:focus {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* Container adjustments */
+.container {
+  background-color: var(--background-card);
+  border-radius: var(--border-radius-md);
+  padding: var(--space-5);
+  margin-bottom: var(--space-5);
+}
+
+/* Content within white/light backgrounds */
+.light-bg-content {
+  color: var(--text-dark);
+}
+
+.light-bg-content h1,
+.light-bg-content h2,
+.light-bg-content h3,
+.light-bg-content h4,
+.light-bg-content h5,
+.light-bg-content h6 {
+  color: var(--color-primary-700);
+}
+
+.light-bg-content a {
+  color: var(--color-primary-700);
+  font-weight: 500;
+}
+
+.light-bg-content a:hover {
+  color: var(--color-primary-800);
+  text-decoration: underline;
+}
+
+.light-bg-content a:focus {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* Dark theme overrides for content */
+.dark-theme .light-bg-content {
+  color: var(--text-light);
+}
+
+.dark-theme .light-bg-content h1,
+.dark-theme .light-bg-content h2,
+.dark-theme .light-bg-content h3,
+.dark-theme .light-bg-content h4,
+.dark-theme .light-bg-content h5,
+.dark-theme .light-bg-content h6 {
+  color: var(--color-primary-300);
+}
+
+.dark-theme .light-bg-content a {
+  color: var(--color-primary-300);
+}
+
+.dark-theme .light-bg-content a:hover {
+  color: var(--color-primary-200);
+}
+
+/* Override text color variables for dark mode to improve contrast */
+.dark-theme {
+  --text-color-light: var(--color-neutral-100);
+}
+
+/* Accessibility utilities */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* For responsive layouts */
+@media (max-width: 768px) {
+  .main-content {
+    padding: var(--space-3);
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+  }
+  
+  .container {
+    padding: var(--space-4) var(--space-3);
+  }
+  
+  /* Increase touch target sizes for mobile */
+  .btn, 
+  a.view-all, 
+  .nav-link,
+  .interactive-element {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+} 

@@ -1,0 +1,65 @@
+name: Troubleshoot GitHub Actions
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnostic:
+    name: GitHub Actions Diagnostic
+    runs-on: ubuntu-latest
+    steps:
+      - name: Basic Environment Info
+        run: |
+          echo "GitHub Ref: $GITHUB_REF"
+          echo "GitHub Event Name: $GITHUB_EVENT_NAME"
+          echo "GitHub Repository: $GITHUB_REPOSITORY"
+          echo "GitHub Actor: $GITHUB_ACTOR"
+          echo "Operating System: $(uname -a)"
+      
+      - name: List Environment Variables
+        run: env | sort
+      
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      
+      - name: Repository Contents
+        run: |
+          echo "Repository contents:"
+          ls -la
+          echo "GitHub directory contents:"
+          ls -la .github || echo ".github directory not found"
+          echo "Workflow directory contents:"
+          ls -la .github/workflows || echo "workflows directory not found"
+      
+      - name: Node Setup Test
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Node Environment Check
+        run: |
+          echo "Node version: $(node -v)"
+          echo "NPM version: $(npm -v)"
+          echo "Available disk space:"
+          df -h
+          echo "Available memory:"
+          free -h
+      
+      - name: Network Connectivity Test
+        run: |
+          echo "DNS resolution test:"
+          nslookup github.com
+          echo "Basic connectivity test:"
+          curl -I https://github.com
+          echo "Registry connectivity test:"
+          npm ping
+      
+      - name: Success Message
+        run: |
+          echo "Diagnostic workflow completed successfully"
+          echo "If this workflow succeeds but others fail, the issue is not with the GitHub Actions environment itself" 

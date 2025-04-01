@@ -1,43 +1,39 @@
 {
-  "name": "gatsby-starter-stellar",
-  "description": "Roanoke Valley .NET User Group",
-  "version": "1.0.0",
-  "author": "Roanoke Valley .NET User Group Officers",
-  "homepage": "https://RVNUG.github.io/project-oolong",
-  "dependencies": {
-    "gatsby": "^2.13.54",
-    "gatsby-plugin-lodash": "^3.1.2",
-    "gatsby-plugin-manifest": "^2.2.5",
-    "gatsby-plugin-offline": "^2.2.5",
-    "gatsby-plugin-react-helmet": "^3.1.3",
-    "gatsby-plugin-sass": "^2.1.4",
-    "gh-pages": "^2.1.1",
-    "lodash": "^4.17.13",
-    "node-sass": "^4.12.0",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-helmet": "^5.2.1",
-    "react-scroll-to-element": "^0.2.0",
-    "react-scrollspy": "^3.4.0",
-    "react-waypoint": "^8.0.3"
-  },
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "MIT",
+  "name": "rvnug-react",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "predeploy": "gatsby build",
-    "deploy": "gh-pages -d public -m '[ci skip] Automated deployment'",
-    "format": "prettier --write '**/*.js'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "setup": "node scripts/setup.js"
+  },
+  "dependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.25.9",
+    "@types/react-router-dom": "^5.3.3",
+    "dotenv": "^16.4.7",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-helmet-async": "^2.0.5",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^7.4.0"
   },
   "devDependencies": {
-    "prettier": "^1.18.2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.21.0",
+    "@types/node": "^22.13.11",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.21.0",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.24.1",
+    "vite": "^6.2.0"
   }
 }

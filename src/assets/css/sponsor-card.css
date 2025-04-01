@@ -1,0 +1,265 @@
+.sponsor-card {
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: var(--border-radius);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: transform 0.3s;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.sponsor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.sponsor-logo-container {
+  height: 180px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Special case for .NET Foundation logo with white background */
+.sponsor-platinum .sponsor-logo-container img[src*="dotnetfoundation-logo-white"] {
+  background-color: #512BD4; /* .NET purple color */
+  padding: 1rem;
+  border-radius: 8px;
+  max-height: 100px;
+}
+
+.sponsor-logo {
+  max-width: 100%;
+  max-height: 120px;
+  object-fit: contain;
+}
+
+.sponsor-content {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+}
+
+.sponsor-name {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  color: #333333;
+  font-weight: 700;
+}
+
+.sponsor-level {
+  color: var(--primary-color);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--primary-color);
+  display: inline-block;
+  padding-bottom: 3px;
+}
+
+.sponsor-description {
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  flex-grow: 1;
+  color: #333333;
+  text-transform: none;
+}
+
+.sponsor-link {
+  margin-top: auto;
+  align-self: flex-start;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.sponsor-link:hover {
+  background-color: #7a4d75;
+  text-decoration: none;
+}
+
+.sponsor-link:focus {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
+}
+
+.sponsor-link i {
+  margin-left: 8px;
+}
+
+/* Size variations */
+.sponsor-card.size-normal {
+  /* Default sizing */
+  max-width: 350px;
+}
+
+.sponsor-card.size-large {
+  flex-direction: column; /* Keep the same vertical layout as normal cards */
+  max-width: 100%;
+  width: 100%;
+}
+
+.sponsor-card.size-large .sponsor-logo-container {
+  height: 200px; /* Slightly larger logo area */
+}
+
+.sponsor-card.size-large .sponsor-logo {
+  max-height: 150px; /* Larger logo */
+}
+
+.sponsor-card.size-large .sponsor-content {
+  padding: 2rem;
+}
+
+.sponsor-card.size-large .sponsor-name {
+  font-size: 1.5rem;
+}
+
+.sponsor-card.size-large .sponsor-description {
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.sponsor-card.size-large .sponsor-link {
+  padding: 10px 20px;
+  font-size: 1.1rem;
+}
+
+/* Fix logo sizing and display */
+.sponsor-logo img {
+  max-width: 100%;
+  max-height: 80px;
+  object-fit: contain;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sponsor-card.size-large {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .sponsor-card.size-large .sponsor-logo {
+    max-width: 100%;
+  }
+  
+  .sponsor-card.size-large .sponsor-info {
+    padding-left: 0;
+    margin-top: 15px;
+  }
+}
+
+/* Dark theme styles */
+.dark-theme .sponsor-card {
+  background-color: var(--color-neutral-800);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dark-theme .sponsor-logo-container {
+  background-color: var(--color-neutral-800);
+  border-bottom: 1px solid var(--color-neutral-700);
+}
+
+.dark-theme .sponsor-content {
+  background-color: var(--color-neutral-800);
+}
+
+.dark-theme .sponsor-name {
+  color: var(--color-neutral-100);
+}
+
+.dark-theme .sponsor-description {
+  color: var(--color-neutral-200);
+}
+
+.dark-theme .sponsor-level {
+  color: var(--color-primary-400);
+  border-bottom-color: var(--color-primary-400);
+}
+
+.dark-theme .sponsor-link {
+  background-color: var(--color-primary-600);
+}
+
+.dark-theme .sponsor-link:hover {
+  background-color: var(--color-primary-500);
+}
+
+/* Single sponsor styling (for when there's just one sponsor) */
+.sponsors-preview .sponsor-card:only-child {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sponsors-preview .sponsor-card:only-child .sponsor-logo-container {
+  height: 240px; /* Larger logo area for single sponsor */
+}
+
+.sponsors-preview .sponsor-card:only-child .sponsor-logo {
+  max-height: 180px; /* Even larger logo for single sponsor */
+}
+
+.sponsors-preview .sponsor-card:only-child .sponsor-content {
+  padding: var(--space-6);
+}
+
+.sponsors-preview .sponsor-card:only-child .sponsor-name {
+  font-size: 1.75rem;
+}
+
+.sponsors-preview .sponsor-card:only-child .sponsor-description {
+  font-size: 1.2rem;
+  line-height: 1.8;
+}
+
+/* Sponsor logo fallback for when image fails to load */
+.sponsor-logo-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(135deg, var(--color-primary-700), var(--color-primary-500));
+  border-radius: 8px;
+}
+
+.sponsor-platinum .sponsor-logo-fallback {
+  background: linear-gradient(135deg, var(--color-primary-800), var(--color-primary-600));
+}
+
+.sponsor-gold .sponsor-logo-fallback {
+  background: linear-gradient(135deg, var(--color-accent-orange-600), var(--color-accent-orange-500));
+}
+
+.sponsor-silver .sponsor-logo-fallback {
+  background: linear-gradient(135deg, var(--color-neutral-600), var(--color-neutral-400));
+}
+
+.sponsor-bronze .sponsor-logo-fallback {
+  background: linear-gradient(135deg, #cd7f32, #a05a2c);
+}
+
+/* Dark theme styles for fallback */
+.dark-theme .sponsor-logo-fallback {
+  color: var(--color-neutral-100);
+} 
