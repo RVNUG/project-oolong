@@ -23,6 +23,9 @@ This workflow handles the main deployment process:
 on:
   push:
     branches: [main]
+    paths:
+      - 'public/data/videos.json'
+      - 'public/data/events.json'
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -36,6 +39,7 @@ Features:
 - Deploys to GitHub Pages (only on main branch)
 - Runs on pull requests for testing
 - Manual trigger support
+- Automatically triggered when data files are updated in the main branch
 
 ### 2. Pull Request Checks Workflow (pr-checks.yml)
 
@@ -69,6 +73,8 @@ Features:
 - Updates `public/data/videos.json`
 - Runs automatically daily
 - Manual trigger support
+- Verifies if changes were actually committed
+- Automatically triggers deployment workflow when new video data is pushed
 
 ### 4. Meetup Events Updates (update_meetup_events.yml)
 
@@ -88,6 +94,8 @@ Features:
 - Does not save empty data if scraping fails (keeps existing data intact)
 - Runs automatically daily
 - Manual trigger support
+- Verifies if changes were actually committed
+- Automatically triggers deployment workflow when new event data is pushed
 
 ## Branch Protection and Pull Request Process
 
@@ -204,6 +212,7 @@ The website now follows this data flow pattern:
    - GitHub Actions workflows run daily
    - Python scripts fetch fresh data
    - Updates committed to repository
+   - When either data file is updated, deployment is automatically triggered
 
 3. **Fallback Mechanism**:
    - If local JSON fails, try JSONP (for Meetup)
@@ -215,6 +224,7 @@ This architecture ensures:
 - Minimal API calls from user browsers
 - No need for API keys in browser code
 - Resilience against API changes or outages
+- Automatic deployment when data is updated
 
 ## Playwright Setup for GitHub Actions
 

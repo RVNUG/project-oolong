@@ -3,6 +3,9 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+    paths:
+      - 'public/data/videos.json'
+      - 'public/data/events.json'
   pull_request:
     branches: [main]
   workflow_dispatch:

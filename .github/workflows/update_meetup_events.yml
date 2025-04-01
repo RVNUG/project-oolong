@@ -46,8 +46,17 @@ jobs:
           git commit -m "Update Meetup events data" || echo "No changes to commit"
           git push origin main || echo "No changes to push"
       
+      - name: Check if changes were pushed
+        id: check_changes
+        run: |
+          if [[ $(git log -1 --pretty=%B) == *"Update Meetup events data"* ]]; then
+            echo "changes_pushed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changes_pushed=false" >> $GITHUB_OUTPUT
+          fi
+      
       - name: Trigger deploy workflow
-        if: success()
+        if: success() && steps.check_changes.outputs.changes_pushed == 'true'
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}

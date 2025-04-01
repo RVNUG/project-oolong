@@ -148,11 +148,13 @@ The website is deployed to GitHub Pages using GitHub Actions. The deployment pro
    - Push to main branch
    - Pull requests to main branch
    - Manual workflow dispatch
+   - Specifically triggered when data files are updated in main
 
 2. **Data Updates**:
    - YouTube videos are automatically fetched and updated daily
    - Meetup events are automatically scraped and updated daily
    - Data is stored in `public/data/` directory as JSON files
+   - When either data file is updated and merged to main, deployment is automatically triggered
 
 3. **Deployment Process**:
    - Verifies the build succeeds (required to pass before merging)
@@ -162,8 +164,12 @@ The website is deployed to GitHub Pages using GitHub Actions. The deployment pro
 ### GitHub Actions Workflows
 
 - `.github/workflows/deploy.yml`: Main deployment workflow
+  - Triggered on push to main branch (specifically watching for data file changes)
+  - Runs verification, build and deployment
 - `.github/workflows/update_yt_videos.yml`: Daily YouTube data updates
+  - Includes logic to trigger deployment when data changes
 - `.github/workflows/update_meetup_events.yml`: Daily Meetup events updates
+  - Includes logic to trigger deployment when data changes
 - `.github/workflows/pr-checks.yml`: Pull request verification checks
 
 ## Development Workflow
