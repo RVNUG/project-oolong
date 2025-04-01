@@ -497,4 +497,63 @@
 .dark-theme .btn-secondary:hover {
   background-color: var(--color-neutral-600, #444);
   border-color: var(--color-neutral-500, #555);
+}
+
+/* Enhanced styling for a single event card when it's the only one */
+.events-grid .event-card:only-child {
+  display: flex;
+  max-width: 100%;
+}
+
+.events-grid .event-card:only-child .event-date {
+  width: 120px;
+  min-width: 120px;
+  padding: 2rem 0;
+}
+
+.events-grid .event-card:only-child .event-month {
+  font-size: 1.1rem;
+}
+
+.events-grid .event-card:only-child .event-day {
+  font-size: 3rem;
+}
+
+.events-grid .event-card:only-child .event-year {
+  font-size: 1rem;
+}
+
+.events-grid .event-card:only-child .event-details {
+  padding: 2rem;
+}
+
+.events-grid .event-card:only-child .event-title {
+  font-size: 1.6rem;
+}
+
+.events-grid .event-card:only-child .event-description {
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+}
+
+/* Media query adjustments for single event card on smaller screens */
+@media (max-width: 768px) {
+  .events-grid .event-card:only-child {
+    flex-direction: column;
+  }
+  
+  .events-grid .event-card:only-child .event-date {
+    width: 100%;
+    min-width: 100%;
+    padding: 1.5rem 0;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .events-grid .event-card:only-child .event-month,
+  .events-grid .event-card:only-child .event-day,
+  .events-grid .event-card:only-child .event-year {
+    margin: 0;
+  }
 } 
