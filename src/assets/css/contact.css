@@ -134,7 +134,7 @@
   font-family: var(--font-family-base);
   font-size: 1rem;
   background-color: var(--color-neutral-50);
-  color: var(--text-dark);
+  color: black;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -279,6 +279,34 @@ button:disabled {
   color: var(--color-neutral-200);
 }
 
+/* Fix dark mode input text visibility */
+.dark-theme .form-group input,
+.dark-theme .form-group select,
+.dark-theme .form-group textarea {
+  background-color: var(--color-neutral-900);
+  color: white;
+  border-color: var(--color-neutral-600);
+}
+
+.dark-theme .form-group input:focus,
+.dark-theme .form-group select:focus,
+.dark-theme .form-group textarea:focus {
+  border-color: var(--color-primary-300);
+  box-shadow: 0 0 0 2px rgba(167, 139, 250, 0.4);
+}
+
+/* Placeholder text in dark mode */
+.dark-theme .form-group input::placeholder,
+.dark-theme .form-group textarea::placeholder {
+  color: var(--color-neutral-400);
+}
+
+/* Dark theme select dropdown options */
+.dark-theme .form-group select option {
+  background-color: var(--color-neutral-900);
+  color: white;
+}
+
 /* Adjust success and error messages for dark mode */
 .dark-theme .success-message {
   background-color: rgba(16, 124, 16, 0.2);
@@ -294,7 +322,7 @@ button:disabled {
 
 .dark-theme .form-info {
   background-color: var(--color-neutral-800);
-  color: var(--color-neutral-300);
+  color: white;
 }
 
 .dark-theme .field-error {

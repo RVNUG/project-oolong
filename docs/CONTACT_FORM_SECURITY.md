@@ -210,6 +210,19 @@ const suspiciousPatterns = [
 ];
 ```
 
+### Rate Limiting Implementation Notes
+
+Current rate limiting is session-based, implemented on the client-side:
+
+```typescript
+// Storage for rate limiting (would be in redis/db in production)
+let attempts = 0;
+let firstAttemptTime: number | null = null;
+// Note: IP-based rate limiting would be implemented server-side
+```
+
+A more robust IP-based rate limiting implementation would require server-side code, as noted in the Future Enhancements section.
+
 ### Environment Variable Safety
 
 - Fallback values for environment variables

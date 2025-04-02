@@ -29,7 +29,7 @@ const RATE_LIMIT = {
 // Storage for rate limiting (would be in redis/db in production)
 let attempts = 0;
 let firstAttemptTime: number | null = null;
-let ipAttempts: Record<string, { count: number, timestamp: number }> = {};
+// Note: IP-based rate limiting would be implemented server-side
 
 /**
  * Add random delay to prevent timing-based attacks
