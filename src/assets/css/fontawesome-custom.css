@@ -1,0 +1,144 @@
+/* 
+ * Custom Font Awesome CSS
+ * Minimal version with only the icons we use in the RVNUG site
+ */
+
+/* Font Declarations */
+@font-face {
+  font-family: 'Font Awesome 6 Brands';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/fontawesome/fa-brands-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Font Awesome 6 Free';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('../fonts/fontawesome/fa-solid-900.woff2') format('woff2');
+}
+
+/* Base Icon Styles */
+.fab,
+.fas {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-rendering: auto;
+  width: 1em;
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
+
+/* Brand Icons Class */
+.fab {
+  font-family: 'Font Awesome 6 Brands';
+}
+
+/* Solid Icons Class */
+.fas {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+}
+
+/* Icons used in the RVNUG site */
+.fa-github:before {
+  content: "\f09b";
+}
+
+.fa-discord:before {
+  content: "\f392";
+}
+
+.fa-meetup:before {
+  content: "\f2e0";
+}
+
+.fa-youtube:before {
+  content: "\f167";
+}
+
+.fa-linkedin:before {
+  content: "\f08c";
+}
+
+.fa-twitter:before {
+  content: "\f099";
+}
+
+.fa-users:before {
+  content: "\f0c0";
+}
+
+.fa-hands-helping:before {
+  content: "\f4c4";
+}
+
+.fa-calendar:before {
+  content: "\f133";
+}
+
+.fa-map-marker-alt:before {
+  content: "\f3c5";
+}
+
+.fa-clock:before {
+  content: "\f017";
+}
+
+.fa-link:before {
+  content: "\f0c1";
+}
+
+.fa-envelope:before {
+  content: "\f0e0";
+}
+
+.fa-phone:before {
+  content: "\f095";
+}
+
+.fa-check:before {
+  content: "\f00c";
+}
+
+.fa-times:before {
+  content: "\f00d";
+}
+
+.fa-info-circle:before {
+  content: "\f05a";
+}
+
+.fa-moon:before {
+  content: "\f186";
+}
+
+.fa-sun:before {
+  content: "\f185";
+}
+
+/* Navigation Icons */
+.fa-bars:before {
+  content: "\f0c9";
+}
+
+/* Carousel Icons */
+.fa-chevron-left:before {
+  content: "\f053";
+}
+
+.fa-chevron-right:before {
+  content: "\f054";
+}
+
+/* Video Icons */
+.fa-play-circle:before {
+  content: "\f144";
+} 

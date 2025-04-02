@@ -15,7 +15,6 @@ yarn.lock
 public/ 
 .DS_Store
 
-
 # User-specific files
 *.suo
 *.user
@@ -342,3 +341,72 @@ ASALocalRun/
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
 
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor directories and files
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Node.js (if you decide to add package.json later)
+npm-debug.log
+yarn-debug.log
+# package-lock.json - we need this for GitHub Actions cache
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*~
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build directories (if you add a build step later)
+dist
+build
+out
+
+# Dependency directories
+.pnp
+.pnp.js
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyw
+*.pyz
+.venv/
+venv/
+
+.PROMPT.txt

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" sizes="128x128" href="/images/roanoke-star-128-logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Roanoke Valley .NET User Group (RVNUG)</title>
+    <meta name="description" content="The Roanoke Valley .NET User Group (RVNUG) is a community of developers passionate about .NET technologies in the Roanoke Valley area." />
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/src/assets/css/theme.css" as="style">
+    <link rel="preload" href="/src/assets/css/main.css" as="style">
+    <link rel="preload" href="/src/assets/css/footer.css" as="style">
+    <link rel="preload" href="/src/assets/css/fontawesome-custom.css" as="style">
+    
+    <!-- Preload font files -->
+    <link rel="preload" href="/src/assets/fonts/fontawesome/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/src/assets/fonts/fontawesome/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="128x128" href="/images/roanoke-star-128-logo.png">
+    
+    <!-- Font loading strategy for better performance -->
+    <style>
+      /* Font loading optimization */
+      .fab, .fas {
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        width: 1em;
+        height: 1em;
+        overflow: visible;
+        vertical-align: -0.125em;
+      }
+    </style>
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Roanoke Valley .NET User Group (RVNUG)">
+    <meta property="og:description" content="Roanoke Valley .NET User Group (RVNUG) is a technology user group serving the Roanoke Valley area.">
+    <meta property="og:image" content="/images/roanoke-star-128-logo.png">
+    <meta property="og:url" content="https://rvnug.org">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Roanoke Valley .NET User Group (RVNUG)">
+    <meta name="twitter:description" content="Roanoke Valley .NET User Group (RVNUG) is a technology user group serving the Roanoke Valley area.">
+    <meta name="twitter:image" content="/images/roanoke-star-128-logo.png">
+    
+    <!-- Meta theme color -->
+    <meta name="theme-color" content="#5c2d91">
+    
+    <!-- JSONP callback function for Meetup API -->
+    <script>
+      function handleMeetupEvents(data) {
+        // Store the data in a global variable
+        window.meetupEventsData = data;
+        // Dispatch an event to notify that data is ready
+        document.dispatchEvent(new CustomEvent('meetupDataReady'));
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html> 

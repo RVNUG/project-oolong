@@ -1,0 +1,565 @@
+.sponsors-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+  position: relative;
+}
+
+.page-header h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  color: var(--color-primary-700);
+  position: relative;
+  display: inline-block;
+}
+
+.page-header h1 .highlight {
+  position: relative;
+  display: inline-block;
+  z-index: 1;
+  color: var(--color-primary-600);
+}
+
+.page-header h1 .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background-color: var(--color-primary-100);
+  z-index: -1;
+  border-radius: 4px;
+}
+
+.page-header h1::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(to right, var(--color-primary-700), var(--color-primary-400));
+  border-radius: 3px;
+}
+
+.page-header p {
+  font-size: 1.2rem;
+  color: var(--text-medium);
+  max-width: 800px;
+  margin: 1.5rem auto 0;
+  line-height: 1.6;
+}
+
+.sponsors-content {
+  margin-bottom: 4rem;
+}
+
+.sponsor-level {
+  margin-bottom: 3rem;
+  background-color: var(--background-card);
+  padding: 2rem;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  width: 100%;
+}
+
+.level-title {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.8rem;
+  margin-bottom: 1.8rem;
+  color: var(--color-primary-700);
+  font-size: 1.8rem;
+}
+
+.level-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(to right, var(--color-primary-700), var(--color-primary-400));
+  border-radius: 2px;
+}
+
+.sponsors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+/* Add media query for large screens to show 4 cards in a row */
+@media (min-width: 1200px) {
+  .sponsors-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Special styling for platinum sponsors */
+.sponsors-grid.platinum {
+  grid-template-columns: 1fr;
+}
+
+/* Special styling for gold sponsors */
+.sponsors-grid.gold {
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+
+/* Special styling for when there's only one sponsor */
+.sponsors-grid .sponsor-card:only-child {
+  grid-column: 1 / -1;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Loading State */
+.loading {
+  text-align: center;
+  padding: 4rem 0;
+  color: var(--text-medium);
+  font-style: italic;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid var(--color-neutral-200);
+  border-top-color: var(--color-primary-500);
+  border-radius: 50%;
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Error Message */
+.error-message {
+  text-align: center;
+  padding: 2.5rem;
+  background-color: rgba(211, 47, 47, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(211, 47, 47, 0.2);
+  margin: 2rem 0;
+}
+
+.error-message p {
+  color: var(--color-error, #d32f2f);
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+/* No Sponsors Message */
+.no-sponsors {
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: var(--color-neutral-50);
+  border-radius: 8px;
+  border: 1px dashed var(--color-neutral-300);
+  display: flex;
+  justify-content: center;
+}
+
+.no-sponsors-content {
+  max-width: 600px;
+}
+
+.no-sponsors h3 {
+  margin-bottom: 1.2rem;
+  color: var(--text-dark);
+  font-size: 1.6rem;
+}
+
+.no-sponsors p {
+  margin-bottom: 1.5rem;
+  color: var(--text-medium);
+  line-height: 1.6;
+}
+
+.no-sponsors a {
+  color: var(--color-primary-700);
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.no-sponsors a:hover {
+  color: var(--color-primary-500);
+}
+
+/* Sponsorship Benefits Section */
+.sponsorship-benefits-section {
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.section-title {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 2.5rem;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--color-primary-700);
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -12px;
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(to right, var(--color-primary-700), var(--color-primary-400));
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.benefit-card {
+  background-color: var(--background-card);
+  border-radius: var(--border-radius-md);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  border: 1px solid var(--border-color);
+}
+
+.benefit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary-300);
+}
+
+.benefit-icon {
+  background: linear-gradient(135deg, var(--color-primary-700), var(--color-primary-500));
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-size: 1.8rem;
+  color: white;
+}
+
+.benefit-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--color-primary-700);
+}
+
+.benefit-card p {
+  color: var(--text-medium);
+  line-height: var(--line-height-normal);
+}
+
+/* Become a Sponsor Section */
+.become-sponsor-section {
+  background: linear-gradient(135deg, var(--color-primary-800), var(--color-primary-700));
+  color: var(--text-on-primary);
+  padding: var(--space-8) var(--space-4);
+  text-align: center;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  margin-bottom: var(--space-8);
+  position: relative;
+  overflow: hidden;
+}
+
+.become-sponsor-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.15) 1px, transparent 2px);
+  background-size: 20px 20px;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+.become-sponsor-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.become-sponsor-section h2 {
+  font-size: 2.2rem;
+  color: var(--text-on-primary);
+  margin-bottom: var(--space-4);
+}
+
+.become-sponsor-section p {
+  font-size: 1.2rem;
+  margin-bottom: var(--space-6);
+  color: var(--color-neutral-100);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn {
+  padding: 0.8rem 1.6rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: white;
+  color: var(--color-primary-700);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-neutral-100);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* Dark Theme Overrides */
+.dark-theme .page-header h1 {
+  color: var(--color-primary-300);
+}
+
+.dark-theme .page-header h1 .highlight {
+  color: var(--color-primary-300);
+}
+
+.dark-theme .page-header h1 .highlight::after {
+  background-color: rgba(92, 45, 145, 0.3);
+}
+
+.dark-theme .page-header p {
+  color: var(--color-neutral-300);
+}
+
+.dark-theme .sponsor-level {
+  background-color: var(--color-neutral-800);
+  border-color: var(--color-neutral-700);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme .level-title {
+  color: var(--color-primary-300);
+}
+
+.dark-theme .loading {
+  color: var(--color-neutral-300);
+}
+
+.dark-theme .loading-spinner {
+  border-color: var(--color-neutral-600);
+  border-top-color: var(--color-primary-400);
+}
+
+.dark-theme .no-sponsors {
+  background-color: var(--color-neutral-800);
+  border-color: var(--color-neutral-700);
+}
+
+.dark-theme .no-sponsors h3 {
+  color: var(--color-neutral-100);
+}
+
+.dark-theme .no-sponsors p {
+  color: var(--color-neutral-300);
+}
+
+.dark-theme .no-sponsors a {
+  color: var(--color-primary-300);
+}
+
+.dark-theme .no-sponsors a:hover {
+  color: var(--color-primary-200);
+}
+
+.dark-theme .section-title {
+  color: var(--color-primary-300);
+}
+
+.dark-theme .benefit-card {
+  background-color: var(--color-neutral-800);
+  border-color: var(--color-neutral-700);
+}
+
+.dark-theme .benefit-card:hover {
+  border-color: var(--color-primary-400);
+}
+
+.dark-theme .benefit-card h3 {
+  color: var(--color-primary-300);
+}
+
+.dark-theme .benefit-card p {
+  color: var(--color-neutral-300);
+}
+
+.dark-theme .benefit-icon {
+  background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-400));
+}
+
+.dark-theme .become-sponsor-section {
+  background: linear-gradient(135deg, var(--color-primary-900), var(--color-primary-800));
+}
+
+.dark-theme .become-sponsor-section .btn-primary {
+  background-color: var(--color-neutral-800);
+  color: var(--color-primary-300);
+}
+
+.dark-theme .become-sponsor-section .btn-primary:hover {
+  background-color: var(--color-neutral-700);
+}
+
+/* Responsive Styling */
+@media (max-width: 992px) {
+  .benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .sponsors-page {
+    padding: 2rem 1rem;
+  }
+  
+  .page-header {
+    margin-bottom: 2.5rem;
+  }
+  
+  .page-header h1 {
+    font-size: 2.2rem;
+  }
+  
+  .page-header p {
+    font-size: 1rem;
+  }
+  
+  .sponsor-level {
+    padding: 1.5rem;
+  }
+  
+  .sponsors-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .sponsors-grid.gold {
+    grid-template-columns: 1fr;
+  }
+  
+  .benefits-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .benefit-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+  
+  .become-sponsor-section {
+    padding: 2.5rem 1.5rem;
+  }
+  
+  .become-sponsor-section h2 {
+    font-size: 1.8rem;
+  }
+  
+  .become-sponsor-section p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sponsors-page {
+    padding: 1.5rem 0.8rem;
+  }
+  
+  .page-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .page-header h1::after {
+    width: 60px;
+    height: 3px;
+  }
+  
+  .page-header p {
+    font-size: 0.95rem;
+  }
+  
+  .sponsor-level {
+    padding: 1.2rem;
+  }
+  
+  .level-title {
+    font-size: 1.5rem;
+  }
+  
+  .benefit-card {
+    padding: 1.5rem;
+  }
+  
+  .benefit-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .benefit-card h3 {
+    font-size: 1.3rem;
+  }
+  
+  .become-sponsor-section {
+    padding: 2rem 1rem;
+  }
+  
+  .become-sponsor-section h2 {
+    font-size: 1.6rem;
+  }
+  
+  .become-sponsor-section p {
+    font-size: 0.95rem;
+  }
+  
+  .btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
+} 

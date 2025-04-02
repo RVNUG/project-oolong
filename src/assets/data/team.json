@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Tolga Balci",
+    "role": "President",
+    "bio": "Tolga Balci is an enthusiast in Data Analytics, Data Science, and various computer-related fields. He is currently expanding his knowledge in electronics and is open to collaborations on ESP8266, Arduino, and Raspberry Pi development projects. Tolga is active on social media platforms and maintains a personal website on WordPress.",
+    "image": "images/team/highres_283684233.jpeg"
+  },
+  {
+    "id": 2,
+    "name": "Alex Mikhail",
+    "role": "Officer",
+    "bio": "Alex Mikhail is a currently an IT Manager/Senior Software Engineer at Ziiva, wearing many hats from IT Manager to Software Developer.  He has over 20 years of industry experience working as a Software Developer, Database Administrator, and IT Manager in previous roles.  Alex helps find speakers and sponsors for RVNUG and has been involved in the user group for several years.",
+    "image": "images/team/generic-member.svg"
+  },
+  {
+    "id": 3,
+    "name": "Ron Bruintjes",
+    "role": "Officer",
+    "bio": "Ron works for Medeco Security Locks in Salem as a Solutions Architect. He's been with Medeco for about 25 years, and in the IT industry for over 35.  With a background in programming, and just enough knowledge to be dangerous in infrastructure, database management, project management, cloud computing, and AI, he's a jack of all trades in IT.",
+    "image": "images/team/62387302.jpeg",
+    "linkedin": "https://linkedin.com/in/ronald-bruintjes",
+    "github": "https://github.com/ronbruintjes"
+  },
+  {
+    "id": 4,
+    "name": "Sean Hoar",
+    "role": "Officer",
+    "bio": "Sean Hoar is a Full-Stack Software Engineer at Booz Allen Hamilton with 7 years of experience in the industry. He is a React.js specialist and is passionate about building scalable and maintainable systems, and hopes to become one with the spoon before the Agents take over.",
+    "image": "images/team/sean-hoar.jpeg",
+    "linkedin": "https://linkedin.com/in/seanhoar",
+    "github": "https://github.com/SHoar"
+  }
+] 

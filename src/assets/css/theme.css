@@ -1,0 +1,245 @@
+/* 
+ * RVNUG Theme System
+ * A modern, consistent color system with accessible contrast ratios
+ */
+
+:root {
+  /* Primary brand colors - based on .NET branding */
+  --color-primary-50: #f0e7f6;
+  --color-primary-100: #deccec;
+  --color-primary-200: #cbb2e3;
+  --color-primary-300: #b797d9;
+  --color-primary-400: #9c73ca;
+  --color-primary-500: #8452bc;
+  --color-primary-600: #6c3da6;
+  --color-primary-700: #5c2d91; /* Microsoft .NET Purple - main brand color */
+  --color-primary-800: #4a2275;
+  --color-primary-900: #38185a;
+
+  /* Secondary accent colors */
+  --color-accent-blue-500: #0078d4; /* Microsoft blue */
+  --color-accent-blue-600: #0062ad;
+  --color-accent-blue-700: #004e8c;
+
+  /* Supporting accents */
+  --color-accent-green-500: #107c10; /* Xbox green */
+  --color-accent-green-600: #0b590b;
+  --color-accent-green-700: #064306;
+
+  --color-accent-orange-500: #f25022; /* Microsoft orange */
+  --color-accent-orange-600: #d83b01;
+  --color-accent-orange-700: #b83200;
+
+  /* Neutrals */
+  --color-neutral-50: #f9f9f7; /* Updated from f9f9f9 to be slightly warmer */
+  --color-neutral-100: #f4f3ef; /* Updated from f0f0f0 to be slightly warmer */
+  --color-neutral-200: #efeee8; /* Updated from e6e6e6 to be slightly warmer */
+  --color-neutral-300: #e5e3d9; /* Updated from d6d6d6 to be slightly warmer */
+  --color-neutral-400: #b8b8b8;
+  --color-neutral-500: #8d8d8d;
+  --color-neutral-600: #6e6e6e;
+  --color-neutral-700: #505050;
+  --color-neutral-800: #3d3d3d;
+  --color-neutral-900: #202020;
+
+  /* Semantic colors */
+  --color-success: #107c10;
+  --color-warning: #ffb900;
+  --color-error: #d13438;
+  --color-info: #0078d4;
+
+  /* Applied colors - light theme defaults */
+  --background-body: var(--color-neutral-50);
+  --background-card: #fcfbf4; /* Changed from white to soft cream for less eye strain */
+  --background-nav: var(--color-primary-700);
+  --background-footer: var(--color-neutral-900);
+  --background-hero: var(--color-primary-700);
+
+  /* Text colors for contrast */
+  --text-dark: var(--color-neutral-900);
+  --text-medium: var(--color-neutral-700);
+  --text-light: var(--color-neutral-50);
+  --text-on-primary: white;
+  --text-on-accent: white;
+
+  /* Button colors */
+  --button-primary-bg: var(--color-primary-700);
+  --button-primary-text: white;
+  --button-primary-hover: var(--color-primary-800);
+  
+  --button-secondary-bg: var(--background-card);
+  --button-secondary-text: var(--color-primary-700);
+  --button-secondary-border: var(--color-primary-700);
+  --button-secondary-hover: var(--color-primary-50);
+
+  /* Borders and shadows */
+  --border-color: var(--color-neutral-200);
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+  /* Focus states for accessibility */
+  --focus-ring: 3px solid var(--color-warning);
+  --focus-ring-offset: 2px;
+
+  /* Spacing system */
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.5rem;   /* 24px */
+  --space-6: 2rem;     /* 32px */
+  --space-7: 2.5rem;   /* 40px */
+  --space-8: 3rem;     /* 48px */
+  --space-9: 4rem;     /* 64px */
+  --space-10: 5rem;    /* 80px */
+
+  /* Typography */
+  --font-family-base: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-family-code: 'Cascadia Code', 'Consolas', monospace;
+  
+  /* Line heights */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-loose: 1.8;
+
+  /* Container widths */
+  --container-max-width: 1200px;
+  --container-padding: var(--space-4);
+}
+
+/* Dark theme overrides */
+.dark-theme {
+  /* Applied colors - dark theme overrides */
+  --background-body: var(--color-neutral-900);
+  --background-card: var(--color-neutral-800);
+  --background-nav: var(--color-neutral-800);
+  --background-footer: var(--color-neutral-900);
+  --background-hero: var(--color-primary-900);
+  
+  /* Text colors for contrast in dark mode */
+  --text-dark: var(--color-neutral-50);
+  --text-medium: var(--color-neutral-200);
+  --text-light: var(--color-neutral-50);
+  
+  /* Button colors for dark mode */
+  --button-primary-bg: var(--color-primary-500);
+  --button-primary-hover: var(--color-primary-400);
+  
+  --button-secondary-bg: var(--color-neutral-700);
+  --button-secondary-text: var(--color-neutral-50);
+  --button-secondary-border: var(--color-primary-400);
+  --button-secondary-hover: var(--color-neutral-600);
+  
+  /* Borders and shadows for dark mode */
+  --border-color: var(--color-neutral-700);
+  
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Dark theme specific component overrides */
+.dark-theme .card {
+  /* Slightly elevated card background */
+  background-color: var(--color-neutral-800);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.dark-theme .container {
+  background-color: var(--color-neutral-800);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.dark-theme .card-title,
+.dark-theme .card h1, 
+.dark-theme .card h2, 
+.dark-theme .card h3, 
+.dark-theme .card h4, 
+.dark-theme .card h5, 
+.dark-theme .card h6 {
+  color: var(--color-primary-300);
+}
+
+.dark-theme .card a {
+  color: var(--color-primary-300);
+}
+
+.dark-theme .card a:hover {
+  color: var(--color-primary-200);
+}
+
+.dark-theme .project-card {
+  background-color: var(--color-neutral-800);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.dark-theme .contact-option {
+  background-color: var(--color-neutral-800);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.dark-theme .contact-form-container {
+  background-color: var(--color-neutral-800);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.dark-theme .tag {
+  background-color: var(--color-neutral-700);
+  color: var(--color-neutral-100);
+}
+
+/* Form fields in dark mode */
+.dark-theme input,
+.dark-theme select,
+.dark-theme textarea {
+  background-color: var(--color-neutral-700);
+  color: var(--text-light);
+  border-color: var(--color-neutral-600);
+}
+
+.dark-theme input:focus,
+.dark-theme select:focus,
+.dark-theme textarea:focus {
+  border-color: var(--color-primary-400);
+  box-shadow: 0 0 0 2px rgba(132, 82, 188, 0.3);
+}
+
+.dark-theme input::placeholder,
+.dark-theme textarea::placeholder {
+  color: var(--color-neutral-400);
+}
+
+/* Theme transition */
+html, body, * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Theme specific image handling */
+.dark-theme img:not([src*="logo"]):not(.preserve-color) {
+  filter: brightness(.9) contrast(1.1);
+}
+
+/* SVG element handling in dark mode */
+.dark-theme svg:not(.preserve-color) path {
+  fill: var(--text-dark);
+}
+
+/* Code blocks in dark mode */
+.dark-theme pre code {
+  background-color: var(--color-neutral-800);
+  border-color: var(--color-neutral-700);
+}
+
+/* Adjust specific colors for better dark mode appearance */
+.dark-theme .success-message {
+  background-color: rgba(16, 124, 16, 0.2);
+}
+
+.dark-theme .error-message {
+  background-color: rgba(209, 52, 56, 0.2);
+} 
