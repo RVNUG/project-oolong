@@ -43,7 +43,7 @@ jobs:
         run: |
           python scripts/youtube_latest_videos.py
           git add public/data/videos.json
-          git commit -m "Update Meetup events data" || echo "No changes to commit"
+          git commit -m "Update video data" || echo "No changes to commit"
 
       - name: Get default branch
         id: default_branch
