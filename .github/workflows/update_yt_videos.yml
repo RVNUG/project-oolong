@@ -44,7 +44,20 @@ jobs:
           python scripts/youtube_latest_videos.py
           git add public/data/videos.json
           git commit -m "Update video data" || echo "No changes to commit"
-          git push origin master || echo "No changes to push"
+
+      - name: Get default branch
+        id: default_branch
+        uses: actions/github-script@v3
+        with:
+          script: |
+            const { data: repo } = await github.repos.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            })
+            core.setOutput('default_branch', repo.default_branch)
+        
+      - name: Push changes
+        run: git push origin ${{ steps.default_branch.outputs.default_branch }} || echo "No changes to push"
       
       - name: Check if changes were pushed
         id: check_changes
