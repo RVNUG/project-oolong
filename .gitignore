@@ -410,3 +410,4 @@ __pycache__/
 venv/
 
 .PROMPT.txt
+node_modules
