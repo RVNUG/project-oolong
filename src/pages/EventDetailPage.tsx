@@ -5,6 +5,7 @@ import { MeetupEvent } from '../types';
 import { formatFullDate, formatTime } from '../utils/dateFormatters';
 import SEO from '../components/SEO';
 import JsonLd from '../components/JsonLd';
+import sanitizeHtml from 'sanitize-html';
 import { createEventStructuredData, createBreadcrumbStructuredData } from '../utils/structuredData';
 import { getCanonicalUrl } from '../utils/seo';
 import '../assets/css/event-detail.css';
@@ -74,7 +75,7 @@ const EventDetailPage = () => {
     // Add a portion of the description if available
     if (event.description) {
       // Strip HTML and limit length
-      const textDescription = event.description.replace(/<[^>]*>?/gm, '');
+      const textDescription = sanitizeHtml(event.description).replace(/<[^>]*>?/gm, '');
       const trimmedDescription = textDescription.length > 150 
         ? textDescription.substring(0, 147) + '...' 
         : textDescription;
