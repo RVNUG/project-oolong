@@ -3,17 +3,28 @@
   background-color: var(--card-background, white);
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
+  overflow: visible;
   transition: all 0.4s ease;
   margin-bottom: 1.5rem;
   position: relative;
   border: 1px solid var(--color-neutral-200, #eaeaea);
+  /* Ensure animations don't affect other elements */
+  transform-style: flat;
+  backface-visibility: hidden;
+  will-change: transform, box-shadow;
 }
 
+/* Modify hover behavior to avoid conflict with dropdowns */
 .event-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
   border-color: var(--color-primary-200, #b6e0ff);
+}
+
+/* A utility class to prevent animations when dropdown is open */
+.event-card.no-animation {
+  transform: none !important;
+  transition: none !important;
 }
 
 .event-card.online-event {
@@ -108,6 +119,9 @@
   margin-top: auto;
   display: flex;
   gap: 1rem;
+  position: relative;
+  overflow: visible !important;
+  flex-wrap: wrap; /* Allow items to wrap */
 }
 
 .event-date {
@@ -254,18 +268,13 @@
   background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 80%);
 }
 
-.event-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
 .event-actions .btn {
   padding: 0.7rem 1.2rem;
   font-size: 0.9rem;
   display: inline-flex;
   align-items: center;
   transition: all 0.3s ease;
+  position: relative; /* Ensure buttons can properly position dropdowns */
 }
 
 .event-actions .btn i {
@@ -429,7 +438,6 @@
   .event-completed {
     width: 100%;
     justify-content: center;
-    padding: 0.7rem 1rem;
     font-size: 0.85rem;
   }
   
@@ -447,6 +455,11 @@
   
   .event-card:active {
     background-color: var(--color-neutral-50, #f9f9f9);
+  }
+  
+  /* Hide elements with the hidden-mobile class on small screens */
+  .hidden-mobile {
+    display: none !important;
   }
 }
 
@@ -556,4 +569,37 @@
   .events-grid .event-card:only-child .event-year {
     margin: 0;
   }
+}
+
+.event-actions .atcb-button.btn.btn-secondary {
+  display: inline-flex !important;
+  background-color: var(--color-neutral-50, #f9f9f9);
+  border: 1px solid var(--color-neutral-300, #ddd);
+  color: var(--primary-color, #0078d4);
+  font-weight: 500;
+  margin-top: 0.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.event-actions .atcb-button.btn.btn-secondary:hover {
+  background-color: var(--color-neutral-100, #f5f5f5);
+  border-color: var(--color-primary-300, #b6e0ff);
+  color: var(--primary-dark, #005a9e);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Ensure the calendar button is visible */
+@media (max-width: 480px) {
+  .event-actions .atcb-button.btn.btn-secondary {
+    display: flex !important;
+    width: 100%;
+  }
+}
+
+/* Ensure the calendar dropdown container has proper positioning */
+.event-actions .custom-calendar-dropdown {
+  position: relative;
+  min-width: 0; /* Prevent overflow issues */
+  flex-grow: 1; /* Allow full width when needed */
 } 

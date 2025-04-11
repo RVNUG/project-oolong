@@ -153,6 +153,8 @@ The website is deployed to GitHub Pages using GitHub Actions. The deployment pro
 - [GitHub Pages Integration](docs/GITHUB_PAGES_INTEGRATION.md): Details on GitHub Pages deployment
 - [Migration Plan](docs/MIGRATION_2025.md): Current migration status and plan
 - [SEO Documentation](docs/SEO_DOCUMENTATION.md): Comprehensive guide to the SEO implementation
+- [Component Documentation](docs/components/): Details on specific component implementations
+  - [EventCalendarButton](docs/components/EVENT_CALENDAR_BUTTON.md): Calendar integration component
 
 ## Contributing
 

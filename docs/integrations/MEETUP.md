@@ -188,7 +188,11 @@ MEETUP_DEBUG=true python scripts/meetup_events.py
    - Add event categories
    - Improve search
    - Enhanced filtering
-   - Calendar integration
+   - ✅ Calendar integration (Implemented! See `Feature_AddToCalendarBtn.md`)
+     - Custom dropdown menu for calendar options
+     - Support for Google, Apple, Outlook, Yahoo calendars
+     - Direct .ics file download option
+     - Proper timezone handling
 
 ## Resources
 

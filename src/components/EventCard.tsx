@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { MeetupEvent } from '../types';
 import { formatTime } from '../utils/dateFormatters';
+import EventCalendarButton from './EventCalendarButton';
 import '../assets/css/event-card.css';
 
 interface EventCardProps {
@@ -98,9 +99,16 @@ const EventCard = ({ event }: EventCardProps) => {
         
         <div className="event-actions">
           {!isPast ? (
-            <a href={event.link} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
-              <i className="fas fa-calendar-plus"></i> RSVP on Meetup
-            </a>
+            <>
+              <a href={event.link} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                <i className="fas fa-calendar-plus"></i> RSVP on Meetup
+              </a>
+              <EventCalendarButton 
+                event={event}
+                buttonLabel="Add to Calendar"
+                className="btn btn-calendar"
+              />
+            </>
           ) : (
             <span className="event-completed">Event completed</span>
           )}

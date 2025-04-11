@@ -15,6 +15,14 @@
 @font-face {
   font-family: 'Font Awesome 6 Free';
   font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/fontawesome/fa-regular-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Font Awesome 6 Free';
+  font-style: normal;
   font-weight: 900;
   font-display: swap;
   src: url('../fonts/fontawesome/fa-solid-900.woff2') format('woff2');
@@ -22,7 +30,8 @@
 
 /* Base Icon Styles */
 .fab,
-.fas {
+.fas,
+.far {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
@@ -39,6 +48,12 @@
 /* Brand Icons Class */
 .fab {
   font-family: 'Font Awesome 6 Brands';
+}
+
+/* Regular Icons Class */
+.far {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 400;
 }
 
 /* Solid Icons Class */
@@ -82,6 +97,14 @@
 
 .fa-calendar:before {
   content: "\f133";
+}
+
+.fa-calendar-alt:before {
+  content: "\f073";
+}
+
+.fa-calendar-plus:before {
+  content: "\f0fe";
 }
 
 .fa-map-marker-alt:before {
@@ -141,4 +164,19 @@
 /* Video Icons */
 .fa-play-circle:before {
   content: "\f144";
+}
+
+/* Yahoo icon */
+.fa-yahoo:before {
+  content: "\f19e";
+}
+
+/* Apple icon */
+.fa-apple:before {
+  content: "\f179";
+}
+
+/* Google icon */
+.fa-google:before {
+  content: "\f1a0";
 } 

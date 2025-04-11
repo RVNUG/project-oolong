@@ -1,0 +1,370 @@
+/* Remove all old ATCB (Add to Calendar Button) styles */
+.atcb-button,
+.atcb-button:focus,
+.atcb-button.btn.btn-secondary,
+.atcb-button.btn.btn-secondary:hover:not(:disabled),
+.atcb-button.btn::before,
+.atcb-list,
+.atcb-item,
+.atcb-item:hover,
+.atcb-item:first-child,
+.atcb-item:last-child,
+.dark-theme .atcb-button.btn.btn-secondary,
+.dark-theme .atcb-button.btn.btn-secondary:hover:not(:disabled),
+.dark-theme .atcb-list,
+.dark-theme .atcb-item,
+.dark-theme .atcb-item:hover,
+.calendar-btn.atcb-button,
+.calendar-btn.atcb-button:hover, 
+.calendar-btn.atcb-button:focus,
+.calendar-btn.atcb-button::before {
+  /* Reset all styles */
+  all: initial;
+  display: none !important;
+}
+
+/* Styles for the Event Calendar Button component */
+.atcb-button {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  line-height: 1.5;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.atcb-button:focus {
+  outline: 2px solid var(--color-primary-300);
+  outline-offset: 2px;
+}
+
+/* Make sure the button fits our design system */
+.atcb-button.btn.btn-secondary {
+  background-color: var(--background-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-dark);
+  box-shadow: var(--shadow-sm);
+}
+
+.atcb-button.btn.btn-secondary:hover:not(:disabled) {
+  background-color: var(--color-neutral-100);
+  border-color: var(--color-neutral-300);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Add an icon before the text */
+.atcb-button.btn::before {
+  content: '';
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>');
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+}
+
+/* Calendar dropdown styling */
+.atcb-list {
+  border-radius: 8px;
+  background-color: var(--background-card);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
+}
+
+.atcb-item {
+  color: var(--text-dark);
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+  padding: 0.75rem 1rem;
+}
+
+.atcb-item:hover {
+  background-color: var(--color-primary-50);
+  color: var(--color-primary-700);
+}
+
+.atcb-item:first-child {
+  border-radius: 8px 8px 0 0;
+}
+
+.atcb-item:last-child {
+  border-radius: 0 0 8px 8px;
+}
+
+/* Dark theme overrides */
+.dark-theme .atcb-button.btn.btn-secondary {
+  background-color: var(--dark-button-secondary-bg);
+  border-color: var(--dark-border-color);
+  color: var(--dark-text);
+}
+
+.dark-theme .atcb-button.btn.btn-secondary:hover:not(:disabled) {
+  background-color: var(--dark-button-secondary-hover-bg);
+}
+
+.dark-theme .atcb-list {
+  background-color: var(--dark-background-card);
+  border-color: var(--dark-border-color);
+}
+
+.dark-theme .atcb-item {
+  color: var(--dark-text);
+}
+
+.dark-theme .atcb-item:hover {
+  background-color: var(--dark-hover-bg);
+  color: var(--color-primary-400);
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .atcb-list {
+    width: 90%;
+    max-width: 350px;
+  }
+  
+  .atcb-item {
+    padding: 1rem;
+  }
+}
+
+/* Special calendar button styling */
+.calendar-btn.atcb-button {
+  display: inline-flex !important;
+  background-color: var(--color-primary-50, #e6f2ff) !important;
+  border: 1px solid var(--color-primary-300, #b6e0ff) !important;
+  color: var(--primary-color, #0078d4) !important;
+  padding: 0.7rem 1.2rem !important;
+  margin-top: 0.5rem !important;
+  font-weight: 500 !important;
+  border-radius: 6px !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.calendar-btn.atcb-button:hover, 
+.calendar-btn.atcb-button:focus {
+  background-color: var(--color-primary-100, #cce5ff) !important;
+  border-color: var(--color-primary-400, #83c3ff) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Icon for calendar button */
+.calendar-btn.atcb-button::before {
+  content: "\f073" !important;
+  font-family: "Font Awesome 5 Free" !important;
+  margin-right: 8px !important;
+  font-weight: 400 !important;
+}
+
+/* Custom Calendar Button Styles */
+.custom-calendar-dropdown {
+  position: relative;
+  display: inline-block;
+  z-index: 100;
+}
+
+/* Main button styling */
+.calendar-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  padding: 0.8rem 1.2rem;
+  border-radius: 6px;
+  background-color: var(--color-primary-50, #e6f2ff);
+  border: 1px solid var(--color-primary-300, #b6e0ff);
+  color: var(--color-primary-700, #0078d4);
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.1));
+  z-index: 1;
+}
+
+.calendar-button:hover, 
+.calendar-button:focus {
+  background-color: var(--color-primary-100, #cce5ff);
+  border-color: var(--color-primary-400, #83c3ff);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md, 0 4px 6px rgba(0, 0, 0, 0.1));
+  outline: none;
+}
+
+.calendar-button:active {
+  transform: translateY(0);
+}
+
+/* Custom button when it's inside the event actions area */
+.event-actions .calendar-button {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Calendar dropdown menu styles */
+.calendar-dropdown-menu {
+  position: absolute;
+  top: 100%; /* Position right below the button */
+  left: 0; /* Align with the left edge of the button */
+  z-index: 9999;
+  width: 220px;
+  background-color: var(--background-card, white);
+  border-radius: 8px;
+  box-shadow: var(--shadow-lg, 0 10px 25px rgba(0, 0, 0, 0.1));
+  border: 1px solid var(--border-color, #e5e7eb);
+  margin-top: 8px; /* Add some space between button and dropdown */
+  overflow: visible;
+  /* Ensure dropdown doesn't get cut off at the right edge */
+  max-width: calc(100vw - 40px); /* 20px padding on each side */
+}
+
+/* Calendar options */
+.calendar-option {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--text-dark, #333);
+  transition: background-color 0.1s ease-out;
+}
+
+.calendar-option:hover,
+.calendar-option:focus,
+.calendar-option[aria-current="true"] {
+  background-color: var(--color-primary-50, #f0f9ff);
+  color: var(--color-primary-700, #0078d4);
+  outline: none;
+}
+
+.calendar-option i {
+  margin-right: 10px;
+  width: 16px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* Service-specific colors */
+.calendar-option.google i {
+  color: #DB4437;
+}
+
+.calendar-option.apple i {
+  color: #555;
+}
+
+.calendar-option.outlook i {
+  color: #0078d4;
+}
+
+.calendar-option.yahoo i {
+  color: #6001D2;
+}
+
+.calendar-option.ics i {
+  color: #00A4EF;
+}
+
+/* Position dropdown on mobile screens and when near the right edge */
+@media (max-width: 480px), (min-width: 481px) and (max-width: 1200px) {
+  .calendar-dropdown-menu {
+    /* Check if we're in a small container by using a media query with max-width */
+    left: auto;
+    right: 0;
+  }
+}
+
+/* When button is used as a btn-secondary */
+.btn.btn-secondary.custom-calendar-dropdown {
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+.btn.btn-secondary .calendar-button {
+  background-color: var(--background-card, white);
+  border: 1px solid var(--border-color, #e5e7eb);
+  color: var(--text-dark, #333);
+}
+
+.btn.btn-secondary .calendar-button:hover {
+  background-color: var(--color-neutral-100, #f5f5f5);
+  border-color: var(--color-neutral-300, #d1d5db);
+}
+
+/* Dark theme overrides */
+.dark-theme .calendar-button {
+  background-color: var(--dark-button-secondary-bg, #2d3748);
+  border-color: var(--dark-border-color, #4a5568);
+  color: var(--dark-text, #e2e8f0);
+}
+
+.dark-theme .calendar-button:hover {
+  background-color: var(--dark-button-secondary-hover-bg, #4a5568);
+  border-color: var(--dark-border-color, #718096);
+}
+
+.dark-theme .calendar-dropdown-menu {
+  background-color: var(--dark-background-card, #2d3748);
+  border-color: var(--dark-border-color, #4a5568);
+}
+
+.dark-theme .calendar-option {
+  color: var(--dark-text, #e2e8f0);
+}
+
+.dark-theme .calendar-option:hover {
+  background-color: var(--dark-hover-bg, #4a5568);
+}
+
+/* Custom button styling for the calendar btn */
+.btn.btn-calendar .calendar-button {
+  background-color: var(--color-primary-50, #e6f2ff);
+  border: 1px solid var(--color-primary-300, #b6e0ff);
+  color: var(--color-primary-700, #0078d4);
+  padding: 0.7rem 1.2rem;
+  margin-top: 0.5rem;
+  font-weight: 500;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+/* When inside an event card, ensure dropdown appears on top of other elements */
+.event-card .calendar-dropdown-menu {
+  position: absolute; 
+  /* Make sure dropdown is not constrained by overflow settings */
+  overflow: visible;
+  /* Ensure it appears above all event cards and other elements */
+  z-index: 10000;
+  /* Improve positioning to make sure it's visible */
+  left: 0;
+  right: auto;
+  width: 220px;
+}
+
+/* Increase event card z-index when dropdown is open */
+.event-card .custom-calendar-dropdown {
+  position: relative;
+  z-index: 200;
+}
+
+/* Ensure event actions container doesn't clip the dropdown */
+.event-actions {
+  position: relative;
+  overflow: visible !important;
+} 

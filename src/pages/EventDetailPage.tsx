@@ -5,6 +5,7 @@ import { MeetupEvent } from '../types';
 import { formatFullDate, formatTime } from '../utils/dateFormatters';
 import SEO from '../components/SEO';
 import JsonLd from '../components/JsonLd';
+import EventCalendarButton from '../components/EventCalendarButton';
 import { createEventStructuredData, createBreadcrumbStructuredData } from '../utils/structuredData';
 import { getCanonicalUrl } from '../utils/seo';
 import '../assets/css/event-detail.css';
@@ -41,7 +42,7 @@ const EventDetailPage = () => {
     return <div className="loading">Event not found. Redirecting...</div>;
   }
 
-  // Safely format date and time for display
+  // Safely format date and time for displayx
   const formattedDate = event.local_date ? formatFullDate(event.local_date) : 'Date not available';
   const formattedTime = event.local_time ? formatTime(event.local_time) : 'Time not available';
   
@@ -178,9 +179,11 @@ const EventDetailPage = () => {
               <i className="fas fa-external-link-alt"></i> RSVP on Meetup
             </a>
             
-            <button className="btn btn-secondary">
-              <i className="far fa-calendar-plus"></i> Add to Calendar
-            </button>
+            <EventCalendarButton 
+              event={event} 
+              buttonLabel="Add to Calendar" 
+              className="btn btn-calendar"
+            />
           </div>
         </div>
       </div>
