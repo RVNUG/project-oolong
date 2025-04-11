@@ -1,5 +1,5 @@
-import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import type { FC } from 'react';
 
 interface JsonLdProps {
   data: Record<string, unknown>;
@@ -9,7 +9,7 @@ interface JsonLdProps {
  * Component for adding JSON-LD structured data to a page
  * @param data - The structured data object to be rendered as JSON-LD
  */
-const JsonLd: React.FC<JsonLdProps> = ({ data }) => {
+const JsonLd: FC<JsonLdProps> = ({ data }) => {
   return (
     <Helmet>
       <script type="application/ld+json">

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { MeetupEvent } from '../types';
 import { formatTime } from '../utils/dateFormatters';
+import { isEventOnline, formatVenueAddress } from '../utils/venueUtils';
 import '../assets/css/event-card.css';
 
 interface EventCardProps {
@@ -51,13 +52,16 @@ const EventCard = ({ event }: EventCardProps) => {
   };
 
   // Check if the event is online
-  const isOnline = event.is_online || Boolean(event.venue?.name === 'Online Event');
+  const isOnline = isEventOnline(event);
   
   // Determine if the event is in the past
   const isPast = eventDate ? new Date() > eventDate : false;
 
   // Safely format time for display
   const displayTime = event.local_time ? formatTime(event.local_time) : 'Time TBD';
+
+  // Get formatted venue info
+  const venueAddress = formatVenueAddress(event.venue, isOnline);
 
   return (
     <div className={`event-card ${isOnline ? 'online-event' : ''} ${isPast ? 'past-event' : ''}`}>
@@ -82,7 +86,7 @@ const EventCard = ({ event }: EventCardProps) => {
           {event.venue && event.venue.name && !isOnline && (
             <span className="event-location">
               <i className="fas fa-map-marker-alt"></i> {event.venue.name}
-              {event.venue.city && <span className="venue-city">, {event.venue.city}</span>}
+              {venueAddress && <span className="venue-city">, {venueAddress}</span>}
             </span>
           )}
           {isOnline && (

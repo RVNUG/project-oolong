@@ -23,6 +23,7 @@ This directory contains comprehensive documentation for the RVNUG website projec
 
 - [Feature Flags](technical/FEATURE_FLAGS.md) - Feature flag implementation and management
 - [SEO Documentation](technical/SEO_DOCUMENTATION.md) - Search Engine Optimization setup and best practices
+- [Utilities](technical/UTILITIES.md) - Documentation for utility functions, including venue and date formatting
 
 ## Directory Structure
 
@@ -40,7 +41,8 @@ docs/
 │   └── UPDATING.md
 └── technical/
     ├── FEATURE_FLAGS.md
-    └── SEO_DOCUMENTATION.md
+    ├── SEO_DOCUMENTATION.md
+    └── UTILITIES.md
 ```
 
 ## Contributing to Documentation

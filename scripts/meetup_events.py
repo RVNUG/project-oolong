@@ -263,23 +263,6 @@ async def scrape_events_from_page(page, event_type):
                 # Clean up the title: remove date/time, "This event has passed", attendee counts, etc.
                 title = clean_title(raw_title, date_time_text)
                 
-                # Extract venue 
-                venue_text = ""
-                venue_selectors = [
-                    "address", 
-                    "[data-testid='venue-name']",
-                    "[aria-label*='location']",
-                    "span.venueDisplay"
-                ]
-                
-                for venue_selector in venue_selectors:
-                    venue_element = element.locator(venue_selector).first
-                    if await venue_element.count() > 0:
-                        venue_content = await venue_element.text_content()
-                        if venue_content and venue_content.strip():
-                            venue_text = venue_content.strip()
-                            break
-                
                 # Extract URL - look for links
                 event_url = ""
                 url_selectors = [
@@ -346,16 +329,96 @@ async def scrape_events_from_page(page, event_type):
                 if not description or description == "This is an online meeting.":
                     description = f"Details at: {event_url}"
                 
+                # Extract venue 
+                venue_text = ""
+                venue_selectors = [
+                    "address", 
+                    "[data-testid='venue-name']",
+                    "[aria-label*='location']",
+                    "span.venueDisplay",
+                    "[class*='venue']",
+                    "[class*='location']",
+                    "[data-testid*='event-location']"
+                ]
+                
+                for venue_selector in venue_selectors:
+                    venue_element = element.locator(venue_selector).first
+                    if await venue_element.count() > 0:
+                        venue_content = await venue_element.text_content()
+                        if venue_content and venue_content.strip():
+                            venue_text = venue_content.strip()
+                            break
+                
+                # Additional approach: try to find spans containing address-like text
+                if not venue_text:
+                    try:
+                        # Get all span elements
+                        spans = element.locator("span")
+                        span_count = await spans.count()
+                        
+                        # Check each span for address-like content
+                        for i in range(span_count):
+                            span = spans.nth(i)
+                            span_text = await span.text_content()
+                            
+                            # Check if it looks like an address (contains a comma followed by a state code)
+                            if span_text and re.search(r',\s*[A-Z]{2}\b', span_text):
+                                venue_text = span_text.strip()
+                                break
+                    except Exception as e:
+                        print(f"Error checking spans for address: {e}")
+                
+                # If no venue found through selectors or spans, try to look for specific patterns in the description
+                if not venue_text and description:
+                    # Look for common location patterns in the description
+                    location_patterns = [
+                        r"Location:\s*([^\n]+)",
+                        r"Venue:\s*([^\n]+)",
+                        r"will be held at\s*([^\n\.]+)",
+                        r"Join us at\s*([^\n\.]+)"
+                    ]
+                    for pattern in location_patterns:
+                        match = re.search(pattern, description)
+                        if match:
+                            venue_text = match.group(1).strip()
+                            break
+                
                 # Parse date and time
                 event_date, event_time = parse_date_time(date_time_text, event_type)
                 
                 # Check if this is an online event
                 is_online = bool("online" in title.lower() or 
                             "virtual" in title.lower() or 
-                            "zoom" in title.lower() or
+                            "zoom" in title.lower() or 
+                            "teams" in title.lower() or
+                            "google meet" in title.lower() or
+                            "webinar" in title.lower() or
+                            "webex" in title.lower() or
                             (venue_text and ("online" in venue_text.lower() or 
                                             "virtual" in venue_text.lower() or 
-                                            "zoom" in venue_text.lower())))
+                                            "zoom" in venue_text.lower() or
+                                            "meet.google" in venue_text.lower() or
+                                            "teams.microsoft" in venue_text.lower())))
+                
+                # Extract venue details with potential ZIP code
+                venue = parse_venue(venue_text)
+                
+                # If venue is detected but no address and not online, try to extract address from description
+                if not is_online and venue.get("name") != "TBD" and not venue.get("address_1") and description:
+                    address_patterns = [
+                        rf"{re.escape(venue['name'])},?\s+([^\.]+)",
+                        r"address[:\s]+([^\.]+)",
+                        r"located at[:\s]+([^\.]+)"
+                    ]
+                    for pattern in address_patterns:
+                        try:
+                            match = re.search(pattern, description, re.IGNORECASE)
+                            if match:
+                                venue["address_1"] = match.group(1).strip()
+                                break
+                        except Exception as e:
+                            print(f"Error extracting address from description: {e}")
+                            continue
                 
                 # Create event object
                 event = {
@@ -365,7 +428,7 @@ async def scrape_events_from_page(page, event_type):
                     "local_date": event_date,
                     "local_time": event_time,
                     "description": description,
-                    "venue": parse_venue(venue_text),
+                    "venue": venue,
                     "link": event_url,
                     "is_upcoming": event_type == "upcoming",
                     "is_online": is_online
@@ -461,7 +524,7 @@ def parse_date_time(date_time_text, event_type):
             except Exception as e:
                 print(f"Could not parse date format 1: {e}")
             
-            # Format 2: Try older format with "·" separator
+            # Format 2: Try format with "·" separator
             if "·" in date_time_text:
                 try:
                     parts = date_time_text.split("·")
@@ -484,6 +547,47 @@ def parse_date_time(date_time_text, event_type):
                     return event_date, event_time
                 except Exception as e:
                     print(f"Could not parse date format 2: {e}")
+            
+            # Format 3: Try to match "Month Day, Year at Time" format (e.g., "June 20, 2024 at 6:00 PM")
+            try:
+                match = re.search(r"([A-Za-z]+ \d{1,2}, \d{4}) at (\d{1,2}:\d{2} [AP]M)", date_time_text)
+                if match:
+                    date_str = match.group(1)
+                    time_str = match.group(2)
+                    
+                    date_obj = datetime.datetime.strptime(date_str, "%B %d, %Y")
+                    event_date = date_obj.strftime("%Y-%m-%d")
+                    
+                    time_obj = datetime.datetime.strptime(time_str, "%I:%M %p")
+                    event_time = time_obj.strftime("%H:%M")
+                    
+                    return event_date, event_time
+            except Exception as e:
+                print(f"Could not parse date format 3: {e}")
+            
+            # Format 4: Try to match "Day of Week, Month Day" format for current year events
+            try:
+                match = re.search(r"([A-Za-z]{3}), ([A-Za-z]{3}) (\d{1,2})", date_time_text)
+                if match:
+                    day_of_week = match.group(1)
+                    month = match.group(2)
+                    day = match.group(3)
+                    
+                    # Try to find time
+                    time_match = re.search(r"(\d{1,2}:\d{2} [AP]M)", date_time_text)
+                    if time_match:
+                        time_str = time_match.group(1)
+                        time_obj = datetime.datetime.strptime(time_str, "%I:%M %p")
+                        event_time = time_obj.strftime("%H:%M")
+                    
+                    # Use current year
+                    date_str = f"{month} {day} {now.year}"
+                    date_obj = datetime.datetime.strptime(date_str, "%b %d %Y")
+                    event_date = date_obj.strftime("%Y-%m-%d")
+                    
+                    return event_date, event_time
+            except Exception as e:
+                print(f"Could not parse date format 4: {e}")
         
         return event_date, event_time
     except Exception as e:
@@ -501,17 +605,19 @@ def parse_venue(venue_text):
         "address_1": "",
         "city": "Roanoke",
         "state": "VA",
-        "country": "us"
+        "country": "us",
+        "zip": ""
     }
     
     # Check for online indicators in venue_text
-    if venue_text and ("online" in venue_text.lower() or "virtual" in venue_text.lower() or "zoom" in venue_text.lower()):
+    if venue_text and any(keyword in venue_text.lower() for keyword in ["online", "virtual", "zoom", "teams", "meet.google"]):
         return {
             "name": "Online Event",
             "address_1": "",
             "city": "",
             "state": "",
-            "country": "us"
+            "country": "us",
+            "zip": ""
         }
     
     # If no venue text, return default
@@ -520,34 +626,70 @@ def parse_venue(venue_text):
     
     # Try to parse out venue details
     venue_parts = venue_text.split("·")
-    venue_name = venue_parts[0].strip() if venue_parts else "TBD"
+    venue_name = venue_parts[0].strip() if venue_parts else venue_text.strip()
     venue_address = venue_parts[1].strip() if len(venue_parts) > 1 else ""
     
-    # If no separator, try to extract parts
+    # If no separator, try to extract parts based on commas
     if len(venue_parts) <= 1 and "," in venue_text:
         address_parts = venue_text.split(",")
-        venue_name = address_parts[0].strip()
-        venue_address = ", ".join(address_parts[1:]).strip()
+        if len(address_parts) > 0:
+            venue_name = address_parts[0].strip()
+        if len(address_parts) > 1:
+            venue_address = ", ".join(address_parts[1:]).strip()
     
-    # Try to extract city/state if available
+    # Try to extract city/state/zip if available
     city = "Roanoke"
     state = "VA"
+    zip_code = ""
+    
     if venue_address:
+        # Try to extract ZIP code
+        zip_match = re.search(r"(\d{5}(-\d{4})?)", venue_address)
+        if zip_match:
+            zip_code = zip_match.group(1)
+            
         address_parts = venue_address.split(",")
-        if len(address_parts) > 1:
-            last_part = address_parts[-1].strip()
-            state_parts = last_part.split()
-            if len(state_parts) > 0:
-                state = state_parts[0]
+        if len(address_parts) > 0:
+            # The last part might contain state and ZIP
+            last_part = address_parts[-1].strip() if address_parts else ""
+            
+            # Try to extract state and ZIP from the last part (e.g., "VA 24017" or "VA")
+            state_zip_match = re.search(r"([A-Z]{2})(?:\s+(\d{5}(?:-\d{4})?)|$)", last_part)
+            if state_zip_match:
+                state = state_zip_match.group(1)
+                if state_zip_match.group(2):
+                    zip_code = state_zip_match.group(2)
+            else:
+                # Just look for a two-letter state code
+                state_match = re.search(r"\b([A-Z]{2})\b", last_part)
+                if state_match:
+                    state = state_match.group(1)
+            
+            # Try to extract city from the second-to-last part
             if len(address_parts) > 1:
                 city = address_parts[-2].strip()
+            
+            # If we couldn't find a city, and there's only one part without a clear state,
+            # that could be the city with state and name combined in the venue_name
+            if city == "Roanoke" and len(address_parts) == 1 and not state_zip_match:
+                city_match = re.search(r"^([A-Za-z\s]+)(?:\s+[A-Z]{2})?$", last_part)
+                if city_match:
+                    city = city_match.group(1).strip()
+    
+    # Ensure venue_name is never "TBD" if we have actual venue text
+    if venue_text and venue_name in ["TBD", ""]:
+        venue_name = venue_text.strip()
+        
+    # Clean up venue name - remove any trailing commas
+    venue_name = re.sub(r',\s*$', '', venue_name).strip()
     
     return {
         "name": venue_name,
         "address_1": venue_address,
         "city": city,
         "state": state,
-        "country": "us"
+        "country": "us",
+        "zip": zip_code
     }
 
 def process_events(events):
