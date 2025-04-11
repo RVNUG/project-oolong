@@ -24,36 +24,81 @@ export const useEvents = (): UseEventsReturn => {
     
     const upcoming = eventsList
       .filter(event => {
-        // If is_upcoming is explicitly set, use that
+        // If is_upcoming is explicitly set, prioritize that flag
         if (event.is_upcoming !== undefined) {
           return event.is_upcoming === true;
         }
         
         // Otherwise, determine based on date comparison
-        const eventDate = new Date(`${event.local_date}T${event.local_time}`);
-        return eventDate >= now;
+        try {
+          // Create a date object using the YYYY-MM-DD and HH:MM format
+          const eventDate = new Date(`${event.local_date}T${event.local_time}`);
+          
+          // Check if eventDate is valid before comparison
+          if (!isNaN(eventDate.getTime())) {
+            return eventDate >= now;
+          }
+        } catch (err) {
+          console.error(`Error parsing date for event ${event.id}:`, err);
+          // If we can't parse the date, default to treating as past
+        }
+        
+        // Default to false if date parsing fails
+        return false;
       })
       .sort((a, b) => {
-        const dateA = new Date(`${a.local_date}T${a.local_time}`);
-        const dateB = new Date(`${b.local_date}T${b.local_time}`);
-        return dateA.getTime() - dateB.getTime();
+        try {
+          const dateA = new Date(`${a.local_date}T${a.local_time}`);
+          const dateB = new Date(`${b.local_date}T${b.local_time}`);
+          
+          if (isNaN(dateA.getTime()) || isNaN(dateB.getTime())) {
+            return 0; // Keep order the same if either date is invalid
+          }
+          
+          return dateA.getTime() - dateB.getTime();
+        } catch (err) {
+          console.error('Error sorting events:', err);
+          return 0;
+        }
       });
       
     const past = eventsList
       .filter(event => {
-        // If is_upcoming is explicitly set, use that
+        // If is_upcoming is explicitly set, prioritize that flag
         if (event.is_upcoming !== undefined) {
           return event.is_upcoming === false;
         }
         
         // Otherwise, determine based on date comparison
-        const eventDate = new Date(`${event.local_date}T${event.local_time}`);
-        return eventDate < now;
+        try {
+          const eventDate = new Date(`${event.local_date}T${event.local_time}`);
+          
+          // Check if eventDate is valid before comparison
+          if (!isNaN(eventDate.getTime())) {
+            return eventDate < now;
+          }
+        } catch (err) {
+          console.error(`Error parsing date for event ${event.id}:`, err);
+          // If we can't parse the date, default to treating as past
+        }
+        
+        // Default to true if date parsing fails (assume past)
+        return true;
       })
       .sort((a, b) => {
-        const dateA = new Date(`${a.local_date}T${a.local_time}`);
-        const dateB = new Date(`${b.local_date}T${b.local_time}`);
-        return dateB.getTime() - dateA.getTime(); // Past events in reverse chronological order
+        try {
+          const dateA = new Date(`${a.local_date}T${a.local_time}`);
+          const dateB = new Date(`${b.local_date}T${b.local_time}`);
+          
+          if (isNaN(dateA.getTime()) || isNaN(dateB.getTime())) {
+            return 0; // Keep order the same if either date is invalid
+          }
+          
+          return dateB.getTime() - dateA.getTime(); // Past events in reverse chronological order
+        } catch (err) {
+          console.error('Error sorting past events:', err);
+          return 0;
+        }
       });
     
     setUpcomingEvents(upcoming);

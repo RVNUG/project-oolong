@@ -4,13 +4,51 @@
  * @returns Formatted date string
  */
 export const formatFullDate = (dateString: string): string => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
+  try {
+    // Create date with explicit UTC handling to avoid timezone issues
+    const dateParts = dateString.split('-');
+    if (dateParts.length === 3) {
+      const year = parseInt(dateParts[0], 10);
+      const month = parseInt(dateParts[1], 10) - 1; // Months are 0-indexed
+      const day = parseInt(dateParts[2], 10);
+      
+      if (!isNaN(year) && !isNaN(month) && !isNaN(day)) {
+        const date = new Date(year, month, day);
+        
+        // Validate that the date is valid
+        if (isNaN(date.getTime())) {
+          console.warn(`Invalid date string: ${dateString}`);
+          return "Date not available";
+        }
+        
+        return date.toLocaleDateString('en-US', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+      }
+    }
+    
+    // Fallback to regular Date constructor if format is not YYYY-MM-DD
+    const date = new Date(dateString);
+    
+    // Validate that the date is valid
+    if (isNaN(date.getTime())) {
+      console.warn(`Invalid date string: ${dateString}`);
+      return "Date not available";
+    }
+    
+    return date.toLocaleDateString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  } catch (error) {
+    console.error('Error formatting full date:', error);
+    return "Date not available";
+  }
 };
 
 /**
@@ -34,8 +72,27 @@ export const formatTime = (timeString: string | Date | undefined): string => {
       });
     }
 
-    // If it's a string, attempt to parse it
-    // Handle time in format HH:MM:SS or HH:MM
+    // If it's a string in HH:MM format (24-hour format from events.json)
+    if (typeof timeString === 'string' && timeString.match(/^\d{1,2}:\d{2}$/)) {
+      const [hoursStr, minutesStr] = timeString.split(':');
+      const hours = parseInt(hoursStr, 10);
+      const minutes = parseInt(minutesStr, 10);
+      
+      if (!isNaN(hours) && !isNaN(minutes)) {
+        const date = new Date();
+        date.setHours(hours);
+        date.setMinutes(minutes);
+        date.setSeconds(0);
+        
+        return date.toLocaleTimeString('en-US', {
+          hour: 'numeric',
+          minute: '2-digit',
+          hour12: true
+        });
+      }
+    }
+    
+    // For other string formats, try to parse 
     if (typeof timeString === 'string') {
       // Check if the string has a colon (indicating time format)
       if (timeString.includes(':')) {
@@ -72,7 +129,7 @@ export const formatTime = (timeString: string | Date | undefined): string => {
     
     // If we reach here, we couldn't parse the time
     console.warn(`Could not parse time: ${timeString}`);
-    return "Time format error";
+    return timeString.toString(); // Return the original string if we can't parse it
   } catch (error) {
     console.error("Error formatting time:", error);
     return "Time not available";
@@ -87,7 +144,21 @@ export const formatTime = (timeString: string | Date | undefined): string => {
  */
 export const formatMeetupDateTime = (date_str: string, time_str: string): Date => {
   try {
-    return new Date(`${date_str}T${time_str}`);
+    // Parse date parts to avoid timezone issues
+    const [year, month, day] = date_str.split('-').map(Number);
+    const [hours, minutes] = time_str.split(':').map(Number);
+    
+    // Create Date with explicit parts
+    const date = new Date();
+    date.setFullYear(year);
+    date.setMonth(month - 1); // Months are 0-indexed
+    date.setDate(day);
+    date.setHours(hours);
+    date.setMinutes(minutes);
+    date.setSeconds(0);
+    date.setMilliseconds(0);
+    
+    return date;
   } catch (error) {
     console.error('Error parsing date:', error);
     return new Date(); // Return current date as fallback
