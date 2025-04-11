@@ -75,7 +75,10 @@ const EventDetailPage = () => {
     // Add a portion of the description if available
     if (event.description) {
       // Strip HTML and limit length
-      const textDescription = sanitizeHtml(event.description).replace(/<[^>]*>?/gm, '');
+      const textDescription = sanitizeHtml(event.description, {
+        allowedTags: [],
+        allowedAttributes: {}
+      });
       const trimmedDescription = textDescription.length > 150 
         ? textDescription.substring(0, 147) + '...' 
         : textDescription;
