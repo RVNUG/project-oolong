@@ -32,17 +32,16 @@ export default defineConfig({
         quality: 80,
         compressionLevel: 7,
       },
-      jpeg: {
-        quality: 80,
-        progressive: true,
-      },
       jpg: {
         quality: 80,
         progressive: true,
       },
       gif: {
-        optimizationLevel: 7,
-        interlaced: false,
+        // Sharp v0.33 GIF options
+        reuse: true,
+        loop: 0,
+        delay: 100,
+        force: true
       },
       webp: {
         quality: 80,
