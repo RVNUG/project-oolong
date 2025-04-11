@@ -1,5 +1,6 @@
 import { getCanonicalUrl, getImageUrl } from './seo';
 import { MeetupEvent } from '../types';
+import sanitizeHtml from 'sanitize-html';
 
 /**
  * Creates organization structured data for RVNUG
@@ -98,7 +99,7 @@ export const createEventStructuredData = (event: MeetupEvent) => {
     '@type': 'Event',
     name: event.name,
     description: event.description ? 
-      event.description.replace(/<[^>]*>?/gm, '') : 
+      sanitizeHtml(event.description) : 
       'A Roanoke Valley .NET User Group event',
     url: eventUrl,
     startDate: startDate,
