@@ -44,7 +44,7 @@
     "terser": "^5.29.2",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
-    "vite": "^6.2.5",
+    "vite": "^6.2.6",
     "vite-bundle-analyzer": "^0.11.0",
     "vite-plugin-html": "^3.2.1",
     "vite-plugin-imagemin": "^0.6.1",
