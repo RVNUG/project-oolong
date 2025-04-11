@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
@@ -9,7 +8,7 @@ import { formatFullDate, formatTime } from '../../utils/dateFormatters';
 // Mock the useEvents hook
 vi.mock('../../hooks/useEvents');
 vi.mock('../../components/JsonLd', () => ({
-  default: ({ data }: { data: any }) => <div data-testid="json-ld" />
+  default: ({ }: { data: any }) => <div data-testid="json-ld" />
 }));
 vi.mock('../../components/SEO', () => ({
   default: ({ title }: { title: string }) => <div data-testid="seo">{title}</div>

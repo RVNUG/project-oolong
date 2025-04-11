@@ -4,7 +4,6 @@ import {
   formatTime, 
   formatMeetupDateTime,
   formatShortDate,
-  formatDuration,
   getMonthAbbr
 } from '../dateFormatters';
 
