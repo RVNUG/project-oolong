@@ -2,62 +2,47 @@
 
 This document tracks security vulnerabilities identified in our dependencies, their severity, and resolution status.
 
-## Current Security Vulnerabilities (as of `npm audit` results)
+## Security Vulnerability Resolution
 
-| Library | Severity | Description | Comments | Resolved |
-|---------|----------|-------------|----------|----------|
-| vite-plugin-imagemin | HIGH | Multiple vulnerabilities from dependencies | Image minification plugin - Updated to v0.4.0 which addresses some issues | Partially |
-| bin-build | HIGH | Vulnerability via download and execa | Used by image optimization tools | No |
-| bin-check | HIGH | Vulnerability via execa | Used by bin-wrapper | No |
-| bin-version | HIGH | Vulnerability via find-versions | Used by bin-version-check | No |
-| bin-version-check | HIGH | Vulnerability via bin-version | Used by bin-wrapper | No |
-| bin-wrapper | HIGH | Multiple vulnerabilities (bin-check, bin-version-check, download) | Used by various image optimization binaries | No |
-| cacheable-request | HIGH | Vulnerability via http-cache-semantics | Used by got | No |
-| cross-spawn | HIGH | Regular Expression Denial of Service (ReDoS) | Used by execa | No |
-| cwebp-bin | HIGH | Vulnerabilities via bin-build, bin-wrapper | Used by imagemin-webp | No |
-| exec-buffer | HIGH | Vulnerability via execa | Used in image processing | No |
-| execa | HIGH | Vulnerability via cross-spawn | Used by bin-build, bin-check, exec-buffer | No |
-| find-versions | HIGH | Vulnerability via semver-regex | Used by bin-version | No |
-| gifsicle | HIGH | Vulnerabilities via bin-build, bin-wrapper | Updated to version that works with our build | Partially |
-| got | HIGH | Socket redirection vulnerability + cacheable-request issues | Used by download | No |
-| http-cache-semantics | HIGH | Regular Expression Denial of Service (ReDoS) | Used by cacheable-request | No |
-| imagemin-gifsicle | HIGH | Vulnerability via gifsicle | Updated to v5.2.0 | Yes |
-| imagemin-jpegtran | HIGH | Vulnerability via jpegtran-bin | Used by vite-plugin-imagemin | No |
-| imagemin-mozjpeg | HIGH | Vulnerability via mozjpeg | Updated to v7.0.0 | Yes |
-| imagemin-optipng | HIGH | Vulnerability via optipng-bin | Used by image optimization | No |
-| imagemin-pngquant | HIGH | Vulnerability via pngquant-bin | Updated to v5.0.1 | Yes |
-| imagemin-webp | HIGH | Vulnerability via cwebp-bin | Image web format optimization | No |
-| jpegtran-bin | HIGH | Vulnerabilities via bin-build, bin-wrapper | Used by imagemin-jpegtran | No |
-| meow | HIGH | Vulnerability via trim-newlines | Command-line helper | No |
-| mozjpeg | HIGH | Vulnerabilities via bin-build, bin-wrapper | Used by imagemin-mozjpeg | No |
-| optipng-bin | HIGH | Vulnerabilities via bin-build, bin-wrapper | Used by imagemin-optipng | No |
-| pngquant-bin | HIGH | Vulnerabilities via bin-build, bin-wrapper | Used by imagemin-pngquant | No |
-| semver-regex | HIGH | Regular Expression Denial of Service (ReDOS) | Used by find-versions | No |
-| trim-newlines | HIGH | Uncontrolled Resource Consumption | Used by meow | No |
+All security vulnerabilities have been successfully resolved by replacing the problematic image optimization dependencies with a modern, secure alternative.
 
-## Implementation Status
+### Changes Made:
 
-The following updates have been applied:
+| Action | Description |
+|--------|-------------|
+| ✅ Removed | Removed `vite-plugin-imagemin` and all associated imagemin plugins |
+| ✅ Removed | Removed `imagemin-gifsicle`, `imagemin-mozjpeg`, `imagemin-pngquant`, `imagemin-svgo` |
+| ✅ Added | Added `vite-plugin-image-optimizer` (version 1.1.8) |
+| ✅ Added | Added `sharp` (version 0.33.3) for modern image processing |
+| ✅ Added | Added `svgo` (version 3.3.0) for SVG optimization |
+| ✅ Updated | Updated Vite configuration to use the new image optimizer |
 
-1. ✅ Updated `vite-plugin-imagemin` to version 0.4.0 
-2. ✅ Updated `imagemin-gifsicle` to version 5.2.0
-3. ✅ Updated `imagemin-mozjpeg` to version 7.0.0
-4. ✅ Updated `imagemin-pngquant` to version 5.0.1
+### Results:
 
-These updates have partially addressed the security issues, but many vulnerabilities remain due to the deep dependency tree of the image optimization packages. However, we've verified that:
+```
+npm audit
+found 0 vulnerabilities
+```
+
+### Verification Steps Completed:
 
 1. ✅ `npm run build` completes successfully
 2. ✅ `npm run preview` shows a fully functional website
+3. ✅ No security vulnerabilities detected in npm audit
 
-## Remaining Issues
+## Benefits of the New Approach
 
-Many of the remaining vulnerabilities stem from deeply nested dependencies in the image optimization ecosystem. A complete fix might require:
+The new image optimization solution provides several advantages:
 
-1. Considering alternative image optimization packages or approaches
-2. Possibly implementing a custom build step for image optimization outside the main dependency tree
-3. Evaluating if image optimization can be handled at build time using a separate tool chain
+1. **Security**: Eliminates all the vulnerabilities present in the previous solution
+2. **Performance**: Uses modern Sharp.js library which is much faster and more reliable
+3. **Maintainability**: Simpler dependency structure with fewer dependencies
+4. **Future-proof**: Active development and maintenance of the new dependencies
 
 ## References
 
 - [GitHub Security Advisories](https://github.com/advisories)
-- [npm audit documentation](https://docs.npmjs.com/cli/v8/commands/npm-audit) 
+- [npm audit documentation](https://docs.npmjs.com/cli/v8/commands/npm-audit)
+- [vite-plugin-image-optimizer](https://github.com/FatehAK/vite-plugin-image-optimizer)
+- [Sharp image processing](https://sharp.pixelplumbing.com/)
+- [SVGO optimization tool](https://github.com/svg/svgo) 
