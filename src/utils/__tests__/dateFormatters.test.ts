@@ -51,7 +51,7 @@ describe('Date Formatter Utils', () => {
 
     it('should handle undefined and null', () => {
       expect(formatTime(undefined)).toBe('Time not available');
-      expect(formatTime(null as any)).toBe('Time not available');
+      expect(formatTime(null as unknown as string | Date | undefined)).toBe('Time not available');
     });
 
     it('should format times from Meetup events.json correctly', () => {

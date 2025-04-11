@@ -8,7 +8,7 @@ import { formatFullDate, formatTime } from '../../utils/dateFormatters';
 // Mock the useEvents hook
 vi.mock('../../hooks/useEvents');
 vi.mock('../../components/JsonLd', () => ({
-  default: ({ }: { data: any }) => <div data-testid="json-ld" />
+  default: (_props: { data: Record<string, unknown> }) => <div data-testid="json-ld" />
 }));
 vi.mock('../../components/SEO', () => ({
   default: ({ title }: { title: string }) => <div data-testid="seo">{title}</div>

@@ -1,9 +1,9 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { describe, it, expect } from 'vitest';
 import EventCard from '../EventCard';
 import { formatTime } from '../../utils/dateFormatters';
+import type { ReactElement } from 'react';
 
 describe('EventCard', () => {
   const mockEvent = {
@@ -27,7 +27,7 @@ describe('EventCard', () => {
   };
 
   // Helper function to render EventCard with router
-  const renderWithRouter = (ui: React.ReactElement) => {
+  const renderWithRouter = (ui: ReactElement) => {
     return render(ui, { wrapper: BrowserRouter });
   };
 
