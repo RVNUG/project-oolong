@@ -6,6 +6,7 @@ import { formatFullDate, formatTime } from '../utils/dateFormatters';
 import { formatVenueAddress, isEventOnline } from '../utils/venueUtils';
 import SEO from '../components/SEO';
 import JsonLd from '../components/JsonLd';
+import sanitizeHtml from 'sanitize-html';
 import { createEventStructuredData, createBreadcrumbStructuredData } from '../utils/structuredData';
 import { getCanonicalUrl } from '../utils/seo';
 import '../assets/css/event-detail.css';
@@ -91,7 +92,10 @@ const EventDetailPage = () => {
     // Add a portion of the description if available
     if (event.description) {
       // Strip HTML and limit length
-      const textDescription = event.description.replace(/<[^>]*>?/gm, '');
+      const textDescription = sanitizeHtml(event.description, {
+        allowedTags: [],
+        allowedAttributes: {}
+      });
       const trimmedDescription = textDescription.length > 150 
         ? textDescription.substring(0, 147) + '...' 
         : textDescription;
