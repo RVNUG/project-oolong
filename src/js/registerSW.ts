@@ -3,7 +3,6 @@ import { registerSW } from 'virtual:pwa-register';
 export const registerServiceWorker = () => {
   // Skip registration in development mode
   if (import.meta.env.DEV) {
-    console.log('Service worker registration skipped in development mode');
     return;
   }
 
@@ -18,13 +17,11 @@ export const registerServiceWorker = () => {
       },
       onOfflineReady() {
         // Notify user that site is ready for offline use
-        console.log('Site is ready for offline use');
       },
-      onRegistered(swRegistration: ServiceWorkerRegistration | undefined) {
+      onRegistered(_swRegistration: ServiceWorkerRegistration | undefined) {
         // Registration was successful
-        console.log('Service worker registered:', swRegistration);
       },
-      onRegisterError(error: any) {
+      onRegisterError(error: Error | unknown) {
         console.error('Service worker registration failed:', error);
       }
     });

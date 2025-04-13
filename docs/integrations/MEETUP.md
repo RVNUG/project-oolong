@@ -65,6 +65,43 @@ Events are stored in `public/data/events.json`:
 }
 ```
 
+### Venue Formatting
+
+The application handles venue address formatting with dedicated utility functions:
+
+1. **Venue Utilities** (`src/utils/venueUtils.ts`):
+```typescript
+// Format venue addresses to avoid duplication
+export const formatVenueAddress = (venue?: MeetupEvent['venue'], isOnline = false): string => {
+  if (!venue || isOnline) {
+    return '';
+  }
+  
+  // Check if address_1 is the same as city/state to avoid duplication
+  const cityStateFormat = `${venue.city || ''}, ${venue.state || ''}`.trim();
+  const isAddressSameAsCityState = venue.address_1 === cityStateFormat;
+  
+  // Format address parts and join appropriately
+  // ...
+};
+
+// Detect if an event is online
+export const isEventOnline = (event: MeetupEvent): boolean => {
+  return Boolean(
+    event.is_online || 
+    (event.venue && event.venue.name === 'Online Event')
+  );
+};
+```
+
+2. **Key Features**:
+   - Duplicate detection between address_1 and city/state
+   - Empty field handling to avoid unnecessary commas
+   - Consistent online event detection
+   - Complete test coverage
+
+For detailed information, see [Utilities Documentation](../technical/UTILITIES.md).
+
 ## Testing
 
 ### Local Development Testing
