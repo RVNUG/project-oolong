@@ -15,6 +15,14 @@
 @font-face {
   font-family: 'Font Awesome 6 Free';
   font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/fontawesome/fa-regular-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Font Awesome 6 Free';
+  font-style: normal;
   font-weight: 900;
   font-display: swap;
   src: url('../fonts/fontawesome/fa-solid-900.woff2') format('woff2');
@@ -22,6 +30,7 @@
 
 /* Base Icon Styles */
 .fab,
+.far,
 .fas {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -39,6 +48,12 @@
 /* Brand Icons Class */
 .fab {
   font-family: 'Font Awesome 6 Brands';
+}
+
+/* Regular Icons Class */
+.far {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 400;
 }
 
 /* Solid Icons Class */
@@ -84,6 +99,10 @@
   content: "\f133";
 }
 
+.fa-calendar-alt:before {
+  content: "\f073";
+}
+
 .fa-map-marker-alt:before {
   content: "\f3c5";
 }
@@ -122,6 +141,30 @@
 
 .fa-sun:before {
   content: "\f185";
+}
+
+.fa-laptop:before {
+  content: "\f109";
+}
+
+.fa-wifi:before {
+  content: "\f1eb";
+}
+
+.fa-video:before {
+  content: "\f03d";
+}
+
+.fa-calendar-plus:before {
+  content: "\f271";
+}
+
+.fa-external-link-alt:before {
+  content: "\f35d";
+}
+
+.fa-arrow-left:before {
+  content: "\f060";
 }
 
 /* Navigation Icons */
