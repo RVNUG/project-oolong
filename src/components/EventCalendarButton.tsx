@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MeetupEvent } from '../types';
 import '../assets/css/event-calendar-button.css';
-
+import sanitizeHtml from 'sanitize-html';
 interface EventCalendarButtonProps {
   event: MeetupEvent;
   buttonLabel?: string;
@@ -85,8 +85,8 @@ const EventCalendarButton = ({
   }
   
   // Clean description by removing HTML tags
-  const cleanDescription = event.description
-    ? event.description.replace(/<[^>]*>?/gm, '')
+  const cleanDescription = sanitizeHtml(event.description)
+    ?  sanitizeHtml(event.description)
     : 'Join us for this Roanoke Valley .NET User Group event.';
   
   // Format times for calendar services
