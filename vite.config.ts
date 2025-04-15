@@ -4,7 +4,7 @@ import * as dotenv from 'dotenv'
 import { resolve } from 'path'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import { VitePWA } from 'vite-plugin-pwa'
-import viteImagemin from 'vite-plugin-imagemin'
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 
 // Load environment variables from .env file
 dotenv.config()
@@ -27,62 +27,54 @@ export default defineConfig({
         ]
       }
     }),
-    viteImagemin({
-      gifsicle: {
-        optimizationLevel: 7,
-        interlaced: false,
-      },
-      optipng: {
-        optimizationLevel: 7,
-      },
-      mozjpeg: {
+    ViteImageOptimizer({
+      png: {
         quality: 80,
-        progressive: true
+        compressionLevel: 7,
       },
-      pngquant: {
-        quality: [0.7, 0.9],
-        speed: 4,
+      jpg: {
+        quality: 80,
+        progressive: true,
       },
-      svgo: {
+      gif: {
+        // Sharp v0.33 GIF options
+        reuse: true,
+        loop: 0,
+        delay: 100,
+        force: true
+      },
+      webp: {
+        quality: 80,
+        lossless: false,
+      },
+      svg: {
+        multipass: true,
         plugins: [
           {
-            name: 'removeViewBox',
-            active: false,
-          },
-          {
-            name: 'removeEmptyAttrs',
-            active: false,
+            name: 'preset-default',
+            params: {
+              overrides: {
+                removeViewBox: false,
+                removeEmptyAttrs: false,
+              },
+            },
           },
         ],
       },
       // Only process image files and exclude problematic ones
-      filter: (file) => {
-        // Check if the file is an image based on extension
-        const imageExtensions = ['.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp'];
-        const isImage = imageExtensions.some(ext => file.toLowerCase().endsWith(ext));
-        
-        // If it's not an image, don't process it
-        if (!isImage) {
-          return false;
-        }
-        
-        // Exclude specific problematic files that cause errors
-        const excludeList = [
-          'images/IMG_4105.jpeg', 
-          'images/IMG_4105 (1).jpeg',
-          'images/team/62387302.jpeg'
-        ];
-        
-        // Return false for files that should be excluded
-        for (const excludePath of excludeList) {
-          if (file.includes(excludePath)) {
-            return false;
-          }
-        }
-        
-        // Process the image
-        return true;
-      }
+      include: [
+        '**/*.png',
+        '**/*.jpg',
+        '**/*.jpeg',
+        '**/*.gif',
+        '**/*.svg',
+        '**/*.webp',
+      ],
+      exclude: [
+        'images/IMG_4105.jpeg', 
+        'images/IMG_4105 (1).jpeg',
+        'images/team/62387302.jpeg'
+      ]
     }),
     createHtmlPlugin({
       minify: true,

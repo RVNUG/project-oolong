@@ -3,9 +3,11 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import useEvents from '../hooks/useEvents';
 import { MeetupEvent } from '../types';
 import { formatFullDate, formatTime } from '../utils/dateFormatters';
+import { formatVenueAddress, isEventOnline } from '../utils/venueUtils';
 import SEO from '../components/SEO';
 import JsonLd from '../components/JsonLd';
 import EventCalendarButton from '../components/EventCalendarButton';
+import sanitizeHtml from 'sanitize-html';
 import { createEventStructuredData, createBreadcrumbStructuredData } from '../utils/structuredData';
 import { getCanonicalUrl } from '../utils/seo';
 import '../assets/css/event-detail.css';
@@ -46,8 +48,24 @@ const EventDetailPage = () => {
   const formattedDate = event.local_date ? formatFullDate(event.local_date) : 'Date not available';
   const formattedTime = event.local_time ? formatTime(event.local_time) : 'Time not available';
   
+  // Create a formatted datetime for structured data and other uses
+  let eventDateTime: Date | null = null;
+  try {
+    if (event.local_date && event.local_time) {
+      // Create a date object from the ISO format
+      eventDateTime = new Date(`${event.local_date}T${event.local_time}`);
+      if (isNaN(eventDateTime.getTime())) {
+        console.warn(`Invalid date/time: ${event.local_date}T${event.local_time}`);
+        eventDateTime = null;
+      }
+    }
+  } catch (error) {
+    console.error("Error parsing event datetime:", error);
+    eventDateTime = null;
+  }
+
   // Check if the event is online
-  const isOnline = event.is_online || Boolean(event.venue?.name === 'Online Event');
+  const isOnline = isEventOnline(event);
 
   // Handle image loading error
   const handleImageError = () => {
@@ -75,7 +93,10 @@ const EventDetailPage = () => {
     // Add a portion of the description if available
     if (event.description) {
       // Strip HTML and limit length
-      const textDescription = event.description.replace(/<[^>]*>?/gm, '');
+      const textDescription = sanitizeHtml(event.description, {
+        allowedTags: [],
+        allowedAttributes: {}
+      });
       const trimmedDescription = textDescription.length > 150 
         ? textDescription.substring(0, 147) + '...' 
         : textDescription;
@@ -98,6 +119,9 @@ const EventDetailPage = () => {
     { name: 'Events', url: `${baseUrl}/events` },
     { name: event.name, url: `${baseUrl}/event/${event.id}` }
   ]);
+
+  // Get the formatted venue address
+  const venueAddress = formatVenueAddress(event.venue, isOnline);
 
   return (
     <div className="event-detail-page">
@@ -134,10 +158,8 @@ const EventDetailPage = () => {
             <div className="event-venue">
               <i className={isOnline ? 'fas fa-video' : 'fas fa-map-marker-alt'}></i>
               {isOnline ? 'Online Event' : (event.venue ? event.venue.name : 'Location TBD')}
-              {event.venue && event.venue.address_1 && !isOnline && (
-                <div className="venue-address">
-                  {event.venue.address_1}, {event.venue.city}, {event.venue.state} {event.venue.zip}
-                </div>
+              {venueAddress && !isOnline && (
+                <div className="venue-address">{venueAddress}</div>
               )}
             </div>
           </div>

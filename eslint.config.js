@@ -79,7 +79,7 @@ export default [
     languageOptions: {
       parser: typescriptEslint.parser,
       parserOptions: {
-        project: './tsconfig.json',
+        project: './tsconfig.eslint.json',
       }
     },
     rules: {
@@ -106,8 +106,10 @@ export default [
       'node_modules/**',
       'coverage/**',
       'vite.config.ts',
+      'vitest.config.ts',
       'meetup-proxy/**',
       'scripts/**',
+      '.venv/**',
       '*.config.{js,mjs,cjs}'
     ]
   }

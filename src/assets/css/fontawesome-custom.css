@@ -30,8 +30,8 @@
 
 /* Base Icon Styles */
 .fab,
-.fas,
-.far {
+.far,
+.fas {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
@@ -145,6 +145,30 @@
 
 .fa-sun:before {
   content: "\f185";
+}
+
+.fa-laptop:before {
+  content: "\f109";
+}
+
+.fa-wifi:before {
+  content: "\f1eb";
+}
+
+.fa-video:before {
+  content: "\f03d";
+}
+
+.fa-calendar-plus:before {
+  content: "\f271";
+}
+
+.fa-external-link-alt:before {
+  content: "\f35d";
+}
+
+.fa-arrow-left:before {
+  content: "\f060";
 }
 
 /* Navigation Icons */
