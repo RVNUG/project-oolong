@@ -4,6 +4,7 @@ import { formatTime } from '../utils/dateFormatters';
 import EventCalendarButton from './EventCalendarButton';
 import { isEventOnline, formatVenueAddress } from '../utils/venueUtils';
 import '../assets/css/event-card.css';
+import '../assets/css/custom-fixes.css';
 
 interface EventCardProps {
   event: MeetupEvent;

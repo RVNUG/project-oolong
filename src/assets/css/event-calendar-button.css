@@ -138,24 +138,26 @@
 /* Special calendar button styling */
 .calendar-btn.atcb-button {
   display: inline-flex !important;
-  background-color: var(--color-primary-50, #e6f2ff) !important;
-  border: 1px solid var(--color-primary-300, #b6e0ff) !important;
-  color: var(--primary-color, #0078d4) !important;
-  padding: 0.7rem 1.2rem !important;
-  margin-top: 0.5rem !important;
+  background-color: var(--background-card, white) !important;
+  border: 1px solid var(--border-color, #e5e7eb) !important;
+  color: var(--text-dark, #333) !important;
+  padding: 0.5rem 1rem !important;
+  margin-top: 0 !important;
   font-weight: 500 !important;
   border-radius: 6px !important;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: var(--shadow-sm, 0 2px 5px rgba(0, 0, 0, 0.1)) !important;
   position: relative !important;
   z-index: 1 !important;
+  line-height: 1.5 !important;
+  width: 100% !important;
 }
 
 .calendar-btn.atcb-button:hover, 
 .calendar-btn.atcb-button:focus {
-  background-color: var(--color-primary-100, #cce5ff) !important;
-  border-color: var(--color-primary-400, #83c3ff) !important;
+  background-color: var(--color-neutral-100, #f5f5f5) !important;
+  border-color: var(--color-neutral-300, #d1d5db) !important;
   transform: translateY(-2px) !important;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: var(--shadow-md, 0 4px 8px rgba(0, 0, 0, 0.1)) !important;
 }
 
 /* Icon for calendar button */
@@ -171,9 +173,10 @@
   position: relative;
   display: inline-block;
   z-index: 100;
+  width: 100%;
 }
 
-/* Main button styling */
+/* Main button styling - keeping for backward compatibility */
 .calendar-button {
   display: inline-flex;
   align-items: center;
@@ -183,21 +186,22 @@
   font-weight: 500;
   transition: all 0.2s ease;
   cursor: pointer;
-  padding: 0.8rem 1.2rem;
+  padding: 0.5rem 1rem;
   border-radius: 6px;
-  background-color: var(--color-primary-50, #e6f2ff);
-  border: 1px solid var(--color-primary-300, #b6e0ff);
-  color: var(--color-primary-700, #0078d4);
-  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.1));
+  background-color: var(--background-card, white);
+  border: 1px solid var(--border-color, #e5e7eb);
+  color: var(--text-dark, #333);
+  box-shadow: var(--shadow-sm, 0 2px 5px rgba(0, 0, 0, 0.1));
   z-index: 1;
+  line-height: 1.5;
 }
 
 .calendar-button:hover, 
 .calendar-button:focus {
-  background-color: var(--color-primary-100, #cce5ff);
-  border-color: var(--color-primary-400, #83c3ff);
+  background-color: var(--color-neutral-100, #f5f5f5);
+  border-color: var(--color-neutral-300, #d1d5db);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md, 0 4px 6px rgba(0, 0, 0, 0.1));
+  box-shadow: var(--shadow-md, 0 4px 8px rgba(0, 0, 0, 0.1));
   outline: none;
 }
 
@@ -331,17 +335,39 @@
   background-color: var(--dark-hover-bg, #4a5568);
 }
 
-/* Custom button styling for the calendar btn */
-.btn.btn-calendar .calendar-button {
-  background-color: var(--color-primary-50, #e6f2ff);
-  border: 1px solid var(--color-primary-300, #b6e0ff);
-  color: var(--color-primary-700, #0078d4);
-  padding: 0.7rem 1.2rem;
-  margin-top: 0.5rem;
+/* Add to Calendar button styling */
+.btn-calendar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
   font-weight: 500;
+  padding: 0.5rem 1rem;
+  margin-top: 0;
   border-radius: 6px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: var(--background-card, white);
+  border: 1px solid var(--border-color, #e5e7eb);
+  color: var(--text-dark, #333);
+  box-shadow: var(--shadow-sm, 0 2px 5px rgba(0, 0, 0, 0.1));
+  transition: all 0.2s ease;
+  cursor: pointer;
   width: 100%;
+  line-height: 1.5;
+}
+
+.btn-calendar:hover, 
+.btn-calendar:focus {
+  background-color: var(--color-neutral-100, #f5f5f5);
+  border-color: var(--color-neutral-300, #d1d5db);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md, 0 4px 8px rgba(0, 0, 0, 0.1));
+  outline: none;
+}
+
+/* Remove the nested button styling that causes double-button look */
+.btn.btn-calendar .calendar-button {
+  display: none !important;
 }
 
 /* When inside an event card, ensure dropdown appears on top of other elements */
@@ -367,4 +393,137 @@
 .event-actions {
   position: relative;
   overflow: visible !important;
+}
+
+/* Event actions container - ensure proper button styling and spacing */
+.event-actions a.btn,
+.event-actions button.btn,
+.event-actions .calendar-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background-card, white);
+  border: 1px solid var(--border-color, #e5e7eb);
+  color: var(--text-dark, #333);
+  box-shadow: var(--shadow-sm, 0 2px 5px rgba(0, 0, 0, 0.1));
+  transition: all 0.2s ease;
+  width: 100%;
+  margin-bottom: 0.75rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 6px;
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.event-actions a.btn:hover,
+.event-actions button.btn:hover,
+.event-actions .calendar-button:hover {
+  background-color: var(--color-neutral-100, #f5f5f5);
+  border-color: var(--color-neutral-300, #d1d5db);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md, 0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+/* Icon styling consistency */
+.event-actions a.btn i,
+.event-actions button.btn i,
+.event-actions .calendar-button i,
+.event-actions .calendar-button::before {
+  color: var(--text-dark, #333);
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Create consistent icon sizing and positioning */
+.event-actions a.btn,
+.event-actions button.btn,
+.event-actions .btn-calendar {
+  gap: 0.5rem;
+}
+
+/* Make sure the inner content of all buttons is properly centered */
+.event-actions a.btn span,
+.event-actions button.btn span,
+.event-actions .calendar-button span {
+  flex: 1;
+  text-align: center;
+}
+
+/* Override for RSVP on Meetup button - use outline style instead of solid */
+.event-actions a.btn.btn-primary {
+  background-color: var(--background-card, white);
+  color: var(--primary-color, #0078d4);
+  border: 1px solid var(--primary-color, #0078d4);
+}
+
+.event-actions a.btn.btn-primary:hover {
+  background-color: var(--color-primary-50, #f0f9ff);
+  color: var(--primary-dark, #005a9e);
+  border-color: var(--primary-dark, #005a9e);
+}
+
+.event-actions a.btn.btn-primary i {
+  color: var(--primary-color, #0078d4);
+}
+
+/* Special styling for the last button in the list */
+.event-actions > :last-child,
+.event-actions > :last-child .btn,
+.event-actions > :last-child .calendar-button {
+  margin-bottom: 0;
+}
+
+/* Standardize spacing between buttons */
+.event-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Dark theme enhanced visibility for buttons */
+.dark-theme .event-actions a.btn,
+.dark-theme .event-actions button.btn,
+.dark-theme .event-actions .calendar-button,
+.dark-theme .btn-calendar {
+  background-color: var(--dark-button-secondary-bg, #2d3748);
+  border-color: var(--dark-border-color, #4a5568);
+  color: var(--dark-text, #e2e8f0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme .event-actions a.btn:hover,
+.dark-theme .event-actions button.btn:hover,
+.dark-theme .event-actions .calendar-button:hover,
+.dark-theme .btn-calendar:hover {
+  background-color: var(--dark-button-secondary-hover-bg, #4a5568);
+  border-color: var(--dark-border-color, #718096);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* RSVP button in dark mode - enhanced visibility */
+.dark-theme .event-actions a.btn.btn-primary {
+  background-color: var(--dark-button-secondary-bg, #2d3748);
+  color: var(--color-primary-300, #63b3ed);
+  border: 1px solid var(--color-primary-300, #63b3ed);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme .event-actions a.btn.btn-primary:hover {
+  background-color: var(--dark-button-secondary-hover-bg, #4a5568);
+  color: var(--color-primary-200, #90cdf4);
+  border-color: var(--color-primary-200, #90cdf4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.dark-theme .event-actions a.btn.btn-primary i {
+  color: var(--color-primary-300, #63b3ed);
+}
+
+.dark-theme .event-actions a.btn.btn-primary:hover i {
+  color: var(--color-primary-200, #90cdf4);
 } 

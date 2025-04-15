@@ -220,10 +220,10 @@ END:VCALENDAR`;
   };
 
   return (
-    <div className={`custom-calendar-dropdown ${className}`}>
+    <div className="custom-calendar-dropdown">
       <button 
         ref={buttonRef}
-        className="calendar-button" 
+        className={className} 
         onClick={toggleDropdown}
         aria-haspopup="true" 
         aria-expanded="false"

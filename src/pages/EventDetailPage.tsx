@@ -11,6 +11,7 @@ import sanitizeHtml from 'sanitize-html';
 import { createEventStructuredData, createBreadcrumbStructuredData } from '../utils/structuredData';
 import { getCanonicalUrl } from '../utils/seo';
 import '../assets/css/event-detail.css';
+import '../assets/css/custom-fixes.css';
 
 const EventDetailPage = () => {
   const { id } = useParams<{ id: string }>();
