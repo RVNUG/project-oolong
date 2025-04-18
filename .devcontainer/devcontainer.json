@@ -1,6 +1,6 @@
 {
   "name": "Gatsby 2 Legacy Environment",
-  "image": "mcr.microsoft.com/devcontainers/javascript-node:10",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:16",
   "features": {
     "ghcr.io/devcontainers/features/python:1": {
       "version": "2.7"
