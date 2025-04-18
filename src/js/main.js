@@ -3,6 +3,8 @@
  * Handles interactivity and dynamic content loading
  */
 
+import DOMPurify from 'dompurify';
+
 document.addEventListener('DOMContentLoaded', function() {
   // Mobile menu toggle
   setupMobileMenu();
@@ -117,7 +119,7 @@ function loadEventsFromMeetupJSONP() {
           
           pastEvents.slice(0, 5).forEach(event => {
             const eventHtml = createEventCard(event, true);
-            eventsList.innerHTML += eventHtml;
+            eventsList.insertAdjacentHTML('beforeend', eventHtml);
           });
         }
         
@@ -331,13 +333,16 @@ function formatTime(date) {
  * @returns {string} Truncated HTML string
  */
 function truncateHTML(html, maxLength) {
-  // Create a DOM element to safely manipulate HTML
+  // Sanitize the input HTML
+  const sanitizedHtml = DOMPurify.sanitize(html);
+  
+  // Create a DOM element to safely manipulate sanitized HTML
   const div = document.createElement('div');
-  div.innerHTML = html;
+  div.innerHTML = sanitizedHtml;
   
   // Get text content and truncate if necessary
   const text = div.textContent || div.innerText || '';
-  if (text.length <= maxLength) return html;
+  if (text.length <= maxLength) return sanitizedHtml;
   
   // Truncate text and return
   return text.substring(0, maxLength) + '...';
