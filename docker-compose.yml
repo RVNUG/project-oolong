@@ -1,0 +1,13 @@
+services:
+  gatsby:
+    build: .
+    ports:
+      - "8000:8000"
+      - "9000:9000" # For Gatsby GraphQL explorer
+    volumes:
+      - .:/app
+      - /app/node_modules # Use container's node_modules
+    environment:
+      - NODE_ENV=development
+      - GATSBY_DISABLE_SHARP=1
+    command: gatsby develop --host 0.0.0.0 

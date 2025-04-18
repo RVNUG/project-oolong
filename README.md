@@ -1,28 +1,71 @@
-# Roanoke Valley .NET User Group website.
+# Project Oolong - RVNUG Website
 
-Based on the Stellar site template, designed by HTML5 UP. Check out [https://codebushi.com/gatsby-starters/](https://codebushi.com/gatsby-starters/) for more Gatsby starters and templates.
+This project uses Gatsby v2 from January 2020 and requires a specific Node.js environment.
 
-Build Status
-[![CircleCI](https://circleci.com/gh/RVNUG/project-oolong.svg?style=svg)](https://circleci.com/gh/RVNUG/project-oolong)
+## Getting Started with GitHub Codespaces (Recommended)
 
-## Running the site for local development
+The easiest way to run this legacy project is to use GitHub Codespaces or VS Code Remote Containers, which will provide a preconfigured environment with Node.js 10 and Python 2.7:
 
-This site uses gatsby js. You can run the gatsby build and development webserver by executing the following command.
+1. Click the green "Code" button on the GitHub repository
+2. Select "Open with Codespaces"
+3. Click "New codespace"
 
-```shell
-npm run develop
+Once the codespace is ready, run:
+
+```bash
+gatsby develop --host 0.0.0.0
 ```
 
+The site will be available at the URL shown in the terminal (typically on port 8000).
 
-## Deployment to production
+## Alternative Docker Setup
 
-The RVNUG website is hosted on Github Pages. To deploy you must have permission to commit to the gh-pages branch.
-Deployments are automated using the [gh-pages](https://www.npmjs.com/package/gh-pages) npm module.
+An alternative approach is to use the Docker setup included in this repository.
 
-To deploy whatever is in the current active branch on your machine run the following command.
+### Prerequisites
 
-```shell
-npm run deploy
+- Docker and Docker Compose
+
+### Running with Docker
+
+```bash
+# Start the development server
+./run.sh start
+
+# Once running, you can access:
+# - The site at http://localhost:8000
+# - The GraphQL explorer at http://localhost:9000/___graphql
 ```
 
-This will run the gatsby build and then commit the built files to the gh-pages branch and push that to the remote origin (github.com).
+### Other Docker Commands
+
+```bash
+# Build the site
+./run.sh build
+
+# Clean the Gatsby cache
+./run.sh clean
+
+# Open a shell inside the container
+./run.sh shell
+```
+
+## Technical Details
+
+### Environment
+
+- Node.js 10.13.0 (required for this legacy project)
+- Python 2.7 (required for node-gyp and node-sass)
+- Gatsby 2.x
+
+## Troubleshooting
+
+If you encounter issues:
+
+1. Try using GitHub Codespaces as mentioned above
+2. Try cleaning the Gatsby cache: `gatsby clean`
+3. Check that you're using Node.js 10.x and Python 2.7
+
+## License
+
+MIT

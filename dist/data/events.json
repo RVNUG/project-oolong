@@ -1,0 +1,233 @@
+{
+  "events": [
+    {
+      "id": "e-1",
+      "name": "In Person: Code and Coffee on April 26th from 10am-1pm ET",
+      "status": "upcoming",
+      "local_date": "2025-04-26",
+      "local_time": "10:00",
+      "description": "Join us at Mill Mountain Coffee on Saturday, April 26th from 10am-1pm ET for a period of collaboration and community-building! As a software developer or aspiring developer you're invited to meet fellow coders, work on projects, share knowledge, and enjoy good company in a relaxed and welcoming environment. Whether you're looking to learn from others, share your own expertise, or simply hand out with like-minded folks, our Code & Coffee event has got you covered.\nCome for the coffee, stay for the camaraderie! Our meetup is a judgement-free zone where you can be yourself, ask questions, and get support from fellow developers. You bring your projects, ideas, and enthusiasm, and we provide the atmosphere! See you there!",
+      "venue": {
+        "name": "Mill Mountain Coffee & Tea",
+        "address_1": "Roanoke,  VA",
+        "city": "Roanoke",
+        "state": "VA",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/307171614/?eventOrigin=group_events_list",
+      "is_upcoming": true,
+      "is_online": false
+    },
+    {
+      "id": "e-2",
+      "name": "In Person - Blacksburg: The Curated Data Platform",
+      "status": "upcoming",
+      "local_date": "2025-05-01",
+      "local_time": "18:00",
+      "description": "The breadth of data platform options available to us today is staggering: between relational, object, graph, and document databases, we have a wide array of data storage and processing options. This talk will guide you through the contemporary data platform space and shed light on the way these technologies integrate and compete with one another. We'll discuss when to use (and when not to use) Spark, Postgres, Airflow, and Flink, as well as a range of other interesting tools and technologies. By the end of this talk, you may not have MongoDB or Neo4J, but you will know where they might (or might not!) fit in your environment.",
+      "venue": {
+        "name": "Virginia Tech Corporate Research Center",
+        "address_1": "Blacksburg,  VA",
+        "city": "Blacksburg",
+        "state": "VA",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/307136025/?eventOrigin=group_events_list",
+      "is_upcoming": true,
+      "is_online": false
+    },
+    {
+      "id": "ep-10",
+      "name": "Blacksburg: Multithreaded Income - How Developers Can Achieve Parallel Success",
+      "status": "past",
+      "local_date": "2024-10-03",
+      "local_time": "18:00",
+      "description": "Details at: https://www.meetup.com/roanoke-valley-net-user-group/events/301845047/?eventOrigin=group_events_list",
+      "venue": {
+        "name": "TBD",
+        "address_1": "",
+        "city": "Roanoke",
+        "state": "VA",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/301845047/?eventOrigin=group_events_list",
+      "is_upcoming": false,
+      "is_online": false
+    },
+    {
+      "id": "ep-9",
+      "name": "In Person - Salem: Faster dev and testing with container-supported development",
+      "status": "past",
+      "local_date": "2024-11-07",
+      "local_time": "18:00",
+      "description": "Details at: https://www.meetup.com/roanoke-valley-net-user-group/events/303981476/?eventOrigin=group_events_list",
+      "venue": {
+        "name": "TBD",
+        "address_1": "",
+        "city": "Roanoke",
+        "state": "VA",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/303981476/?eventOrigin=group_events_list",
+      "is_upcoming": false,
+      "is_online": false
+    },
+    {
+      "id": "ep-8",
+      "name": "In-Person: RVNUG December Social at Buffalo Wild Wings near Tanglewood",
+      "status": "past",
+      "local_date": "2024-12-12",
+      "local_time": "18:00",
+      "description": "Details at: https://www.meetup.com/roanoke-valley-net-user-group/events/304405778/?eventOrigin=group_events_list",
+      "venue": {
+        "name": "TBD",
+        "address_1": "",
+        "city": "Roanoke",
+        "state": "VA",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/304405778/?eventOrigin=group_events_list",
+      "is_upcoming": false,
+      "is_online": false
+    },
+    {
+      "id": "ep-7",
+      "name": "Online Meeting: Your next favorite programming language: Gleam",
+      "status": "past",
+      "local_date": "2025-01-02",
+      "local_time": "18:00",
+      "description": "Details at: https://www.meetup.com/roanoke-valley-net-user-group/events/304482900/?eventOrigin=group_events_list",
+      "venue": {
+        "name": "TBD",
+        "address_1": "",
+        "city": "Roanoke",
+        "state": "VA",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/304482900/?eventOrigin=group_events_list",
+      "is_upcoming": false,
+      "is_online": true
+    },
+    {
+      "id": "ep-6",
+      "name": "In Person: Code and Coffee on January 18th from 10am-1pm ET",
+      "status": "past",
+      "local_date": "2025-01-18",
+      "local_time": "10:00",
+      "description": "Details at: https://www.meetup.com/roanoke-valley-net-user-group/events/305351946/?eventOrigin=group_events_list",
+      "venue": {
+        "name": "TBD",
+        "address_1": "",
+        "city": "Roanoke",
+        "state": "VA",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/305351946/?eventOrigin=group_events_list",
+      "is_upcoming": false,
+      "is_online": false
+    },
+    {
+      "id": "ep-5",
+      "name": "Online Meeting: Understanding LLMs: How They Function and How They Have Changed",
+      "status": "past",
+      "local_date": "2025-02-06",
+      "local_time": "18:00",
+      "description": "Details at: https://www.meetup.com/roanoke-valley-net-user-group/events/305352000/?eventOrigin=group_events_list",
+      "venue": {
+        "name": "TBD",
+        "address_1": "",
+        "city": "Roanoke",
+        "state": "VA",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/305352000/?eventOrigin=group_events_list",
+      "is_upcoming": false,
+      "is_online": true
+    },
+    {
+      "id": "ep-4",
+      "name": "In Person: Code and Coffee on February 15 from 10am-1pm ET",
+      "status": "past",
+      "local_date": "2025-02-15",
+      "local_time": "10:00",
+      "description": "Details at: https://www.meetup.com/roanoke-valley-net-user-group/events/305996905/?eventOrigin=group_events_list",
+      "venue": {
+        "name": "TBD",
+        "address_1": "",
+        "city": "Roanoke",
+        "state": "VA",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/305996905/?eventOrigin=group_events_list",
+      "is_upcoming": false,
+      "is_online": false
+    },
+    {
+      "id": "ep-3",
+      "name": "In Person-Learning Functional Programming Through Construction: First Principles",
+      "status": "past",
+      "local_date": "2025-03-06",
+      "local_time": "18:00",
+      "description": "Details at: https://www.meetup.com/roanoke-valley-net-user-group/events/305484464/?eventOrigin=group_events_list",
+      "venue": {
+        "name": "TBD",
+        "address_1": "",
+        "city": "Roanoke",
+        "state": "VA",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/305484464/?eventOrigin=group_events_list",
+      "is_upcoming": false,
+      "is_online": false
+    },
+    {
+      "id": "ep-2",
+      "name": "In Person: Code and Coffee on March 22 from 10am-1pm ET",
+      "status": "past",
+      "local_date": "2025-03-22",
+      "local_time": "10:00",
+      "description": "Details at: https://www.meetup.com/roanoke-valley-net-user-group/events/306604911/?eventOrigin=group_events_list",
+      "venue": {
+        "name": "TBD",
+        "address_1": "",
+        "city": "Roanoke",
+        "state": "VA",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/306604911/?eventOrigin=group_events_list",
+      "is_upcoming": false,
+      "is_online": false
+    },
+    {
+      "id": "ep-1",
+      "name": "Online Meeting: Getting Things Done for Technologists",
+      "status": "past",
+      "local_date": "2025-04-10",
+      "local_time": "18:00",
+      "description": "Details at: https://www.meetup.com/roanoke-valley-net-user-group/events/305481858/?eventOrigin=group_events_list",
+      "venue": {
+        "name": "TBD",
+        "address_1": "",
+        "city": "Roanoke",
+        "state": "VA",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/305481858/?eventOrigin=group_events_list",
+      "is_upcoming": false,
+      "is_online": true
+    }
+  ],
+  "updated_at": "2025-04-11T14:02:31.182415"
+}

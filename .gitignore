@@ -342,3 +342,22 @@ ASALocalRun/
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
 
+# Gatsby
+.cache/
+public/
+node_modules/
+*.log
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-volumes/
+.docker/
+

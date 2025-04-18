@@ -1,0 +1,16 @@
+{
+  "name": "Gatsby 2 Legacy Environment",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:10",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "2.7"
+    }
+  },
+  "forwardPorts": [8000, 9000],
+  "postCreateCommand": "npm install -g gatsby-cli@2.12.52 && npm install",
+  "customizations": {
+    "vscode": {
+      "extensions": ["dbaeumer.vscode-eslint"]
+    }
+  }
+} 

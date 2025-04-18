@@ -1,0 +1,9 @@
+node_modules
+.cache
+public
+.env*
+.git
+.gitignore
+README.md
+Dockerfile
+docker-compose.yml 
