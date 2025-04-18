@@ -148,11 +148,13 @@ The website is deployed to GitHub Pages using GitHub Actions. The deployment pro
 
 ## Additional Documentation
 
-- [Branch Protection Setup](docs/branch-protection-setup.md): Details on branch protection rules
-- [Meetup Integration](docs/MEETUP_INTEGRATION.md): Information on Meetup API integration
+- [Branch Protection Setup](docs/deployment/branch-protection-setup.md): Details on branch protection rules
+- [Meetup Integration](docs/integrations/MEETUP.md): Information on Meetup API integration
 - [GitHub Pages Integration](docs/GITHUB_PAGES_INTEGRATION.md): Details on GitHub Pages deployment
-- [Migration Plan](docs/MIGRATION_2025.md): Current migration status and plan
-- [SEO Documentation](docs/SEO_DOCUMENTATION.md): Comprehensive guide to the SEO implementation
+- [Migration Plan](docs/core/MIGRATION_2025.md): Current migration status and plan
+- [SEO Documentation](docs/technical/SEO_DOCUMENTATION.md): Comprehensive guide to the SEO implementation
+- [Component Documentation](docs/components/): Details on specific component implementations
+  - [EventCalendarButton](docs/components/EVENT_CALENDAR_BUTTON.md): Calendar integration component
 
 ## Contributing
 

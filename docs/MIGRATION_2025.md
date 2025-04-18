@@ -127,6 +127,33 @@ All features from the Vite application have been migrated:
 - Base URL has been changed from '/rvnugorg_rewrite2025' to '/'
 - Preserved some static content from the original repository
 - All GitHub Actions workflows updated to use 'master' branch
+- Enhanced EventCalendarButton component:
+  - Fixed dropdown positioning issues
+  - Improved calendar event duration calculation
+  - Added better mobile responsiveness
+  - Created detailed documentation for the component
+
+## Component Enhancements
+
+### EventCalendarButton
+
+The EventCalendarButton component has been significantly improved:
+
+1. **Fixed dropdown positioning**:
+   - Dropdown menu now displays properly below the button in desktop view
+   - Dropdown positioning is optimized for different screen sizes
+
+2. **Improved duration calculation**:
+   - Intelligent duration calculation now based on event type and start time
+   - Different event types (morning events, social events, evening talks) get appropriate durations
+   - Calendar invites now better reflect the expected duration of events
+
+3. **Fixed Font Awesome integration**:
+   - Added missing icon definitions
+   - Ensured proper icon display across all parts of the component
+
+4. **Documentation**:
+   - Created comprehensive component documentation (see `docs/components/EVENT_CALENDAR_BUTTON.md`)
 
 ## Progress
 

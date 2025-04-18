@@ -16,7 +16,7 @@ import {
 import '../assets/css/contact.css';
 
 // Safety fallback for environment variables
-const DISCORD_URL = import.meta.env.VITE_APP_DISCORD_URL || 'https://discord.gg/rvnug';
+const DISCORD_URL = import.meta.env.VITE_APP_DISCORD_URL || 'https://discord.gg/invite/b4hAu9Pdg5';
 
 // Form validation constants
 const MAX_LENGTH = {

@@ -179,6 +179,17 @@ section[id] {
   gap: var(--space-4);
 }
 
+.btn .btn-primary .pulse-btn {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--text-on-primary);
+}
+
+.btn .btn-primary .pulse-btn:hover {
+  background-color: var(--primary-color-dark);
+  border-color: var(--primary-color-dark);
+}
+
 .pulse-btn {
   position: relative;
   overflow: hidden;
