@@ -7,10 +7,25 @@
     }
   },
   "forwardPorts": [8000, 9000],
-  "postCreateCommand": "npm install -g gatsby-cli@2.12.52 && npm install",
+  "postCreateCommand": "./.devcontainer/setup.sh",
   "customizations": {
     "vscode": {
-      "extensions": ["dbaeumer.vscode-eslint"]
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "editorconfig.editorconfig"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "editor.formatOnSave": true,
+        "prettier.singleQuote": true,
+        "prettier.trailingComma": "es5"
+      }
     }
+  },
+  "remoteUser": "node",
+  "containerEnv": {
+    "NODE_ENV": "development",
+    "GATSBY_TELEMETRY_DISABLED": "1"
   }
 } 
