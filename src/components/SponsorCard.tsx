@@ -1,7 +1,7 @@
 import { Sponsor } from '../types';
 import '../assets/css/sponsor-card.css';
 import { getResourceUrl } from '../utils/config';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface SponsorCardProps {
   sponsor: Sponsor;
@@ -10,10 +10,35 @@ interface SponsorCardProps {
 
 const SponsorCard = ({ sponsor, size = 'normal' }: SponsorCardProps) => {
   const [imageError, setImageError] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Set up responsive detection
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    // Initial check
+    checkMobile();
+    
+    // Set up event listener for window resize
+    window.addEventListener('resize', checkMobile);
+    
+    // Clean up event listener
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Use getResourceUrl to handle the base path correctly
   const getImagePath = () => {
-    return getResourceUrl(`images/sponsors/${sponsor.logo}`);
+    // If the image filename contains MD.png (medium) and we're on mobile, 
+    // replace with SM_320px.png (small) version
+    let logoPath = sponsor.logo;
+    
+    if (isMobile && sponsor.logo.includes('_MD.png')) {
+      logoPath = sponsor.logo.replace('_MD.png', '_SM_320px.png');
+    }
+    
+    return getResourceUrl(`images/sponsors/${logoPath}`);
   };
 
   // Fallback for image loading errors
