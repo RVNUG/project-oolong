@@ -383,6 +383,7 @@ lerna-debug.log*
 dist
 build
 out
+coverage/
 
 # Dependency directories
 .pnp
