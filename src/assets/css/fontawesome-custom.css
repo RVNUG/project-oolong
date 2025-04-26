@@ -103,6 +103,10 @@
   content: "\f073";
 }
 
+.fa-calendar-plus:before {
+  content: "\f0fe";
+}
+
 .fa-map-marker-alt:before {
   content: "\f3c5";
 }
@@ -184,4 +188,19 @@
 /* Video Icons */
 .fa-play-circle:before {
   content: "\f144";
+}
+
+/* Yahoo icon */
+.fa-yahoo:before {
+  content: "\f19e";
+}
+
+/* Apple icon */
+.fa-apple:before {
+  content: "\f179";
+}
+
+/* Google icon */
+.fa-google:before {
+  content: "\f1a0";
 } 
