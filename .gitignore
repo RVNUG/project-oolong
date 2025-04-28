@@ -13,6 +13,7 @@ yarn.lock
 # Build directory
 .cache/
 .DS_Store
+coverage/
 
 # User-specific files
 *.suo
