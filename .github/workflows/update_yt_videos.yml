@@ -42,7 +42,7 @@ jobs:
           YOUTUBE_CHANNEL_ID: ${{ secrets.RVNUG_YT_CHANNEL_ID }}
         run: |
           python scripts/youtube_latest_videos.py
-          git add public/data/videos.json
+          git add -f public/data/videos.json
           git commit -m "Update video data" || echo "No changes to commit"
 
       - name: Get default branch
