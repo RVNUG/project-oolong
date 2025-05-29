@@ -21,6 +21,7 @@ import videosData from '../assets/data/videos.json';
 // YouTube channel ID for RVNUG
 const YOUTUBE_CHANNEL_ID = import.meta.env.VITE_RVNUG_YT_CHANNEL_ID;
 const YOUTUBE_API_KEY = import.meta.env.VITE_YOUTUBE_DATA_API_KEY;
+const DISCORD_URL = import.meta.env.VITE_APP_DISCORD_URL;
 
 // Interface for YouTube video info
 interface YouTubeVideo {
@@ -342,7 +343,7 @@ const HomePage = () => {
             <a href="https://www.meetup.com/Roanoke-Valley-NET-User-Group/" target="_blank" rel="noopener noreferrer" className="btn btn-social">
               <FaMeetup /> Meetup
             </a>
-            <a href="https://discord.gg/rvnug" target="_blank" rel="noopener noreferrer" className="btn btn-social">
+            <a href={DISCORD_URL} target="_blank" rel="noopener noreferrer" className="btn btn-social">
               <FaDiscord /> Discord
             </a>
           </div>

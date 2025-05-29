@@ -136,27 +136,32 @@
 
 .event-detail-actions {
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 0.75rem;
   margin-top: 2rem;
+  width: 100%;
 }
 
 .btn {
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  border: 1px solid;
+  border-radius: 6px;
   font-weight: 500;
+  font-size: 0.95rem;
   cursor: pointer;
   transition: all 0.2s;
   text-decoration: none;
   display: inline-flex;
-  text-align: center;
   align-items: center;
   justify-content: center;
-  min-width: 150px;
+  line-height: 1.5;
+  width: 100%;
+  box-shadow: var(--shadow-sm, 0 2px 5px rgba(0, 0, 0, 0.1));
 }
 
 .btn i {
   margin-right: 0.5rem;
+  font-size: 1rem;
 }
 
 .btn:disabled {
@@ -165,26 +170,34 @@
 }
 
 .btn-primary {
-  background-color: var(--primary-color, #0078d4);
-  color: white;
+  background-color: var(--background-card, white);
+  color: var(--primary-color, #0078d4);
+  border-color: var(--primary-color, #0078d4);
 }
 
 .btn-primary:hover:not(:disabled) {
-  background-color: var(--primary-dark, #005a9e);
+  background-color: var(--color-primary-50, #f0f9ff);
+  color: var(--primary-dark, #005a9e);
+  border-color: var(--primary-dark, #005a9e);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-md, 0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.btn-primary i {
+  color: var(--primary-color, #0078d4);
 }
 
 .btn-secondary {
-  background-color: #f8f9fa;
-  border: 1px solid #ddd;
-  color: var(--text-primary, #333);
+  background-color: var(--background-card, white);
+  border-color: var(--border-color, #e5e7eb);
+  color: var(--text-dark, #333);
 }
 
 .btn-secondary:hover:not(:disabled) {
-  background-color: #e9ecef;
+  background-color: var(--color-neutral-100, #f5f5f5);
+  border-color: var(--color-neutral-300, #d1d5db);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md, 0 4px 8px rgba(0, 0, 0, 0.1));
 }
 
 .loading, .error-message, .not-found {
@@ -249,28 +262,50 @@
 body.dark-theme .event-detail-card {
   background-color: var(--dark-card-bg, #2d2d2d);
   border-color: rgba(255, 255, 255, 0.1);
+  color: black;
 }
 
 body.dark-theme .event-description {
-  color: var(--color-neutral-900, #111111);
+  color: var(--dark-text, #0a0d10);
 }
 
 body.dark-theme .event-description a {
-  color: var(--color-primary-800, #003b69);
+  color: var(--color-primary-300, #63b3ed);
 }
 
 body.dark-theme .event-description a:hover {
-  color: var(--color-primary-900, #002340);
+  color: var(--color-primary-200, #90cdf4);
+}
+
+body.dark-theme .btn-primary {
+  background-color: var(--dark-button-secondary, #2d3748);
+  color: var(--color-primary-300, #63b3ed);
+  border-color: var(--color-primary-300, #63b3ed);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-theme .btn-primary:hover:not(:disabled) {
+  background-color: var(--dark-button-secondary-hover-bg, #4a5568);
+  color: var(--color-primary-200, #90cdf4);
+  border-color: var(--color-primary-200, #90cdf4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-theme .btn-primary i {
+  color: var(--color-primary-300, #63b3ed);
 }
 
 body.dark-theme .btn-secondary {
-  background-color: #3d3d3d;
-  border-color: #4d4d4d;
-  color: #e1e1e1;
+  background-color: var(--dark-button-secondary-bg, #2d3748);
+  border-color: var(--dark-border-color, #4a5568);
+  color: var(--dark-text, #e2e8f0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 body.dark-theme .btn-secondary:hover:not(:disabled) {
-  background-color: #4d4d4d;
+  background-color: var(--dark-button-secondary-hover-bg, #4a5568);
+  border-color: var(--dark-border-color, #718096);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 body.dark-theme .loading, 
@@ -447,4 +482,26 @@ body.dark-theme .event-image-fallback {
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
-} 
+}
+
+/* Dark theme button visibility fix for RSVP button */
+body.dark-theme .event-detail-actions .btn-primary,
+body.dark-theme .btn-primary {
+  background-color: #2d3748; /* Darker background */
+  color: #63b3ed; /* Bright blue text for visibility */
+  border: 2px solid #63b3ed; /* Thicker, brighter border */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-theme .event-detail-actions .btn-primary:hover:not(:disabled),
+body.dark-theme .btn-primary:hover:not(:disabled) {
+  background-color: #4a5568; /* Slightly lighter on hover */
+  color: #90cdf4; /* Even brighter text on hover */
+  border-color: #90cdf4;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-theme .event-detail-actions .btn-primary i,
+body.dark-theme .btn-primary i {
+  color: #63b3ed; /* Make icon match text */
+} .dark-theme-body .event-description { color: #111; }

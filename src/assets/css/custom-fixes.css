@@ -1,0 +1,70 @@
+/* Dark theme fixes */
+
+/* Dark theme fixes for event description */
+body.dark-theme .event-description {
+  color: #111 !important;
+  background-color: #e2e8f0 !important;
+  padding: 1.5rem !important;
+  border-radius: 8px !important;
+}
+
+/* Extreme dark theme button visibility fix */
+html[class*="dark-theme"] body .event-detail-page .event-detail-actions a.btn.btn-primary,
+html[class*="dark-theme"] body .event-detail-page a.btn.btn-primary,
+html[class*="dark-theme"] body .event-detail-page button.btn.btn-primary,
+body.dark-theme .btn-primary,
+body.dark-theme .event-detail-actions .btn-primary {
+  background-color: #2d3748 !important;
+  color: #63b3ed !important;
+  border: 2px solid #63b3ed !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+  text-shadow: none !important;
+}
+
+html[class*="dark-theme"] body .event-detail-page .event-detail-actions a.btn.btn-primary:hover,
+html[class*="dark-theme"] body .event-detail-page a.btn.btn-primary:hover,
+html[class*="dark-theme"] body .event-detail-page button.btn.btn-primary:hover,
+body.dark-theme .btn-primary:hover:not(:disabled),
+body.dark-theme .event-detail-actions .btn-primary:hover:not(:disabled) {
+  background-color: #4a5568 !important;
+  color: #90cdf4 !important;
+  border-color: #90cdf4 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+}
+
+html[class*="dark-theme"] body .event-detail-page .event-detail-actions a.btn.btn-primary i,
+html[class*="dark-theme"] body .event-detail-page a.btn.btn-primary i,
+html[class*="dark-theme"] body .event-detail-page button.btn.btn-primary i,
+body.dark-theme .btn-primary i,
+body.dark-theme .event-detail-actions .btn-primary i {
+  color: #63b3ed !important;
+}
+
+/* Fix for calendar dropdown display on EventDetailPage */
+.event-detail-page .calendar-dropdown-menu {
+  position: absolute !important;
+  z-index: 99999 !important;
+  overflow: visible !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2) !important;
+}
+
+.event-detail-page .custom-calendar-dropdown {
+  position: relative !important;
+  z-index: 9000 !important;
+}
+
+.event-detail-actions {
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.event-detail-card {
+  overflow: visible !important;
+}
+
+/* Last resort - direct inline style override */
+.event-detail-page a[href*="meetup"][class*="btn-primary"] {
+  background-color: #2d3748 !important;
+  color: #63b3ed !important;
+  border: 2px solid #63b3ed !important;
+}

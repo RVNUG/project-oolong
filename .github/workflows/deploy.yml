@@ -121,6 +121,7 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           # Using '-f' to force add files that might be ignored by .gitignore
+          git pull origin master || echo "No changes to pull"
           git add -f public/data/videos.json public/data/events.json
           git commit -m "Update API data" || echo "No changes to commit"
           git push origin master || echo "No changes to push"
@@ -160,10 +161,12 @@ jobs:
           echo "VITE_APP_RVNUG_YT_CHANNEL_ID=${YOUTUBE_CHANNEL_ID}" >> .env
           echo "VITE_APP_YOUTUBE_DATA_API_KEY=${YOUTUBE_API_KEY}" >> .env
           echo "VITE_APP_BASE_URL=${BASE_URL:-/}" >> .env
+          echo "VITE_APP_DISCORD_URL=${VITE_APP_DISCORD_URL}" >> .env
           echo "VITE_FEATURE_COMMUNITY_SHOWCASE=${FEATURE_COMMUNITY_SHOWCASE:-false}" >> .env
         env:
           YOUTUBE_CHANNEL_ID: ${{ secrets.RVNUG_YT_CHANNEL_ID }}
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_DATA_API_KEY }}
+          VITE_APP_DISCORD_URL: ${{ secrets.VITE_APP_DISCORD_URL }}
           BASE_URL: ${{ secrets.BASE_URL }}
           FEATURE_COMMUNITY_SHOWCASE: ${{ secrets.FEATURE_COMMUNITY_SHOWCASE }}
       

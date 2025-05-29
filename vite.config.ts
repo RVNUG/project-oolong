@@ -10,7 +10,7 @@ import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 dotenv.config()
 
 // Get base path from environment variables
-const basePath = process.env.VITE_APP_BASE_URL || '/rvnugorg_rewrite2025';
+const basePath = process.env.VITE_APP_BASE_URL || '';
 
 // Feature flag configuration
 const isCommunityShowcaseEnabled = process.env.VITE_FEATURE_COMMUNITY_SHOWCASE === 'true';
