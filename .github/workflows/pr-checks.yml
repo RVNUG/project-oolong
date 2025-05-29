@@ -64,15 +64,17 @@ jobs:
       - name: Create .env file for build
         run: |
           echo "Creating .env file with fallback values"
+          echo "VITE_APP_DISCORD_URL=${VITE_APP_DISCORD_URL}" >> .env
           echo "VITE_APP_MEETUP_GROUP_NAME=roanoke-valley-net-user-group" >> .env
-          echo "VITE_APP_RVNUG_YT_CHANNEL_ID=${YOUTUBE_CHANNEL_ID:-UCturJIv_9ubJTcRgwoHdP-g}" >> .env
-          echo "VITE_APP_YOUTUBE_DATA_API_KEY=${YOUTUBE_API_KEY:-AIzaSyBQNF8iTrfUYldLuUm8p92mCsOBRYYC_Bo}" >> .env
-          echo "VITE_APP_BASE_URL=${BASE_URL:-/rvnugorg_rewrite2025}" >> .env
+          echo "VITE_APP_RVNUG_YT_CHANNEL_ID=${YOUTUBE_CHANNEL_ID}" >> .env
+          echo "VITE_APP_YOUTUBE_DATA_API_KEY=${YOUTUBE_API_KEY}" >> .env
+          echo "VITE_APP_BASE_URL=${BASE_URL:-/}" >> .env
           echo ".env file contents (redacted API keys):"
           grep -v "API_KEY" .env | cat
         env:
           YOUTUBE_CHANNEL_ID: ${{ secrets.RVNUG_YT_CHANNEL_ID }}
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_DATA_API_KEY }}
+          VITE_APP_DISCORD_URL: ${{ secrets.VITE_APP_DISCORD_URL }}
           BASE_URL: ${{ secrets.BASE_URL }}
       
       - name: Build Verification with Debug
