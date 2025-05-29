@@ -134,6 +134,13 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 2rem;
+  position: relative;
+}
+
+/* Ensure each grid cell has proper spacing for dropdowns */
+.events-grid > * {
+  position: relative;
+  min-width: 0;
 }
 
 /* When there's only one event card, make it take full width */

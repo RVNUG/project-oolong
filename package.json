@@ -19,6 +19,7 @@
     "@babel/plugin-transform-react-jsx": "^7.25.9",
     "@types/react-router-dom": "^5.3.3",
     "dotenv": "^16.4.7",
+    "lru-cache": "^10.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-helmet-async": "^2.0.5",
@@ -30,6 +31,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.21.0",
+    "@jridgewell/sourcemap-codec": "^1.5.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^16.3.0",
@@ -47,10 +49,12 @@
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
+    "glob": "^7.2.3",
     "globals": "^15.15.0",
     "jsdom": "^24.0.0",
     "sanitize-html": "^2.15.0",
     "sharp": "^0.33.3",
+    "sourcemap-codec": "^1.4.8",
     "svgo": "^3.3.0",
     "terser": "^5.29.2",
     "typescript": "~5.7.2",
@@ -59,7 +63,10 @@
     "vite-bundle-analyzer": "^0.11.0",
     "vite-plugin-html": "^3.2.1",
     "vite-plugin-image-optimizer": "^1.1.8",
-    "vite-plugin-pwa": "^0.19.7",
+    "vite-plugin-pwa": "^1.0.0",
     "vitest": "^3.1.1"
+  },
+  "overrides": {
+    "inflight": "npm:lru-cache@^10.2.0"
   }
 }

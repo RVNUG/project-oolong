@@ -13,6 +13,7 @@ yarn.lock
 # Build directory
 .cache/
 .DS_Store
+coverage/
 
 # User-specific files
 *.suo
@@ -382,6 +383,7 @@ lerna-debug.log*
 dist
 build
 out
+coverage/
 
 # Dependency directories
 .pnp
