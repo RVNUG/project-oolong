@@ -161,10 +161,12 @@ jobs:
           echo "VITE_APP_RVNUG_YT_CHANNEL_ID=${YOUTUBE_CHANNEL_ID}" >> .env
           echo "VITE_APP_YOUTUBE_DATA_API_KEY=${YOUTUBE_API_KEY}" >> .env
           echo "VITE_APP_BASE_URL=${BASE_URL:-/}" >> .env
+          echo "VITE_APP_DISCORD_URL=${VITE_APP_DISCORD_URL}" >> .env
           echo "VITE_FEATURE_COMMUNITY_SHOWCASE=${FEATURE_COMMUNITY_SHOWCASE:-false}" >> .env
         env:
           YOUTUBE_CHANNEL_ID: ${{ secrets.RVNUG_YT_CHANNEL_ID }}
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_DATA_API_KEY }}
+          VITE_APP_DISCORD_URL: ${{ secrets.VITE_APP_DISCORD_URL }}
           BASE_URL: ${{ secrets.BASE_URL }}
           FEATURE_COMMUNITY_SHOWCASE: ${{ secrets.FEATURE_COMMUNITY_SHOWCASE }}
       
