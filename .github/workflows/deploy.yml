@@ -121,6 +121,7 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           # Using '-f' to force add files that might be ignored by .gitignore
+          git pull origin master || echo "No changes to pull"
           git add -f public/data/videos.json public/data/events.json
           git commit -m "Update API data" || echo "No changes to commit"
           git push origin master || echo "No changes to push"
