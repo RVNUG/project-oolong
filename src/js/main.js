@@ -3,6 +3,8 @@
  * Handles interactivity and dynamic content loading
  */
 
+import DOMPurify from 'dompurify';
+
 document.addEventListener('DOMContentLoaded', function() {
   // Mobile menu toggle
   setupMobileMenu();
@@ -117,7 +119,7 @@ function loadEventsFromMeetupJSONP() {
           
           pastEvents.slice(0, 5).forEach(event => {
             const eventHtml = createEventCard(event, true);
-            eventsList.innerHTML += eventHtml;
+            eventsList.insertAdjacentHTML('beforeend', eventHtml);
           });
         }
         
@@ -244,6 +246,7 @@ function createEventCard(event, isPastEvent = false) {
   
   // Truncate description if needed
   const truncatedDescription = event.description ? truncateHTML(event.description, 150) : 'No description available';
+  const sanitizedDescription = DOMPurify.sanitize(truncatedDescription);
   
   // Create and return HTML
   return `
@@ -258,7 +261,7 @@ function createEventCard(event, isPastEvent = false) {
           <span class="event-time"><i class="far fa-clock"></i> ${formattedDate}, ${formattedTime}</span>
           <span class="event-location"><i class="fas fa-map-marker-alt"></i> ${locationText}</span>
         </p>
-        <div class="event-description">${truncatedDescription}</div>
+        <div class="event-description">${sanitizedDescription}</div>
         <a href="${event.link}" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer">
           ${isPastEvent ? 'View Details' : 'RSVP on Meetup'}
         </a>
@@ -331,13 +334,16 @@ function formatTime(date) {
  * @returns {string} Truncated HTML string
  */
 function truncateHTML(html, maxLength) {
-  // Create a DOM element to safely manipulate HTML
+  // Sanitize the input HTML
+  const sanitizedHtml = DOMPurify.sanitize(html);
+  
+  // Create a DOM element to safely manipulate sanitized HTML
   const div = document.createElement('div');
-  div.innerHTML = html;
+  div.innerHTML = sanitizedHtml;
   
   // Get text content and truncate if necessary
   const text = div.textContent || div.innerText || '';
-  if (text.length <= maxLength) return html;
+  if (text.length <= maxLength) return sanitizedHtml;
   
   // Truncate text and return
   return text.substring(0, maxLength) + '...';
