@@ -260,7 +260,7 @@ const HomePage = () => {
             <a href="https://github.com/rvnug" target="_blank" rel="noopener noreferrer" className="btn btn-social">
               <FaGithub /> GitHub
             </a>
-            <a href="https://www.youtube.com/@rvnug-roanokevalleydotnetu6781" target="_blank" rel="noopener noreferrer" className="btn btn-social">
+            <a href="https://www.youtube.com/@rvnug" target="_blank" rel="noopener noreferrer" className="btn btn-social">
               <FaYoutube /> YouTube
             </a>
             <a href="https://www.meetup.com/Roanoke-Valley-NET-User-Group/" target="_blank" rel="noopener noreferrer" className="btn btn-social">
