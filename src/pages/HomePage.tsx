@@ -14,7 +14,16 @@ import { useState, useEffect, useRef } from 'react';
 // Import logo for use in hero section
 import logo from '../assets/images/roanoke-star-128-logo.png';
 // Import icons
-import { FaMicrochip, FaUsers, FaCode, FaLaptopCode, FaGithub, FaYoutube, FaMeetup, FaDiscord } from 'react-icons/fa';
+import { 
+  FaMicrochip, 
+  FaUsers, 
+  FaCode, 
+  FaLaptopCode, 
+  FaGithub, 
+  FaYoutube, 
+  FaMeetup, 
+  FaDiscord, 
+  FaNewspaper } from 'react-icons/fa';
 // Import videos data
 import videosData from '../assets/data/videos.json';
 
@@ -22,6 +31,7 @@ import videosData from '../assets/data/videos.json';
 const YOUTUBE_CHANNEL_ID = import.meta.env.VITE_RVNUG_YT_CHANNEL_ID;
 const YOUTUBE_API_KEY = import.meta.env.VITE_YOUTUBE_DATA_API_KEY;
 const DISCORD_URL = import.meta.env.VITE_APP_DISCORD_URL;
+const NEWSLETTER_URL = "http://eepurl.com/ddlwBz";
 
 // Interface for YouTube video info
 interface YouTubeVideo {
@@ -237,6 +247,32 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* Community CTA Section - New section to drive engagement */}
+      <section className="community-cta">
+        <div className="cta-content">
+          <h2>Join Our Developer Community</h2>
+          <p>Connect with fellow developers, stay updated on events, and access exclusive resources.</p>
+          <div className="cta-buttons">
+            <div className="newsletter-signup">
+              <a href={NEWSLETTER_URL} target="_blank" rel="noopener noreferrer" className="btn btn-social">
+                <FaNewspaper /> Signup For Our Newsletter</a>
+            </div>
+            <a href="https://github.com/rvnug" target="_blank" rel="noopener noreferrer" className="btn btn-social">
+              <FaGithub /> GitHub
+            </a>
+            <a href="https://www.youtube.com/@rvnug" target="_blank" rel="noopener noreferrer" className="btn btn-social">
+              <FaYoutube /> YouTube
+            </a>
+            <a href="https://www.meetup.com/Roanoke-Valley-NET-User-Group/" target="_blank" rel="noopener noreferrer" className="btn btn-social">
+              <FaMeetup /> Meetup
+            </a>
+            <a href={DISCORD_URL} target="_blank" rel="noopener noreferrer" className="btn btn-social">
+              <FaDiscord /> Discord
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Feature Grid Section - Visual representation of what RVNUG offers */}
       <section id="features" className="features-section">
         <h2 className="section-title">What We Offer</h2>
@@ -328,27 +364,6 @@ const HomePage = () => {
         )}
       </section>
 
-      {/* Community CTA Section - New section to drive engagement */}
-      <section className="community-cta">
-        <div className="cta-content">
-          <h2>Join Our Developer Community</h2>
-          <p>Connect with fellow developers, stay updated on events, and access exclusive resources.</p>
-          <div className="cta-buttons">
-            <a href="https://github.com/rvnug" target="_blank" rel="noopener noreferrer" className="btn btn-social">
-              <FaGithub /> GitHub
-            </a>
-            <a href="https://www.youtube.com/@rvnug-roanokevalleydotnetu6781" target="_blank" rel="noopener noreferrer" className="btn btn-social">
-              <FaYoutube /> YouTube
-            </a>
-            <a href="https://www.meetup.com/Roanoke-Valley-NET-User-Group/" target="_blank" rel="noopener noreferrer" className="btn btn-social">
-              <FaMeetup /> Meetup
-            </a>
-            <a href={DISCORD_URL} target="_blank" rel="noopener noreferrer" className="btn btn-social">
-              <FaDiscord /> Discord
-            </a>
-          </div>
-        </div>
-      </section>
 
       {/* YouTube Spotlight Section */}
       <section id="past-talks" className="youtube-spotlight">

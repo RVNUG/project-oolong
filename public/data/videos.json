@@ -1,5 +1,12 @@
 [
     {
+        "title": "Getting Started With Building GenAI supported Apps (Michael Irwin - June 2025)",
+        "video_id": "VF1ojvo6k4Q",
+        "published_at": "2025-09-01T01:12:30Z",
+        "thumbnail_url": "https://i.ytimg.com/vi/VF1ojvo6k4Q/mqdefault.jpg",
+        "video_url": "https://www.youtube.com/watch?v=VF1ojvo6k4Q"
+    },
+    {
         "title": "RV.NUG - Getting Things Done for Technologists",
         "video_id": "6zf3QNueSK4",
         "published_at": "2025-05-01T01:45:53Z",
@@ -12,12 +19,5 @@
         "published_at": "2025-03-06T07:49:04Z",
         "thumbnail_url": "https://i.ytimg.com/vi/qgagI8Dp5Gk/mqdefault.jpg",
         "video_url": "https://www.youtube.com/watch?v=qgagI8Dp5Gk"
-    },
-    {
-        "title": "RV.NUG - Your next favorite programming language: Gleam",
-        "video_id": "PvqCsc04Ysw",
-        "published_at": "2025-02-06T07:57:59Z",
-        "thumbnail_url": "https://i.ytimg.com/vi/PvqCsc04Ysw/mqdefault.jpg",
-        "video_url": "https://www.youtube.com/watch?v=PvqCsc04Ysw"
     }
 ]
