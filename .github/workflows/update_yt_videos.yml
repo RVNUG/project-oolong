@@ -59,12 +59,13 @@ jobs:
       - name: Push changes
         id: push_changes
         run: |
-          if git diff --quiet && git diff --staged --quiet; then
-            echo "No changes to push"
-            echo "push_successful=false" >> $GITHUB_OUTPUT
-          else
+          # Check if there are commits to push
+          if git log origin/${{ steps.default_branch.outputs.default_branch }}..${{ steps.default_branch.outputs.default_branch }} --oneline | grep -q .; then
             git push origin ${{ steps.default_branch.outputs.default_branch }}
             echo "push_successful=true" >> $GITHUB_OUTPUT
+          else
+            echo "No changes to push"
+            echo "push_successful=false" >> $GITHUB_OUTPUT
           fi
 
       - name: Trigger deploy workflow
