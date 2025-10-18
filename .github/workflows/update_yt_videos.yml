@@ -36,15 +36,6 @@ jobs:
           echo "YOUTUBE_DATA_API_KEY=${{ secrets.YOUTUBE_DATA_API_KEY }}" > .env
           echo "YOUTUBE_CHANNEL_ID=${{ secrets.RVNUG_YT_CHANNEL_ID }}" >> .env
 
-      - name: Get YouTube videos and generate data
-        env:
-          YOUTUBE_DATA_API_KEY: ${{ secrets.YOUTUBE_DATA_API_KEY }}
-          YOUTUBE_CHANNEL_ID: ${{ secrets.RVNUG_YT_CHANNEL_ID }}
-        run: |
-          python scripts/youtube_latest_videos.py
-          git add -f public/data/videos.json
-          git commit -m "Update video data" || echo "No changes to commit"
-
       - name: Get default branch
         id: default_branch
         uses: actions/github-script@v7
@@ -56,20 +47,28 @@ jobs:
             })
             core.setOutput('default_branch', repo.default_branch)
 
-      - name: Push changes
-        id: push_changes
+      - name: Get YouTube videos and generate data
+        id: generate_data
+        env:
+          YOUTUBE_DATA_API_KEY: ${{ secrets.YOUTUBE_DATA_API_KEY }}
+          YOUTUBE_CHANNEL_ID: ${{ secrets.RVNUG_YT_CHANNEL_ID }}
         run: |
-          # Check if there are commits to push
-          if git log origin/${{ steps.default_branch.outputs.default_branch }}..HEAD --oneline | grep -q .; then
-            git push origin ${{ steps.default_branch.outputs.default_branch }}
-            echo "push_successful=true" >> $GITHUB_OUTPUT
+          python scripts/youtube_latest_videos.py
+          git add -f public/data/videos.json
+          if git commit -m "Update video data"; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
           else
-            echo "No changes to push"
-            echo "push_successful=false" >> $GITHUB_OUTPUT
+            echo "No changes to commit"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
           fi
 
+      - name: Push changes
+        if: steps.generate_data.outputs.has_changes == 'true'
+        run: |
+          git push origin ${{ steps.default_branch.outputs.default_branch }}
+
       - name: Trigger deploy workflow
-        if: success() && steps.push_changes.outputs.push_successful == 'true'
+        if: success() && steps.generate_data.outputs.has_changes == 'true'
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
