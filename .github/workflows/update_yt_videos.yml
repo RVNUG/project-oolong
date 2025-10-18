@@ -77,5 +77,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: 'deploy.yml',
-              ref: '${{ steps.default_branch.outputs.default_branch }}'
+              ref: ${{ toJSON(steps.default_branch.outputs.default_branch) }}
             });
