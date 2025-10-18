@@ -47,7 +47,7 @@ jobs:
 
       - name: Get default branch
         id: default_branch
-        uses: actions/github-script@v3
+        uses: actions/github-script@v7
         with:
           script: |
             const { data: repo } = await github.repos.get({
@@ -55,21 +55,20 @@ jobs:
               repo: context.repo.repo
             })
             core.setOutput('default_branch', repo.default_branch)
-        
+
       - name: Push changes
-        run: git push origin ${{ steps.default_branch.outputs.default_branch }} || echo "No changes to push"
-      
-      - name: Check if changes were pushed
-        id: check_changes
+        id: push_changes
         run: |
-          if [[ $(git log -1 --pretty=%B) == *"Update video data"* ]]; then
-            echo "changes_pushed=true" >> $GITHUB_OUTPUT
+          if git diff --quiet && git diff --staged --quiet; then
+            echo "No changes to push"
+            echo "push_successful=false" >> $GITHUB_OUTPUT
           else
-            echo "changes_pushed=false" >> $GITHUB_OUTPUT
+            git push origin ${{ steps.default_branch.outputs.default_branch }}
+            echo "push_successful=true" >> $GITHUB_OUTPUT
           fi
-      
+
       - name: Trigger deploy workflow
-        if: success() && steps.check_changes.outputs.changes_pushed == 'true'
+        if: success() && steps.push_changes.outputs.push_successful == 'true'
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -78,5 +77,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: 'deploy.yml',
-              ref: 'master'
+              ref: '${{ steps.default_branch.outputs.default_branch }}'
             });
