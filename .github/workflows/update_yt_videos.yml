@@ -36,9 +36,18 @@ jobs:
           echo "YOUTUBE_DATA_API_KEY=${{ secrets.YOUTUBE_DATA_API_KEY }}" > .env
           echo "YOUTUBE_CHANNEL_ID=${{ secrets.RVNUG_YT_CHANNEL_ID }}" >> .env
 
+      - name: Get YouTube videos and generate data
+        env:
+          YOUTUBE_DATA_API_KEY: ${{ secrets.YOUTUBE_DATA_API_KEY }}
+          YOUTUBE_CHANNEL_ID: ${{ secrets.RVNUG_YT_CHANNEL_ID }}
+        run: |
+          python scripts/youtube_latest_videos.py
+          git add -f public/data/videos.json
+          git commit -m "Update video data" || echo "No changes to commit"
+
       - name: Get default branch
         id: default_branch
-        uses: actions/github-script@v7
+        uses: actions/github-script@v3
         with:
           script: |
             const { data: repo } = await github.repos.get({
@@ -46,29 +55,21 @@ jobs:
               repo: context.repo.repo
             })
             core.setOutput('default_branch', repo.default_branch)
-
-      - name: Get YouTube videos and generate data
-        id: generate_data
-        env:
-          YOUTUBE_DATA_API_KEY: ${{ secrets.YOUTUBE_DATA_API_KEY }}
-          YOUTUBE_CHANNEL_ID: ${{ secrets.RVNUG_YT_CHANNEL_ID }}
-        run: |
-          python scripts/youtube_latest_videos.py
-          git add -f public/data/videos.json
-          if git commit -m "Update video data"; then
-            echo "has_changes=true" >> $GITHUB_OUTPUT
-          else
-            echo "No changes to commit"
-            echo "has_changes=false" >> $GITHUB_OUTPUT
-          fi
-
+        
       - name: Push changes
-        if: steps.generate_data.outputs.has_changes == 'true'
+        run: git push origin ${{ steps.default_branch.outputs.default_branch }} || echo "No changes to push"
+      
+      - name: Check if changes were pushed
+        id: check_changes
         run: |
-          git push origin ${{ steps.default_branch.outputs.default_branch }}
-
+          if [[ $(git log -1 --pretty=%B) == *"Update video data"* ]]; then
+            echo "changes_pushed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changes_pushed=false" >> $GITHUB_OUTPUT
+          fi
+      
       - name: Trigger deploy workflow
-        if: success() && steps.generate_data.outputs.has_changes == 'true'
+        if: success() && steps.check_changes.outputs.changes_pushed == 'true'
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -77,5 +78,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: 'deploy.yml',
-              ref: ${{ steps.default_branch.outputs.default_branch }}
+              ref: 'master'
             });
