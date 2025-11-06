@@ -1,5 +1,12 @@
 [
     {
+        "title": "Evolutions of Vibe Coding",
+        "video_id": "kC2fL2Co9pU",
+        "published_at": "2025-09-08T14:01:12Z",
+        "thumbnail_url": "https://i.ytimg.com/vi/kC2fL2Co9pU/mqdefault.jpg",
+        "video_url": "https://www.youtube.com/watch?v=kC2fL2Co9pU"
+    },
+    {
         "title": "Getting Started With Building GenAI supported Apps (Michael Irwin - June 2025)",
         "video_id": "VF1ojvo6k4Q",
         "published_at": "2025-09-01T01:12:30Z",
@@ -12,12 +19,5 @@
         "published_at": "2025-05-01T01:45:53Z",
         "thumbnail_url": "https://i.ytimg.com/vi/6zf3QNueSK4/mqdefault.jpg",
         "video_url": "https://www.youtube.com/watch?v=6zf3QNueSK4"
-    },
-    {
-        "title": "RV.NUG - Understanding LLMs: From Foundations to Reasoning Models",
-        "video_id": "qgagI8Dp5Gk",
-        "published_at": "2025-03-06T07:49:04Z",
-        "thumbnail_url": "https://i.ytimg.com/vi/qgagI8Dp5Gk/mqdefault.jpg",
-        "video_url": "https://www.youtube.com/watch?v=qgagI8Dp5Gk"
     }
 ]
