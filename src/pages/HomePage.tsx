@@ -24,8 +24,7 @@ import {
   FaMeetup, 
   FaDiscord, 
   FaNewspaper } from 'react-icons/fa';
-// Import videos data
-import videosData from '../assets/data/videos.json';
+import { getResourceUrl } from '../utils/config';
 
 // YouTube channel ID for RVNUG
 const YOUTUBE_CHANNEL_ID = import.meta.env.VITE_RVNUG_YT_CHANNEL_ID;
@@ -50,9 +49,6 @@ interface LocalVideoData {
   video_url: string;
 }
 
-// Type assertion for imported JSON
-const typedVideosData = videosData as LocalVideoData[];
-
 const HomePage = () => {
   const location = useLocation();
   const { loading: eventsLoading, error: eventsError, upcomingEvents } = useEvents();
@@ -71,19 +67,30 @@ const HomePage = () => {
       setVideoError(null);
       
       try {
-        // First, try to use the imported videos data
-        if (typedVideosData && typedVideosData.length > 0) {
-          const videosList = typedVideosData.map(localVideo => ({
-            id: localVideo.video_id,
-            title: localVideo.title,
-            thumbnail: localVideo.thumbnail_url,
-            publishedAt: localVideo.published_at
-          }));
+        // First, try to fetch videos from the public data directory
+        try {
+          const videosUrl = getResourceUrl('data/videos.json');
+          const response = await fetch(videosUrl);
           
-          setVideos(videosList);
-          setLatestVideo(videosList[0]);
-          setLoadingVideo(false);
-          return;
+          if (response.ok) {
+            const videosData: LocalVideoData[] = await response.json();
+            
+            if (videosData && videosData.length > 0) {
+              const videosList = videosData.map(localVideo => ({
+                id: localVideo.video_id,
+                title: localVideo.title,
+                thumbnail: localVideo.thumbnail_url,
+                publishedAt: localVideo.published_at
+              }));
+              
+              setVideos(videosList);
+              setLatestVideo(videosList[0]);
+              setLoadingVideo(false);
+              return;
+            }
+          }
+        } catch (fetchError) {
+          console.warn('Failed to fetch videos from public directory, will try YouTube API', fetchError);
         }
 
         // Check if environment variables are set
