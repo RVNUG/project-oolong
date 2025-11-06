@@ -39,7 +39,8 @@ async def scrape_meetup_events(group_name):
     """
     print(f"Launching Playwright to scrape events for {group_name}...")
     
-    events = []
+    all_events = []
+    seen_event_ids = set()
     
     async with async_playwright() as p:
         # Launch the browser with increased timeout
@@ -55,34 +56,45 @@ async def scrape_meetup_events(group_name):
         page = await context.new_page()
         
         try:
-            # Try to scrape past events with retries
-            past_events = await scrape_page_with_retry(
-                page, 
-                f"https://www.meetup.com/{group_name}/events/?type=past", 
-                "past"
-            )
-            if past_events:
-                events.extend(past_events)
-                print(f"Scraped {len(past_events)} past events")
-                
-            # Try to scrape upcoming events with retries
+            # Scrape upcoming events first
             upcoming_events = await scrape_page_with_retry(
                 page, 
                 f"https://www.meetup.com/{group_name}/events/?type=upcoming", 
                 "upcoming"
             )
-            if upcoming_events:
-                events.extend(upcoming_events)
-                print(f"Scraped {len(upcoming_events)} upcoming events")
             
-            print(f"Total events scraped: {len(events)}")
+            # Add upcoming events with deduplication
+            for event in upcoming_events:
+                event_id = event.get('id')
+                if event_id and event_id not in seen_event_ids:
+                    all_events.append(event)
+                    seen_event_ids.add(event_id)
+            
+            print(f"Scraped {len(upcoming_events)} upcoming events")
+            
+            # Scrape past events
+            past_events = await scrape_page_with_retry(
+                page, 
+                f"https://www.meetup.com/{group_name}/events/?type=past", 
+                "past"
+            )
+            
+            # Add past events with deduplication
+            for event in past_events:
+                event_id = event.get('id')
+                if event_id and event_id not in seen_event_ids:
+                    all_events.append(event)
+                    seen_event_ids.add(event_id)
+            
+            print(f"Scraped {len(past_events)} past events")
+            print(f"Total unique events scraped: {len(all_events)}")
             
         except Exception as e:
             print(f"Error during scraping: {e}")
         finally:
             await browser.close()
             
-    return events
+    return all_events
 
 async def scrape_page_with_retry(page, url, event_type, retries=MAX_RETRIES):
     """
@@ -155,7 +167,7 @@ async def scrape_page_with_retry(page, url, event_type, retries=MAX_RETRIES):
 
 async def scrape_events_from_page(page, event_type):
     """
-    Scrapes events from the current page.
+    Scrapes events from the current page using Next.js __NEXT_DATA__ JSON.
     
     Args:
         page: Playwright page object
@@ -167,13 +179,219 @@ async def scrape_events_from_page(page, event_type):
     events = []
     
     try:
-        # Use the new selectors based on event type
+        # Try to extract __NEXT_DATA__ JSON from the page
+        print(f"Attempting to extract __NEXT_DATA__ for {event_type} events...")
+        
+        next_data = await page.evaluate("""
+            () => {
+                const script = document.getElementById('__NEXT_DATA__');
+                if (script) {
+                    try {
+                        return JSON.parse(script.textContent);
+                    } catch (e) {
+                        console.error('Failed to parse __NEXT_DATA__:', e);
+                        return null;
+                    }
+                }
+                return null;
+            }
+        """)
+        
+        if not next_data:
+            print(f"Could not find __NEXT_DATA__ script tag")
+            return events
+        
+        # Extract Apollo state from Next.js data
+        apollo_state = next_data.get('props', {}).get('pageProps', {}).get('__APOLLO_STATE__', {})
+        
+        if not apollo_state:
+            print(f"Could not find Apollo state in __NEXT_DATA__")
+            return events
+        
+        print(f"Found Apollo state with {len(apollo_state)} keys")
+        
+        # Find all Event objects in the Apollo state
+        event_keys = [key for key in apollo_state.keys() if key.startswith('Event:')]
+        print(f"Found {len(event_keys)} event objects in Apollo state")
+        
+        # Process each event
+        for event_key in event_keys:
+            try:
+                event_data = apollo_state[event_key]
+                event_id = event_data.get('id')
+                title = event_data.get('title', '').strip()
+                event_url = event_data.get('eventUrl', '').strip()
+                description = event_data.get('description', '').strip()
+                
+                # Skip events without title or ID (incomplete data)
+                if not title or not event_id:
+                    print(f"Skipping event with missing data: ID={event_id}, title='{title}'")
+                    continue
+                
+                # Get date/time info
+                date_time_str = event_data.get('dateTime', '')
+                end_time_str = event_data.get('endTime', '')
+                status = event_data.get('status', 'UNKNOWN')
+                event_type_from_data = event_data.get('eventType', 'PHYSICAL')
+                is_online = event_data.get('isOnline', False)
+                
+                # Parse datetime
+                event_date, event_time = parse_iso_datetime(date_time_str)
+                
+                # Get venue information
+                venue_ref = event_data.get('venue', {})
+                venue = extract_venue_from_apollo(venue_ref, apollo_state, is_online)
+                
+                # Determine if upcoming or past based on status and type filter
+                is_upcoming = status == "ACTIVE"
+                event_status = "upcoming" if is_upcoming else "past"
+                
+                # Filter based on requested event_type (if not "all")
+                if event_type != "all":
+                    if event_type == "past" and is_upcoming:
+                        continue
+                    if event_type == "upcoming" and not is_upcoming:
+                        continue
+                
+                # Create event object
+                event = {
+                    "id": f"e-{event_id}" if is_upcoming else f"ep-{event_id}",
+                    "name": title,
+                    "status": event_status,
+                    "local_date": event_date,
+                    "local_time": event_time,
+                    "description": description if description else f"Details at: {event_url}",
+                    "venue": venue,
+                    "link": event_url,
+                    "is_upcoming": is_upcoming,
+                    "is_online": is_online
+                }
+                
+                print(f"Extracted event: {event['name']}")
+                events.append(event)
+                
+            except Exception as e:
+                print(f"Error extracting event data from {event_key}: {e}")
+        
+        return events
+        
+    except Exception as e:
+        print(f"Error processing page: {e}")
+        import traceback
+        traceback.print_exc()
+        return events
+
+def extract_venue_from_apollo(venue_ref, apollo_state, is_online):
+    """
+    Extract venue information from Apollo state reference.
+    """
+    if is_online:
+        return {
+            "name": "Online Event",
+            "address_1": "",
+            "city": "",
+            "state": "",
+            "country": "us",
+            "zip": ""
+        }
+    
+    # Default venue
+    default_venue = {
+        "name": "TBD",
+        "address_1": "",
+        "city": "Roanoke",
+        "state": "VA",
+        "country": "us",
+        "zip": ""
+    }
+    
+    if not venue_ref or not isinstance(venue_ref, dict):
+        return default_venue
+    
+    # Check if it's a reference
+    ref_key = venue_ref.get('__ref')
+    if ref_key and ref_key in apollo_state:
+        venue_data = apollo_state[ref_key]
+    else:
+        venue_data = venue_ref
+    
+    # Extract venue fields
+    name = venue_data.get('name', 'TBD')
+    address = venue_data.get('address', '')
+    city = venue_data.get('city', 'Roanoke')
+    state = venue_data.get('state', 'VA')
+    country = venue_data.get('country', 'us')
+    
+    # Try to extract ZIP from address if present
+    zip_code = ""
+    if address:
+        zip_match = re.search(r'(\d{5}(?:-\d{4})?)', address)
+        if zip_match:
+            zip_code = zip_match.group(1)
+    
+    return {
+        "name": name,
+        "address_1": address,
+        "city": city,
+        "state": state,
+        "country": country,
+        "zip": zip_code
+    }
+
+def parse_iso_datetime(datetime_str):
+    """
+    Parse ISO 8601 datetime string from Meetup API.
+    Returns formatted date (YYYY-MM-DD) and time (HH:MM).
+    """
+    if not datetime_str:
+        now = datetime.datetime.now()
+        return now.strftime("%Y-%m-%d"), "18:00"
+    
+    try:
+        # Parse ISO format: "2025-11-06T18:00:00-05:00"
+        # Remove timezone info for simpler parsing
+        if 'T' in datetime_str:
+            date_part, time_part = datetime_str.split('T')
+            
+            # Parse date
+            date_obj = datetime.datetime.strptime(date_part, "%Y-%m-%d")
+            event_date = date_obj.strftime("%Y-%m-%d")
+            
+            # Parse time (remove timezone)
+            time_only = time_part.split('-')[0].split('+')[0]
+            time_obj = datetime.datetime.strptime(time_only, "%H:%M:%S")
+            event_time = time_obj.strftime("%H:%M")
+            
+            return event_date, event_time
+    except Exception as e:
+        print(f"Error parsing datetime '{datetime_str}': {e}")
+    
+    # Default fallback
+    now = datetime.datetime.now()
+    return now.strftime("%Y-%m-%d"), "18:00"
+
+# Keep the old scraping code as fallback (in case Next.js approach fails)
+async def scrape_events_from_page_legacy(page, event_type):
+    """
+    Legacy scraper for events using DOM selectors (fallback).
+    
+    Args:
+        page: Playwright page object
+        event_type: 'upcoming' or 'past'
+        
+    Returns:
+        List of event dictionaries
+    """
+    events = []
+    
+    try:
+        # Use the old selectors based on event type
         if event_type == "past":
             selector = "ul li div[id^='ep-']"
         else:  # upcoming
             selector = "ul li div[id^='e-']"
             
-        print(f"Using selector: {selector}")
+        print(f"Using legacy selector: {selector}")
         
         # First check if there are any events on the page using JavaScript
         has_events = await page.evaluate("""

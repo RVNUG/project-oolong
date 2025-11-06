@@ -89,11 +89,29 @@ const EventsPage = () => {
               </div>
             </div>
           ) : (
-            <div className="events-grid">
-              {upcomingEvents.map((event) => (
-                <EventCard key={event.id} event={event} />
-              ))}
-            </div>
+            <>
+              {/* Hero Event - Closest Upcoming */}
+              {upcomingEvents.length > 0 && (
+                <div className="hero-event-container">
+                  <div className="hero-event-label">
+                    <span className="hero-badge">Next Event</span>
+                  </div>
+                  <EventCard key={upcomingEvents[0].id} event={upcomingEvents[0]} isHero={true} />
+                </div>
+              )}
+              
+              {/* Remaining Upcoming Events */}
+              {upcomingEvents.length > 1 && (
+                <div className="upcoming-events-section">
+                  <h3 className="section-title">Additional Upcoming Events</h3>
+                  <div className="events-grid events-grid-compact">
+                    {upcomingEvents.slice(1).map((event) => (
+                      <EventCard key={event.id} event={event} isCompact={true} />
+                    ))}
+                  </div>
+                </div>
+              )}
+            </>
           )
         ) : (
           pastEvents.length === 0 ? (
