@@ -130,6 +130,167 @@
   margin-bottom: 3rem;
 }
 
+/* Hero Event Container */
+.hero-event-container {
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.hero-event-label {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-700));
+  color: white;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(92, 45, 145, 0.3);
+}
+
+/* Hero Event Card */
+.event-card-hero {
+  border: 2px solid var(--color-primary-500);
+  box-shadow: 0 8px 30px rgba(92, 45, 145, 0.2);
+  background: linear-gradient(to bottom, var(--background-card), var(--color-primary-50));
+  transition: all 0.3s ease;
+}
+
+.event-card-hero:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(92, 45, 145, 0.3);
+}
+
+.event-card-hero .event-date {
+  width: 100px;
+  height: 100px;
+}
+
+.event-card-hero .event-month {
+  font-size: 1rem;
+}
+
+.event-card-hero .event-day {
+  font-size: 2.5rem;
+}
+
+.event-card-hero .event-year {
+  font-size: 0.95rem;
+}
+
+.event-card-hero .event-title {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.event-card-hero .event-description {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-height: none;
+}
+
+.event-card-hero .event-meta {
+  font-size: 1.05rem;
+  gap: 1.5rem;
+}
+
+.event-card-hero .event-actions {
+  margin-top: 1.5rem;
+  gap: 1rem;
+}
+
+.event-card-hero .btn {
+  padding: 1rem 2rem;
+  font-size: 1.05rem;
+}
+
+/* Upcoming Events Section */
+.upcoming-events-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--border-color);
+}
+
+.section-title {
+  font-size: 1.4rem;
+  color: var(--color-primary-700);
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+/* Compact Events Grid */
+.events-grid-compact {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Compact Event Cards */
+.event-card-compact {
+  background-color: var(--background-card);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.event-card-compact:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-primary-400);
+}
+
+.event-card-compact .event-date {
+  width: 70px;
+  height: 70px;
+}
+
+.event-card-compact .event-month {
+  font-size: 0.75rem;
+  padding: 0.25rem 0;
+}
+
+.event-card-compact .event-day {
+  font-size: 1.8rem;
+}
+
+.event-card-compact .event-year {
+  font-size: 0.7rem;
+}
+
+.event-card-compact .event-title {
+  font-size: 1.1rem;
+  margin-bottom: 0.6rem;
+}
+
+.event-card-compact .event-description {
+  font-size: 0.9rem;
+  max-height: 3em;
+  overflow: hidden;
+  line-height: 1.5;
+}
+
+.event-card-compact .event-meta {
+  font-size: 0.85rem;
+  gap: 0.8rem;
+  margin: 0.8rem 0;
+}
+
+.event-card-compact .event-actions {
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.event-card-compact .btn {
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+}
+
+/* Regular Events Grid (for past events) */
 .events-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -440,6 +601,40 @@
   color: var(--color-neutral-300);
 }
 
+/* Dark mode hero event */
+.dark-theme .hero-badge {
+  background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-600));
+  box-shadow: 0 4px 12px rgba(92, 45, 145, 0.5);
+}
+
+.dark-theme .event-card-hero {
+  border-color: var(--color-primary-400);
+  box-shadow: 0 8px 30px rgba(92, 45, 145, 0.4);
+  background: linear-gradient(to bottom, var(--color-neutral-800), rgba(92, 45, 145, 0.15));
+}
+
+.dark-theme .event-card-hero:hover {
+  box-shadow: 0 12px 40px rgba(92, 45, 145, 0.5);
+}
+
+.dark-theme .section-title {
+  color: var(--color-primary-300);
+}
+
+.dark-theme .upcoming-events-section {
+  border-top-color: var(--color-neutral-700);
+}
+
+.dark-theme .event-card-compact {
+  background-color: var(--color-neutral-800);
+  border-color: var(--color-neutral-700);
+}
+
+.dark-theme .event-card-compact:hover {
+  border-color: var(--color-primary-400);
+  box-shadow: 0 6px 20px rgba(92, 45, 145, 0.3);
+}
+
 @media (max-width: 768px) {
   .events-page {
     padding: 2rem 1rem;
@@ -509,6 +704,44 @@
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
+
+  /* Hero event responsive */
+  .event-card-hero .event-title {
+    font-size: 1.4rem;
+  }
+
+  .event-card-hero .event-description {
+    font-size: 1rem;
+  }
+
+  .event-card-hero .btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .event-card-hero .event-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .event-card-hero .event-actions .btn {
+    width: 100%;
+  }
+
+  /* Compact grid responsive */
+  .events-grid-compact {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .upcoming-events-section {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -563,6 +796,46 @@
   
   .events-actions .btn {
     padding: 0.7rem 1rem;
+  }
+
+  /* Hero event extra small */
+  .hero-badge {
+    font-size: 0.8rem;
+    padding: 0.4rem 1.2rem;
+  }
+
+  .event-card-hero .event-date {
+    width: 80px;
+    height: 80px;
+  }
+
+  .event-card-hero .event-month {
+    font-size: 0.85rem;
+  }
+
+  .event-card-hero .event-day {
+    font-size: 2rem;
+  }
+
+  .event-card-hero .event-year {
+    font-size: 0.8rem;
+  }
+
+  .event-card-hero .event-title {
+    font-size: 1.2rem;
+  }
+
+  .event-card-hero .event-description {
+    font-size: 0.9rem;
+  }
+
+  .event-card-hero .event-meta {
+    font-size: 0.85rem;
+    gap: 0.8rem;
+  }
+
+  .section-title {
+    font-size: 1.1rem;
   }
 }
 

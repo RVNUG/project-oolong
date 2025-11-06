@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { TeamMember } from '../types';
-import { fetchTeamMembers } from '../services/dataService';
+import { fetchTeamMembers } from '../services/teamService';
 
 interface UseTeamMembersReturn {
   loading: boolean;

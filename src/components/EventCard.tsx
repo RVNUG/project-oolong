@@ -8,9 +8,11 @@ import '../assets/css/custom-fixes.css';
 
 interface EventCardProps {
   event: MeetupEvent;
+  isHero?: boolean;
+  isCompact?: boolean;
 }
 
-const EventCard = ({ event }: EventCardProps) => {
+const EventCard = ({ event, isHero = false, isCompact = false }: EventCardProps) => {
   // Create a date object from local_date and local_time fields, handling potential errors
   let eventDate: Date | null = null;
   try {
@@ -66,7 +68,7 @@ const EventCard = ({ event }: EventCardProps) => {
   const venueAddress = formatVenueAddress(event.venue, isOnline);
 
   return (
-    <div className={`event-card ${isOnline ? 'online-event' : ''} ${isPast ? 'past-event' : ''}`}>
+    <div className={`event-card ${isOnline ? 'online-event' : ''} ${isPast ? 'past-event' : ''} ${isHero ? 'event-card-hero' : ''} ${isCompact ? 'event-card-compact' : ''}`}>
       <div className="event-date">
         <div className="event-month">{formatDatePart(eventDate, { month: 'short' })}</div>
         <div className="event-day">{getDateDay(eventDate)}</div>
