@@ -45,7 +45,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo
             })
-            core.setOutput('default_branch', repo.default_branch)
+            return repo.default_branch
 
       - name: Get YouTube videos and generate data
         id: generate_data
@@ -65,17 +65,20 @@ jobs:
       - name: Push changes
         if: steps.generate_data.outputs.has_changes == 'true'
         run: |
-          git push origin ${{ steps.default_branch.outputs.default_branch }}
+          git push origin ${{ steps.default_branch.outputs.result }}
 
       - name: Trigger deploy workflow
         if: success() && steps.generate_data.outputs.has_changes == 'true'
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            await github.rest.actions.createWorkflowDispatch({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: 'deploy.yml',
-              ref: ${{ steps.default_branch.outputs.default_branch }}
-            });
+        env:
+          DEFAULT_BRANCH: ${{ steps.default_branch.outputs.result }}
+        script: |
+          const ref = process.env.DEFAULT_BRANCH || 'main';
+          await github.rest.actions.createWorkflowDispatch({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            workflow_id: 'deploy.yml',
+            ref
+          });
