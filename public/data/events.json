@@ -2,11 +2,11 @@
   "events": [
     {
       "id": "e-311703448",
-      "name": "In Person: Code and Coffee on November 15th from 10am-1pm ET",
+      "name": "In Person: Code and Coffee on November 29th from 10am-1pm ET",
       "status": "upcoming",
-      "local_date": "2025-11-15",
+      "local_date": "2025-11-29",
       "local_time": "10:00",
-      "description": "Join us at Mill Mountain Coffee on Saturday, November 15th, 2025 from 10am-1pm ET for a period of collaboration and community-building! As a software developer or aspiring developer you're invited to meet fellow coders, work on projects, share knowledge, and enjoy good company in a relaxed and welcoming environment. Whether you're looking to learn from others, share your own expertise, or simply hand out with like-minded folks, our Code & Coffee event has got you covered.\n\nCome for the coffee, stay for the camaraderie! Our meetup is a judgement-free zone where you can be yourself, ask questions, and get support from fellow developers. You bring your projects, ideas, and enthusiasm, and we provide the atmosphere! See you there!",
+      "description": "Join us at Mill Mountain Coffee on Saturday, November 29th, 2025 from 10am-1pm ET for a period of collaboration and community-building! As a software developer or aspiring developer you're invited to meet fellow coders, work on projects, share knowledge, and enjoy good company in a relaxed and welcoming environment. Whether you're looking to learn from others, share your own expertise, or simply hand out with like-minded folks, our Code & Coffee event has got you covered.\n\nCome for the coffee, stay for the camaraderie! Our meetup is a judgement-free zone where you can be yourself, ask questions, and get support from fellow developers. You bring your projects, ideas, and enthusiasm, and we provide the atmosphere! See you there!",
       "venue": {
         "name": "Mill Mountain Coffee & Tea",
         "address_1": "4309 Starkey Rd",
@@ -229,5 +229,5 @@
       "is_online": false
     }
   ],
-  "updated_at": "2025-11-07T02:41:44.072966"
+  "updated_at": "2025-11-09T02:44:15.814053"
 }
