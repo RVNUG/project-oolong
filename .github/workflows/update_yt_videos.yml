@@ -54,13 +54,27 @@ jobs:
           YOUTUBE_DATA_API_KEY: ${{ secrets.YOUTUBE_DATA_API_KEY }}
           YOUTUBE_CHANNEL_ID: ${{ secrets.RVNUG_YT_CHANNEL_ID }}
         run: |
+          # Save old video IDs if file exists
+          if [ -f public/data/videos.json ]; then
+            OLD_VIDEO_IDS=$(jq -r '.[].video_id' public/data/videos.json | sort | tr '\n' ',')
+          else
+            OLD_VIDEO_IDS=""
+          fi
+          
+          # Generate new data
           python scripts/youtube_latest_videos.py
-          git add -f public/data/videos.json
-          if git diff --staged --quiet; then
-            echo "No changes to commit"
+          
+          # Get new video IDs
+          NEW_VIDEO_IDS=$(jq -r '.[].video_id' public/data/videos.json | sort | tr '\n' ',')
+          
+          # Compare video IDs
+          if [ "$OLD_VIDEO_IDS" = "$NEW_VIDEO_IDS" ] && [ -n "$OLD_VIDEO_IDS" ]; then
+            echo "No meaningful changes (same videos, only timestamps updated)"
             echo "has_changes=false" >> $GITHUB_OUTPUT
           else
+            echo "Video list has changed"
             echo "has_changes=true" >> $GITHUB_OUTPUT
+            git add -f public/data/videos.json
           fi
 
       - name: Create Pull Request
