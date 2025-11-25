@@ -26,5 +26,152 @@
         "published_at": "2025-05-01T01:45:53Z",
         "thumbnail_url": "https://i.ytimg.com/vi/6zf3QNueSK4/mqdefault.jpg",
         "video_url": "https://www.youtube.com/watch?v=6zf3QNueSK4"
+    },
+    {
+        "title": "RV.NUG - Understanding LLMs: From Foundations to Reasoning Models",
+        "video_id": "qgagI8Dp5Gk",
+        "published_at": "2025-03-06T07:49:04Z",
+        "thumbnail_url": "https://i.ytimg.com/vi/qgagI8Dp5Gk/mqdefault.jpg",
+        "video_url": "https://www.youtube.com/watch?v=qgagI8Dp5Gk"
+    },
+    {
+        "title": "RV.NUG - Your next favorite programming language: Gleam",
+        "video_id": "PvqCsc04Ysw",
+        "published_at": "2025-02-06T07:57:59Z",
+        "thumbnail_url": "https://i.ytimg.com/vi/PvqCsc04Ysw/mqdefault.jpg",
+        "video_url": "https://www.youtube.com/watch?v=PvqCsc04Ysw"
+    },
+    {
+        "title": "RV.NUG - Interview Puzzles Dissected",
+        "video_id": "0LexkF9D2YI",
+        "published_at": "2024-06-06T04:18:17Z",
+        "thumbnail_url": "https://i.ytimg.com/vi/0LexkF9D2YI/mqdefault.jpg",
+        "video_url": "https://www.youtube.com/watch?v=0LexkF9D2YI"
+    },
+    {
+        "title": "RV.NUG - ChatGPT Unleashed",
+        "video_id": "31DmnFem7Fk",
+        "published_at": "2024-05-02T04:16:09Z",
+        "thumbnail_url": "https://i.ytimg.com/vi/31DmnFem7Fk/mqdefault.jpg",
+        "video_url": "https://www.youtube.com/watch?v=31DmnFem7Fk"
+    },
+    {
+        "title": "RV.NUG - Future proof your Web Apps with Web Components and Lit",
+        "video_id": "961-Zb_KlSw",
+        "published_at": "2024-03-06T05:11:22Z",
+        "thumbnail_url": "https://i.ytimg.com/vi/961-Zb_KlSw/mqdefault.jpg",
+        "video_url": "https://www.youtube.com/watch?v=961-Zb_KlSw"
+    },
+    {
+        "title": "RV.NUG - Working with ChatGPT for Developers: A Hands On Approach",
+        "video_id": "oO6hUg6u0Bk",
+        "published_at": "2023-11-30T05:39:37Z",
+        "thumbnail_url": "https://i.ytimg.com/vi/oO6hUg6u0Bk/mqdefault.jpg",
+        "video_url": "https://www.youtube.com/watch?v=oO6hUg6u0Bk"
+    },
+    {
+        "title": "RV.NUG - Introduction to Blazor",
+        "video_id": "L1LQwnRE98M",
+        "published_at": "2023-11-02T11:27:54Z",
+        "thumbnail_url": "https://i.ytimg.com/vi/L1LQwnRE98M/mqdefault.jpg",
+        "video_url": "https://www.youtube.com/watch?v=L1LQwnRE98M"
+    },
+    {
+        "title": "RV.NUG - Leveling up on GitHub with GitHub Copilot and more",
+        "video_id": "FErnuhrtl_8",
+        "published_at": "2023-08-02T03:24:08Z",
+        "thumbnail_url": "https://i.ytimg.com/vi/FErnuhrtl_8/mqdefault.jpg",
+        "video_url": "https://www.youtube.com/watch?v=FErnuhrtl_8"
+    },
+    {
+        "title": "RV.NUG - An Introduction to Developing in Unity",
+        "video_id": "9BeYilVxwM4",
+        "published_at": "2023-06-01T07:45:04Z",
+        "thumbnail_url": "https://i.ytimg.com/vi/9BeYilVxwM4/mqdefault.jpg",
+        "video_url": "https://www.youtube.com/watch?v=9BeYilVxwM4"
+    },
+    {
+        "title": "RV.NUG - Remix- Embrace the Web",
+        "video_id": "7e-Aaaz0CPo",
+        "published_at": "2023-04-04T03:22:03Z",
+        "thumbnail_url": "https://i.ytimg.com/vi/7e-Aaaz0CPo/mqdefault.jpg",
+        "video_url": "https://www.youtube.com/watch?v=7e-Aaaz0CPo"
+    },
+    {
+        "title": "RV.NUG - Intro to Web Components",
+        "video_id": "6l_JyZMf8R0",
+        "published_at": "2023-03-01T06:20:11Z",
+        "thumbnail_url": "https://i.ytimg.com/vi/6l_JyZMf8R0/mqdefault.jpg",
+        "video_url": "https://www.youtube.com/watch?v=6l_JyZMf8R0"
+    },
+    {
+        "title": "RV.NUG - WebAssembly - In AND Out of the Browser",
+        "video_id": "wwSz4P6onyQ",
+        "published_at": "2023-02-01T06:55:14Z",
+        "thumbnail_url": "https://i.ytimg.com/vi/wwSz4P6onyQ/mqdefault.jpg",
+        "video_url": "https://www.youtube.com/watch?v=wwSz4P6onyQ"
+    },
+    {
+        "title": "RV.NUG - Hands on Test Driven Development",
+        "video_id": "hForXnc1OAc",
+        "published_at": "2022-12-13T08:24:37Z",
+        "thumbnail_url": "https://i.ytimg.com/vi/hForXnc1OAc/mqdefault.jpg",
+        "video_url": "https://www.youtube.com/watch?v=hForXnc1OAc"
+    },
+    {
+        "title": "RV.NUG - C# 10 New Language Features",
+        "video_id": "Ezz5K3cvQkk",
+        "published_at": "2022-11-02T06:44:38Z",
+        "thumbnail_url": "https://i.ytimg.com/vi/Ezz5K3cvQkk/mqdefault.jpg",
+        "video_url": "https://www.youtube.com/watch?v=Ezz5K3cvQkk"
+    },
+    {
+        "title": "RV NUG   2022 September   Kevin Griffin   Tailwind Essentials for Developers",
+        "video_id": "pvavwiqd5CI",
+        "published_at": "2022-10-04T05:31:33Z",
+        "thumbnail_url": "https://i.ytimg.com/vi/pvavwiqd5CI/mqdefault.jpg",
+        "video_url": "https://www.youtube.com/watch?v=pvavwiqd5CI"
+    },
+    {
+        "title": "RV.NUG - The Joy of Functional Testing with SpecFlow",
+        "video_id": "oq_W_vpmh8Y",
+        "published_at": "2022-07-25T03:10:11Z",
+        "thumbnail_url": "https://i.ytimg.com/vi/oq_W_vpmh8Y/mqdefault.jpg",
+        "video_url": "https://www.youtube.com/watch?v=oq_W_vpmh8Y"
+    },
+    {
+        "title": "RV.NUG - Of Types and Measures",
+        "video_id": "Op1IXeg73Wk",
+        "published_at": "2022-07-07T12:06:15Z",
+        "thumbnail_url": "https://i.ytimg.com/vi/Op1IXeg73Wk/mqdefault.jpg",
+        "video_url": "https://www.youtube.com/watch?v=Op1IXeg73Wk"
+    },
+    {
+        "title": "RV.NUG - Adding Machine Learning to  Net Applications",
+        "video_id": "YgtqK5F6xkQ",
+        "published_at": "2022-06-02T02:04:23Z",
+        "thumbnail_url": "https://i.ytimg.com/vi/YgtqK5F6xkQ/mqdefault.jpg",
+        "video_url": "https://www.youtube.com/watch?v=YgtqK5F6xkQ"
+    },
+    {
+        "title": "RV.NUG - Improve your .NET developer workflow with Docker and Visual Studio Code",
+        "video_id": "VFt_5bxT1-o",
+        "published_at": "2022-06-01T12:28:29Z",
+        "thumbnail_url": "https://i.ytimg.com/vi/VFt_5bxT1-o/mqdefault.jpg",
+        "video_url": "https://www.youtube.com/watch?v=VFt_5bxT1-o"
+    },
+    {
+        "title": "RV.NUG Advanced Databinding In Xamarin Forms",
+        "video_id": "-Tq76XEqOyY",
+        "published_at": "2022-04-07T04:12:33Z",
+        "thumbnail_url": "https://i.ytimg.com/vi/-Tq76XEqOyY/mqdefault.jpg",
+        "video_url": "https://www.youtube.com/watch?v=-Tq76XEqOyY"
+    },
+    {
+        "title": "RV.NUG Upping the Container Game with an Application Platform",
+        "video_id": "tf-aIxKYH9o",
+        "published_at": "2022-02-01T04:23:00Z",
+        "thumbnail_url": "https://i.ytimg.com/vi/tf-aIxKYH9o/mqdefault.jpg",
+        "video_url": "https://www.youtube.com/watch?v=tf-aIxKYH9o"
     }
 ]
