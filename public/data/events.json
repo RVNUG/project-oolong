@@ -1,25 +1,6 @@
 {
   "events": [
     {
-      "id": "e-311703448",
-      "name": "In Person: Code and Coffee on November 29th from 10am-1pm ET",
-      "status": "upcoming",
-      "local_date": "2025-11-29",
-      "local_time": "10:00",
-      "description": "Join us at Mill Mountain Coffee on Saturday, November 29th, 2025 from 10am-1pm ET for a period of collaboration and community-building! As a software developer or aspiring developer you're invited to meet fellow coders, work on projects, share knowledge, and enjoy good company in a relaxed and welcoming environment. Whether you're looking to learn from others, share your own expertise, or simply hand out with like-minded folks, our Code & Coffee event has got you covered.\n\nCome for the coffee, stay for the camaraderie! Our meetup is a judgement-free zone where you can be yourself, ask questions, and get support from fellow developers. You bring your projects, ideas, and enthusiasm, and we provide the atmosphere! See you there!",
-      "venue": {
-        "name": "Mill Mountain Coffee & Tea",
-        "address_1": "4309 Starkey Rd",
-        "city": "Roanoke",
-        "state": "VA",
-        "country": "us",
-        "zip": ""
-      },
-      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/311703448/",
-      "is_upcoming": true,
-      "is_online": false
-    },
-    {
       "id": "e-311772532",
       "name": "In Person-Roanoke: December Meetup at Buffalo Wild Wings near Valley View Mall",
       "status": "upcoming",
@@ -36,25 +17,6 @@
       },
       "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/311772532/",
       "is_upcoming": true,
-      "is_online": false
-    },
-    {
-      "id": "ep-307643064",
-      "name": "In Person-Salem: Getting started with building GenAI-supported apps",
-      "status": "past",
-      "local_date": "2025-06-05",
-      "local_time": "18:00",
-      "description": "GenAI is what everyone is talking about these days. But, what actually is a GenAI application? How does the stack differ from what traditional developers may be working with?\n\nIn this talk, we'll focus on de-mystifying the stack and help you realize it's not that different than what you think. We'll explore the APIs that wrap the LLMs, tool/function calling, MCP (Model Context Protocol), and more. We'll then dive into the various tools available for developers to use. Come with questions and (hopefully) leave with answers!\n\nPizza and soft drinks will be provided at the event.",
-      "venue": {
-        "name": "Medeco Security Locks Inc",
-        "address_1": "3625 Alleghany Dr",
-        "city": "Salem",
-        "state": "VA",
-        "country": "us",
-        "zip": ""
-      },
-      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/307643064/",
-      "is_upcoming": false,
       "is_online": false
     },
     {
@@ -227,7 +189,26 @@
       "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/311703559/",
       "is_upcoming": false,
       "is_online": false
+    },
+    {
+      "id": "ep-311703448",
+      "name": "In Person: Code and Coffee on November 29th from 10am-1pm ET",
+      "status": "past",
+      "local_date": "2025-11-29",
+      "local_time": "10:00",
+      "description": "Join us at Mill Mountain Coffee on Saturday, November 29th, 2025 from 10am-1pm ET for a period of collaboration and community-building! As a software developer or aspiring developer you're invited to meet fellow coders, work on projects, share knowledge, and enjoy good company in a relaxed and welcoming environment. Whether you're looking to learn from others, share your own expertise, or simply hand out with like-minded folks, our Code & Coffee event has got you covered.\n\nCome for the coffee, stay for the camaraderie! Our meetup is a judgement-free zone where you can be yourself, ask questions, and get support from fellow developers. You bring your projects, ideas, and enthusiasm, and we provide the atmosphere! See you there!",
+      "venue": {
+        "name": "Mill Mountain Coffee & Tea",
+        "address_1": "4309 Starkey Rd",
+        "city": "Roanoke",
+        "state": "VA",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/311703448/",
+      "is_upcoming": false,
+      "is_online": false
     }
   ],
-  "updated_at": "2025-11-09T02:44:15.814053"
+  "updated_at": "2025-12-02T02:47:50.337863"
 }
