@@ -170,7 +170,26 @@
       "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/311703448/",
       "is_upcoming": false,
       "is_online": false
+    },
+    {
+      "id": "ep-311772532",
+      "name": "In Person-Roanoke: December Meetup at Buffalo Wild Wings near Valley View Mall",
+      "status": "past",
+      "local_date": "2025-12-04",
+      "local_time": "18:00",
+      "description": "Join us for the RVNUG December Meetup at Buffalo Wild Wings near Valley View Mall. Buffalo Wild Wings near Valley View is located at the old TGIF building. Look forward to seeing you there.",
+      "venue": {
+        "name": "Buffalo Wild Wings near Valley View Mall",
+        "address_1": "4869 Valley View Blvd NW",
+        "city": "Roanoke",
+        "state": "VA",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/311772532/",
+      "is_upcoming": false,
+      "is_online": false
     }
   ],
-  "updated_at": "2025-12-05T02:48:33.377856"
+  "updated_at": "2025-12-12T02:52:15.925616"
 }
