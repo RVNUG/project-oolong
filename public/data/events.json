@@ -1,6 +1,25 @@
 {
   "events": [
     {
+      "id": "e-312665316",
+      "name": "Online Meeting: Data Cleansing using Data Bricks by Sam Nasr",
+      "status": "upcoming",
+      "local_date": "2026-01-08",
+      "local_time": "18:00",
+      "description": "Machine Learning is highly dependent on adequate data. Not only does quantity matter, but more importantly quality. In this session we\u2019ll cover how to build a custom automated process using Data Bricks. This will provide methods for cleaning data in a data lake using functions in Azure.\n\nThis is an ONLINE MEETING this month.",
+      "venue": {
+        "name": "Online Event",
+        "address_1": "",
+        "city": "",
+        "state": "",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/312665316/",
+      "is_upcoming": true,
+      "is_online": true
+    },
+    {
       "id": "ep-308939513",
       "name": "In Person: Code and Coffee on July 19th from 10am-1pm ET",
       "status": "past",
@@ -191,5 +210,5 @@
       "is_online": false
     }
   ],
-  "updated_at": "2025-12-13T02:44:36.534789"
+  "updated_at": "2026-01-02T02:58:25.322185"
 }
