@@ -1,31 +1,12 @@
 {
   "events": [
     {
-      "id": "e-312665316",
-      "name": "Online Meeting: Data Cleansing using Data Bricks by Sam Nasr",
+      "id": "e-312792796",
+      "name": "In Person: Code and Coffee on January 24th from 10am-1pm ET",
       "status": "upcoming",
-      "local_date": "2026-01-08",
-      "local_time": "18:00",
-      "description": "Machine Learning is highly dependent on adequate data. Not only does quantity matter, but more importantly quality. In this session we\u2019ll cover how to build a custom automated process using Data Bricks. This will provide methods for cleaning data in a data lake using functions in Azure.\n\nThis is an ONLINE MEETING this month.",
-      "venue": {
-        "name": "Online Event",
-        "address_1": "",
-        "city": "",
-        "state": "",
-        "country": "us",
-        "zip": ""
-      },
-      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/312665316/",
-      "is_upcoming": true,
-      "is_online": true
-    },
-    {
-      "id": "ep-308939513",
-      "name": "In Person: Code and Coffee on July 19th from 10am-1pm ET",
-      "status": "past",
-      "local_date": "2025-07-19",
+      "local_date": "2026-01-24",
       "local_time": "10:00",
-      "description": "Join us at Mill Mountain Coffee on Saturday, July 19th from 10am-1pm ET for a period of collaboration and community-building! As a software developer or aspiring developer you're invited to meet fellow coders, work on projects, share knowledge, and enjoy good company in a relaxed and welcoming environment. Whether you're looking to learn from others, share your own expertise, or simply hand out with like-minded folks, our Code & Coffee event has got you covered.\n\nCome for the coffee, stay for the camaraderie! Our meetup is a judgement-free zone where you can be yourself, ask questions, and get support from fellow developers. You bring your projects, ideas, and enthusiasm, and we provide the atmosphere! See you there!",
+      "description": "Join us at Mill Mountain Coffee on Saturday, January 24th, 2025 from 10am-1pm ET for a period of collaboration and community-building! As a software developer or aspiring developer you're invited to meet fellow coders, work on projects, share knowledge, and enjoy good company in a relaxed and welcoming environment. Whether you're looking to learn from others, share your own expertise, or simply hand out with like-minded folks, our Code & Coffee event has got you covered.\n\nCome for the coffee, stay for the camaraderie! Our meetup is a judgement-free zone where you can be yourself, ask questions, and get support from fellow developers. You bring your projects, ideas, and enthusiasm, and we provide the atmosphere! See you there!",
       "venue": {
         "name": "Mill Mountain Coffee & Tea",
         "address_1": "4309 Starkey Rd",
@@ -34,8 +15,8 @@
         "country": "us",
         "zip": ""
       },
-      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/308939513/",
-      "is_upcoming": false,
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/312792796/",
+      "is_upcoming": true,
       "is_online": false
     },
     {
@@ -208,7 +189,26 @@
       "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/311772532/",
       "is_upcoming": false,
       "is_online": false
+    },
+    {
+      "id": "ep-312665316",
+      "name": "Online Meeting: Data Cleansing using Data Bricks by Sam Nasr",
+      "status": "past",
+      "local_date": "2026-01-08",
+      "local_time": "18:00",
+      "description": "Machine Learning is highly dependent on adequate data. Not only does quantity matter, but more importantly quality. In this session we\u2019ll cover how to build a custom automated process using Data Bricks. This will provide methods for cleaning data in a data lake using functions in Azure.\n\nThis is an ONLINE MEETING this month.",
+      "venue": {
+        "name": "Online Event",
+        "address_1": "",
+        "city": "",
+        "state": "",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/312665316/",
+      "is_upcoming": false,
+      "is_online": true
     }
   ],
-  "updated_at": "2026-01-02T02:58:25.322185"
+  "updated_at": "2026-01-09T02:58:31.160627"
 }
