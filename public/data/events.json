@@ -1,25 +1,6 @@
 {
   "events": [
     {
-      "id": "e-312792796",
-      "name": "In Person: Code and Coffee on January 24th from 10am-1pm ET",
-      "status": "upcoming",
-      "local_date": "2026-01-24",
-      "local_time": "10:00",
-      "description": "Join us at Mill Mountain Coffee on Saturday, January 24th, 2025 from 10am-1pm ET for a period of collaboration and community-building! As a software developer or aspiring developer you're invited to meet fellow coders, work on projects, share knowledge, and enjoy good company in a relaxed and welcoming environment. Whether you're looking to learn from others, share your own expertise, or simply hand out with like-minded folks, our Code & Coffee event has got you covered.\n\nCome for the coffee, stay for the camaraderie! Our meetup is a judgement-free zone where you can be yourself, ask questions, and get support from fellow developers. You bring your projects, ideas, and enthusiasm, and we provide the atmosphere! See you there!",
-      "venue": {
-        "name": "Mill Mountain Coffee & Tea",
-        "address_1": "4309 Starkey Rd",
-        "city": "Roanoke",
-        "state": "VA",
-        "country": "us",
-        "zip": ""
-      },
-      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/312792796/",
-      "is_upcoming": true,
-      "is_online": false
-    },
-    {
       "id": "ep-308940007",
       "name": "In Person-Blacksburg-How Ozmo is Solving Complex Support Questions with NLU",
       "status": "past",
@@ -210,5 +191,5 @@
       "is_online": true
     }
   ],
-  "updated_at": "2026-01-10T02:51:55.864196"
+  "updated_at": "2026-01-24T02:54:51.912922"
 }
