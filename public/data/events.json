@@ -1,44 +1,6 @@
 {
   "events": [
     {
-      "id": "e-312792796",
-      "name": "In Person: Code and Coffee on January 24th from 10am-1pm ET",
-      "status": "upcoming",
-      "local_date": "2026-01-24",
-      "local_time": "10:00",
-      "description": "Join us at Mill Mountain Coffee on Saturday, January 24th, 2025 from 10am-1pm ET for a period of collaboration and community-building! As a software developer or aspiring developer you're invited to meet fellow coders, work on projects, share knowledge, and enjoy good company in a relaxed and welcoming environment. Whether you're looking to learn from others, share your own expertise, or simply hand out with like-minded folks, our Code & Coffee event has got you covered.\n\nCome for the coffee, stay for the camaraderie! Our meetup is a judgement-free zone where you can be yourself, ask questions, and get support from fellow developers. You bring your projects, ideas, and enthusiasm, and we provide the atmosphere! See you there!",
-      "venue": {
-        "name": "Mill Mountain Coffee & Tea",
-        "address_1": "4309 Starkey Rd",
-        "city": "Roanoke",
-        "state": "VA",
-        "country": "us",
-        "zip": ""
-      },
-      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/312792796/",
-      "is_upcoming": true,
-      "is_online": false
-    },
-    {
-      "id": "ep-308940007",
-      "name": "In Person-Blacksburg-How Ozmo is Solving Complex Support Questions with NLU",
-      "status": "past",
-      "local_date": "2025-08-07",
-      "local_time": "19:00",
-      "description": "Search to Conversation: How Ozmo is Solving Complex Support Questions with NLU with David Bates.\n\nWe\u2019ll explore Ozmo\u2019s journey from search-based tech support to intelligent, conversational assistance powered by generative AI. You\u2019ll learn how Ozmo handled complex support questions before the rise of large language models, what sparked the shift to conversational AI, and how we developed the Answers API and Ozmo Assistant. We\u2019ll cover the foundational elements of our generative AI solution, share lessons learned during the transition, and highlight how natural language understanding is enabling more scalable, accurate support experiences.\n\nPizza and soft drinks will be provided.",
-      "venue": {
-        "name": "VT Corporate Research Center (sponsored by Ozmo)",
-        "address_1": "1880 Pratt Drive, Suite 2018",
-        "city": "Blacksburg",
-        "state": "VA",
-        "country": "us",
-        "zip": ""
-      },
-      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/308940007/",
-      "is_upcoming": false,
-      "is_online": false
-    },
-    {
       "id": "ep-310422909",
       "name": "In Person: Code and Coffee on August 23rd from 10am-1pm ET",
       "status": "past",
@@ -208,7 +170,26 @@
       "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/312665316/",
       "is_upcoming": false,
       "is_online": true
+    },
+    {
+      "id": "ep-312792796",
+      "name": "In Person: Code and Coffee on January 24th from 10am-1pm ET",
+      "status": "past",
+      "local_date": "2026-01-24",
+      "local_time": "10:00",
+      "description": "Join us at Mill Mountain Coffee on Saturday, January 24th, 2025 from 10am-1pm ET for a period of collaboration and community-building! As a software developer or aspiring developer you're invited to meet fellow coders, work on projects, share knowledge, and enjoy good company in a relaxed and welcoming environment. Whether you're looking to learn from others, share your own expertise, or simply hand out with like-minded folks, our Code & Coffee event has got you covered.\n\nCome for the coffee, stay for the camaraderie! Our meetup is a judgement-free zone where you can be yourself, ask questions, and get support from fellow developers. You bring your projects, ideas, and enthusiasm, and we provide the atmosphere! See you there!",
+      "venue": {
+        "name": "Mill Mountain Coffee & Tea",
+        "address_1": "4309 Starkey Rd",
+        "city": "Roanoke",
+        "state": "VA",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/312792796/",
+      "is_upcoming": false,
+      "is_online": false
     }
   ],
-  "updated_at": "2026-01-10T02:51:55.864196"
+  "updated_at": "2026-01-31T03:22:25.098242"
 }
