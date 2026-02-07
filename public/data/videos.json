@@ -1,5 +1,12 @@
 [
     {
+        "title": "Data Cleansing using Data Bricks by Sam Nasr",
+        "video_id": "Xb5iCgnajQQ",
+        "published_at": "2026-02-03T04:19:07Z",
+        "thumbnail_url": "https://i.ytimg.com/vi/Xb5iCgnajQQ/mqdefault.jpg",
+        "video_url": "https://www.youtube.com/watch?v=Xb5iCgnajQQ"
+    },
+    {
         "title": "Traits of Stable Production Applications - Kevin Griffin",
         "video_id": "JJPhwVIprxA",
         "published_at": "2025-11-07T00:26:12Z",
@@ -12,12 +19,5 @@
         "published_at": "2025-09-08T14:01:12Z",
         "thumbnail_url": "https://i.ytimg.com/vi/kC2fL2Co9pU/mqdefault.jpg",
         "video_url": "https://www.youtube.com/watch?v=kC2fL2Co9pU"
-    },
-    {
-        "title": "Getting Started With Building GenAI supported Apps (Michael Irwin - June 2025)",
-        "video_id": "VF1ojvo6k4Q",
-        "published_at": "2025-09-01T01:12:30Z",
-        "thumbnail_url": "https://i.ytimg.com/vi/VF1ojvo6k4Q/mqdefault.jpg",
-        "video_url": "https://www.youtube.com/watch?v=VF1ojvo6k4Q"
     }
 ]
