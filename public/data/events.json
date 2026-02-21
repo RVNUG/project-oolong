@@ -20,6 +20,25 @@
       "is_online": false
     },
     {
+      "id": "e-313436280",
+      "name": "In Person-Salem: Topic TBD presented by Michael Irwin",
+      "status": "upcoming",
+      "local_date": "2026-03-05",
+      "local_time": "18:00",
+      "description": "Pizza and soft drinks will be provided.",
+      "venue": {
+        "name": "Medeco Security Locks Inc",
+        "address_1": "3625 Alleghany Dr",
+        "city": "Salem",
+        "state": "VA",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/313436280/",
+      "is_upcoming": true,
+      "is_online": false
+    },
+    {
       "id": "ep-310686670",
       "name": "In Person-Salem-Evolutions of Vibe Coding",
       "status": "past",
@@ -210,5 +229,5 @@
       "is_online": true
     }
   ],
-  "updated_at": "2026-02-18T03:38:29.702755"
+  "updated_at": "2026-02-21T03:23:33.649496"
 }
