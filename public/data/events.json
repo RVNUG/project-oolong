@@ -2,11 +2,11 @@
   "events": [
     {
       "id": "e-313436280",
-      "name": "In Person-Salem: Topic TBD presented by Michael Irwin",
+      "name": "In Person-Salem: Making AI faster and safer with Docker by Michael Irwin",
       "status": "upcoming",
       "local_date": "2026-03-05",
       "local_time": "18:00",
-      "description": "Pizza and soft drinks will be provided.",
+      "description": "While most coding agents have \"sandboxes\" and \"permissions\", did you know that they are easily bypassed? And it's rare that a day goes by without hearing how Claude or Codex or Copilot or \\ has leaked credentials or deleted a filesystem. So, how do we fix this?\n\nIn this talk, we'll talk about the various ways in which things can go wrong and how Docker's been building tooling to combat these issues. At the end of the day, Docker wants to help developers get the full power of agents, but provide the proper guardrails and observability.\n\nWe'll dive into Docker Sandboxes, the MCP Toolkit, and get a sneak peek of upcoming features. There will be lots of demos (both good and bad!) of blocking various attacks, ranging from filesystem deletion, to API token leaks, and various prompt injections. It should be a lot of fun!\n\nPizza and soft drinks will be provided.",
       "venue": {
         "name": "Medeco Security Locks Inc",
         "address_1": "3625 Alleghany Dr",
@@ -18,6 +18,44 @@
       "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/313436280/",
       "is_upcoming": true,
       "is_online": false
+    },
+    {
+      "id": "e-313580095",
+      "name": "In Person-Salem: presentation by Cameron Presley",
+      "status": "upcoming",
+      "local_date": "2026-04-02",
+      "local_time": "18:00",
+      "description": "Preventing Bugs with Better Types - An Intro to Type Driven Design by Cameron Presley\n\nHave you ever shipped a logic error to production? What about writing code that allowed you to do something that violated business rules? Wouldn't it have been nice if the code itself prevented you from doing the wrong thing?\nBy leveraging key concepts from Functional Programming, I'll show you how you can design your business domain such that your code can't get into a bad state (or at the very least, without jumping through some hoops).\n\nIntended for those with C# or TypeScript, I'll demonstrate concepts like sum types/product types for better data modeling and design patterns like Option/Result to handle when things can go wrong while we build out the game of Blackjack.\n\nPizza and soft drinks will be provided.",
+      "venue": {
+        "name": "Medeco Security Locks Inc",
+        "address_1": "3625 Alleghany Dr",
+        "city": "Salem",
+        "state": "VA",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/313580095/",
+      "is_upcoming": true,
+      "is_online": false
+    },
+    {
+      "id": "e-313580154",
+      "name": "Online: The 1-Person DevOps Stack presentation by Lionel Sapp",
+      "status": "upcoming",
+      "local_date": "2026-05-07",
+      "local_time": "18:00",
+      "description": "The 1-Person DevOps Stack: How I Keep Client Apps Alive Without a Big Team presented by Lionel Sapp.\n\nWhen you're a solo builder, \"DevOps\" isn't a department \u2014 it's whatever keeps production stable at 11pm when a client pings you and real users are stuck. In this TED-style talk, I'll share the minimal, battle-tested operations stack I use to ship and maintain client apps without a big team: preview deployments for safe releases, error tracking and logging that actually matter, and a calm incident loop for when something breaks. I'll also show how AI fits in practically (not hype): using v0 for rapid UI mockups and Cursor/MCP agents to speed up implementation while keeping quality guardrails in place. The stack is modern, simple, and repeatable \u2014 Next.js + Supabase + Vercel + Resend + Stripe \u2014 but the real value is the workflow: what to monitor (and what to ignore), how to deploy with confidence, and the \"stability rituals\" that keep apps alive long after launch.\n\nThis is an online talk.",
+      "venue": {
+        "name": "Online Event",
+        "address_1": "",
+        "city": "",
+        "state": "",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/313580154/",
+      "is_upcoming": true,
+      "is_online": true
     },
     {
       "id": "ep-310869441",
@@ -210,5 +248,5 @@
       "is_online": false
     }
   ],
-  "updated_at": "2026-02-28T03:10:23.664905"
+  "updated_at": "2026-03-01T03:41:25.581031"
 }
