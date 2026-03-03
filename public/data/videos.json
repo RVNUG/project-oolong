@@ -1,5 +1,12 @@
 [
     {
+        "title": "Modernizing the Mission Critical with OpenRewrite and AI",
+        "video_id": "QHtqTYCuiv4",
+        "published_at": "2026-03-01T15:55:45Z",
+        "thumbnail_url": "https://i.ytimg.com/vi/QHtqTYCuiv4/mqdefault.jpg",
+        "video_url": "https://www.youtube.com/watch?v=QHtqTYCuiv4"
+    },
+    {
         "title": "Data Cleansing using Data Bricks by Sam Nasr",
         "video_id": "Xb5iCgnajQQ",
         "published_at": "2026-02-03T04:19:07Z",
@@ -12,12 +19,5 @@
         "published_at": "2025-11-07T00:26:12Z",
         "thumbnail_url": "https://i.ytimg.com/vi/JJPhwVIprxA/mqdefault.jpg",
         "video_url": "https://www.youtube.com/watch?v=JJPhwVIprxA"
-    },
-    {
-        "title": "Evolutions of Vibe Coding",
-        "video_id": "kC2fL2Co9pU",
-        "published_at": "2025-09-08T14:01:12Z",
-        "thumbnail_url": "https://i.ytimg.com/vi/kC2fL2Co9pU/mqdefault.jpg",
-        "video_url": "https://www.youtube.com/watch?v=kC2fL2Co9pU"
     }
 ]
