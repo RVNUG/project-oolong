@@ -8,14 +8,13 @@ interface Props {
 interface State {
   hasError: boolean;
 }
-}
 
 export default class ErrorBoundary extends Component<Props, State> {
   public state: State = {
     hasError: false
   };
 
-  public static getDerivedStateFromError(error: Error): State {
+  public static getDerivedStateFromError(_error: Error): State {
     return { hasError: true };
   }
 
