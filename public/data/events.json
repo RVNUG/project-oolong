@@ -1,25 +1,6 @@
 {
   "events": [
     {
-      "id": "e-313436280",
-      "name": "In Person-Salem: Making AI faster and safer with Docker by Michael Irwin",
-      "status": "upcoming",
-      "local_date": "2026-03-05",
-      "local_time": "18:00",
-      "description": "While most coding agents have \"sandboxes\" and \"permissions\", did you know that they are easily bypassed? And it's rare that a day goes by without hearing how Claude or Codex or Copilot or \\ has leaked credentials or deleted a filesystem. So, how do we fix this?\n\nIn this talk, we'll talk about the various ways in which things can go wrong and how Docker's been building tooling to combat these issues. At the end of the day, Docker wants to help developers get the full power of agents, but provide the proper guardrails and observability.\n\nWe'll dive into Docker Sandboxes, the MCP Toolkit, and get a sneak peek of upcoming features. There will be lots of demos (both good and bad!) of blocking various attacks, ranging from filesystem deletion, to API token leaks, and various prompt injections. It should be a lot of fun!\n\nPizza and soft drinks will be provided.",
-      "venue": {
-        "name": "Medeco Security Locks Inc",
-        "address_1": "3625 Alleghany Dr",
-        "city": "Salem",
-        "state": "VA",
-        "country": "us",
-        "zip": ""
-      },
-      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/313436280/",
-      "is_upcoming": true,
-      "is_online": false
-    },
-    {
       "id": "e-313580095",
       "name": "In Person-Salem: presentation by Cameron Presley",
       "status": "upcoming",
@@ -56,25 +37,6 @@
       "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/313580154/",
       "is_upcoming": true,
       "is_online": true
-    },
-    {
-      "id": "ep-310869441",
-      "name": "In Person: Code and Coffee on September 20th from 10am-1pm ET",
-      "status": "past",
-      "local_date": "2025-09-20",
-      "local_time": "10:00",
-      "description": "Join us at Mill Mountain Coffee on Saturday, September 20th, 2025 from 10am-1pm ET for a period of collaboration and community-building! As a software developer or aspiring developer you're invited to meet fellow coders, work on projects, share knowledge, and enjoy good company in a relaxed and welcoming environment. Whether you're looking to learn from others, share your own expertise, or simply hand out with like-minded folks, our Code & Coffee event has got you covered.\n\nCome for the coffee, stay for the camaraderie! Our meetup is a judgement-free zone where you can be yourself, ask questions, and get support from fellow developers. You bring your projects, ideas, and enthusiasm, and we provide the atmosphere! See you there!",
-      "venue": {
-        "name": "Mill Mountain Coffee & Tea",
-        "address_1": "4309 Starkey Rd",
-        "city": "Roanoke",
-        "state": "VA",
-        "country": "us",
-        "zip": ""
-      },
-      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/310869441/",
-      "is_upcoming": false,
-      "is_online": false
     },
     {
       "id": "ep-311029537",
@@ -246,7 +208,26 @@
       "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/313207452/",
       "is_upcoming": false,
       "is_online": false
+    },
+    {
+      "id": "ep-313436280",
+      "name": "In Person-Salem: Making AI faster and safer with Docker by Michael Irwin",
+      "status": "past",
+      "local_date": "2026-03-05",
+      "local_time": "18:00",
+      "description": "While most coding agents have \"sandboxes\" and \"permissions\", did you know that they are easily bypassed? And it's rare that a day goes by without hearing how Claude or Codex or Copilot or \\ has leaked credentials or deleted a filesystem. So, how do we fix this?\n\nIn this talk, we'll talk about the various ways in which things can go wrong and how Docker's been building tooling to combat these issues. At the end of the day, Docker wants to help developers get the full power of agents, but provide the proper guardrails and observability.\n\nWe'll dive into Docker Sandboxes, the MCP Toolkit, and get a sneak peek of upcoming features. There will be lots of demos (both good and bad!) of blocking various attacks, ranging from filesystem deletion, to API token leaks, and various prompt injections. It should be a lot of fun!\n\nPizza and soft drinks will be provided.",
+      "venue": {
+        "name": "Medeco Security Locks Inc",
+        "address_1": "3625 Alleghany Dr",
+        "city": "Salem",
+        "state": "VA",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/313436280/",
+      "is_upcoming": false,
+      "is_online": false
     }
   ],
-  "updated_at": "2026-03-01T03:41:25.581031"
+  "updated_at": "2026-03-06T03:27:13.551133"
 }
