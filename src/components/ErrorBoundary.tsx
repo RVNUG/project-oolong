@@ -8,7 +8,7 @@ interface Props {
 interface State {
   hasError: boolean;
 }
-}
+
 
 export default class ErrorBoundary extends Component<Props, State> {
   public state: State = {
