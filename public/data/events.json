@@ -1,6 +1,25 @@
 {
   "events": [
     {
+      "id": "e-313774147",
+      "name": "In Person: Code and Coffee on March 21st from 10am-1pm ET",
+      "status": "upcoming",
+      "local_date": "2026-03-21",
+      "local_time": "10:00",
+      "description": "Join us at Mill Mountain Coffee on Saturday, March 21st, 2026 from 10am-1pm ET for a period of collaboration and community-building! As a software developer or aspiring developer you're invited to meet fellow coders, work on projects, share knowledge, and enjoy good company in a relaxed and welcoming environment. Whether you're looking to learn from others, share your own expertise, or simply hand out with like-minded folks, our Code & Coffee event has got you covered.\n\nCome for the coffee, stay for the camaraderie! Our meetup is a judgement-free zone where you can be yourself, ask questions, and get support from fellow developers. You bring your projects, ideas, and enthusiasm, and we provide the atmosphere! See you there!",
+      "venue": {
+        "name": "Mill Mountain Coffee & Tea",
+        "address_1": "4309 Starkey Rd",
+        "city": "Roanoke",
+        "state": "VA",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/313774147/",
+      "is_upcoming": true,
+      "is_online": false
+    },
+    {
       "id": "e-313580095",
       "name": "In Person-Salem: presentation by Cameron Presley",
       "status": "upcoming",
@@ -229,5 +248,5 @@
       "is_online": false
     }
   ],
-  "updated_at": "2026-03-06T03:27:13.551133"
+  "updated_at": "2026-03-15T03:50:32.104090"
 }
