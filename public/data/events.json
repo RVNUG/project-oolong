@@ -1,25 +1,6 @@
 {
   "events": [
     {
-      "id": "e-313774147",
-      "name": "In Person: Code and Coffee on March 21st from 10am-1pm ET",
-      "status": "upcoming",
-      "local_date": "2026-03-21",
-      "local_time": "10:00",
-      "description": "Join us at Mill Mountain Coffee on Saturday, March 21st, 2026 from 10am-1pm ET for a period of collaboration and community-building! As a software developer or aspiring developer you're invited to meet fellow coders, work on projects, share knowledge, and enjoy good company in a relaxed and welcoming environment. Whether you're looking to learn from others, share your own expertise, or simply hand out with like-minded folks, our Code & Coffee event has got you covered.\n\nCome for the coffee, stay for the camaraderie! Our meetup is a judgement-free zone where you can be yourself, ask questions, and get support from fellow developers. You bring your projects, ideas, and enthusiasm, and we provide the atmosphere! See you there!",
-      "venue": {
-        "name": "Mill Mountain Coffee & Tea",
-        "address_1": "4309 Starkey Rd",
-        "city": "Roanoke",
-        "state": "VA",
-        "country": "us",
-        "zip": ""
-      },
-      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/313774147/",
-      "is_upcoming": true,
-      "is_online": false
-    },
-    {
       "id": "e-313580095",
       "name": "In Person-Salem: presentation by Cameron Presley",
       "status": "upcoming",
@@ -56,25 +37,6 @@
       "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/313580154/",
       "is_upcoming": true,
       "is_online": true
-    },
-    {
-      "id": "ep-311029537",
-      "name": "Salem-In Person: Traits of Stable Production Applications by Kevin Griffin",
-      "status": "past",
-      "local_date": "2025-10-02",
-      "local_time": "18:00",
-      "description": "Traits of Stable Production Applications presented by Kevin Griffin\n\nBeing on call for an application is rarely enjoyable. Outages never seem to happen at a convenient time\u2014they're always at 2 a.m., never at 1 p.m. when you're in the right mind to fix them. And when you're fast asleep (maybe!), database failures or stuck CRON jobs are the last thing on your mind.\n\nThe best protection against overnight outages is being prolific in battle-hardening your app. In this talk, we'll discuss traits of stable production applications so you and your team can rest well at night.\n\nTopics include logging and telemetry, designing for redundancy, optimizing environments, enabling rapid deployments, testing, and more! For developers or SREs alike, let's talk about proven techniques that'll allow you to sleep soundly at night.\n\nPizza and soft drinks will be provided at the event.",
-      "venue": {
-        "name": "Medeco Security Locks Inc",
-        "address_1": "3625 Alleghany Dr",
-        "city": "Salem",
-        "state": "VA",
-        "country": "us",
-        "zip": ""
-      },
-      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/311029537/",
-      "is_upcoming": false,
-      "is_online": false
     },
     {
       "id": "ep-311539908",
@@ -246,7 +208,26 @@
       "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/313436280/",
       "is_upcoming": false,
       "is_online": false
+    },
+    {
+      "id": "ep-313774147",
+      "name": "In Person: Code and Coffee on March 21st from 10am-1pm ET",
+      "status": "past",
+      "local_date": "2026-03-21",
+      "local_time": "10:00",
+      "description": "Join us at Mill Mountain Coffee on Saturday, March 21st, 2026 from 10am-1pm ET for a period of collaboration and community-building! As a software developer or aspiring developer you're invited to meet fellow coders, work on projects, share knowledge, and enjoy good company in a relaxed and welcoming environment. Whether you're looking to learn from others, share your own expertise, or simply hand out with like-minded folks, our Code & Coffee event has got you covered.\n\nCome for the coffee, stay for the camaraderie! Our meetup is a judgement-free zone where you can be yourself, ask questions, and get support from fellow developers. You bring your projects, ideas, and enthusiasm, and we provide the atmosphere! See you there!",
+      "venue": {
+        "name": "Mill Mountain Coffee & Tea",
+        "address_1": "4309 Starkey Rd",
+        "city": "Roanoke",
+        "state": "VA",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/313774147/",
+      "is_upcoming": false,
+      "is_online": false
     }
   ],
-  "updated_at": "2026-03-15T03:50:32.104090"
+  "updated_at": "2026-03-25T03:38:14.663848"
 }
