@@ -3,7 +3,7 @@
     "id": 1,
     "name": "Tolga Balci",
     "role": "President",
-    "bio": "Tolga Balci is an enthusiast in Data Analytics, Data Science, and various computer-related fields. He is currently expanding his knowledge in electronics and is open to collaborations on ESP8266, Arduino, and Raspberry Pi development projects. Tolga is active on social media platforms and maintains a personal website on WordPress.",
+    "bio": "Tolga is a Principal Developer at Advance Auto Parts with over 25 years of experience. He enjoys working on solutions of all sizes across the full stack, from low-level device programming to distributed .NET desktop apps, Java backends, React and Angular frontends, and the infrastructure that keeps everything running on-prem, in AWS, Azure, and GCP.",
     "image": "images/team/highres_283684233.jpeg"
   },
   {
@@ -32,4 +32,3 @@
     "github": "https://github.com/SHoar"
   }
 ]
-
