@@ -1,12 +1,31 @@
 {
   "events": [
     {
-      "id": "e-313580095",
-      "name": "In Person-Salem: presentation by Cameron Presley",
+      "id": "e-314708188",
+      "name": "In Person: Code and Coffee on May 16th from 10am-1pm ET",
       "status": "upcoming",
-      "local_date": "2026-04-02",
+      "local_date": "2026-05-16",
+      "local_time": "10:00",
+      "description": "Join us at Mill Mountain Coffee on Saturday, May 16th, 2026 from 10am-1pm ET for a period of collaboration and community-building! As a software developer or aspiring developer you're invited to meet fellow coders, work on projects, share knowledge, and enjoy good company in a relaxed and welcoming environment. Whether you're looking to learn from others, share your own expertise, or simply hand out with like-minded folks, our Code & Coffee event has got you covered.\n\nCome for the coffee, stay for the camaraderie! Our meetup is a judgement-free zone where you can be yourself, ask questions, and get support from fellow developers. You bring your projects, ideas, and enthusiasm, and we provide the atmosphere! See you there!",
+      "venue": {
+        "name": "Mill Mountain Coffee & Tea",
+        "address_1": "4309 Starkey Rd",
+        "city": "Roanoke",
+        "state": "VA",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/314708188/",
+      "is_upcoming": true,
+      "is_online": false
+    },
+    {
+      "id": "e-314708242",
+      "name": "In Person-Salem: presentation by David Bates",
+      "status": "upcoming",
+      "local_date": "2026-06-04",
       "local_time": "18:00",
-      "description": "Preventing Bugs with Better Types - An Intro to Type Driven Design by Cameron Presley\n\nHave you ever shipped a logic error to production? What about writing code that allowed you to do something that violated business rules? Wouldn't it have been nice if the code itself prevented you from doing the wrong thing?\nBy leveraging key concepts from Functional Programming, I'll show you how you can design your business domain such that your code can't get into a bad state (or at the very least, without jumping through some hoops).\n\nIntended for those with C# or TypeScript, I'll demonstrate concepts like sum types/product types for better data modeling and design patterns like Option/Result to handle when things can go wrong while we build out the game of Blackjack.\n\nPizza and soft drinks will be provided.",
+      "description": "From Code to Magic: Building Things That Blink, Talk, and Occasionally Catch Fire by David Bates\n\nHave you ever seen a kid interact with something new for the first time? That spark of magic, they don\u2019t quite understand it, but they know it\u2019s cool. And then the moment they figure it out?\nThis talk is about creating that spark.\n\nI\u2019ll walk through my maker journey and how it leveled up the way I think about systems, electronics, and software.\nWe\u2019ll cover how easy it is to get started, the tools you actually need (not the ones YouTube tells you to buy), and the different paths you can take to start building real things.\n\nI\u2019ll share real examples, a few failures, and how these experiments turned into real, tangible business value.\nYou\u2019ll leave with a clear plan to get started, permission to experiment, and probably a few ideas that make you think, \u201cI could build that.\u201d\n\nAnd yeah, lots of GIFs, videos, and a non-zero chance something catches fire.\n\nPizza and soft drinks will be provided.",
       "venue": {
         "name": "Medeco Security Locks Inc",
         "address_1": "3625 Alleghany Dr",
@@ -15,17 +34,17 @@
         "country": "us",
         "zip": ""
       },
-      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/313580095/",
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/314708242/",
       "is_upcoming": true,
       "is_online": false
     },
     {
-      "id": "e-313580154",
-      "name": "Online: The 1-Person DevOps Stack presentation by Lionel Sapp",
+      "id": "e-314708329",
+      "name": "Online-Crafting AI: A Developer's Guide to Machine Learning by Barry Stahl",
       "status": "upcoming",
-      "local_date": "2026-05-07",
+      "local_date": "2026-09-03",
       "local_time": "18:00",
-      "description": "The 1-Person DevOps Stack: How I Keep Client Apps Alive Without a Big Team presented by Lionel Sapp.\n\nWhen you're a solo builder, \"DevOps\" isn't a department \u2014 it's whatever keeps production stable at 11pm when a client pings you and real users are stuck. In this TED-style talk, I'll share the minimal, battle-tested operations stack I use to ship and maintain client apps without a big team: preview deployments for safe releases, error tracking and logging that actually matter, and a calm incident loop for when something breaks. I'll also show how AI fits in practically (not hype): using v0 for rapid UI mockups and Cursor/MCP agents to speed up implementation while keeping quality guardrails in place. The stack is modern, simple, and repeatable \u2014 Next.js + Supabase + Vercel + Resend + Stripe \u2014 but the real value is the workflow: what to monitor (and what to ignore), how to deploy with confidence, and the \"stability rituals\" that keep apps alive long after launch.\n\nThis is an online talk.",
+      "description": "Crafting AI: A Developer's Guide to Machine Learning presented by Barry Stahl\n\nWith Machine Learning (ML) making huge impacts across the software industry, it has become almost imperative for developers to understand its principles and applications. Unfortunately, the complexity of some ML models and the mathematical rigor of its algorithms can be intimidating. This talk aims to bridge this gap, making ML understandable and engaging for developers eager to learn this technology from the ground up.\n\nIn this session, attendees will learn the foundational concepts of ML by coding their own models from scratch, without relying on pre-trained models like GPT. We'll start with a simple linear regression, a foundational tool to gain understanding of ML's error minimization and training processes. We'll then explain neural networks with a binary classification example. By the end, participants will not only grasp fundamental ML concepts but will also walk away with their own code implementing one of these models. This talk is designed to equip developers with the knowledge and confidence to use Machine Learning in their projects.\n\nThis is an online talk.",
       "venue": {
         "name": "Online Event",
         "address_1": "",
@@ -34,66 +53,28 @@
         "country": "us",
         "zip": ""
       },
-      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/313580154/",
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/314708329/",
       "is_upcoming": true,
       "is_online": true
     },
     {
-      "id": "ep-311539908",
-      "name": "In Person: Code and Coffee on October 25th from 10am-1pm ET",
-      "status": "past",
-      "local_date": "2025-10-25",
-      "local_time": "10:00",
-      "description": "Join us at Mill Mountain Coffee on Saturday, September 20th, 2025 from 10am-1pm ET for a period of collaboration and community-building! As a software developer or aspiring developer you're invited to meet fellow coders, work on projects, share knowledge, and enjoy good company in a relaxed and welcoming environment. Whether you're looking to learn from others, share your own expertise, or simply hand out with like-minded folks, our Code & Coffee event has got you covered.\n\nCome for the coffee, stay for the camaraderie! Our meetup is a judgement-free zone where you can be yourself, ask questions, and get support from fellow developers. You bring your projects, ideas, and enthusiasm, and we provide the atmosphere! See you there!",
-      "venue": {
-        "name": "Mill Mountain Coffee & Tea",
-        "address_1": "4309 Starkey Rd",
-        "city": "Roanoke",
-        "state": "VA",
-        "country": "us",
-        "zip": ""
-      },
-      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/311539908/",
-      "is_upcoming": false,
-      "is_online": false
-    },
-    {
-      "id": "ep-311703559",
-      "name": "In-Person-Blacksburg: \"Warming up with weather\" at 6pm ET",
-      "status": "past",
-      "local_date": "2025-11-06",
+      "id": "e-314708380",
+      "name": "Online-Build Your Own AI News Agent with Redis + LangGraph.js by Guy Royse",
+      "status": "upcoming",
+      "local_date": "2026-10-01",
       "local_time": "18:00",
-      "description": "Warming Up with Weather is an exploration of how generative AI and real-time data can make learning code and creativity feel natural. Using live weather data as the foundation, this session demonstrates how to combine APIs, AI models, and visualization tools to generate dynamic, personality-filled forecasts. Attendees will see how natural language prompts and simple Python scripts can bring the weather to life revealing how AI can transform everyday data into interactive, imaginative experiences.\n\nPizza and soft drinks will be provided.",
+      "description": "Build Your Own AI News Agent with Redis + LangGraph.js presented by Guy Royse\n\nNews. Amirite?\n\nThere\u2019s too much of it. As humans, we have to sift through too many sources, too many articles, and way too many rabbit holes just to find the things we actually care about. Historically, we solved this problem with news aggregators and curators\u2014helpful websites that gather, filter, and vet what\u2019s out there to give us just what we want\u2026 or at least what somebody wants. This is great if your interests are mainstream\u2014sports, politics, the usual\u2014but if you\u2019re into something more esoteric, like Bigfoot sightings or probabilistic data structures, you\u2019re probably out of luck.\n\nSo how do we get the news we want? Well, at the risk of sounding trite, AI might be able to help. It can read the news for us. It can filter and vet. It can summarize, analyze, contextualize, cross-reference, and even argue with us about it. Sounds amazing, right? Somebody should build this. And in this workshop, that somebody will be you.\n\nWe\u2019ll build a fully agentic news assistant that will:\n\\- Ingest news from RSS feeds\\, summarize it\\, extract structured data\\, generate embeddings\\, and store it all in Redis\\.\n\\- Provide a web interface where you can browse and search that news\u2014semantically and structurally\\.\n\\- Chat with you about the news\\, using tool\\-enabled RAG techniques to pull relevant articles and metadata from Redis\\.\n\nLangGraph.js will orchestrate the ingestion workflow and power the chatbot. You\u2019ll use it to write the logic that performs summarization and embedding, stores the resulting structured and vectorized data in Redis, and implements the chatbot\u2019s tools for retrieving relevant news as part of its reasoning process. If you haven\u2019t used LangGraph.js before, that\u2019s perfect\u2014this workshop is exactly where you\u2019ll learn it.\n\nRedis and Redis Query Engine will store and serve all your news data. Every article\u2014its content, its summary, its metadata, its timestamps, and its embedding\u2014will live in Redis. You\u2019ll learn how to store this data, index it for hybrid (vector + structured) search, and write the code that performs those searches yourself.\n\nAgent Memory Server will power the chatbot\u2019s memory. As your agent chats about the news, it will store the conversation's history and any facts it learns along the way, giving it both short- and long-term memory.\n\nEverything is scaffolded so you can focus on the fun parts: orchestrating agent workflows, crafting hybrid search queries, and building an AI memory layer. We\u2019ll skip the boring boilerplate and get right to the good bits. By the end, you\u2019ll have your own personal news agent\u2014and, more importantly, the skills to build your next AI-powered application. Whether you follow \u201creal\u201d news, niche hobbies, or the latest Bigfoot developments, you and your agent will be ready.\n\nThis is an online talk.",
       "venue": {
-        "name": "VTCRC - 1880 Pratt Drive Suite 2018",
-        "address_1": "1880 Pratt Drive Suite 2018 Blacksburg, VA 24060",
-        "city": "Blacksburg",
-        "state": "VA",
-        "country": "us",
-        "zip": "24060"
-      },
-      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/311703559/",
-      "is_upcoming": false,
-      "is_online": false
-    },
-    {
-      "id": "ep-311703448",
-      "name": "In Person: Code and Coffee on November 29th from 10am-1pm ET",
-      "status": "past",
-      "local_date": "2025-11-29",
-      "local_time": "10:00",
-      "description": "Join us at Mill Mountain Coffee on Saturday, November 29th, 2025 from 10am-1pm ET for a period of collaboration and community-building! As a software developer or aspiring developer you're invited to meet fellow coders, work on projects, share knowledge, and enjoy good company in a relaxed and welcoming environment. Whether you're looking to learn from others, share your own expertise, or simply hand out with like-minded folks, our Code & Coffee event has got you covered.\n\nCome for the coffee, stay for the camaraderie! Our meetup is a judgement-free zone where you can be yourself, ask questions, and get support from fellow developers. You bring your projects, ideas, and enthusiasm, and we provide the atmosphere! See you there!",
-      "venue": {
-        "name": "Mill Mountain Coffee & Tea",
-        "address_1": "4309 Starkey Rd",
-        "city": "Roanoke",
-        "state": "VA",
+        "name": "Online Event",
+        "address_1": "",
+        "city": "",
+        "state": "",
         "country": "us",
         "zip": ""
       },
-      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/311703448/",
-      "is_upcoming": false,
-      "is_online": false
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/314708380/",
+      "is_upcoming": true,
+      "is_online": true
     },
     {
       "id": "ep-311772532",
@@ -227,7 +208,64 @@
       "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/313774147/",
       "is_upcoming": false,
       "is_online": false
+    },
+    {
+      "id": "ep-313580095",
+      "name": "In Person-Salem: presentation by Cameron Presley",
+      "status": "past",
+      "local_date": "2026-04-02",
+      "local_time": "18:00",
+      "description": "Preventing Bugs with Better Types - An Intro to Type Driven Design by Cameron Presley\n\nHave you ever shipped a logic error to production? What about writing code that allowed you to do something that violated business rules? Wouldn't it have been nice if the code itself prevented you from doing the wrong thing?\nBy leveraging key concepts from Functional Programming, I'll show you how you can design your business domain such that your code can't get into a bad state (or at the very least, without jumping through some hoops).\n\nIntended for those with C# or TypeScript, I'll demonstrate concepts like sum types/product types for better data modeling and design patterns like Option/Result to handle when things can go wrong while we build out the game of Blackjack.\n\nPizza and soft drinks will be provided.",
+      "venue": {
+        "name": "Medeco Security Locks Inc",
+        "address_1": "3625 Alleghany Dr",
+        "city": "Salem",
+        "state": "VA",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/313580095/",
+      "is_upcoming": false,
+      "is_online": false
+    },
+    {
+      "id": "ep-314032115",
+      "name": "In Person: Code and Coffee on April 25th from 10am-1pm ET",
+      "status": "past",
+      "local_date": "2026-04-25",
+      "local_time": "10:00",
+      "description": "Join us at Mill Mountain Coffee on Saturday, April 25th, 2026 from 10am-1pm ET for a period of collaboration and community-building! As a software developer or aspiring developer you're invited to meet fellow coders, work on projects, share knowledge, and enjoy good company in a relaxed and welcoming environment. Whether you're looking to learn from others, share your own expertise, or simply hand out with like-minded folks, our Code & Coffee event has got you covered.\n\nCome for the coffee, stay for the camaraderie! Our meetup is a judgement-free zone where you can be yourself, ask questions, and get support from fellow developers. You bring your projects, ideas, and enthusiasm, and we provide the atmosphere! See you there!",
+      "venue": {
+        "name": "Mill Mountain Coffee & Tea",
+        "address_1": "4309 Starkey Rd",
+        "city": "Roanoke",
+        "state": "VA",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/314032115/",
+      "is_upcoming": false,
+      "is_online": false
+    },
+    {
+      "id": "ep-313580154",
+      "name": "Online: The 1-Person DevOps Stack presentation by Lionel Sapp",
+      "status": "past",
+      "local_date": "2026-05-07",
+      "local_time": "18:00",
+      "description": "The 1-Person DevOps Stack: How I Keep Client Apps Alive Without a Big Team presented by Lionel Sapp.\n\nWhen you're a solo builder, \"DevOps\" isn't a department \u2014 it's whatever keeps production stable at 11pm when a client pings you and real users are stuck. In this TED-style talk, I'll share the minimal, battle-tested operations stack I use to ship and maintain client apps without a big team: preview deployments for safe releases, error tracking and logging that actually matter, and a calm incident loop for when something breaks. I'll also show how AI fits in practically (not hype): using v0 for rapid UI mockups and Cursor/MCP agents to speed up implementation while keeping quality guardrails in place. The stack is modern, simple, and repeatable \u2014 Next.js + Supabase + Vercel + Resend + Stripe \u2014 but the real value is the workflow: what to monitor (and what to ignore), how to deploy with confidence, and the \"stability rituals\" that keep apps alive long after launch.\n\nThis is an online talk.",
+      "venue": {
+        "name": "Online Event",
+        "address_1": "",
+        "city": "",
+        "state": "",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/313580154/",
+      "is_upcoming": false,
+      "is_online": true
     }
   ],
-  "updated_at": "2026-03-26T03:47:54.137896"
+  "updated_at": "2026-05-13T04:46:25.512404"
 }
