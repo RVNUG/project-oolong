@@ -2,7 +2,7 @@ asyncio==3.4.3
 certifi==2025.1.31
 charset-normalizer==3.4.1
 greenlet==3.1.1
-idna==3.10
+idna==3.15
 playwright==1.51.0
 pyee==12.1.1
 python-dotenv==1.1.0
