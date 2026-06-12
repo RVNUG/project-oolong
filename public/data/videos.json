@@ -1,5 +1,12 @@
 [
     {
+        "title": "In Person: Making AI faster and safer with Docker by Michael Irwin",
+        "video_id": "ilDSMq1wmOk",
+        "published_at": "2026-06-03T04:36:11Z",
+        "thumbnail_url": "https://i.ytimg.com/vi/ilDSMq1wmOk/mqdefault.jpg",
+        "video_url": "https://www.youtube.com/watch?v=ilDSMq1wmOk"
+    },
+    {
         "title": "Modernizing the Mission Critical with OpenRewrite and AI",
         "video_id": "QHtqTYCuiv4",
         "published_at": "2026-03-01T15:55:45Z",
@@ -12,12 +19,5 @@
         "published_at": "2026-02-03T04:19:07Z",
         "thumbnail_url": "https://i.ytimg.com/vi/Xb5iCgnajQQ/mqdefault.jpg",
         "video_url": "https://www.youtube.com/watch?v=Xb5iCgnajQQ"
-    },
-    {
-        "title": "Traits of Stable Production Applications - Kevin Griffin",
-        "video_id": "JJPhwVIprxA",
-        "published_at": "2025-11-07T00:26:12Z",
-        "thumbnail_url": "https://i.ytimg.com/vi/JJPhwVIprxA/mqdefault.jpg",
-        "video_url": "https://www.youtube.com/watch?v=JJPhwVIprxA"
     }
 ]
