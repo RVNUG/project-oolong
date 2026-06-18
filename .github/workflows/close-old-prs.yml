@@ -22,9 +22,8 @@ jobs:
             const cutoffDate = new Date(Date.now() - (DAYS_THRESHOLD * MS_PER_DAY));
             let page = 1;
             let closedCount = 0;
-            let shouldStop = false;
 
-            while (!shouldStop && page <= MAX_PAGES) {
+            while (page <= MAX_PAGES) {
               const { data: pullRequests } = await github.rest.pulls.list({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
@@ -42,17 +41,11 @@ jobs:
               for (const pullRequest of pullRequests) {
                 const createdAt = new Date(pullRequest.created_at);
                 if (createdAt > cutoffDate) {
-                  shouldStop = true;
-                  break;
+                  continue;
                 }
 
                 const daysOpen = Math.floor((Date.now() - createdAt.getTime()) / MS_PER_DAY);
-                const createdOn = createdAt.toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                  timeZone: 'UTC',
-                });
+                const createdOn = createdAt.toISOString().slice(0, 10);
 
                 await github.rest.issues.createComment({
                   owner: context.repo.owner,
@@ -70,10 +63,6 @@ jobs:
 
                 core.info(`Closed PR #${pullRequest.number} created at ${pullRequest.created_at}`);
                 closedCount += 1;
-              }
-
-              if (shouldStop) {
-                break;
               }
 
               page += 1;
