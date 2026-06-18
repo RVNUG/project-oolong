@@ -22,8 +22,9 @@ jobs:
             const cutoffDate = new Date(Date.now() - (DAYS_THRESHOLD * MS_PER_DAY));
             let page = 1;
             let closedCount = 0;
+            let shouldStop = false;
 
-            while (page <= MAX_PAGES) {
+            while (!shouldStop && page <= MAX_PAGES) {
               const { data: pullRequests } = await github.rest.pulls.list({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
@@ -41,7 +42,8 @@ jobs:
               for (const pullRequest of pullRequests) {
                 const createdAt = new Date(pullRequest.created_at);
                 if (createdAt > cutoffDate) {
-                  continue;
+                  shouldStop = true;
+                  break;
                 }
 
                 const daysOpen = Math.floor((Date.now() - createdAt.getTime()) / MS_PER_DAY);
@@ -51,7 +53,7 @@ jobs:
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   issue_number: pullRequest.number,
-                  body: `Closing this pull request because it has been open for ${daysOpen} days (created on ${createdOn} UTC). Please reopen or open a new PR if this is still needed.`,
+                  body: `Closing this pull request because it has been open for ${daysOpen} days (created on ${createdOn} UTC). Please open a new PR if this is still needed.`,
                 });
 
                 await github.rest.pulls.update({
