@@ -89,16 +89,13 @@ Features:
 
 ```yaml
 on:
-  schedule:
-    - cron: '0 2 * * *'  # Daily at 2:00 AM UTC
   workflow_dispatch:
 ```
 
 Features:
 - Closes open pull requests older than 7 days
 - Adds an explanatory comment before closing
-- Runs automatically daily
-- Manual trigger support
+- Runs only when manually triggered
 
 ## Deployment Process
 
