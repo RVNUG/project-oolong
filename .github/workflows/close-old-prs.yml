@@ -18,6 +18,7 @@ jobs:
           script: |
             const DAYS_THRESHOLD = 7;
             const MS_PER_DAY = 24 * 60 * 60 * 1000;
+            // Safety limit: process up to 5,000 PRs (50 pages × 100 items/page) per run.
             const MAX_PAGES = 50;
             const cutoffDate = new Date(Date.now() - (DAYS_THRESHOLD * MS_PER_DAY));
             let page = 1;
@@ -47,13 +48,13 @@ jobs:
                 }
 
                 const daysOpen = Math.floor((Date.now() - createdAt.getTime()) / MS_PER_DAY);
-                const createdOn = createdAt.toISOString().slice(0, 10);
+                const createdOn = createdAt.toISOString();
 
                 await github.rest.issues.createComment({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   issue_number: pullRequest.number,
-                  body: `Closing this pull request because it has been open for ${daysOpen} days (created on ${createdOn} UTC). Please open a new PR if this is still needed.`,
+                  body: `Closing this pull request because it has been open for ${daysOpen} days (created at ${createdOn}). Please open a new PR if this is still needed.`,
                 });
 
                 await github.rest.pulls.update({
