@@ -16,12 +16,15 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const cutoffDate = new Date(Date.now() - (7 * 24 * 60 * 60 * 1000));
+            const DAYS_THRESHOLD = 7;
+            const MS_PER_DAY = 24 * 60 * 60 * 1000;
+            const MAX_PAGES = 50;
+            const cutoffDate = new Date(Date.now() - (DAYS_THRESHOLD * MS_PER_DAY));
             let page = 1;
             let closedCount = 0;
             let shouldStop = false;
 
-            while (true) {
+            while (!shouldStop && page <= MAX_PAGES) {
               const { data: pullRequests } = await github.rest.pulls.list({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
@@ -43,13 +46,19 @@ jobs:
                   break;
                 }
 
-                const daysOpen = Math.floor((Date.now() - createdAt.getTime()) / (24 * 60 * 60 * 1000));
+                const daysOpen = Math.floor((Date.now() - createdAt.getTime()) / MS_PER_DAY);
+                const createdOn = createdAt.toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                  timeZone: 'UTC',
+                });
 
                 await github.rest.issues.createComment({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   issue_number: pullRequest.number,
-                  body: `Closing this pull request because it has been open for ${daysOpen} days (created on ${pullRequest.created_at}). Please reopen or open a new PR if this is still needed.`,
+                  body: `Closing this pull request because it has been open for ${daysOpen} days (created on ${createdOn} UTC). Please reopen or open a new PR if this is still needed.`,
                 });
 
                 await github.rest.pulls.update({
