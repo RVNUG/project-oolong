@@ -8,6 +8,7 @@ The website uses GitHub Actions for:
 - Automated builds and deployments to GitHub Pages
 - Daily data updates (YouTube videos and Meetup events)
 - Pull request verification
+- Automatic closure of old pull requests
 - Branch protection enforcement
 
 ## Workflow Files
@@ -83,6 +84,21 @@ Features:
 - Preserves existing data if scraping fails
 - Runs automatically daily
 - Triggers deployment workflow when new event data is pushed
+
+### 5. Close Old Pull Requests (close-old-prs.yml)
+
+```yaml
+on:
+  schedule:
+    - cron: '0 2 * * *'  # Daily at 2:00 AM UTC
+  workflow_dispatch:
+```
+
+Features:
+- Closes open pull requests older than 7 days
+- Adds an explanatory comment before closing
+- Runs automatically daily
+- Manual trigger support
 
 ## Deployment Process
 

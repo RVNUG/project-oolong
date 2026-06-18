@@ -1,0 +1,65 @@
+name: Close Old Pull Requests
+
+on:
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+permissions:
+  pull-requests: write
+
+jobs:
+  close-old-prs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Close PRs older than one week
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const cutoffDate = new Date(Date.now() - (7 * 24 * 60 * 60 * 1000));
+            let page = 1;
+            let closedCount = 0;
+
+            while (true) {
+              const { data: pullRequests } = await github.rest.pulls.list({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                state: 'open',
+                sort: 'created',
+                direction: 'asc',
+                per_page: 100,
+                page,
+              });
+
+              if (pullRequests.length === 0) {
+                break;
+              }
+
+              for (const pullRequest of pullRequests) {
+                const createdAt = new Date(pullRequest.created_at);
+                if (createdAt > cutoffDate) {
+                  continue;
+                }
+
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: pullRequest.number,
+                  body: 'Closing this pull request because it is older than one week. Please reopen or open a new PR if this is still needed.',
+                });
+
+                await github.rest.pulls.update({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  pull_number: pullRequest.number,
+                  state: 'closed',
+                });
+
+                core.info(`Closed PR #${pullRequest.number} created at ${pullRequest.created_at}`);
+                closedCount += 1;
+              }
+
+              page += 1;
+            }
+
+            core.info(`Total closed PRs: ${closedCount}`);
