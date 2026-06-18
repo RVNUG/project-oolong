@@ -1,6 +1,25 @@
 {
   "events": [
     {
+      "id": "e-315307111",
+      "name": "In Person: Code & Coffee, Saturday, June 20th, 10am-1pm ET",
+      "status": "upcoming",
+      "local_date": "2026-06-20",
+      "local_time": "10:00",
+      "description": "Join us at Mill Mountain Coffee on Saturday, May 16th, 2026 from 10am-1pm ET for a period of collaboration and community-building! As a software developer or aspiring developer you're invited to meet fellow coders, work on projects, share knowledge, and enjoy good company in a relaxed and welcoming environment. Whether you're looking to learn from others, share your own expertise, or simply hand out with like-minded folks, our Code & Coffee event has got you covered.\n\nCome for the coffee, stay for the camaraderie! Our meetup is a judgement-free zone where you can be yourself, ask questions, and get support from fellow developers. You bring your projects, ideas, and enthusiasm, and we provide the atmosphere! See you there!",
+      "venue": {
+        "name": "Mill Mountain Coffee & Tea",
+        "address_1": "4309 Starkey Rd",
+        "city": "Roanoke",
+        "state": "VA",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/315307111/",
+      "is_upcoming": true,
+      "is_online": false
+    },
+    {
       "id": "e-314708329",
       "name": "Online-Crafting AI: A Developer's Guide to Machine Learning by Barry Stahl",
       "status": "upcoming",
@@ -229,5 +248,5 @@
       "is_online": false
     }
   ],
-  "updated_at": "2026-06-17T06:13:53.980148"
+  "updated_at": "2026-06-18T05:56:40.633385"
 }
