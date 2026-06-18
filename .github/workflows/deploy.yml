@@ -23,13 +23,13 @@ concurrency:
 jobs:
   verify:
     name: Verify Build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
       pull-requests: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       
       - name: Verify package-lock.json exists
         run: |
@@ -43,7 +43,7 @@ jobs:
           fi
       
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 20
           cache: 'npm'
@@ -82,12 +82,12 @@ jobs:
   
   build:
     name: Build and Deploy
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: verify  # This job will only run if verify job succeeds
     if: github.event_name != 'pull_request'  # Skip deployment steps for PRs
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       
       - name: Set up Python for API data fetching
         uses: actions/setup-python@v5
@@ -138,7 +138,7 @@ jobs:
           fi
       
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 20
           cache: 'npm'
@@ -190,7 +190,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: build
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'  # Deploy from master or main branch
     steps:

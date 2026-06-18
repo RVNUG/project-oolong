@@ -8,7 +8,7 @@ permissions:
 
 jobs:
   close-old-prs:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Close PRs older than one week
         uses: actions/github-script@v7

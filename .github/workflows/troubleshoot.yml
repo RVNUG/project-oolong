@@ -11,7 +11,7 @@ permissions:
 jobs:
   diagnostic:
     name: GitHub Actions Diagnostic
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Basic Environment Info
         run: |
@@ -25,7 +25,7 @@ jobs:
         run: env | sort
       
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       
       - name: Repository Contents
         run: |
@@ -37,7 +37,7 @@ jobs:
           ls -la .github/workflows || echo "workflows directory not found"
       
       - name: Node Setup Test
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: '20'
       
