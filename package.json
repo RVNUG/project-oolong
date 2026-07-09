@@ -40,7 +40,7 @@
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@types/sanitize-html": "^2.15.0",
-    "@vitejs/plugin-react": "^4.3.4",
+    "@vitejs/plugin-react": "^6.0.3",
     "@vitest/coverage-v8": "^4.1.9",
     "autoprefixer": "^10.4.18",
     "c8": "^11.0.0",
@@ -59,11 +59,11 @@
     "terser": "^5.29.2",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
-    "vite": "^6.4.2",
+    "vite": "^8.1.4",
     "vite-bundle-analyzer": "^0.11.0",
     "vite-plugin-html": "^3.2.1",
     "vite-plugin-image-optimizer": "^1.1.8",
-    "vite-plugin-pwa": "^1.2.0",
+    "vite-plugin-pwa": "^1.3.0",
     "vitest": "^4.1.9"
   },
   "overrides": {
