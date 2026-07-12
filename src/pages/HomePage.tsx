@@ -29,7 +29,7 @@ import { getResourceUrl } from '../utils/config';
 // YouTube channel ID for RVNUG
 const YOUTUBE_CHANNEL_ID = import.meta.env.VITE_RVNUG_YT_CHANNEL_ID;
 const YOUTUBE_API_KEY = import.meta.env.VITE_YOUTUBE_DATA_API_KEY;
-const DISCORD_URL = import.meta.env.VITE_APP_DISCORD_URL;
+const DISCORD_URL = import.meta.env.VITE_APP_DISCORD_URL || 'https://discord.gg/invite/b4hAu9Pdg5';
 const NEWSLETTER_URL = "http://eepurl.com/ddlwBz";
 
 // Interface for YouTube video info

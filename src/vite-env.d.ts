@@ -25,12 +25,13 @@ declare module '*.avif';
 // Environment variables
 interface ImportMetaEnv {
   readonly VITE_APP_BASE_URL: string;
+  readonly VITE_DOMAIN_URL?: string;
+  readonly VITE_APP_DISCORD_URL?: string;
   readonly VITE_FEATURE_COMMUNITY_SHOWCASE: string;
   readonly VITE_APP_MEETUP_GROUP_NAME?: string;
   readonly VITE_APP_CORS_PROXY?: string;
   readonly PROD: boolean;
   readonly DEV: boolean;
-  [key: string]: string | boolean | undefined;
 }
 
 interface ImportMeta {
