@@ -75,7 +75,7 @@ jobs:
           BASE_URL: ${{ secrets.BASE_URL }}
           FEATURE_COMMUNITY_SHOWCASE: ${{ secrets.FEATURE_COMMUNITY_SHOWCASE }}
           VITE_GITHUB_REPO: ${{ secrets.VITE_GITHUB_REPO }}
-          VITE_GITHUB_DISPATCH_TOKEN: ${{ secrets.GITHUB_DISPATCH_TOKEN }}
+          VITE_GITHUB_DISPATCH_TOKEN: ${{ secrets.VITE_GITHUB_DISPATCH_TOKEN }}
       
       - name: Build Verification
         run: |
@@ -176,7 +176,7 @@ jobs:
           BASE_URL: ${{ secrets.BASE_URL }}
           FEATURE_COMMUNITY_SHOWCASE: ${{ secrets.FEATURE_COMMUNITY_SHOWCASE }}
           VITE_GITHUB_REPO: ${{ secrets.VITE_GITHUB_REPO }}
-          VITE_GITHUB_DISPATCH_TOKEN: ${{ secrets.GITHUB_DISPATCH_TOKEN }}
+          VITE_GITHUB_DISPATCH_TOKEN: ${{ secrets.VITE_GITHUB_DISPATCH_TOKEN }}
       
       - name: Build
         run: |

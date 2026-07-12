@@ -151,7 +151,7 @@ Add repository Actions secrets:
 
 | Secret | Purpose |
 |--------|---------|
-| `GITHUB_DISPATCH_TOKEN` | Fine-grained PAT used at build time as `VITE_GITHUB_DISPATCH_TOKEN` |
+| `VITE_GITHUB_DISPATCH_TOKEN` | Fine-grained PAT baked into the SPA at build time |
 | `VITE_GITHUB_REPO` | Optional; defaults to `rvnug/project-oolong` |
 
 ### Labels

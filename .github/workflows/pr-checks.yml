@@ -79,7 +79,7 @@ jobs:
           VITE_APP_DISCORD_URL: ${{ secrets.VITE_APP_DISCORD_URL }}
           BASE_URL: ${{ secrets.BASE_URL }}
           VITE_GITHUB_REPO: ${{ secrets.VITE_GITHUB_REPO }}
-          VITE_GITHUB_DISPATCH_TOKEN: ${{ secrets.GITHUB_DISPATCH_TOKEN }}
+          VITE_GITHUB_DISPATCH_TOKEN: ${{ secrets.VITE_GITHUB_DISPATCH_TOKEN }}
       
       - name: Build Verification with Debug
         id: build
