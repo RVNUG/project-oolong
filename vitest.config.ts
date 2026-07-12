@@ -19,7 +19,9 @@ export default defineConfig({
         'dist/**',
         '**/*.d.ts',
         '**/*.test.{js,jsx,ts,tsx}',
-        'src/setupTests.ts'
+        'src/setupTests.ts',
+        // Vitest 4 / Rolldown coverage remaps .ts as JS; skip typed SW glue
+        'src/js/registerSW.ts',
       ]
     },
     include: ['**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],

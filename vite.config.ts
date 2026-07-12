@@ -19,14 +19,7 @@ const isCommunityShowcaseEnabled = process.env.VITE_FEATURE_COMMUNITY_SHOWCASE =
 export default defineConfig({
   assetsInclude: ['**/*.jpeg', '**/*.jpg', '**/*.png', '**/*.svg', '**/*.gif', '**/*.webp'],
   plugins: [
-    react({
-      jsxImportSource: 'react',
-      babel: {
-        plugins: [
-          ['@babel/plugin-transform-react-jsx', { runtime: 'automatic' }]
-        ]
-      }
-    }),
+    react(),
     ViteImageOptimizer({
       png: {
         quality: 80,
@@ -37,7 +30,7 @@ export default defineConfig({
         progressive: true,
       },
       gif: {
-        // Sharp v0.33 GIF options
+        // Sharp GIF options
         reuse: true,
         loop: 0,
         delay: 100,
@@ -116,22 +109,32 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: true,
     assetsDir: 'assets',
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true
-      }
-    },
-    rollupOptions: {
+    minify: 'oxc',
+    rolldownOptions: {
       external: !isCommunityShowcaseEnabled ? [
         '**/CommunityShowcasePage.*',
         '**/projects.json'
       ] : [],
       output: {
-        manualChunks: {
-          'vendor': ['react', 'react-dom', 'react-router-dom'],
-          'ui': ['react-helmet-async', 'react-icons']
+        minify: {
+          compress: {
+            dropConsole: true,
+            dropDebugger: true,
+          },
+        },
+        codeSplitting: {
+          groups: [
+            {
+              name: 'vendor',
+              test: /node_modules[\\/](react|react-dom|react-router-dom)([\\/]|$)/,
+              priority: 20,
+            },
+            {
+              name: 'ui',
+              test: /node_modules[\\/](react-helmet-async|react-icons)([\\/]|$)/,
+              priority: 15,
+            },
+          ],
         },
         chunkFileNames: 'assets/js/[name]-[hash].js',
         entryFileNames: 'assets/js/[name]-[hash].js',
@@ -158,4 +161,4 @@ export default defineConfig({
       }
     }
   }
-}) 
+})
