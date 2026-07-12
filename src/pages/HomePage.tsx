@@ -7,23 +7,20 @@ import SEO from '../components/SEO';
 import JsonLd from '../components/JsonLd';
 import { createBreadcrumbStructuredData } from '../utils/structuredData';
 import { getCanonicalUrl } from '../utils/seo';
+import { formatHeroEventCtaLabel } from '../utils/dateFormatters';
 import '../assets/css/home.css';
 import { useState, useEffect, useRef } from 'react';
-
 
 // Import logo for use in hero section
 import logo from '../assets/images/roanoke-star-128-logo.png';
 // Import icons
-import { 
-  FaMicrochip, 
-  FaUsers, 
-  FaCode, 
-  FaLaptopCode, 
-  FaGithub, 
-  FaYoutube, 
-  FaMeetup, 
-  FaDiscord, 
-  FaNewspaper } from 'react-icons/fa';
+import {
+  FaGithub,
+  FaYoutube,
+  FaMeetup,
+  FaDiscord,
+  FaNewspaper
+} from 'react-icons/fa';
 import { getResourceUrl } from '../utils/config';
 
 // YouTube channel ID for RVNUG
@@ -59,6 +56,9 @@ const HomePage = () => {
   const [loadingVideo, setLoadingVideo] = useState<boolean>(true);
   const [videoError, setVideoError] = useState<string | null>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
+
+  const nextEvent = upcomingEvents[0];
+  const proofTalk = videos[0] ?? latestVideo;
 
   // Function to fetch the latest YouTube video
   useEffect(() => {
@@ -222,6 +222,16 @@ const HomePage = () => {
     { name: 'Home', url: baseUrl }
   ]);
 
+  const heroCta = nextEvent
+    ? {
+        to: `/event/${nextEvent.id}`,
+        label: formatHeroEventCtaLabel(nextEvent.name, nextEvent.local_date)
+      }
+    : {
+        to: '/events',
+        label: 'See upcoming events'
+      };
+
   return (
     <div className="home-page">
       <SEO
@@ -234,7 +244,7 @@ const HomePage = () => {
       {/* Add structured data */}
       <JsonLd data={breadcrumbData} />
 
-      {/* Hero Section - Enhanced with animated background and prominent CTA */}
+      {/* Hero Section */}
       <section className="hero">
         <div className="hero-background">
           <div className="hero-shape shape-1"></div>
@@ -245,105 +255,139 @@ const HomePage = () => {
         <div className="hero-content">
           <div className="hero-text">
             <h1>Roanoke Valley <span className="highlight">.NET</span> User Group</h1>
-            <p>A community of passionate developers sharing knowledge, experiences, and building connections in the Roanoke Valley and beyond.</p>
+            <p>
+              Meet Roanoke-area developers in person each month for practical talks,
+              code-and-coffee sessions, and real conversations.
+            </p>
           </div>
           <div className="hero-cta">
-            <Link to="/events" className="btn btn-primary pulse-btn">Join Our Next Event</Link>
-            <a href="#features" className="btn btn-secondary">Explore RVNUG</a>
+            <Link to={heroCta.to} className="btn btn-primary pulse-btn">
+              {heroCta.label}
+            </Link>
+            <a href="#what-to-expect" className="btn btn-secondary">What to expect</a>
           </div>
         </div>
       </section>
 
-      {/* Community CTA Section - New section to drive engagement */}
+      {/* Community proof — stats + latest talk */}
+      <section className="community-proof" aria-label="Community proof">
+        <div className="community-proof-inner">
+          <div className="community-proof-stats">
+            <div className="stat-item">
+              <span className="stat-number">10+</span>
+              <span className="stat-label">Years</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-number">100+</span>
+              <span className="stat-label">Events</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-number">500+</span>
+              <span className="stat-label">Members</span>
+            </div>
+          </div>
+          {!loadingVideo && proofTalk && (
+            <a
+              className="community-proof-talk"
+              href={`https://www.youtube.com/watch?v=${proofTalk.id}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="proof-talk-label">Latest talk</span>
+              <span className="proof-talk-title">{proofTalk.title}</span>
+            </a>
+          )}
+          {!loadingVideo && !proofTalk && (
+            <a className="community-proof-talk" href="#past-talks">
+              <span className="proof-talk-label">Latest talk</span>
+              <span className="proof-talk-title">Browse session recordings</span>
+            </a>
+          )}
+        </div>
+      </section>
+
+      {/* What to expect — replaces What We Offer */}
+      <section id="what-to-expect" className="what-to-expect">
+        <h2 className="section-title">What to expect</h2>
+        <p className="what-to-expect-lead">Show up once — no pitch, no pressure.</p>
+        <ol className="expect-list">
+          <li className="expect-item">
+            <h3>Who shows up</h3>
+            <p>
+              Software developers from Roanoke, Blacksburg, and the New River Valley — juniors
+              through seniors. .NET, full stack, frontend, backend, JavaScript, cloud, DevOps,
+              AI — you name it.
+            </p>
+          </li>
+          <li className="expect-item">
+            <h3>What happens</h3>
+            <p>
+              Practical talks most months, plus Code &amp; Coffee coworking-style sessions —
+              informal, in-person, and discussion-friendly.
+            </p>
+          </li>
+          <li className="expect-item">
+            <h3>All experience levels welcome</h3>
+            <p>
+              Beginners and experienced developers alike. Plenty of members dig into technical
+              deep dives — and we keep things approachable for people who&apos;ve never been to
+              a meetup before. New members are always welcome.
+            </p>
+          </li>
+        </ol>
+      </section>
+
+      {/* Discord-led community section */}
       <section className="community-cta">
         <div className="cta-content">
-          <h2>Join Our Developer Community</h2>
-          <p>Connect with fellow developers, stay updated on events, and access exclusive resources.</p>
-          <div className="cta-buttons">
-            <div className="newsletter-signup">
-              <a href={NEWSLETTER_URL} target="_blank" rel="noopener noreferrer" className="btn btn-social">
-                <FaNewspaper /> Signup For Our Newsletter</a>
-            </div>
-            <a href="https://github.com/rvnug" target="_blank" rel="noopener noreferrer" className="btn btn-social">
-              <FaGithub /> GitHub
-            </a>
-            <a href="https://www.youtube.com/@rvnug" target="_blank" rel="noopener noreferrer" className="btn btn-social">
-              <FaYoutube /> YouTube
-            </a>
-            <a href="https://www.meetup.com/Roanoke-Valley-NET-User-Group/" target="_blank" rel="noopener noreferrer" className="btn btn-social">
-              <FaMeetup /> Meetup
-            </a>
-            <a href={DISCORD_URL} target="_blank" rel="noopener noreferrer" className="btn btn-social">
-              <FaDiscord /> Discord
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Feature Grid Section - Visual representation of what RVNUG offers */}
-      <section id="features" className="features-section">
-        <h2 className="section-title">What We Offer</h2>
-        <div className="features-grid">
-          <div className="feature-card">
-            <div className="feature-icon">
-              <FaMicrochip />
-            </div>
-            <h3>Technical Talks</h3>
-            <p>Expert presentations on .NET, cloud, web development, and emerging technologies</p>
-          </div>
-          <div className="feature-card">
-            <div className="feature-icon">
-              <FaUsers />
-            </div>
-            <h3>Community</h3>
-            <p>Connect with local developers, build relationships, and grow your network</p>
-          </div>
-          <div className="feature-card">
-            <div className="feature-icon">
-              <FaCode />
-            </div>
-            <h3>Hands-on Learning</h3>
-            <p>Coding workshops and collaborative projects to enhance your skills</p>
-          </div>
-          <div className="feature-card">
-            <div className="feature-icon">
-              <FaLaptopCode />
-            </div>
-            <h3>Career Growth</h3>
-            <p>Professional development opportunities and industry connections</p>
-          </div>
-        </div>
-      </section>
-      
-      {/* About Section - Enhanced with a more visual layout */}
-      <section className="about-section">
-        <div className="about-content">
-          <h2 className="section-title">About RVNUG</h2>
-          <div className="about-columns">
-            <div className="about-description">
-              <p>
-                Roanoke Valley .NET User Group is a community-driven organization dedicated to sharing knowledge
-                and experience in .NET and many other open and closed software development technologies.
-              </p>
-              <p>
-                Our mission is to foster a collaborative environment where developers of all skill levels
-                can learn, network, and grow professionally through regular meetups, events, and knowledge sharing.
-              </p>
-              <Link to="/team" className="btn btn-primary">Meet Our Team</Link>
-            </div>
-            <div className="about-stats">
-              <div className="stat-item">
-                <span className="stat-number">10+</span>
-                <span className="stat-label">Years</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-number">100+</span>
-                <span className="stat-label">Events</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-number">500+</span>
-                <span className="stat-label">Members</span>
-              </div>
+          <h2>Between meetups, keep the conversation going</h2>
+          <p>
+            Our Discord is where local developers share job leads, event chatter, help on side
+            projects, and follow-up discussion after talks.
+          </p>
+          <a
+            href={DISCORD_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary discord-primary-btn"
+          >
+            <FaDiscord /> Join the Discord
+          </a>
+          <div className="also-find-us">
+            <span className="also-find-us-label">Also find us on</span>
+            <div className="cta-buttons">
+              <a
+                href="https://www.meetup.com/Roanoke-Valley-NET-User-Group/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-social"
+              >
+                <FaMeetup /> Meetup
+              </a>
+              <a
+                href="https://www.youtube.com/@rvnug"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-social"
+              >
+                <FaYoutube /> YouTube
+              </a>
+              <a
+                href="https://github.com/rvnug"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-social"
+              >
+                <FaGithub /> GitHub
+              </a>
+              <a
+                href={NEWSLETTER_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-social"
+              >
+                <FaNewspaper /> Newsletter
+              </a>
             </div>
           </div>
         </div>
@@ -370,7 +414,6 @@ const HomePage = () => {
           <div className="no-events">No upcoming events scheduled. Check back soon!</div>
         )}
       </section>
-
 
       {/* YouTube Spotlight Section */}
       <section id="past-talks" className="youtube-spotlight">
@@ -490,6 +533,24 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* About Section — mission only; stats live in community proof */}
+      <section className="about-section">
+        <div className="about-content">
+          <h2 className="section-title">About RVNUG</h2>
+          <div className="about-description about-description-centered">
+            <p>
+              Roanoke Valley .NET User Group is a community-driven organization dedicated to sharing knowledge
+              and experience in .NET and many other open and closed software development technologies.
+            </p>
+            <p>
+              Our mission is to foster a collaborative environment where developers of all skill levels
+              can learn, network, and grow professionally through regular meetups, events, and knowledge sharing.
+            </p>
+            <Link to="/team" className="btn btn-primary">Meet Our Team</Link>
+          </div>
+        </div>
+      </section>
+
       {/* Sponsors Section */}
       <section className="sponsors-section">
         <div className="section-header">
@@ -515,4 +576,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage; 
+export default HomePage;

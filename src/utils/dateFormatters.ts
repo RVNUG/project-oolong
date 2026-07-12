@@ -220,4 +220,35 @@ export const getMonthAbbr = (date: Date): string => {
   
   const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   return monthNames[date.getMonth()];
+};
+
+/**
+ * Build a time-bound homepage hero CTA label from a Meetup event name and local date.
+ * Example: "See Code & Coffee — Jul 25"
+ */
+export const formatHeroEventCtaLabel = (
+  name: string,
+  localDate: string,
+  maxNameLength = 36
+): string => {
+  let shortName = name.replace(/^(In Person|Online):\s*/i, '').trim();
+  if (shortName.length > maxNameLength) {
+    shortName = `${shortName.slice(0, maxNameLength - 1).trimEnd()}…`;
+  }
+
+  const dateParts = localDate.split('-');
+  if (dateParts.length === 3) {
+    const year = parseInt(dateParts[0], 10);
+    const month = parseInt(dateParts[1], 10) - 1;
+    const day = parseInt(dateParts[2], 10);
+    if (!isNaN(year) && !isNaN(month) && !isNaN(day)) {
+      const date = new Date(year, month, day);
+      if (!isNaN(date.getTime())) {
+        const monthDay = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        return `See ${shortName} — ${monthDay}`;
+      }
+    }
+  }
+
+  return `See ${shortName}`;
 }; 
