@@ -115,17 +115,35 @@ describe('Date Formatter Utils', () => {
   });
 
   describe('formatHeroEventCtaLabel', () => {
-    it('should strip In Person prefix and format short month day', () => {
-      const result = formatHeroEventCtaLabel(
-        'In Person: Code and Coffee on July 25th from 10am-1pm ET',
-        '2026-07-25'
-      );
-      expect(result).toMatch(/^See Code and Coffee/);
-      expect(result).toContain('Jul');
-      expect(result).toContain('25');
+    it('should strip embedded "on Month Day from …" and append calendar date once', () => {
+      expect(
+        formatHeroEventCtaLabel(
+          'In Person: Code and Coffee on July 25th from 10am-1pm ET',
+          '2026-07-25'
+        )
+      ).toBe('See Code and Coffee — Jul 25');
     });
 
-    it('should truncate long titles', () => {
+    it('should strip weekday/date/time comma suffixes from Meetup titles', () => {
+      expect(
+        formatHeroEventCtaLabel(
+          'In Person: Code & Coffee, Saturday, July 25th, 10am-1pm ET',
+          '2026-07-25'
+        )
+      ).toBe('See Code & Coffee — Jul 25');
+    });
+
+    it('should keep talk titles without embedded dates', () => {
+      expect(
+        formatHeroEventCtaLabel(
+          'In Person-Salem: Making AI faster and safer with Docker by Michael Irwin',
+          '2026-06-03',
+          80
+        )
+      ).toBe('See Salem: Making AI faster and safer with Docker by Michael Irwin — Jun 3');
+    });
+
+    it('should truncate long titles after date cleanup', () => {
       const result = formatHeroEventCtaLabel(
         'Online: A very long event title that needs truncation for the hero button',
         '2026-08-01',
@@ -134,6 +152,7 @@ describe('Date Formatter Utils', () => {
       expect(result.startsWith('See ')).toBe(true);
       expect(result).toContain('…');
       expect(result).toContain('Aug');
+      expect(result).not.toMatch(/July|from \d/i);
     });
   });
 }); 

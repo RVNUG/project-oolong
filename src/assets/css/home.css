@@ -179,6 +179,14 @@ section[id] {
   gap: var(--space-4);
 }
 
+/* Button-styled links must not pick up browser :visited purple */
+.hero-cta a.btn.btn-primary:link,
+.hero-cta a.btn.btn-primary:visited,
+.hero-cta a.btn.btn-primary:hover,
+.hero-cta a.btn.btn-primary:active {
+  color: var(--button-primary-text);
+}
+
 .btn .btn-primary .pulse-btn {
   background-color: var(--primary-color);
   border-color: var(--primary-color);
@@ -447,6 +455,13 @@ section[id] {
   color: var(--text-medium);
 }
 
+.about-section a.btn.btn-primary:link,
+.about-section a.btn.btn-primary:visited,
+.about-section a.btn.btn-primary:hover,
+.about-section a.btn.btn-primary:active {
+  color: var(--button-primary-text);
+}
+
 .stat-item {
   background: linear-gradient(135deg, var(--color-primary-50), var(--color-primary-100));
   border-radius: var(--border-radius-md);
@@ -541,6 +556,18 @@ section[id] {
   align-items: center;
   gap: var(--space-2);
   margin-bottom: var(--space-5);
+}
+
+.community-cta a.discord-primary-btn:link,
+.community-cta a.discord-primary-btn:visited,
+.community-cta a.discord-primary-btn:hover,
+.community-cta a.discord-primary-btn:active {
+  color: var(--button-primary-text);
+}
+
+.community-cta a.discord-primary-btn:visited svg,
+.community-cta a.discord-primary-btn:link svg {
+  color: inherit;
 }
 
 .also-find-us {

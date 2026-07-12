@@ -222,16 +222,22 @@ export const getMonthAbbr = (date: Date): string => {
   return monthNames[date.getMonth()];
 };
 
+import { cleanMeetupEventName } from './eventFilters';
+
 /**
  * Build a time-bound homepage hero CTA label from a Meetup event name and local date.
  * Example: "See Code & Coffee — Jul 25"
+ *
+ * Strips mode prefixes and embedded date/time phrases from the Meetup title so the
+ * appended calendar date is not duplicated.
  */
 export const formatHeroEventCtaLabel = (
   name: string,
   localDate: string,
   maxNameLength = 36
 ): string => {
-  let shortName = name.replace(/^(In Person|Online):\s*/i, '').trim();
+  let shortName = cleanMeetupEventName(name);
+
   if (shortName.length > maxNameLength) {
     shortName = `${shortName.slice(0, maxNameLength - 1).trimEnd()}…`;
   }
@@ -239,10 +245,10 @@ export const formatHeroEventCtaLabel = (
   const dateParts = localDate.split('-');
   if (dateParts.length === 3) {
     const year = parseInt(dateParts[0], 10);
-    const month = parseInt(dateParts[1], 10) - 1;
+    const monthIndex = parseInt(dateParts[1], 10) - 1;
     const day = parseInt(dateParts[2], 10);
-    if (!isNaN(year) && !isNaN(month) && !isNaN(day)) {
-      const date = new Date(year, month, day);
+    if (!isNaN(year) && !isNaN(monthIndex) && !isNaN(day)) {
+      const date = new Date(year, monthIndex, day);
       if (!isNaN(date.getTime())) {
         const monthDay = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
         return `See ${shortName} — ${monthDay}`;
