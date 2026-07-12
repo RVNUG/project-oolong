@@ -3,7 +3,7 @@
  * A workflow creates the issue; the SPA never calls the Issues API directly.
  */
 
-export type ContactCategory = 'feedback' | 'feature-request' | 'bug';
+export type ContactCategory = 'feedback' | 'feature-request' | 'bug' | 'sponsorship' | 'speaking' | 'other' | 'volunteer';
 
 export interface ContactPayload {
   category: ContactCategory;

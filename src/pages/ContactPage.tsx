@@ -27,6 +27,10 @@ const CATEGORY_OPTIONS: { value: ContactCategory; label: string }[] = [
   { value: 'feedback', label: 'Feedback' },
   { value: 'feature-request', label: 'Feature Request' },
   { value: 'bug', label: 'Bug' },
+  { value: 'sponsorship', label: 'Sponsorship' },
+  { value: 'speaking', label: 'Speaking' },
+  { value: 'other', label: 'Other' },
+  { value: 'volunteer', label: 'Volunteer' },
 ];
 
 // Form validation constants
