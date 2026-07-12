@@ -1,0 +1,130 @@
+name: Contact Form Issue
+
+on:
+  repository_dispatch:
+    types: [contact-form]
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  create-issue:
+    name: Create contact issue
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate payload and create issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const MAX = { name: 100, email: 254, message: 3000 };
+            const MIN_MESSAGE = 10;
+            const ALLOWED = new Set(['feedback', 'feature-request', 'bug']);
+            const PREFIX = {
+              feedback: 'Feedback',
+              'feature-request': 'Feature Request',
+              bug: 'Bug',
+            };
+
+            const payload = context.payload.client_payload || {};
+            const category = String(payload.category || '').trim();
+            const name = String(payload.name || '').trim();
+            const email = String(payload.email || '').trim();
+            const message = String(payload.message || '').trim();
+            const submittedAt = String(payload.submitted_at || new Date().toISOString()).trim();
+
+            const fail = (reason) => {
+              core.setFailed(reason);
+              return;
+            };
+
+            if (!ALLOWED.has(category)) {
+              return fail(`Invalid category: ${category}`);
+            }
+            if (!name || name.length > MAX.name) {
+              return fail('Invalid name');
+            }
+            if (!email || email.length > MAX.email || !email.includes('@')) {
+              return fail('Invalid email');
+            }
+            if (!message || message.length < MIN_MESSAGE || message.length > MAX.message) {
+              return fail('Invalid message');
+            }
+
+            // Escape markdown-sensitive sequences from user content
+            const escapeMd = (text) =>
+              text
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/`/g, "'")
+                .replace(/\r/g, '');
+
+            const safeName = escapeMd(name);
+            const safeEmail = escapeMd(email);
+            const safeMessage = escapeMd(message);
+            const safeSubmitted = escapeMd(submittedAt.slice(0, 40));
+
+            const snippet = message.replace(/\s+/g, ' ').slice(0, 60);
+            const titleBase = `[${PREFIX[category]}] ${snippet}${message.length > 60 ? '…' : ''}`;
+            const title = titleBase.slice(0, 80);
+
+            const body = [
+              `| Field | Value |`,
+              `| --- | --- |`,
+              `| Reporter | ${safeName} &lt;${safeEmail}&gt; |`,
+              `| Submitted | ${safeSubmitted} |`,
+              `| Category | ${PREFIX[category]} |`,
+              `| Source | Contact form |`,
+              ``,
+              `---`,
+              ``,
+              safeMessage,
+            ].join('\n');
+
+            const labels = ['contact-form', category];
+
+            // Ensure labels exist (ignore errors if already present or lacking admin)
+            for (const label of labels) {
+              try {
+                await github.rest.issues.getLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: label,
+                });
+              } catch (err) {
+                if (err.status === 404) {
+                  try {
+                    await github.rest.issues.createLabel({
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      name: label,
+                      color: label === 'bug' ? 'd73a4a' : label === 'feature-request' ? 'a2eeef' : '0e8a16',
+                      description: `Contact form: ${label}`,
+                    });
+                  } catch (createErr) {
+                    core.warning(`Could not create label ${label}: ${createErr.message}`);
+                  }
+                }
+              }
+            }
+
+            let issue;
+            try {
+              issue = await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                labels,
+              });
+            } catch (labelErr) {
+              core.warning(`Creating issue with labels failed (${labelErr.message}); retrying without labels`);
+              issue = await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+              });
+            }
+
+            core.info(`Created issue #${issue.data.number}: ${issue.data.html_url}`);

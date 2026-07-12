@@ -5,10 +5,19 @@
 
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const NAME_REGEX = /^[a-zA-Z]+(?:[\s'-][a-zA-Z]+)*$/; // Allows multiple words with spaces, hyphens, apostrophes between them
+
+export const CONTACT_CATEGORIES = [
+  'feedback',
+  'feature-request',
+  'bug',
+] as const;
+
+export type ContactFormCategory = (typeof CONTACT_CATEGORIES)[number];
+
 const MAX_LENGTH = {
   name: 100,
   email: 254, // Maximum length per RFC 5321
-  subject: 150,
+  category: 50,
   message: 3000,
 };
 
@@ -106,20 +115,26 @@ export const isInputSuspicious = (input: string): boolean => {
   return suspiciousPatterns.some(pattern => pattern.test(input));
 };
 
+export const isValidContactCategory = (
+  category: string
+): category is ContactFormCategory => {
+  return (CONTACT_CATEGORIES as readonly string[]).includes(category);
+};
+
 /**
  * Sanitize form data before submission
  */
 export const sanitizeFormData = (formData: {
   name: string;
   email: string;
-  subject: string;
+  category: string;
   message: string;
 }) => {
   // Check for suspicious input before sanitizing
   const fieldChecks = {
     name: isInputSuspicious(formData.name),
     email: isInputSuspicious(formData.email),
-    subject: isInputSuspicious(formData.subject),
+    category: isInputSuspicious(formData.category),
     message: isInputSuspicious(formData.message),
   };
   
@@ -138,7 +153,7 @@ export const sanitizeFormData = (formData: {
   return {
     name: sanitizeInput(formData.name),
     email: sanitizeInput(formData.email),
-    subject: sanitizeInput(formData.subject),
+    category: sanitizeInput(formData.category),
     message: sanitizeInput(formData.message),
   };
 };
@@ -150,7 +165,7 @@ export const sanitizeFormData = (formData: {
 export const validateFormData = (
   name: string,
   email: string,
-  subject: string,
+  category: string,
   message: string
 ): string[] => {
   const errors: string[] = [];
@@ -179,11 +194,13 @@ export const validateFormData = (
     }
   }
 
-  // Subject validation
-  if (!subject) {
-    errors.push('Please select a subject');
-  } else if (subject.length > MAX_LENGTH.subject) {
-    errors.push(`Subject must be no more than ${MAX_LENGTH.subject} characters long`);
+  // Category validation
+  if (!category) {
+    errors.push('Please select a category');
+  } else if (!isValidContactCategory(category)) {
+    errors.push('Please select a valid category');
+  } else if (category.length > MAX_LENGTH.category) {
+    errors.push(`Category must be no more than ${MAX_LENGTH.category} characters long`);
   }
 
   // Message validation

@@ -126,6 +126,42 @@ Feature flags in production are managed through GitHub Secrets:
 2. Add or update the following secrets:
    - `FEATURE_COMMUNITY_SHOWCASE`: Set to `true` to enable the Community Showcase feature
 
+## Contact form → GitHub Issues
+
+The Contact page submits Feedback, Feature Request, or Bug messages via GitHub `repository_dispatch`. A workflow (`.github/workflows/contact-form.yml`) validates the payload and opens a labeled issue.
+
+### How it works
+
+1. The SPA posts to `POST /repos/{owner}/{repo}/dispatches` with event type `contact-form`.
+2. Auth uses a fine-grained PAT baked into the build (`VITE_GITHUB_DISPATCH_TOKEN`). Treat this token as **public** — it appears in the GitHub Pages JS bundle.
+3. The workflow creates the issue with Actions `GITHUB_TOKEN` (`issues: write`). Prefer scoping the public PAT to **Contents: Read and write** on this repo only (enough to trigger dispatch).
+
+### Local setup
+
+In `.env`:
+
+```bash
+VITE_GITHUB_REPO=rvnug/project-oolong
+VITE_GITHUB_DISPATCH_TOKEN=github_pat_...
+```
+
+### Production secrets
+
+Add repository Actions secrets:
+
+| Secret | Purpose |
+|--------|---------|
+| `GITHUB_DISPATCH_TOKEN` | Fine-grained PAT used at build time as `VITE_GITHUB_DISPATCH_TOKEN` |
+| `VITE_GITHUB_REPO` | Optional; defaults to `rvnug/project-oolong` |
+
+### Labels
+
+Issues are tagged `contact-form` plus one of `feedback`, `feature-request`, or `bug`. The workflow attempts to create missing labels; you can also create them manually.
+
+### Spam note
+
+Because the dispatch token ships in the client, anyone can extract it and trigger the workflow. Mitigations: repo-scoped PAT, client honeypot/rate limits, and workflow payload validation. Rotate the PAT if abused.
+
 ## Deployment
 
 The website is deployed to GitHub Pages using GitHub Actions. The deployment process includes:

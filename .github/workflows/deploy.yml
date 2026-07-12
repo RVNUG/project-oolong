@@ -67,11 +67,15 @@ jobs:
           echo "VITE_APP_YOUTUBE_DATA_API_KEY=${YOUTUBE_API_KEY}" >> .env
           echo "VITE_APP_BASE_URL=${BASE_URL:-/}" >> .env
           echo "VITE_FEATURE_COMMUNITY_SHOWCASE=${FEATURE_COMMUNITY_SHOWCASE:-false}" >> .env
+          echo "VITE_GITHUB_REPO=${VITE_GITHUB_REPO:-rvnug/project-oolong}" >> .env
+          echo "VITE_GITHUB_DISPATCH_TOKEN=${VITE_GITHUB_DISPATCH_TOKEN}" >> .env
         env:
           YOUTUBE_CHANNEL_ID: ${{ secrets.RVNUG_YT_CHANNEL_ID }}
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_DATA_API_KEY }}
           BASE_URL: ${{ secrets.BASE_URL }}
           FEATURE_COMMUNITY_SHOWCASE: ${{ secrets.FEATURE_COMMUNITY_SHOWCASE }}
+          VITE_GITHUB_REPO: ${{ secrets.VITE_GITHUB_REPO }}
+          VITE_GITHUB_DISPATCH_TOKEN: ${{ secrets.GITHUB_DISPATCH_TOKEN }}
       
       - name: Build Verification
         run: |
@@ -163,12 +167,16 @@ jobs:
           echo "VITE_APP_BASE_URL=${BASE_URL:-/}" >> .env
           echo "VITE_APP_DISCORD_URL=${VITE_APP_DISCORD_URL}" >> .env
           echo "VITE_FEATURE_COMMUNITY_SHOWCASE=${FEATURE_COMMUNITY_SHOWCASE:-false}" >> .env
+          echo "VITE_GITHUB_REPO=${VITE_GITHUB_REPO:-rvnug/project-oolong}" >> .env
+          echo "VITE_GITHUB_DISPATCH_TOKEN=${VITE_GITHUB_DISPATCH_TOKEN}" >> .env
         env:
           YOUTUBE_CHANNEL_ID: ${{ secrets.RVNUG_YT_CHANNEL_ID }}
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_DATA_API_KEY }}
           VITE_APP_DISCORD_URL: ${{ secrets.VITE_APP_DISCORD_URL }}
           BASE_URL: ${{ secrets.BASE_URL }}
           FEATURE_COMMUNITY_SHOWCASE: ${{ secrets.FEATURE_COMMUNITY_SHOWCASE }}
+          VITE_GITHUB_REPO: ${{ secrets.VITE_GITHUB_REPO }}
+          VITE_GITHUB_DISPATCH_TOKEN: ${{ secrets.GITHUB_DISPATCH_TOKEN }}
       
       - name: Build
         run: |

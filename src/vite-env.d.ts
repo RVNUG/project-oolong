@@ -30,6 +30,10 @@ interface ImportMetaEnv {
   readonly VITE_FEATURE_COMMUNITY_SHOWCASE: string;
   readonly VITE_APP_MEETUP_GROUP_NAME?: string;
   readonly VITE_APP_CORS_PROXY?: string;
+  /** Fine-grained PAT used only to trigger repository_dispatch (public in the SPA bundle). */
+  readonly VITE_GITHUB_DISPATCH_TOKEN?: string;
+  /** owner/repo for contact-form dispatch (default rvnug/project-oolong). */
+  readonly VITE_GITHUB_REPO?: string;
   readonly PROD: boolean;
   readonly DEV: boolean;
 }
