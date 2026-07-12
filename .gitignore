@@ -10,6 +10,9 @@ yarn-error.log
 package-lock.json
 yarn.lock
 
+# Brainstorm companion / superpowers session artifacts
+.superpowers/
+
 # Build directory
 .cache/
 .DS_Store

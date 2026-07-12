@@ -4,7 +4,8 @@ import {
   formatTime, 
   formatMeetupDateTime,
   formatShortDate,
-  getMonthAbbr
+  getMonthAbbr,
+  formatHeroEventCtaLabel
 } from '../dateFormatters';
 
 describe('Date Formatter Utils', () => {
@@ -110,6 +111,29 @@ describe('Date Formatter Utils', () => {
     it('should get month abbreviation', () => {
       const date = new Date(2025, 3, 26); // Month is 0-indexed
       expect(getMonthAbbr(date)).toBe('Apr');
+    });
+  });
+
+  describe('formatHeroEventCtaLabel', () => {
+    it('should strip In Person prefix and format short month day', () => {
+      const result = formatHeroEventCtaLabel(
+        'In Person: Code and Coffee on July 25th from 10am-1pm ET',
+        '2026-07-25'
+      );
+      expect(result).toMatch(/^See Code and Coffee/);
+      expect(result).toContain('Jul');
+      expect(result).toContain('25');
+    });
+
+    it('should truncate long titles', () => {
+      const result = formatHeroEventCtaLabel(
+        'Online: A very long event title that needs truncation for the hero button',
+        '2026-08-01',
+        20
+      );
+      expect(result.startsWith('See ')).toBe(true);
+      expect(result).toContain('…');
+      expect(result).toContain('Aug');
     });
   });
 }); 
