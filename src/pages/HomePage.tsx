@@ -8,6 +8,10 @@ import JsonLd from '../components/JsonLd';
 import { createBreadcrumbStructuredData } from '../utils/structuredData';
 import { getCanonicalUrl } from '../utils/seo';
 import { formatHeroEventCtaLabel } from '../utils/dateFormatters';
+import {
+  cleanMeetupEventName,
+  getLatestPastTalk
+} from '../utils/eventFilters';
 import '../assets/css/home.css';
 import { useState, useEffect, useRef } from 'react';
 
@@ -48,7 +52,7 @@ interface LocalVideoData {
 
 const HomePage = () => {
   const location = useLocation();
-  const { loading: eventsLoading, error: eventsError, upcomingEvents } = useEvents();
+  const { loading: eventsLoading, error: eventsError, upcomingEvents, pastEvents } = useEvents();
   const { loading: sponsorsLoading, error: sponsorsError, sponsors } = useSponsors();
   const [latestVideo, setLatestVideo] = useState<YouTubeVideo | null>(null);
   const [videos, setVideos] = useState<YouTubeVideo[]>([]);
@@ -58,7 +62,7 @@ const HomePage = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const nextEvent = upcomingEvents[0];
-  const proofTalk = videos[0] ?? latestVideo;
+  const latestPastTalk = getLatestPastTalk(pastEvents);
 
   // Function to fetch the latest YouTube video
   useEffect(() => {
@@ -286,22 +290,22 @@ const HomePage = () => {
               <span className="stat-label">Members</span>
             </div>
           </div>
-          {!loadingVideo && proofTalk && (
-            <a
+          {!eventsLoading && latestPastTalk && (
+            <Link
               className="community-proof-talk"
-              href={`https://www.youtube.com/watch?v=${proofTalk.id}`}
-              target="_blank"
-              rel="noopener noreferrer"
+              to={`/event/${latestPastTalk.id}`}
             >
               <span className="proof-talk-label">Latest talk</span>
-              <span className="proof-talk-title">{proofTalk.title}</span>
-            </a>
+              <span className="proof-talk-title">
+                {cleanMeetupEventName(latestPastTalk.name)}
+              </span>
+            </Link>
           )}
-          {!loadingVideo && !proofTalk && (
-            <a className="community-proof-talk" href="#past-talks">
+          {!eventsLoading && !latestPastTalk && (
+            <Link className="community-proof-talk" to="/events">
               <span className="proof-talk-label">Latest talk</span>
-              <span className="proof-talk-title">Browse session recordings</span>
-            </a>
+              <span className="proof-talk-title">See past meetups</span>
+            </Link>
           )}
         </div>
       </section>
