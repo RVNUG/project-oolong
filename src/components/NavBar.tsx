@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import '../assets/css/navbar.css';
 import logo from '../assets/images/roanoke-star-128-logo.png';
 import ThemeToggle from './ThemeToggle';
+import ContactLightbulb from './ContactLightbulb';
 import { Feature, isFeatureEnabled } from '../config/featureFlags';
 
 const NavBar = () => {
@@ -63,6 +64,7 @@ const NavBar = () => {
           </Link>
           
           <div className="navbar-actions">
+            <ContactLightbulb />
             <ThemeToggle />
             
             {isOpen ? (
