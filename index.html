@@ -56,6 +56,19 @@
     <!-- Meta theme color -->
     <meta name="theme-color" content="#5c2d91">
     
+    <!-- Restore original URL after GitHub Pages 404 redirect -->
+    <script>
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var path = params.get('p');
+        if (path) {
+          var query = params.get('q');
+          var url = `/${decodeURIComponent(path)}${query ? `?${decodeURIComponent(query)}` : ''}${window.location.hash}`;
+          window.history.replaceState(null, '', url);
+        }
+      })();
+    </script>
+
     <!-- JSONP callback function for Meetup API -->
     <script>
       function handleMeetupEvents(data) {
