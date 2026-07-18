@@ -1,13 +1,13 @@
 /* Contact Lightbulb – sticky navbar shortcut to the Contact page */
 
-.contact-lightbulb {
+.contact-qq-btn {
   position: relative;
   display: flex;
   align-items: center;
 }
 
 /* The icon button itself */
-.contact-lightbulb-btn {
+.contact-qq-btn-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -25,13 +25,13 @@
   transition: color 0.3s ease, background-color 0.3s ease;
 }
 
-.contact-lightbulb-btn:hover {
+.contact-qq-btn-btn:hover {
   background-color: rgba(255, 255, 255, 0.15);
   color: #ffd166; /* warm amber — lightbulb "on" glow */
   text-decoration: none;
 }
 
-.contact-lightbulb-btn:focus-visible {
+.contact-qq-btn-btn:focus-visible {
   background-color: rgba(255, 255, 255, 0.15);
   color: #ffd166;
   text-decoration: none;
@@ -40,17 +40,17 @@
 }
 
 /* Gentle pulse animation on the icon */
-.contact-lightbulb-btn i {
+.contact-qq-btn-btn i {
   transition: transform 0.4s ease, color 0.3s ease;
 }
 
-.contact-lightbulb-btn:hover i,
-.contact-lightbulb-btn:focus-visible i {
+.contact-qq-btn-btn:hover i,
+.contact-qq-btn-btn:focus-visible i {
   transform: scale(1.2) rotate(-8deg);
 }
 
 /* Tooltip */
-.contact-lightbulb-tooltip {
+.contact-qq-btn-tooltip {
   position: absolute;
   top: calc(100% + 10px);
   left: 50%;
@@ -71,7 +71,7 @@
 }
 
 /* Arrow pointing up toward the button */
-.contact-lightbulb-tooltip::before {
+.contact-qq-btn-tooltip::before {
   content: '';
   position: absolute;
   top: -6px;
@@ -83,15 +83,15 @@
 }
 
 /* Show tooltip on hover / focus-within */
-.contact-lightbulb:hover .contact-lightbulb-tooltip,
-.contact-lightbulb:focus-within .contact-lightbulb-tooltip {
+.contact-qq-btn:hover .contact-qq-btn-tooltip,
+.contact-qq-btn:focus-within .contact-qq-btn-tooltip {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
 
 /* Mobile: keep the same dimensions, adjust spacing */
 @media (max-width: 768px) {
-  .contact-lightbulb-btn {
+  .contact-qq-btn-btn {
     margin-left: 0;
     margin-right: var(--space-2);
   }

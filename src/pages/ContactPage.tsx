@@ -47,6 +47,41 @@ const MIN_LENGTH = {
 
 // Throttling configuration
 const SUBMIT_COOLDOWN = 2000; // 2 seconds between submissions
+const FOLLOW_UP_EMAIL = 'officers@rvnug.org';
+const EMAIL_FORWARD_CATEGORIES: ContactCategory[] = [
+  'sponsorship',
+  'speaking',
+  'volunteer',
+];
+
+const isEmailForwardCategory = (category: ContactCategory): boolean => {
+  return EMAIL_FORWARD_CATEGORIES.includes(category);
+};
+
+const getCategoryDisplayName = (category: ContactCategory): string => {
+  const option = CATEGORY_OPTIONS.find((opt) => opt.value === category);
+  return option?.label ?? category;
+};
+
+const openNativeEmailForCategory = (payload: {
+  category: ContactCategory;
+  message: string;
+  name: string;
+  email: string;
+}) => {
+  const subject = `RVNUG Contact - ${getCategoryDisplayName(payload.category)}`;
+  const bodyLines = [
+    `Category: ${getCategoryDisplayName(payload.category)}`,
+    `Name: ${payload.name || 'Not provided'}`,
+    `Email: ${payload.email || 'Not provided'}`,
+    '',
+    'Message:',
+    payload.message,
+  ];
+
+  const mailtoHref = `mailto:${FOLLOW_UP_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
+  window.location.href = mailtoHref;
+};
 
 const ContactPage = () => {
   const location = useLocation();
@@ -214,6 +249,16 @@ const ContactPage = () => {
         email: sanitizedData.email,
         message: sanitizedData.message,
       });
+
+      if (isEmailForwardCategory(sanitizedData.category)) {
+        openNativeEmailForCategory({
+          category: sanitizedData.category,
+          message: sanitizedData.message,
+          name: sanitizedData.name,
+          email: sanitizedData.email,
+        });
+      }
+
       setSubmitSuccess(true);
       setFormData({
         name: '',
@@ -320,8 +365,11 @@ const ContactPage = () => {
         <div className="contact-form-container">
           <h2>Send Us a Message</h2>
           <p className="form-info">
-            Share feedback, feature ideas, or bugs. Your message opens a GitHub
-            issue for the RVNUG team. For sponsorship or speaking, email{' '}
+            Share feedback, feature ideas, or bugs. Category and message are
+            required. These issues will be tracked in our GitHub Issues page. Name and email are optional (opt-in), but they help us
+            follow up with you. For sponsorship, speaking, or volunteer
+            messages, we also open your native email client with your message
+            prefilled to{' '}
             <a href="mailto:officers@rvnug.org">officers@rvnug.org</a>.
           </p>
 
@@ -369,7 +417,6 @@ const ContactPage = () => {
                 value={formData.name}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                required
                 minLength={MIN_LENGTH.name}
                 maxLength={MAX_LENGTH.name}
                 pattern="[a-zA-Z]+(?:[\s'-][a-zA-Z]+)*"
@@ -393,7 +440,6 @@ const ContactPage = () => {
                 value={formData.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                required
                 maxLength={MAX_LENGTH.email}
                 aria-describedby="email-error"
                 disabled={formDisabled}

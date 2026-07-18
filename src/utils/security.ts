@@ -10,6 +10,10 @@ export const CONTACT_CATEGORIES = [
   'feedback',
   'feature-request',
   'bug',
+  'sponsorship',
+  'speaking',
+  'other',
+  'volunteer',
 ] as const;
 
 export type ContactFormCategory = (typeof CONTACT_CATEGORIES)[number];
@@ -170,10 +174,8 @@ export const validateFormData = (
 ): string[] => {
   const errors: string[] = [];
 
-  // Name validation
-  if (!name) {
-    errors.push('Name is required');
-  } else if (!isValidName(name)) {
+  // Name validation (optional, but validated when provided)
+  if (name && !isValidName(name)) {
     if (name.length < MIN_LENGTH.name) {
       errors.push(`Name must be at least ${MIN_LENGTH.name} characters long`);
     } else if (name.length > MAX_LENGTH.name) {
@@ -183,10 +185,8 @@ export const validateFormData = (
     }
   }
 
-  // Email validation
-  if (!email) {
-    errors.push('Email is required');
-  } else if (!isValidEmail(email)) {
+  // Email validation (optional, but validated when provided)
+  if (email && !isValidEmail(email)) {
     if (email.length > MAX_LENGTH.email) {
       errors.push(`Email must be no more than ${MAX_LENGTH.email} characters long`);
     } else {
