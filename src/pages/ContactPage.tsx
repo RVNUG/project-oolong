@@ -16,6 +16,9 @@ import {
 } from '../utils/security';
 import {
   submitContact,
+  EMAIL_ONLY_CATEGORIES,
+  ISSUE_CATEGORIES,
+  OPENS_MAILTO_CATEGORIES,
   type ContactCategory,
 } from '../services/contactApi';
 import '../assets/css/contact.css';
@@ -48,14 +51,22 @@ const MIN_LENGTH = {
 // Throttling configuration
 const SUBMIT_COOLDOWN = 2000; // 2 seconds between submissions
 const FOLLOW_UP_EMAIL = 'officers@rvnug.org';
-const EMAIL_FORWARD_CATEGORIES: ContactCategory[] = [
-  'sponsorship',
-  'speaking',
-  'volunteer',
-];
 
-const isEmailForwardCategory = (category: ContactCategory): boolean => {
-  return EMAIL_FORWARD_CATEGORIES.includes(category);
+const isEmailOnlyCategory = (category: ContactCategory): boolean => {
+  return EMAIL_ONLY_CATEGORIES.includes(category);
+};
+
+const isIssueCategory = (category: ContactCategory): boolean => {
+  return ISSUE_CATEGORIES.includes(category);
+};
+
+const opensMailto = (category: ContactCategory): boolean => {
+  return OPENS_MAILTO_CATEGORIES.includes(category);
+};
+
+/** Name/email fields are only for email-only categories (not GitHub issue submissions). */
+const allowsContactFields = (category: ContactCategory | ''): boolean => {
+  return category !== '' && isEmailOnlyCategory(category);
 };
 
 const getCategoryDisplayName = (category: ContactCategory): string => {
@@ -174,11 +185,18 @@ const ContactPage = () => {
     setFieldErrors((prev) => ({
       ...prev,
       [name]: '',
+      ...(name === 'category' && !allowsContactFields(value as ContactCategory | '')
+        ? { name: '', email: '' }
+        : {}),
     }));
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prev) => {
+      const next = { ...prev, [name]: value };
+      if (name === 'category' && !allowsContactFields(value as ContactCategory | '')) {
+        next.name = '';
+        next.email = '';
+      }
+      return next;
+    });
   };
 
   // Honeypot handler (invisible to users, only filled by bots)
@@ -217,10 +235,23 @@ const ContactPage = () => {
       return;
     }
 
+    if (!isValidContactCategory(formData.category)) {
+      setErrors(['Please select a valid category']);
+      return;
+    }
+
+    // Issue categories never collect name/email
+    const nameForValidation = isIssueCategory(formData.category)
+      ? ''
+      : formData.name;
+    const emailForValidation = isIssueCategory(formData.category)
+      ? ''
+      : formData.email;
+
     // Validate form data
     const validationErrors = validateFormData(
-      formData.name,
-      formData.email,
+      nameForValidation,
+      emailForValidation,
       formData.category,
       formData.message
     );
@@ -230,12 +261,11 @@ const ContactPage = () => {
       return;
     }
 
-    if (!isValidContactCategory(formData.category)) {
-      setErrors(['Please select a valid category']);
-      return;
-    }
-
-    const sanitizedData = sanitizeFormData(formData);
+    const sanitizedData = sanitizeFormData({
+      ...formData,
+      name: nameForValidation,
+      email: emailForValidation,
+    });
     if (!isValidContactCategory(sanitizedData.category)) {
       setErrors(['Please select a valid category']);
       return;
@@ -243,16 +273,21 @@ const ContactPage = () => {
 
     setSubmitting(true);
     try {
-      await submitContact({
-        category: sanitizedData.category,
-        name: sanitizedData.name,
-        email: sanitizedData.email,
-        message: sanitizedData.message,
-      });
+      const category = sanitizedData.category;
 
-      if (isEmailForwardCategory(sanitizedData.category)) {
+      if (isIssueCategory(category)) {
+        await submitContact({
+          category,
+          message: sanitizedData.message,
+        });
+      } else if (!isEmailOnlyCategory(category)) {
+        setErrors(['Please select a valid category']);
+        return;
+      }
+
+      if (opensMailto(category)) {
         openNativeEmailForCategory({
-          category: sanitizedData.category,
+          category,
           message: sanitizedData.message,
           name: sanitizedData.name,
           email: sanitizedData.email,
@@ -284,6 +319,7 @@ const ContactPage = () => {
   };
 
   const formDisabled = isLimited || submitting;
+  const showContactFields = allowsContactFields(formData.category);
 
   return (
     <div className="contact-page">
@@ -365,12 +401,12 @@ const ContactPage = () => {
         <div className="contact-form-container">
           <h2>Send Us a Message</h2>
           <p className="form-info">
-            Share feedback, feature ideas, or bugs. Category and message are
-            required. These issues will be tracked in our GitHub Issues page. Name and email are optional (opt-in), but they help us
-            follow up with you. For sponsorship, speaking, or volunteer
-            messages, we also open your native email client with your message
-            prefilled to{' '}
-            <a href="mailto:officers@rvnug.org">officers@rvnug.org</a>.
+            Category and message are required. Feedback, feature requests, and
+            bugs are tracked as GitHub Issues — name and email are not collected
+            for those categories. Sponsorship, speaking, volunteer, and other
+            messages go by email only via your email client to{' '}
+            <a href="mailto:officers@rvnug.org">officers@rvnug.org</a>. Do not put your name or email in
+            the message body.
           </p>
 
           {isLimited && (
@@ -409,50 +445,6 @@ const ContactPage = () => {
             />
 
             <div className="form-group">
-              <label htmlFor="name">Name</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                minLength={MIN_LENGTH.name}
-                maxLength={MAX_LENGTH.name}
-                pattern="[a-zA-Z]+(?:[\s'-][a-zA-Z]+)*"
-                aria-describedby="name-error"
-                disabled={formDisabled}
-                autoComplete="name"
-              />
-              {fieldErrors.name && (
-                <span className="field-error" id="name-error" role="alert">
-                  {fieldErrors.name}
-                </span>
-              )}
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="email">Your Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                maxLength={MAX_LENGTH.email}
-                aria-describedby="email-error"
-                disabled={formDisabled}
-                autoComplete="email"
-              />
-              {fieldErrors.email && (
-                <span className="field-error" id="email-error" role="alert">
-                  {fieldErrors.email}
-                </span>
-              )}
-            </div>
-
-            <div className="form-group">
               <label htmlFor="category">Category</label>
               <select
                 id="category"
@@ -478,6 +470,54 @@ const ContactPage = () => {
               )}
             </div>
 
+            {showContactFields && (
+              <>
+                <div className="form-group">
+                  <label htmlFor="name">Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    minLength={MIN_LENGTH.name}
+                    maxLength={MAX_LENGTH.name}
+                    pattern="[a-zA-Z]+(?:[\s'-][a-zA-Z]+)*"
+                    aria-describedby="name-error"
+                    disabled={formDisabled}
+                    autoComplete="name"
+                  />
+                  {fieldErrors.name && (
+                    <span className="field-error" id="name-error" role="alert">
+                      {fieldErrors.name}
+                    </span>
+                  )}
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="email">Your Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    maxLength={MAX_LENGTH.email}
+                    aria-describedby="email-error"
+                    disabled={formDisabled}
+                    autoComplete="email"
+                  />
+                  {fieldErrors.email && (
+                    <span className="field-error" id="email-error" role="alert">
+                      {fieldErrors.email}
+                    </span>
+                  )}
+                </div>
+              </>
+            )}
+
             <div className="form-group">
               <label htmlFor="message">Message</label>
               <textarea
@@ -490,10 +530,17 @@ const ContactPage = () => {
                 required
                 minLength={MIN_LENGTH.message}
                 maxLength={MAX_LENGTH.message}
-                aria-describedby="message-error"
+                aria-describedby="message-hint message-error"
                 disabled={formDisabled}
                 autoComplete="off"
+                placeholder="Do not include your name or email in the message."
               ></textarea>
+              <span className="form-hint" id="message-hint">
+                Do not include your name or email in the message
+                {showContactFields
+                  ? ' — use the optional Name and Email fields above when needed.'
+                  : '.'}
+              </span>
               {fieldErrors.message && (
                 <span className="field-error" id="message-error" role="alert">
                   {fieldErrors.message}

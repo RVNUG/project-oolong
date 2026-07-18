@@ -1,14 +1,40 @@
 /**
  * Submit contact form feedback as a GitHub repository_dispatch event.
  * A workflow creates the issue; the SPA never calls the Issues API directly.
+ * Name/email are never included in the payload (PII must not reach public issues or Actions logs).
  */
 
-export type ContactCategory = 'feedback' | 'feature-request' | 'bug' | 'sponsorship' | 'speaking' | 'other' | 'volunteer';
+export type ContactCategory =
+  | 'feedback'
+  | 'feature-request'
+  | 'bug'
+  | 'sponsorship'
+  | 'speaking'
+  | 'other'
+  | 'volunteer';
+
+/** Categories that create a GitHub issue via repository_dispatch. */
+export const ISSUE_CATEGORIES: ContactCategory[] = [
+  'feedback',
+  'feature-request',
+  'bug',
+];
+
+/** Categories that only open a native email draft (no GitHub issue). */
+export const EMAIL_ONLY_CATEGORIES: ContactCategory[] = [
+  'sponsorship',
+  'speaking',
+  'volunteer',
+  'other',
+];
+
+/** Categories that open a native mailto draft (same as email-only). */
+export const OPENS_MAILTO_CATEGORIES: ContactCategory[] = [
+  ...EMAIL_ONLY_CATEGORIES,
+];
 
 export interface ContactPayload {
   category: ContactCategory;
-  name: string;
-  email: string;
   message: string;
 }
 
@@ -71,8 +97,6 @@ export const submitContact = async (payload: ContactPayload): Promise<void> => {
         event_type: EVENT_TYPE,
         client_payload: {
           category: payload.category,
-          name: payload.name,
-          email: payload.email,
           message: payload.message,
           submitted_at: new Date().toISOString(),
         },

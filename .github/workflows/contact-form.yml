@@ -17,8 +17,9 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const MAX = { name: 100, email: 254, message: 3000 };
+            const MAX = { message: 3000 };
             const MIN_MESSAGE = 10;
+            // Issue-creating categories only (sponsorship/speaking/volunteer/other are email-only on the client)
             const ALLOWED = new Set(['feedback', 'feature-request', 'bug']);
             const PREFIX = {
               feedback: 'Feedback',
@@ -28,8 +29,6 @@ jobs:
 
             const payload = context.payload.client_payload || {};
             const category = String(payload.category || '').trim();
-            const name = String(payload.name || '').trim();
-            const email = String(payload.email || '').trim();
             const message = String(payload.message || '').trim();
             const submittedAt = String(payload.submitted_at || new Date().toISOString()).trim();
 
@@ -40,12 +39,6 @@ jobs:
 
             if (!ALLOWED.has(category)) {
               return fail(`Invalid category: ${category}`);
-            }
-            if (!name || name.length > MAX.name) {
-              return fail('Invalid name');
-            }
-            if (!email || email.length > MAX.email || !email.includes('@')) {
-              return fail('Invalid email');
             }
             if (!message || message.length < MIN_MESSAGE || message.length > MAX.message) {
               return fail('Invalid message');
@@ -59,8 +52,6 @@ jobs:
                 .replace(/`/g, "'")
                 .replace(/\r/g, '');
 
-            const safeName = escapeMd(name);
-            const safeEmail = escapeMd(email);
             const safeMessage = escapeMd(message);
             const safeSubmitted = escapeMd(submittedAt.slice(0, 40));
 
@@ -68,10 +59,10 @@ jobs:
             const titleBase = `[${PREFIX[category]}] ${snippet}${message.length > 60 ? '…' : ''}`;
             const title = titleBase.slice(0, 80);
 
+            // No reporter name/email — PII must not appear in public issues
             const body = [
               `| Field | Value |`,
               `| --- | --- |`,
-              `| Reporter | ${safeName} &lt;${safeEmail}&gt; |`,
               `| Submitted | ${safeSubmitted} |`,
               `| Category | ${PREFIX[category]} |`,
               `| Source | Contact form |`,
@@ -98,7 +89,12 @@ jobs:
                       owner: context.repo.owner,
                       repo: context.repo.repo,
                       name: label,
-                      color: label === 'bug' ? 'd73a4a' : label === 'feature-request' ? 'a2eeef' : '0e8a16',
+                      color:
+                        label === 'bug'
+                          ? 'd73a4a'
+                          : label === 'feature-request'
+                            ? 'a2eeef'
+                            : '0e8a16',
                       description: `Contact form: ${label}`,
                     });
                   } catch (createErr) {

@@ -168,6 +168,13 @@
   display: block;
 }
 
+.form-hint {
+  color: var(--text-medium);
+  font-size: 0.875rem;
+  margin-top: var(--space-1);
+  display: block;
+}
+
 .form-group input:invalid,
 .form-group textarea:invalid {
   border-color: var(--color-error);
@@ -327,6 +334,10 @@ button:disabled {
 
 .dark-theme .field-error {
   color: #f87171;
+}
+
+.dark-theme .form-hint {
+  color: var(--color-neutral-300);
 }
 
 /* Dark theme styles for disabled elements */
