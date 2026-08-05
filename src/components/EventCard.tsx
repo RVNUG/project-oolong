@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { MeetupEvent } from '../types';
 import { formatTime } from '../utils/dateFormatters';
 import EventCalendarButton from './EventCalendarButton';

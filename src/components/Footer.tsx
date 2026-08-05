@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import '../assets/css/footer.css';
 import { Feature, isFeatureEnabled } from '../config/featureFlags';
 import { useEffect, useState } from 'react';

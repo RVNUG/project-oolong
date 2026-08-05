@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router';
 import useEvents from '../hooks/useEvents';
 import useSponsors from '../hooks/useSponsors';
 import EventCard from '../components/EventCard';
