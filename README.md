@@ -128,13 +128,20 @@ Feature flags in production are managed through GitHub Secrets:
 
 ## Contact form → GitHub Issues
 
-The Contact page submits Feedback, Feature Request, or Bug messages via GitHub `repository_dispatch`. A workflow (`.github/workflows/contact-form.yml`) validates the payload and opens a labeled issue.
+The Contact page routes submissions by category:
+
+| Category | GitHub issue (`repository_dispatch`) | Native mailto to officers@ |
+|---|---|---|
+| Feedback, Feature Request, Bug | Yes | No |
+| Sponsorship, Speaking, Volunteer, Other | No | Yes |
+
+Issues never include reporter name or email. Name/email fields are hidden for Feedback, Feature Request, and Bug. For email-only categories they are optional and used only in the mailto draft. Users are asked not to put name/email in the message body.
 
 ### How it works
 
-1. The SPA posts to `POST /repos/{owner}/{repo}/dispatches` with event type `contact-form`.
+1. For issue categories, the SPA posts to `POST /repos/{owner}/{repo}/dispatches` with event type `contact-form` and a payload of `category`, `message`, and `submitted_at` only.
 2. Auth uses a fine-grained PAT baked into the build (`VITE_GITHUB_DISPATCH_TOKEN`). Treat this token as **public** — it appears in the GitHub Pages JS bundle.
-3. The workflow creates the issue with Actions `GITHUB_TOKEN` (`issues: write`). Prefer scoping the public PAT to **Contents: Read and write** on this repo only (enough to trigger dispatch).
+3. The workflow (`.github/workflows/contact-form.yml`) validates the payload and opens a labeled issue with Actions `GITHUB_TOKEN` (`issues: write`). Prefer scoping the public PAT to **Contents: Read and write** on this repo only (enough to trigger dispatch).
 
 ### Local setup
 
@@ -160,7 +167,7 @@ Issues are tagged `contact-form` plus one of `feedback`, `feature-request`, or `
 
 ### Spam note
 
-Because the dispatch token ships in the client, anyone can extract it and trigger the workflow. Mitigations: repo-scoped PAT, client honeypot/rate limits, and workflow payload validation. Rotate the PAT if abused.
+Because the dispatch token ships in the client, anyone can extract it and trigger the workflow. Mitigations: repo-scoped PAT, client honeypot/rate limits, and workflow payload validation. Rotate the PAT if abused. A server-side proxy is the durable fix and is not part of the current quick hardening.
 
 ## Deployment
 

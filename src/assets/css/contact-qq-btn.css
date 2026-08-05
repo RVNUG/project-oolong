@@ -1,0 +1,98 @@
+/* Contact Lightbulb – sticky navbar shortcut to the Contact page */
+
+.contact-qq-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* The icon button itself */
+.contact-qq-btn-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--text-on-primary);
+  padding: var(--space-2);
+  min-height: 44px;
+  min-width: 44px;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-size: 1.25rem;
+  margin-left: var(--space-3);
+  text-decoration: none;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.contact-qq-btn-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffd166; /* warm amber — lightbulb "on" glow */
+  text-decoration: none;
+}
+
+.contact-qq-btn-btn:focus-visible {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffd166;
+  text-decoration: none;
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* Gentle pulse animation on the icon */
+.contact-qq-btn-btn i {
+  transition: transform 0.4s ease, color 0.3s ease;
+}
+
+.contact-qq-btn-btn:hover i,
+.contact-qq-btn-btn:focus-visible i {
+  transform: scale(1.2) rotate(-8deg);
+}
+
+/* Tooltip */
+.contact-qq-btn-tooltip {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  background-color: var(--color-primary-800);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 1100;
+  letter-spacing: 0.01em;
+}
+
+/* Arrow pointing up toward the button */
+.contact-qq-btn-tooltip::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 6px 6px 6px;
+  border-style: solid;
+  border-color: transparent transparent var(--color-primary-800) transparent;
+}
+
+/* Show tooltip on hover / focus-within */
+.contact-qq-btn:hover .contact-qq-btn-tooltip,
+.contact-qq-btn:focus-within .contact-qq-btn-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Mobile: keep the same dimensions, adjust spacing */
+@media (max-width: 768px) {
+  .contact-qq-btn-btn {
+    margin-left: 0;
+    margin-right: var(--space-2);
+  }
+}

@@ -31,7 +31,8 @@
 /* Base Icon Styles */
 .fab,
 .far,
-.fas {
+.fas,
+.fa-solid {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
@@ -57,7 +58,8 @@
 }
 
 /* Solid Icons Class */
-.fas {
+.fas,
+.fa-solid {
   font-family: 'Font Awesome 6 Free';
   font-weight: 900;
 }
@@ -137,6 +139,10 @@
 
 .fa-info-circle:before {
   content: "\f05a";
+}
+
+.fa-question:before {
+  content: "\f128";
 }
 
 .fa-moon:before {

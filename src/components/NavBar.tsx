@@ -1,57 +1,60 @@
-import { useState, useRef, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import '../assets/css/navbar.css';
-import logo from '../assets/images/roanoke-star-128-logo.png';
-import ThemeToggle from './ThemeToggle';
-import { Feature, isFeatureEnabled } from '../config/featureFlags';
+import { useState, useRef, useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import '../assets/css/navbar.css'
+import logo from '../assets/images/roanoke-star-128-logo.png'
+import ThemeToggle from './ThemeToggle'
+import ContactQuickQuestionBtn from './ContactQuickQuestionBtn.tsx'
+import { Feature, isFeatureEnabled } from '../config/featureFlags'
 
 const NavBar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const menuRef = useRef<HTMLUListElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
-  const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false)
+  const menuRef = useRef<HTMLUListElement>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
+  const location = useLocation()
 
   // Close menu when route changes
   useEffect(() => {
-    setIsOpen(false);
-  }, [location]);
+    setIsOpen(false)
+  }, [location])
 
   // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (isOpen &&
-          menuRef.current &&
-          buttonRef.current &&
-          !menuRef.current.contains(event.target as Node) &&
-          !buttonRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
+      if (
+        isOpen &&
+        menuRef.current &&
+        buttonRef.current &&
+        !menuRef.current.contains(event.target as Node) &&
+        !buttonRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false)
       }
-    };
+    }
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside)
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isOpen]);
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isOpen])
 
   // Close menu with Escape key
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape' && isOpen) {
-        setIsOpen(false);
-        buttonRef.current?.focus();
+        setIsOpen(false)
+        buttonRef.current?.focus()
       }
-    };
+    }
 
-    document.addEventListener('keydown', handleEscape);
+    document.addEventListener('keydown', handleEscape)
     return () => {
-      document.removeEventListener('keydown', handleEscape);
-    };
-  }, [isOpen]);
+      document.removeEventListener('keydown', handleEscape)
+    }
+  }, [isOpen])
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+    setIsOpen(!isOpen)
+  }
 
   return (
     <header>
@@ -61,14 +64,14 @@ const NavBar = () => {
             <img src={logo} alt="RVNUG Logo" className="logo-image" />
             <span className="logo-text">RVNUG</span>
           </Link>
-          
+
           <div className="navbar-actions">
             <ThemeToggle />
-            
+            <ContactQuickQuestionBtn />
             {isOpen ? (
-              <button 
+              <button
                 ref={buttonRef}
-                className="menu-icon" 
+                className="menu-icon"
                 onClick={toggleMenu}
                 aria-expanded="true"
                 aria-controls="nav-menu"
@@ -77,9 +80,9 @@ const NavBar = () => {
                 <i className="fas fa-times"></i>
               </button>
             ) : (
-              <button 
+              <button
                 ref={buttonRef}
-                className="menu-icon" 
+                className="menu-icon"
                 onClick={toggleMenu}
                 aria-expanded="false"
                 aria-controls="nav-menu"
@@ -89,13 +92,13 @@ const NavBar = () => {
               </button>
             )}
           </div>
-          
-          <ul 
-            id="nav-menu" 
+
+          <ul
+            id="nav-menu"
             ref={menuRef}
-            className={isOpen ? 'nav-menu active' : 'nav-menu'} 
+            className={isOpen ? 'nav-menu active' : 'nav-menu'}
           >
-            <li className="nav-item">
+            <li className="nav-item fa-regular fa-house">
               <Link to="/" className="nav-link">
                 Home
               </Link>
@@ -122,16 +125,16 @@ const NavBar = () => {
                 Sponsors
               </Link>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link to="/contact" className="nav-link">
                 Contact
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </nav>
     </header>
-  );
-};
+  )
+}
 
-export default NavBar; 
+export default NavBar
