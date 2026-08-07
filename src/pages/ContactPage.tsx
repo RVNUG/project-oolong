@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 import SEO from '../components/SEO';
 import JsonLd from '../components/JsonLd';
 import { createBreadcrumbStructuredData } from '../utils/structuredData';

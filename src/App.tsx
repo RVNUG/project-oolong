@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, useRoutes } from 'react-router-dom';
+import { BrowserRouter as Router, useRoutes } from 'react-router';
 import { ThemeProvider } from './context/ThemeContext';
 import { HelmetProvider } from 'react-helmet-async';
 import Layout from './components/Layout';

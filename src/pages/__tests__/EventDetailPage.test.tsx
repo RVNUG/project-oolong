@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter, Routes, Route } from 'react-router-dom';
+import { MemoryRouter, Routes, Route } from 'react-router';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import EventDetailPage from '../EventDetailPage';
 import useEvents from '../../hooks/useEvents';

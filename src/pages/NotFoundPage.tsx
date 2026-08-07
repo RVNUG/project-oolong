@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router';
 import SEO from '../components/SEO';
 import '../assets/css/not-found.css';
 
