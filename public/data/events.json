@@ -1,25 +1,6 @@
 {
   "events": [
     {
-      "id": "e-315552082",
-      "name": "In-Person: Blacksburg-The Basics of Speech and Natural Language Processing",
-      "status": "upcoming",
-      "local_date": "2026-08-06",
-      "local_time": "18:00",
-      "description": "The Basics of Speech and Natural Language Processing presented by Kevin Feasel\n\nNatural language processing is a vital field within data science and machine learning that combines computer science and linguistics to analyze and generate text in the languages we speak. In this talk, we will provide an overview of natural language processing, with a focus on analyzing parts of speech using the spaCy library in Python. We will learn how the process of diagramming sentences translates into the field of natural language processing and analyze freely available texts for differences in language and style across time and fields. By the end of this session, you will have an initial understanding of how to perform natural language analysis in Python.\n\nFree pizza and soft drinks will be provided.",
-      "venue": {
-        "name": "VTCRC - 1880 Pratt Drive Suite 2018",
-        "address_1": "1880 Pratt Drive Suite 2018 Blacksburg, VA 24060",
-        "city": "Blacksburg",
-        "state": "VA",
-        "country": "us",
-        "zip": "24060"
-      },
-      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/315552082/",
-      "is_upcoming": true,
-      "is_online": false
-    },
-    {
       "id": "e-314708329",
       "name": "Online-Crafting AI: A Developer's Guide to Machine Learning by Barry Stahl",
       "status": "upcoming",
@@ -56,25 +37,6 @@
       "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/314708380/",
       "is_upcoming": true,
       "is_online": true
-    },
-    {
-      "id": "ep-313207452",
-      "name": "In Person: Code and Coffee on February 21st from 10am-1pm ET",
-      "status": "past",
-      "local_date": "2026-02-21",
-      "local_time": "10:00",
-      "description": "Join us at Mill Mountain Coffee on Saturday, February 21st, 2026 from 10am-1pm ET for a period of collaboration and community-building! As a software developer or aspiring developer you're invited to meet fellow coders, work on projects, share knowledge, and enjoy good company in a relaxed and welcoming environment. Whether you're looking to learn from others, share your own expertise, or simply hand out with like-minded folks, our Code & Coffee event has got you covered.\n\nCome for the coffee, stay for the camaraderie! Our meetup is a judgement-free zone where you can be yourself, ask questions, and get support from fellow developers. You bring your projects, ideas, and enthusiasm, and we provide the atmosphere! See you there!",
-      "venue": {
-        "name": "Mill Mountain Coffee & Tea",
-        "address_1": "4309 Starkey Rd",
-        "city": "Roanoke",
-        "state": "VA",
-        "country": "us",
-        "zip": ""
-      },
-      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/313207452/",
-      "is_upcoming": false,
-      "is_online": false
     },
     {
       "id": "ep-313436280",
@@ -246,7 +208,26 @@
       "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/315551619/",
       "is_upcoming": false,
       "is_online": false
+    },
+    {
+      "id": "ep-315552082",
+      "name": "In-Person: Blacksburg-The Basics of Speech and Natural Language Processing",
+      "status": "past",
+      "local_date": "2026-08-06",
+      "local_time": "18:00",
+      "description": "The Basics of Speech and Natural Language Processing presented by Kevin Feasel\n\nNatural language processing is a vital field within data science and machine learning that combines computer science and linguistics to analyze and generate text in the languages we speak. In this talk, we will provide an overview of natural language processing, with a focus on analyzing parts of speech using the spaCy library in Python. We will learn how the process of diagramming sentences translates into the field of natural language processing and analyze freely available texts for differences in language and style across time and fields. By the end of this session, you will have an initial understanding of how to perform natural language analysis in Python.\n\nFree pizza and soft drinks will be provided.",
+      "venue": {
+        "name": "VTCRC - 1880 Pratt Drive Suite 2018",
+        "address_1": "1880 Pratt Drive Suite 2018 Blacksburg, VA 24060",
+        "city": "Blacksburg",
+        "state": "VA",
+        "country": "us",
+        "zip": "24060"
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/315552082/",
+      "is_upcoming": false,
+      "is_online": false
     }
   ],
-  "updated_at": "2026-08-01T04:21:48.454083"
+  "updated_at": "2026-08-07T03:50:09.351536"
 }
