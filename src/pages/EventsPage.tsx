@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, Link } from 'react-router';
 import useEvents from '../hooks/useEvents';
 import EventCard from '../components/EventCard';
 import SEO from '../components/SEO';

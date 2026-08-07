@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router'
 import '../assets/css/navbar.css'
 import logo from '../assets/images/roanoke-star-128-logo.png'
 import ThemeToggle from './ThemeToggle'

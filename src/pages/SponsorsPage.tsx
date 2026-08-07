@@ -1,4 +1,4 @@
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, Link } from 'react-router';
 import useSponsors from '../hooks/useSponsors';
 import SponsorCard from '../components/SponsorCard';
 import SEO from '../components/SEO';

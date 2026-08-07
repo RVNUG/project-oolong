@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router';
 import useEvents from '../hooks/useEvents';
 import { MeetupEvent } from '../types';
 import { formatFullDate, formatTime } from '../utils/dateFormatters';
