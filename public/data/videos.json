@@ -1,5 +1,12 @@
 [
     {
+        "title": "RVNUG Aug 2026 - The Basics of Speech and Natural Language Processing",
+        "video_id": "jOtEyB8-bCQ",
+        "published_at": "2026-08-20T04:00:18Z",
+        "thumbnail_url": "https://i.ytimg.com/vi/jOtEyB8-bCQ/mqdefault.jpg",
+        "video_url": "https://www.youtube.com/watch?v=jOtEyB8-bCQ"
+    },
+    {
         "title": "RVNUG June 2026 - From Code to Magic: Building Things That Blink, Talk and Occasionally Catch Fire",
         "video_id": "chTvmCZPu2k",
         "published_at": "2026-07-24T15:45:09Z",
@@ -12,12 +19,5 @@
         "published_at": "2026-07-16T16:00:39Z",
         "thumbnail_url": "https://i.ytimg.com/vi/UOkTd7NrQxA/mqdefault.jpg",
         "video_url": "https://www.youtube.com/watch?v=UOkTd7NrQxA"
-    },
-    {
-        "title": "In Person: Making AI faster and safer with Docker by Michael Irwin - March 2026",
-        "video_id": "ilDSMq1wmOk",
-        "published_at": "2026-06-03T04:36:11Z",
-        "thumbnail_url": "https://i.ytimg.com/vi/ilDSMq1wmOk/mqdefault.jpg",
-        "video_url": "https://www.youtube.com/watch?v=ilDSMq1wmOk"
     }
 ]
