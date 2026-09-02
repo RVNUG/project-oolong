@@ -50,7 +50,7 @@
     "glob": "^12.0.0",
     "globals": "^15.15.0",
     "jsdom": "^24.0.0",
-    "sanitize-html": "^2.15.0",
+    "sanitize-html": "^2.17.7",
     "sharp": "^0.35.3",
     "sourcemap-codec": "^1.4.8",
     "svgo": "^4.0.2",
