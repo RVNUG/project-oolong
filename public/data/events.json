@@ -1,12 +1,31 @@
 {
   "events": [
     {
+      "id": "e-316546831",
+      "name": "In Person: Code & Coffee, Saturday, September 26, 10am-1pm ET",
+      "status": "upcoming",
+      "local_date": "2026-09-26",
+      "local_time": "10:00",
+      "description": "Join us at Mill Mountain Coffee on Saturday, September 26th, 2026 from 10am-1pm ET for a period of collaboration and community-building! As a software developer or aspiring developer you're invited to meet fellow coders, work on projects, share knowledge, and enjoy good company in a relaxed and welcoming environment. Whether you're looking to learn from others, share your own expertise, or simply hand out with like-minded folks, our Code & Coffee event has got you covered.\n\nCome for the coffee, stay for the camaraderie! Our meetup is a judgement-free zone where you can be yourself, ask questions, and get support from fellow developers. You bring your projects, ideas, and enthusiasm, and we provide the atmosphere! See you there!",
+      "venue": {
+        "name": "Mill Mountain Coffee & Tea",
+        "address_1": "4309 Starkey Rd",
+        "city": "Roanoke",
+        "state": "VA",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/316546831/",
+      "is_upcoming": true,
+      "is_online": false
+    },
+    {
       "id": "e-314708380",
-      "name": "Online-Build Your Own AI News Agent with Redis + LangGraph.js by Guy Royse",
+      "name": "Agents & Arbiters - a LangGraph.js talk by Guy Royse",
       "status": "upcoming",
       "local_date": "2026-10-01",
       "local_time": "18:00",
-      "description": "Build Your Own AI News Agent with Redis + LangGraph.js presented by Guy Royse\n\nNews. Amirite?\n\nThere\u2019s too much of it. As humans, we have to sift through too many sources, too many articles, and way too many rabbit holes just to find the things we actually care about. Historically, we solved this problem with news aggregators and curators\u2014helpful websites that gather, filter, and vet what\u2019s out there to give us just what we want\u2026 or at least what somebody wants. This is great if your interests are mainstream\u2014sports, politics, the usual\u2014but if you\u2019re into something more esoteric, like Bigfoot sightings or probabilistic data structures, you\u2019re probably out of luck.\n\nSo how do we get the news we want? Well, at the risk of sounding trite, AI might be able to help. It can read the news for us. It can filter and vet. It can summarize, analyze, contextualize, cross-reference, and even argue with us about it. Sounds amazing, right? Somebody should build this. And in this workshop, that somebody will be you.\n\nWe\u2019ll build a fully agentic news assistant that will:\n\\- Ingest news from RSS feeds\\, summarize it\\, extract structured data\\, generate embeddings\\, and store it all in Redis\\.\n\\- Provide a web interface where you can browse and search that news\u2014semantically and structurally\\.\n\\- Chat with you about the news\\, using tool\\-enabled RAG techniques to pull relevant articles and metadata from Redis\\.\n\nLangGraph.js will orchestrate the ingestion workflow and power the chatbot. You\u2019ll use it to write the logic that performs summarization and embedding, stores the resulting structured and vectorized data in Redis, and implements the chatbot\u2019s tools for retrieving relevant news as part of its reasoning process. If you haven\u2019t used LangGraph.js before, that\u2019s perfect\u2014this workshop is exactly where you\u2019ll learn it.\n\nRedis and Redis Query Engine will store and serve all your news data. Every article\u2014its content, its summary, its metadata, its timestamps, and its embedding\u2014will live in Redis. You\u2019ll learn how to store this data, index it for hybrid (vector + structured) search, and write the code that performs those searches yourself.\n\nAgent Memory Server will power the chatbot\u2019s memory. As your agent chats about the news, it will store the conversation's history and any facts it learns along the way, giving it both short- and long-term memory.\n\nEverything is scaffolded so you can focus on the fun parts: orchestrating agent workflows, crafting hybrid search queries, and building an AI memory layer. We\u2019ll skip the boring boilerplate and get right to the good bits. By the end, you\u2019ll have your own personal news agent\u2014and, more importantly, the skills to build your next AI-powered application. Whether you follow \u201creal\u201d news, niche hobbies, or the latest Bigfoot developments, you and your agent will be ready.\n\nThis is an online talk.",
+      "description": "Agents & Arbiters - An Adventurer\u2019s Guide to Multi-Agent Collaboration with LangGraph.js presented by Guy Royse\n\nBuilding interactive systems with conventional coding means trying to anticipate every possible user action and writing the right response. This quickly becomes nigh impossible. You end up lost in a maze of recursion, fragility, and nested if statements. The more interactive you make your system, the more complex your code gets, until debugging feels like being eaten by a grue\u2014you know something's wrong, but you're just fumbling around in the dark.\n\nThere's a better way. Instead of scripting every interaction, we can give some of the elements in our system their own intelligence. Multi-agent collaboration lets us create systems where entities can become autonomous agents with their own perspectives and voices. Imagine a text-based adventure game where the brass lantern, the white house, and even the mailbox have something to say when responding to the player. Or consider a help desk system where agents from billing, technical support, and account management each weigh in to determine the best solution for a customer.\n\nIn this session, we'll explore multi-agent collaboration through a live demo of a text-based adventure system. You'll meet the orchestration workflow\u2014router, classifier, agents, arbiter, and committer\u2014and discover how LangGraph.js coordinates the chaos when multiple agents want to respond. We'll shine our brass lantern over the code to see how it uses Redis and LangGraph.js to make it all work. Then, we'll explore how this same approach solves real-world problems beyond gaming.\n\nWhen the adventure's over, you'll understand how to coordinate agents to handle complex interactions and know when this is a good approach. You'll have a working example you can adapt for your own adventures\u2014be they exploring the Great Underground Empire, customer service platforms, or content management systems. And, you'll never look at building interactive systems the same way again.\n\nThis is an online talk.",
       "venue": {
         "name": "Online Event",
         "address_1": "",
@@ -210,5 +229,5 @@
       "is_online": true
     }
   ],
-  "updated_at": "2026-09-06T05:36:36.306876"
+  "updated_at": "2026-09-20T05:49:22.130245"
 }
