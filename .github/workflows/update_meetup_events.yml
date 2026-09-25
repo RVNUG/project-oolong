@@ -54,21 +54,26 @@ jobs:
       - name: Get Meetup events and generate data
         id: generate_data
         run: |
+          OLD_EVENTS_FILE=$(mktemp)
+          NEW_EVENTS_FILE=$(mktemp)
+          HAD_EXISTING_EVENTS=false
+
+          trap 'rm -f "$OLD_EVENTS_FILE" "$NEW_EVENTS_FILE"' EXIT
+
           # Save old events data if file exists (excluding timestamp)
           if [ -f public/data/events.json ]; then
-            OLD_EVENTS=$(jq -S '.events' public/data/events.json)
-          else
-            OLD_EVENTS=""
+            jq -S '.events' public/data/events.json > "$OLD_EVENTS_FILE"
+            HAD_EXISTING_EVENTS=true
           fi
           
           # Generate new data
           python scripts/meetup_events.py
           
           # Get new events data (excluding timestamp)
-          NEW_EVENTS=$(jq -S '.events' public/data/events.json)
+          jq -S '.events' public/data/events.json > "$NEW_EVENTS_FILE"
           
           # Compare events data
-          if [ "$OLD_EVENTS" = "$NEW_EVENTS" ] && [ -n "$OLD_EVENTS" ]; then
+          if [ "$HAD_EXISTING_EVENTS" = true ] && cmp -s "$OLD_EVENTS_FILE" "$NEW_EVENTS_FILE"; then
             echo "No meaningful changes (same events, only timestamp updated)"
             echo "has_changes=false" >> $GITHUB_OUTPUT
           else
