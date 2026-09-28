@@ -1,25 +1,6 @@
 {
   "events": [
     {
-      "id": "e-316546831",
-      "name": "In Person: Code & Coffee, Saturday, September 26, 10am-1pm ET",
-      "status": "upcoming",
-      "local_date": "2026-09-26",
-      "local_time": "10:00",
-      "description": "Join us at Mill Mountain Coffee on Saturday, September 26th, 2026 from 10am-1pm ET for a period of collaboration and community-building! As a software developer or aspiring developer you're invited to meet fellow coders, work on projects, share knowledge, and enjoy good company in a relaxed and welcoming environment. Whether you're looking to learn from others, share your own expertise, or simply hand out with like-minded folks, our Code & Coffee event has got you covered.\n\nCome for the coffee, stay for the camaraderie! Our meetup is a judgement-free zone where you can be yourself, ask questions, and get support from fellow developers. You bring your projects, ideas, and enthusiasm, and we provide the atmosphere! See you there!",
-      "venue": {
-        "name": "Mill Mountain Coffee & Tea",
-        "address_1": "4309 Starkey Rd",
-        "city": "Roanoke",
-        "state": "VA",
-        "country": "us",
-        "zip": ""
-      },
-      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/316546831/",
-      "is_upcoming": true,
-      "is_online": false
-    },
-    {
       "id": "e-314708380",
       "name": "Agents & Arbiters - a LangGraph.js talk by Guy Royse",
       "status": "upcoming",
@@ -37,25 +18,6 @@
       "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/314708380/",
       "is_upcoming": true,
       "is_online": true
-    },
-    {
-      "id": "ep-313580095",
-      "name": "In Person-Salem: presentation by Cameron Presley",
-      "status": "past",
-      "local_date": "2026-04-02",
-      "local_time": "18:00",
-      "description": "Preventing Bugs with Better Types - An Intro to Type Driven Design by Cameron Presley\n\nHave you ever shipped a logic error to production? What about writing code that allowed you to do something that violated business rules? Wouldn't it have been nice if the code itself prevented you from doing the wrong thing?\nBy leveraging key concepts from Functional Programming, I'll show you how you can design your business domain such that your code can't get into a bad state (or at the very least, without jumping through some hoops).\n\nIntended for those with C# or TypeScript, I'll demonstrate concepts like sum types/product types for better data modeling and design patterns like Option/Result to handle when things can go wrong while we build out the game of Blackjack.\n\nPizza and soft drinks will be provided.",
-      "venue": {
-        "name": "Medeco Security Locks Inc",
-        "address_1": "3625 Alleghany Dr",
-        "city": "Salem",
-        "state": "VA",
-        "country": "us",
-        "zip": ""
-      },
-      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/313580095/",
-      "is_upcoming": false,
-      "is_online": false
     },
     {
       "id": "ep-314032115",
@@ -227,7 +189,26 @@
       "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/314708329/",
       "is_upcoming": false,
       "is_online": true
+    },
+    {
+      "id": "ep-316546831",
+      "name": "In Person: Code & Coffee, Saturday, September 26, 10am-1pm ET",
+      "status": "past",
+      "local_date": "2026-09-26",
+      "local_time": "10:00",
+      "description": "Join us at Mill Mountain Coffee on Saturday, September 26th, 2026 from 10am-1pm ET for a period of collaboration and community-building! As a software developer or aspiring developer you're invited to meet fellow coders, work on projects, share knowledge, and enjoy good company in a relaxed and welcoming environment. Whether you're looking to learn from others, share your own expertise, or simply hand out with like-minded folks, our Code & Coffee event has got you covered.\n\nCome for the coffee, stay for the camaraderie! Our meetup is a judgement-free zone where you can be yourself, ask questions, and get support from fellow developers. You bring your projects, ideas, and enthusiasm, and we provide the atmosphere! See you there!",
+      "venue": {
+        "name": "Mill Mountain Coffee & Tea",
+        "address_1": "4309 Starkey Rd",
+        "city": "Roanoke",
+        "state": "VA",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/316546831/",
+      "is_upcoming": false,
+      "is_online": false
     }
   ],
-  "updated_at": "2026-09-20T05:49:22.130245"
+  "updated_at": "2026-09-28T06:23:54.956378"
 }
