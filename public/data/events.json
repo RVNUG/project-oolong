@@ -2,11 +2,11 @@
   "events": [
     {
       "id": "e-314708380",
-      "name": "Agents & Arbiters - a LangGraph.js talk by Guy Royse",
+      "name": "Online-Chaos Monkeys, Open Telemetry & .NET Aspire by Lee Richardson",
       "status": "upcoming",
       "local_date": "2026-10-01",
       "local_time": "18:00",
-      "description": "Agents & Arbiters - An Adventurer\u2019s Guide to Multi-Agent Collaboration with LangGraph.js presented by Guy Royse\n\nBuilding interactive systems with conventional coding means trying to anticipate every possible user action and writing the right response. This quickly becomes nigh impossible. You end up lost in a maze of recursion, fragility, and nested if statements. The more interactive you make your system, the more complex your code gets, until debugging feels like being eaten by a grue\u2014you know something's wrong, but you're just fumbling around in the dark.\n\nThere's a better way. Instead of scripting every interaction, we can give some of the elements in our system their own intelligence. Multi-agent collaboration lets us create systems where entities can become autonomous agents with their own perspectives and voices. Imagine a text-based adventure game where the brass lantern, the white house, and even the mailbox have something to say when responding to the player. Or consider a help desk system where agents from billing, technical support, and account management each weigh in to determine the best solution for a customer.\n\nIn this session, we'll explore multi-agent collaboration through a live demo of a text-based adventure system. You'll meet the orchestration workflow\u2014router, classifier, agents, arbiter, and committer\u2014and discover how LangGraph.js coordinates the chaos when multiple agents want to respond. We'll shine our brass lantern over the code to see how it uses Redis and LangGraph.js to make it all work. Then, we'll explore how this same approach solves real-world problems beyond gaming.\n\nWhen the adventure's over, you'll understand how to coordinate agents to handle complex interactions and know when this is a good approach. You'll have a working example you can adapt for your own adventures\u2014be they exploring the Great Underground Empire, customer service platforms, or content management systems. And, you'll never look at building interactive systems the same way again.\n\nThis is an online talk.",
+      "description": "Chaos Monkeys, Open Telemetry & .NET Aspire presented by Lee Richardson\n\n.NET Aspire is far more than just a sleek dashboard for wowing your boss and co-workers. It's also a gateway to increased observability with open telemetry, better fault tolerance to fend off chaos monkeys, and a drastically improved onboarding experience for new developers.\n\nThis session will explore Microsoft's latest guidance for building distributed, cloud-first applications, with practical strategies for enhancing simpler existing apps. You'll discover the inner workings of Aspire, from installation to customization, and learn how it streamlines integration with performance boosters like Redis. Most importantly, you'll see why scalable microservices architectures can be challenging\u2014and how Aspire helps simplify the journey.\n\nThis is an online talk.",
       "venue": {
         "name": "Online Event",
         "address_1": "",
@@ -210,5 +210,5 @@
       "is_online": false
     }
   ],
-  "updated_at": "2026-09-29T06:38:44.469459"
+  "updated_at": "2026-09-29T14:51:38.713870"
 }
