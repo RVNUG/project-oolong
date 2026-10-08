@@ -1,5 +1,7 @@
 # Security Dependency Updates
 
+For CI scanners (Semgrep CE, Gitleaks, Trivy) and disabling GitHub Code Quality, see [`.github/SECURITY_SCANNING.md`](../../.github/SECURITY_SCANNING.md).
+
 This document tracks security vulnerabilities identified in our dependencies, their severity, and resolution status.
 
 ## Security Vulnerability Resolution

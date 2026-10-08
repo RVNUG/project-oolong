@@ -1,0 +1,21 @@
+# npm only — GitHub Actions + security scanner pins are handled by Renovate
+# (see renovate.json) to avoid duplicate PRs.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 10
+    labels:
+      - dependencies
+
+  - package-ecosystem: npm
+    directory: /meetup-proxy
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies

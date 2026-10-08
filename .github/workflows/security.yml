@@ -1,0 +1,97 @@
+# Ephemeral OSS security gates (Semgrep CE + Gitleaks + Trivy).
+# No CodeQL / GitHub Code Quality. No dedicated scanners or paid SaaS tokens.
+name: Security
+
+on:
+  pull_request:
+  push:
+    branches: [master, main]
+  schedule:
+    - cron: '27 6 * * 1' # Weekly Monday 06:27 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: security-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  semgrep:
+    name: Semgrep CE
+    runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]' && github.actor != 'renovate[bot]'
+    container:
+      image: semgrep/semgrep:1.179.0
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Scan (TypeScript / React / JavaScript / Python)
+        run: |
+          semgrep scan \
+            --config p/typescript \
+            --config p/react \
+            --config p/javascript \
+            --config p/python \
+            --error \
+            --metrics=off
+
+  gitleaks:
+    name: Gitleaks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Detect secrets
+        run: |
+          docker run --rm \
+            -v "$PWD:/repo:ro" \
+            ghcr.io/gitleaks/gitleaks:v8.30.1 \
+            detect --source=/repo --verbose --redact
+
+  trivy:
+    name: Trivy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      # Pin action by commit SHA (post Mar 2026 trivy-action supply-chain incident).
+      # Tag v0.36.0 == ed142fd0673e97e23eac54620cfb913e5ce36c25
+      # Override Trivy CLI to latest stable (action default is still v0.70.0).
+      - name: Scan filesystem (HIGH/CRITICAL)
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          version: v0.75.0
+          scan-type: fs
+          scan-ref: .
+          severity: HIGH,CRITICAL
+          exit-code: '1'
+          ignore-unfixed: true
+
+  security:
+    name: security
+    needs: [semgrep, gitleaks, trivy]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require all scanners to pass
+        run: |
+          # Semgrep may be skipped on Dependabot PRs; treat skipped as OK for that job only.
+          semgrep_ok=false
+          if [ "${{ needs.semgrep.result }}" = "success" ] || [ "${{ needs.semgrep.result }}" = "skipped" ]; then
+            semgrep_ok=true
+          fi
+
+          if [ "$semgrep_ok" != "true" ] || \
+             [ "${{ needs.gitleaks.result }}" != "success" ] || \
+             [ "${{ needs.trivy.result }}" != "success" ]; then
+            echo "::error::One or more security scanners failed (semgrep=${{ needs.semgrep.result }}, gitleaks=${{ needs.gitleaks.result }}, trivy=${{ needs.trivy.result }})."
+            exit 1
+          fi
+          echo "All security scanners passed."

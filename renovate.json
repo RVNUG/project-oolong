@@ -1,0 +1,77 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":semanticCommits",
+    ":dependencyDashboard",
+    ":pinDevDependencies"
+  ],
+  "labels": ["dependencies"],
+  "schedule": ["before 6am on monday"],
+  "prHourlyLimit": 5,
+  "prConcurrentLimit": 10,
+  "vulnerabilityAlerts": {
+    "enabled": true
+  },
+  "github-actions": {
+    "enabled": true,
+    "pinDigests": true
+  },
+  "packageRules": [
+    {
+      "description": "Group ephemeral security scanner pins",
+      "matchFileNames": [".github/workflows/security.yml"],
+      "matchManagers": ["custom.regex"],
+      "groupName": "security scanners",
+      "labels": ["dependencies", "security"]
+    },
+    {
+      "description": "Group GitHub Actions bumps",
+      "matchManagers": ["github-actions"],
+      "groupName": "github-actions",
+      "labels": ["dependencies"]
+    },
+    {
+      "description": "Ignore prereleases for scanner pins",
+      "matchManagers": ["custom.regex", "github-actions"],
+      "ignoreUnstable": true,
+      "respectLatest": true
+    }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Semgrep CE Docker image pin in security.yml",
+      "fileMatch": ["^\\.github/workflows/security\\.yml$"],
+      "matchStrings": [
+        "image:\\s*semgrep/semgrep:(?<currentValue>[^\\s#]+)"
+      ],
+      "datasourceTemplate": "docker",
+      "depNameTemplate": "semgrep/semgrep",
+      "versioningTemplate": "semver"
+    },
+    {
+      "customType": "regex",
+      "description": "Gitleaks Docker image pin in security.yml",
+      "fileMatch": ["^\\.github/workflows/security\\.yml$"],
+      "matchStrings": [
+        "ghcr\\.io/gitleaks/gitleaks:(?<currentValue>[^\\s#]+)"
+      ],
+      "datasourceTemplate": "docker",
+      "depNameTemplate": "ghcr.io/gitleaks/gitleaks",
+      "versioningTemplate": "semver"
+    },
+    {
+      "customType": "regex",
+      "description": "Trivy CLI version override in security.yml",
+      "fileMatch": ["^\\.github/workflows/security\\.yml$"],
+      "matchStrings": [
+        "version:\\s*(?<currentValue>v?[0-9]+\\.[0-9]+\\.[0-9]+)\\s*\\n\\s*scan-type:"
+      ],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "aquasecurity/trivy",
+      "extractVersionTemplate": "^v?(?<version>\\d+\\.\\d+\\.\\d+)$",
+      "versioningTemplate": "semver"
+    }
+  ]
+}
