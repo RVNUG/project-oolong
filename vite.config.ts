@@ -2,7 +2,6 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import * as dotenv from 'dotenv'
 import { resolve } from 'path'
-import { createHtmlPlugin } from 'vite-plugin-html'
 import { VitePWA } from 'vite-plugin-pwa'
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 
@@ -68,15 +67,6 @@ export default defineConfig({
         'images/IMG_4105 (1).jpeg',
         'images/team/62387302.jpeg'
       ]
-    }),
-    createHtmlPlugin({
-      minify: true,
-      inject: {
-        data: {
-          title: 'Roanoke Valley .NET User Group (RVNUG)',
-          description: 'The Roanoke Valley .NET User Group (RVNUG) is a community of developers passionate about .NET technologies in the Roanoke Valley area.',
-        },
-      },
     }),
     VitePWA({
       registerType: 'autoUpdate',
