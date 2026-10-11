@@ -20,6 +20,25 @@
       "is_online": false
     },
     {
+      "id": "e-316926077",
+      "name": "In Person-Salem-\"So our solo developer died...\" Software archaeology with AI",
+      "status": "upcoming",
+      "local_date": "2026-11-05",
+      "local_time": "18:00",
+      "description": "\"So our solo developer died...\" Software archaeology with AI presented by Kevin Griffin\n\n\"What would happen if you got hit by a bus?\" Developers and consultants joke about it all the time. It's a grim question, but one worth answering. On a recent client engagement, I had to answer it for someone else.\n\nA solo developer who spent more than 20 years building and supporting a niche SaaS product passed away with little to no warning. He left behind a loving family and a large software system that existed mostly in his head: no source control, no documentation, and no handoff. My job was to figure out what existed, where it lived, and how to keep running a product that companies around the world depend on.\n\nUsing Claude Code as an investigative partner, I spelunked through his development machine, following clues across files, scripts, configs, and databases to piece together how it all fit together. In this talk, I'll walk through what I found, where AI helped (and where it didn't), and the practical steps you can take now, whether you're a solo developer or part of a team, so nobody has to do this archaeology on your work.\n\nFree pizza and soft drinks will be provided.",
+      "venue": {
+        "name": "Medeco Security Locks, Inc.",
+        "address_1": "3625 Alleghany Dr, Salem, VA 24153, USA",
+        "city": "Salem",
+        "state": "VA",
+        "country": "us",
+        "zip": "24153"
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/316926077/",
+      "is_upcoming": true,
+      "is_online": false
+    },
+    {
       "id": "ep-313580154",
       "name": "Online: The 1-Person DevOps Stack presentation by Lionel Sapp",
       "status": "past",
@@ -210,5 +229,5 @@
       "is_online": true
     }
   ],
-  "updated_at": "2026-10-05T06:36:31.494581"
+  "updated_at": "2026-10-11T06:52:58.758510"
 }
