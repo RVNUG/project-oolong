@@ -49,20 +49,12 @@ const EventDetailPage = () => {
   const formattedDate = event.local_date ? formatFullDate(event.local_date) : 'Date not available';
   const formattedTime = event.local_time ? formatTime(event.local_time) : 'Time not available';
   
-  // Create a formatted datetime for structured data and other uses
-  let eventDateTime: Date | null = null;
-  try {
-    if (event.local_date && event.local_time) {
-      // Create a date object from the ISO format
-      eventDateTime = new Date(`${event.local_date}T${event.local_time}`);
-      if (isNaN(eventDateTime.getTime())) {
-        console.warn(`Invalid date/time: ${event.local_date}T${event.local_time}`);
-        eventDateTime = null;
-      }
+  // Warn if the event date/time cannot be parsed
+  if (event.local_date && event.local_time) {
+    const eventDateTime = new Date(`${event.local_date}T${event.local_time}`);
+    if (isNaN(eventDateTime.getTime())) {
+      console.warn(`Invalid date/time: ${event.local_date}T${event.local_time}`);
     }
-  } catch (error) {
-    console.error("Error parsing event datetime:", error);
-    eventDateTime = null;
   }
 
   // Check if the event is online
