@@ -214,11 +214,15 @@ const HomePage = () => {
   }, [currentVideoIndex, videos]);
 
   // Function to open video in a new tab
-  const openVideo = () => {
-    if (latestVideo) {
-      window.open(`https://www.youtube.com/watch?v=${latestVideo.id}`, '_blank', 'noopener,noreferrer');
+  const openVideo = (video: YouTubeVideo | null = latestVideo) => {
+    if (video) {
+      window.open(`https://www.youtube.com/watch?v=${video.id}`, '_blank', 'noopener,noreferrer');
     }
   };
+
+  const newestVideo = videos.length > 0
+    ? [...videos].sort((a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt))[0]
+    : latestVideo;
 
   // Create breadcrumb structured data
   const baseUrl = getCanonicalUrl();
@@ -441,8 +445,8 @@ const HomePage = () => {
             </p>
             <button 
               className="youtube-btn"
-              onClick={openVideo}
-              disabled={loadingVideo || !latestVideo}
+              onClick={() => openVideo(newestVideo)}
+              disabled={loadingVideo || !newestVideo}
             >
               <i className="fas fa-play-circle"></i> Watch This Video
             </button>
@@ -469,7 +473,7 @@ const HomePage = () => {
                 <div className="youtube-embed">
                   <div 
                     className="youtube-thumbnail" 
-                    onClick={openVideo}
+                    onClick={() => openVideo()}
                     tabIndex={0}
                     role="button"
                     aria-label={`Watch ${latestVideo?.title}`}
