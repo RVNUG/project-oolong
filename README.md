@@ -1,5 +1,8 @@
 # Roanoke Valley .NET User Group Website
 
+![Vitest coverage](badges/coverage-vitest.svg)
+![Pytest coverage](badges/coverage-pytest.svg)
+
 This is the official website for the Roanoke Valley .NET User Group (RVNUG), a community of developers passionate about .NET technologies in the Roanoke Valley area.
 
 ## Technologies Used

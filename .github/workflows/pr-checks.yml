@@ -1,4 +1,4 @@
-name: PR Checks (Build, TypeScript, ESLint)
+name: PR Checks (Build, TypeScript, ESLint, Tests)
 
 on:
   pull_request:
@@ -12,6 +12,47 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  unit-tests:
+    name: Unit Tests (Vitest)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Unit tests with coverage (hard 80% threshold)
+        run: npm run test:coverage
+
+  python-tests:
+    name: Unit Tests (Pytest)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      - name: Pytest with coverage (soft 80% threshold)
+        run: |
+          pytest
+          python scripts/check_python_coverage_soft.py coverage-python/coverage.json 80
+
   build-verification:
     name: Build Verification
     runs-on: ubuntu-latest
@@ -95,13 +136,15 @@ jobs:
 
   status-check:
     name: Status Check
-    needs: [build-verification, typescript-check, eslint-check]
+    needs: [unit-tests, python-tests, build-verification, typescript-check, eslint-check]
     if: always()
     runs-on: ubuntu-latest
     steps:
       - name: Verify all checks passed
         run: |
-          if [ "${{ needs.build-verification.result }}" != "success" ] || \
+          if [ "${{ needs.unit-tests.result }}" != "success" ] || \
+             [ "${{ needs.python-tests.result }}" != "success" ] || \
+             [ "${{ needs.build-verification.result }}" != "success" ] || \
              [ "${{ needs.typescript-check.result }}" != "success" ] || \
              [ "${{ needs.eslint-check.result }}" != "success" ]; then
             echo "::error::One or more checks failed. Please fix the issues before merging."

@@ -8,23 +8,22 @@ print("Current working directory:", os.getcwd())
 print("Loading .env file...")
 load_dotenv(dotenv_path=".env", override=True)
 print("Environment variables loaded:")
-print("YOUTUBE_DATA_API_KEY:", os.getenv("YOUTUBE_DATA_API_KEY"))
-print("YOUTUBE_CHANNEL_ID:", os.getenv("YOUTUBE_CHANNEL_ID"))
 
 API_KEY = os.getenv("YOUTUBE_DATA_API_KEY")
 CHANNEL_ID = os.getenv("YOUTUBE_CHANNEL_ID")
 
-print(f"API_KEY: {API_KEY}")
-print(f"CHANNEL_ID: {CHANNEL_ID}")
+print("API key configured:", "yes" if API_KEY else "no")
+print("CHANNEL_ID:", CHANNEL_ID)
 
 def verify_channel(channel_id, api_key):
     """Verify that the channel exists and is accessible."""
-    url = f"https://www.googleapis.com/youtube/v3/channels?part=snippet&id={channel_id}&key={api_key}"
-    print(f"Verifying channel with URL: {url}")
-    
+    base_url = "https://www.googleapis.com/youtube/v3/channels"
+    params = {"part": "snippet", "id": channel_id, "key": api_key}
+    print("Verifying channel...")
+
     try:
-        response = requests.get(url)
-        print(f"Channel verification response: {response.text}")
+        response = requests.get(base_url, params=params)
+        print(f"Channel verification response status: {response.status_code}")
         response.raise_for_status()
         data = response.json()
         items = data.get("items", [])
@@ -52,14 +51,22 @@ def get_latest_videos(channel_id, api_key, max_results=3):
         A list of video dictionaries, or None if an error occurs.  Each dictionary
         contains video details like 'title', 'video_id', and 'published_at'.
     """
-    url = f"https://www.googleapis.com/youtube/v3/search?part=snippet&channelId={channel_id}&order=date&type=video&maxResults={max_results}&key={api_key}"
-    print(f"Fetching from URL: {url}")
-    
+    base_url = "https://www.googleapis.com/youtube/v3/search"
+    params = {
+        "part": "snippet",
+        "channelId": channel_id,
+        "order": "date",
+        "type": "video",
+        "maxResults": max_results,
+        "key": api_key,
+    }
+    print("Fetching latest videos...")
+
     try:
-        response = requests.get(url)
+        response = requests.get(base_url, params=params)
         print(f"Response status code: {response.status_code}")
-        print(f"Response content: {response.text}")
-        
+        print("Response content received.")
+
         response.raise_for_status()  # Raise an exception for bad status codes
 
         data = response.json()
@@ -82,8 +89,8 @@ def get_latest_videos(channel_id, api_key, max_results=3):
     except requests.exceptions.RequestException as e:
         # Handle network errors, HTTP errors, etc.
         print(f"Error fetching videos: {e}")
-        if hasattr(e.response, 'text'):
-            print(f"Error response: {e.response.text}")
+        if hasattr(e, "response") and e.response is not None:
+            print(f"Error response status: {e.response.status_code}")
         return None
     except ValueError as e:
         print(f"Error parsing JSON response: {e}")
@@ -100,9 +107,10 @@ def get_channel_id_from_channel_id(channel_id, api_key):
     Returns:
         The channel ID as a string, or None if an error occurs or the channel is not found.
     """
-    url = f"https://www.googleapis.com/youtube/v3/channels?part=id&id={channel_id}&key={api_key}"
+    base_url = "https://www.googleapis.com/youtube/v3/channels"
+    params = {"part": "id", "id": channel_id, "key": api_key}
     try:
-        response = requests.get(url)
+        response = requests.get(base_url, params=params)
         response.raise_for_status()  # Raise an exception for bad status codes
 
         data = response.json()
@@ -160,35 +168,29 @@ def generate_json(videos):
     json_output = json.dumps(videos, indent=4)
     return json_output
 
-# First verify the channel
-if not verify_channel(CHANNEL_ID, API_KEY):
-    print("Channel verification failed. Please check the channel ID.")
-    exit(1)
+def main():
+    # First verify the channel
+    if not verify_channel(CHANNEL_ID, API_KEY):
+        print("Channel verification failed. Please check the channel ID.")
+        raise SystemExit(1)
 
-# Get the latest 3 videos
-latest_videos = get_latest_videos(CHANNEL_ID, API_KEY)
+    # Get the latest 3 videos
+    latest_videos = get_latest_videos(CHANNEL_ID, API_KEY)
 
-if latest_videos:
-    print("Latest Videos:")
-    for video in latest_videos:
-        print(f"Title: {video['title']}")
-        print(f"Video ID: {video['video_id']}")
-        print(f"Published At: {video['published_at']}")
-        print("-" * 20)
+    if latest_videos:
+        print(f"Retrieved {len(latest_videos)} latest video(s).")
 
-    # Generate HTML
-    # html_output = generate_html(latest_videos)
-    # print("\nGenerated HTML:")
-    # print(html_output)
+        json_output = generate_json(latest_videos)
 
-    json_output = generate_json(latest_videos)
-    print("\nGenerated JSON:", json_output)
+        # Save the JSON to a file in the public/data directory
+        os.makedirs("public/data", exist_ok=True)
+        with open("public/data/videos.json", "w") as f:
+            f.write(json_output)
+        print("JSON saved to public/data/videos.json")
 
-    # Save the JSON to a file in the public/data directory
-    os.makedirs("public/data", exist_ok=True)
-    with open("public/data/videos.json", "w") as f:
-        f.write(json_output)
-    print("\nJSON saved to public/data/videos.json")
+    else:
+        print("Could not retrieve latest videos.")
 
-else:
-    print("Could not retrieve latest videos.")
+
+if __name__ == "__main__":
+    main()
