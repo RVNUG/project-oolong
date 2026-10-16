@@ -116,4 +116,43 @@ describe('useEvents hook', () => {
     expect(result.current.events[0].id).toBe('e-new');
     expect(fetchEvents).toHaveBeenCalledTimes(2);
   });
+
+  it('reports fetch errors and clears them after a successful refresh', async () => {
+    vi.mocked(fetchEvents).mockRejectedValueOnce(new Error('Network unavailable'));
+
+    const { result } = renderHook(() => useEvents());
+
+    await waitFor(() => {
+      expect(result.current.loading).toBe(false);
+    });
+
+    expect(result.current.error).toBe('Network unavailable');
+    expect(result.current.events).toEqual([]);
+
+    await act(async () => {
+      await result.current.refreshEvents();
+    });
+
+    expect(result.current.error).toBeNull();
+    expect(result.current.events).toEqual(mockEvents);
+  });
+
+  it('sorts upcoming events chronologically and past events in reverse chronological order', async () => {
+    const events = [
+      { ...mockUpcomingEvent, id: 'future-late', local_date: '2099-12-31', is_upcoming: true },
+      { ...mockPastEvent, id: 'past-early', local_date: '2020-01-01', is_upcoming: false },
+      { ...mockUpcomingEvent, id: 'future-early', local_date: '2099-01-01', is_upcoming: true },
+      { ...mockPastEvent, id: 'past-late', local_date: '2021-01-01', is_upcoming: false },
+    ];
+    vi.mocked(fetchEvents).mockResolvedValue(events);
+
+    const { result } = renderHook(() => useEvents());
+
+    await waitFor(() => {
+      expect(result.current.loading).toBe(false);
+    });
+
+    expect(result.current.upcomingEvents.map(event => event.id)).toEqual(['future-early', 'future-late']);
+    expect(result.current.pastEvents.map(event => event.id)).toEqual(['past-late', 'past-early']);
+  });
 }); 

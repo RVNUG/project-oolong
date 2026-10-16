@@ -69,15 +69,6 @@
       })();
     </script>
 
-    <!-- JSONP callback function for Meetup API -->
-    <script>
-      function handleMeetupEvents(data) {
-        // Store the data in a global variable
-        window.meetupEventsData = data;
-        // Dispatch an event to notify that data is ready
-        document.dispatchEvent(new CustomEvent('meetupDataReady'));
-      }
-    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -16,7 +16,6 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "dompurify": "^3.4.16",
     "dotenv": "^16.4.7",
     "lru-cache": "^11.5.3",
     "react": "19.3.0",

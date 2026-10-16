@@ -21,7 +21,6 @@ export type ContactFormCategory = (typeof CONTACT_CATEGORIES)[number];
 const MAX_LENGTH = {
   name: 100,
   email: 254, // Maximum length per RFC 5321
-  category: 50,
   message: 3000,
 };
 
@@ -199,8 +198,6 @@ export const validateFormData = (
     errors.push('Please select a category');
   } else if (!isValidContactCategory(category)) {
     errors.push('Please select a valid category');
-  } else if (category.length > MAX_LENGTH.category) {
-    errors.push(`Category must be no more than ${MAX_LENGTH.category} characters long`);
   }
 
   // Message validation
