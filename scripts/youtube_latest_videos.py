@@ -3,35 +3,26 @@ import json
 import os
 from dotenv import load_dotenv
 
-def _mask_secret(value, visible=4):
-    if not value:
-        return "<not set>"
-    if len(value) <= visible:
-        return "*" * len(value)
-    return ("*" * (len(value) - visible)) + value[-visible:]
-
 # Update the path to point to the project root .env file
 print("Current working directory:", os.getcwd())
 print("Loading .env file...")
 load_dotenv(dotenv_path=".env", override=True)
 print("Environment variables loaded:")
-print("YOUTUBE_DATA_API_KEY: <redacted>")
-print("YOUTUBE_CHANNEL_ID:", os.getenv("YOUTUBE_CHANNEL_ID"))
 
 API_KEY = os.getenv("YOUTUBE_DATA_API_KEY")
 CHANNEL_ID = os.getenv("YOUTUBE_CHANNEL_ID")
 
-print(f"API_KEY: {_mask_secret(API_KEY)}")
-print(f"CHANNEL_ID: {CHANNEL_ID}")
+print("API key configured:", "yes" if API_KEY else "no")
+print("CHANNEL_ID:", CHANNEL_ID)
 
 def verify_channel(channel_id, api_key):
     """Verify that the channel exists and is accessible."""
-    url = f"https://www.googleapis.com/youtube/v3/channels?part=snippet&id={channel_id}&key={api_key}"
-    redacted_url = url.replace(api_key, "<redacted>") if api_key else url
-    print(f"Verifying channel with URL: {redacted_url}")
-    
+    base_url = "https://www.googleapis.com/youtube/v3/channels"
+    params = {"part": "snippet", "id": channel_id, "key": api_key}
+    print("Verifying channel...")
+
     try:
-        response = requests.get(url)
+        response = requests.get(base_url, params=params)
         print(f"Channel verification response status: {response.status_code}")
         response.raise_for_status()
         data = response.json()
@@ -60,15 +51,22 @@ def get_latest_videos(channel_id, api_key, max_results=3):
         A list of video dictionaries, or None if an error occurs.  Each dictionary
         contains video details like 'title', 'video_id', and 'published_at'.
     """
-    url = f"https://www.googleapis.com/youtube/v3/search?part=snippet&channelId={channel_id}&order=date&type=video&maxResults={max_results}&key={api_key}"
-    redacted_url = url.replace(api_key, "<redacted>") if api_key else url
-    print(f"Fetching from URL: {redacted_url}")
-    
+    base_url = "https://www.googleapis.com/youtube/v3/search"
+    params = {
+        "part": "snippet",
+        "channelId": channel_id,
+        "order": "date",
+        "type": "video",
+        "maxResults": max_results,
+        "key": api_key,
+    }
+    print("Fetching latest videos...")
+
     try:
-        response = requests.get(url)
+        response = requests.get(base_url, params=params)
         print(f"Response status code: {response.status_code}")
         print("Response content received.")
-        
+
         response.raise_for_status()  # Raise an exception for bad status codes
 
         data = response.json()
@@ -109,9 +107,10 @@ def get_channel_id_from_channel_id(channel_id, api_key):
     Returns:
         The channel ID as a string, or None if an error occurs or the channel is not found.
     """
-    url = f"https://www.googleapis.com/youtube/v3/channels?part=id&id={channel_id}&key={api_key}"
+    base_url = "https://www.googleapis.com/youtube/v3/channels"
+    params = {"part": "id", "id": channel_id, "key": api_key}
     try:
-        response = requests.get(url)
+        response = requests.get(base_url, params=params)
         response.raise_for_status()  # Raise an exception for bad status codes
 
         data = response.json()
@@ -179,21 +178,15 @@ def main():
     latest_videos = get_latest_videos(CHANNEL_ID, API_KEY)
 
     if latest_videos:
-        print("Latest Videos:")
-        for video in latest_videos:
-            print(f"Title: {video['title']}")
-            print(f"Video ID: {video['video_id']}")
-            print(f"Published At: {video['published_at']}")
-            print("-" * 20)
+        print(f"Retrieved {len(latest_videos)} latest video(s).")
 
         json_output = generate_json(latest_videos)
-        print("\nGenerated JSON:", json_output)
 
         # Save the JSON to a file in the public/data directory
         os.makedirs("public/data", exist_ok=True)
         with open("public/data/videos.json", "w") as f:
             f.write(json_output)
-        print("\nJSON saved to public/data/videos.json")
+        print("JSON saved to public/data/videos.json")
 
     else:
         print("Could not retrieve latest videos.")

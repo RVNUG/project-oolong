@@ -45,7 +45,14 @@ def test_verify_channel_success(mock_get):
     mock_resp.text = "{}"
     mock_get.return_value = mock_resp
 
-    assert yt.verify_channel("channel", "key") is True
+    assert yt.verify_channel("channel", "secret-key") is True
+
+    mock_get.assert_called_once()
+    args, kwargs = mock_get.call_args
+    assert args[0] == "https://www.googleapis.com/youtube/v3/channels"
+    assert "key=" not in args[0]
+    assert kwargs["params"]["key"] == "secret-key"
+    assert kwargs["params"]["id"] == "channel"
 
 
 @patch("scripts.youtube_latest_videos.requests.get")
@@ -68,7 +75,15 @@ def test_get_latest_videos_parses_items(mock_get):
     }
     mock_get.return_value = mock_resp
 
-    videos = yt.get_latest_videos("channel", "key", max_results=1)
+    videos = yt.get_latest_videos("channel", "secret-key", max_results=1)
     assert videos is not None
     assert videos[0]["video_id"] == "vid1"
     assert videos[0]["title"] == "Episode 1"
+
+    mock_get.assert_called_once()
+    args, kwargs = mock_get.call_args
+    assert args[0] == "https://www.googleapis.com/youtube/v3/search"
+    assert "key=" not in args[0]
+    assert kwargs["params"]["key"] == "secret-key"
+    assert kwargs["params"]["channelId"] == "channel"
+    assert kwargs["params"]["maxResults"] == 1
