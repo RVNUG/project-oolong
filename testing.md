@@ -1,10 +1,10 @@
 # Testing Guide
 
-This project uses Vitest as its testing framework, which is optimized for Vite-based projects.
+This project uses Vitest for frontend tests and pytest for Python scripts under `scripts/`.
 
 ## Running Tests
 
-You can run tests using the following npm scripts:
+### Frontend (Vitest)
 
 ```bash
 # Run all tests once
@@ -13,9 +13,21 @@ npm test
 # Run tests in watch mode
 npm run test:watch
 
-# Run tests with coverage report
+# Run tests with coverage report (hard 80% gate)
 npm run test:coverage
 ```
+
+### Python (pytest)
+
+```bash
+# Install Python test deps
+pip install -r requirements-dev.txt
+
+# Run tests with coverage (hard 80% gate via pytest.ini)
+pytest
+```
+
+Coverage reports are written to `coverage-python/` (`coverage.json` and HTML).
 
 ## Test Structure
 

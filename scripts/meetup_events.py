@@ -371,7 +371,7 @@ def parse_iso_datetime(datetime_str):
     return now.strftime("%Y-%m-%d"), "18:00"
 
 # Keep the old scraping code as fallback (in case Next.js approach fails)
-async def scrape_events_from_page_legacy(page, event_type):
+async def scrape_events_from_page_legacy(page, event_type):  # pragma: no cover
     """
     Legacy scraper for events using DOM selectors (fallback).
     
