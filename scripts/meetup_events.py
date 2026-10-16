@@ -2,19 +2,15 @@ import json
 import os
 import datetime
 import asyncio
-import time
 import re
 from dotenv import load_dotenv
-from playwright.async_api import async_playwright, Error as PlaywrightError, TimeoutError as PlaywrightTimeoutError
+from playwright.async_api import async_playwright, TimeoutError as PlaywrightTimeoutError
 
 # Load environment variables
-print("Current working directory:", os.getcwd())
-print("Loading .env file...")
 load_dotenv(dotenv_path=".env", override=True)
 
 # Get Meetup group name from environment, or use default
 MEETUP_GROUP_NAME = os.getenv("MEETUP_GROUP_NAME", "roanoke-valley-net-user-group")
-print(f"MEETUP_GROUP_NAME: {MEETUP_GROUP_NAME}")
 
 # Configure timeouts and retries
 PAGE_TIMEOUT = 90000  # 90 seconds
@@ -24,8 +20,6 @@ RETRY_DELAY = 5  # seconds
 # Debug mode - set to True to save screenshots and HTML dumps
 # Can be enabled with MEETUP_DEBUG environment variable
 DEBUG = os.getenv("MEETUP_DEBUG", "false").lower() == "true"
-if DEBUG:
-    print("DEBUG mode enabled - will save screenshots and HTML dumps")
 
 async def scrape_meetup_events(group_name):
     """
@@ -230,9 +224,7 @@ async def scrape_events_from_page(page, event_type):
                 
                 # Get date/time info
                 date_time_str = event_data.get('dateTime', '')
-                end_time_str = event_data.get('endTime', '')
                 status = event_data.get('status', 'UNKNOWN')
-                event_type_from_data = event_data.get('eventType', 'PHYSICAL')
                 is_online = event_data.get('isOnline', False)
                 
                 # Parse datetime
@@ -575,8 +567,8 @@ async def scrape_events_from_page_legacy(page, event_type):  # pragma: no cover
                         span_count = await spans.count()
                         
                         # Check each span for address-like content
-                        for i in range(span_count):
-                            span = spans.nth(i)
+                        for span_idx in range(span_count):
+                            span = spans.nth(span_idx)
                             span_text = await span.text_content()
                             
                             # Check if it looks like an address (contains a comma followed by a state code)
@@ -787,7 +779,6 @@ def parse_date_time(date_time_text, event_type):
             try:
                 match = re.search(r"([A-Za-z]{3}), ([A-Za-z]{3}) (\d{1,2})", date_time_text)
                 if match:
-                    day_of_week = match.group(1)
                     month = match.group(2)
                     day = match.group(3)
                     
@@ -953,6 +944,11 @@ def save_to_json(events, filename="public/data/events.json"):
 
 # Main execution
 if __name__ == "__main__":
+    print("Current working directory:", os.getcwd())
+    print(f"MEETUP_GROUP_NAME: {MEETUP_GROUP_NAME}")
+    if DEBUG:
+        print("DEBUG mode enabled - will save screenshots and HTML dumps")
+
     # Run the async scraper
     events = asyncio.run(scrape_meetup_events(MEETUP_GROUP_NAME))
     
