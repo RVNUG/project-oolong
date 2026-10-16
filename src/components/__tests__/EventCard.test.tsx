@@ -93,4 +93,36 @@ describe('EventCard', () => {
     expect(screen.getByText('Online')).toBeInTheDocument();
     expect(screen.getByText('Online Event')).toBeInTheDocument();
   });
+
+  it('uses safe placeholders when date, time, description, and venue are missing', () => {
+    renderWithRouter(<EventCard event={{
+      ...mockEvent,
+      local_date: '',
+      local_time: '',
+      description: '',
+      venue: undefined,
+    }} />);
+
+    expect(screen.getAllByText('TBD')).toHaveLength(2);
+    expect(screen.getByText('--')).toBeInTheDocument();
+    expect(screen.getByText('Time TBD')).toBeInTheDocument();
+    expect(screen.getByText('No description available')).toBeInTheDocument();
+    expect(screen.queryByText('Event completed')).not.toBeInTheDocument();
+  });
+
+  it('shows completed status instead of RSVP and calendar actions for past events', () => {
+    renderWithRouter(<EventCard event={{
+      ...mockEvent,
+      local_date: '2020-01-01',
+      local_time: '10:00',
+      description: '<p>Past event description</p>',
+    }} isHero isCompact />);
+
+    expect(screen.getByText('Past')).toBeInTheDocument();
+    expect(screen.getByText('Event completed')).toBeInTheDocument();
+    expect(screen.getByText('Past event description')).toBeInTheDocument();
+    expect(document.querySelector('.event-card')).toHaveClass('event-card-hero', 'event-card-compact', 'past-event');
+    expect(screen.queryByRole('button', { name: 'Add to Calendar' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: /RSVP on Meetup/ })).not.toBeInTheDocument();
+  });
 }); 

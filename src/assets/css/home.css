@@ -594,6 +594,15 @@ section[id] {
   color: inherit;
 }
 
+.dark-theme .community-cta a.discord-primary-btn:visited {
+  color: #fff !important;
+  background-color: var(--button-primary-bg) !important;
+}
+
+.dark-theme .community-cta a.discord-primary-btn:visited svg {
+  color: #fff !important;
+}
+
 .also-find-us {
   margin-top: var(--space-2);
 }
