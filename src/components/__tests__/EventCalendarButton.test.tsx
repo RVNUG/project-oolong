@@ -17,6 +17,7 @@ const event: MeetupEvent = {
 
 describe('EventCalendarButton', () => {
   afterEach(() => {
+    vi.unstubAllGlobals();
     vi.restoreAllMocks();
   });
 
@@ -59,7 +60,11 @@ describe('EventCalendarButton', () => {
   });
 
   it('downloads an iCalendar file with sanitized description and inferred event duration', () => {
-    const createObjectURL = vi.spyOn(URL, 'createObjectURL').mockReturnValue('blob:test-calendar');
+    const NativeURL = URL;
+    const createObjectURL = vi.fn().mockReturnValue('blob:test-calendar');
+    vi.stubGlobal('URL', class extends NativeURL {
+      static createObjectURL = createObjectURL;
+    });
     const click = vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(() => undefined);
     const appendChild = vi.spyOn(document.body, 'appendChild');
 
