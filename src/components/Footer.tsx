@@ -54,7 +54,7 @@ const Footer = () => {
         <a href="https://www.meetup.com/roanoke-valley-net-user-group/" target="_blank" rel="noopener noreferrer" aria-label="Meetup - Find our events">
           <i className="fab fa-meetup" aria-hidden="true"></i>
         </a>
-        <a href="https://www.youtube.com/@rvnug-roanokevalleydotnetu6781" target="_blank" rel="noopener noreferrer" aria-label="YouTube - Watch our recorded sessions">
+        <a href="https://www.youtube.com/@rvnug" target="_blank" rel="noopener noreferrer" aria-label="YouTube - Watch our recorded sessions">
           <i className="fab fa-youtube" aria-hidden="true"></i>
         </a>
       </div>

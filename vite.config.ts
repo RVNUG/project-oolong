@@ -142,7 +142,7 @@ export default defineConfig({
       '@': '/src',
     },
   },
-  publicDir: resolve(__dirname, 'public'),
+  publicDir: resolve(import.meta.dirname, 'public'),
   css: {
     devSourcemap: true,
     preprocessorOptions: {

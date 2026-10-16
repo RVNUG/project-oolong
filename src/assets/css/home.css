@@ -179,12 +179,36 @@ section[id] {
   gap: var(--space-4);
 }
 
-/* Button-styled links must not pick up browser :visited purple */
+/* Purple CTA with a white border so it stands out on the purple hero; same in both themes and all link states */
+.hero-cta a.btn.btn-primary,
 .hero-cta a.btn.btn-primary:link,
 .hero-cta a.btn.btn-primary:visited,
+.hero-cta a.btn.btn-primary:active,
+.dark-theme .hero-cta a.btn.btn-primary,
+.dark-theme .hero-cta a.btn.btn-primary:link,
+.dark-theme .hero-cta a.btn.btn-primary:visited,
+.dark-theme .hero-cta a.btn.btn-primary:active {
+  background-color: var(--color-primary-600) !important;
+  color: #fff !important;
+  border: 2px solid #fff !important;
+  text-decoration: none;
+}
+
 .hero-cta a.btn.btn-primary:hover,
-.hero-cta a.btn.btn-primary:active {
-  color: var(--button-primary-text);
+.hero-cta a.btn.btn-primary:focus-visible,
+.dark-theme .hero-cta a.btn.btn-primary:hover,
+.dark-theme .hero-cta a.btn.btn-primary:focus-visible {
+  background-color: var(--color-primary-500) !important;
+  color: #fff !important;
+  border-color: #fff !important;
+}
+
+/* Global .btn-secondary:hover rules from other pages lighten the bg and blank the text in dark mode */
+.hero-cta a.btn.btn-secondary:hover,
+.hero-cta a.btn.btn-secondary:focus-visible {
+  background-color: var(--button-secondary-hover);
+  border-color: var(--button-secondary-border);
+  color: var(--button-secondary-text);
 }
 
 .btn .btn-primary .pulse-btn {
