@@ -4,16 +4,10 @@ import os
 from dotenv import load_dotenv
 
 # Update the path to point to the project root .env file
-print("Current working directory:", os.getcwd())
-print("Loading .env file...")
 load_dotenv(dotenv_path=".env", override=True)
-print("Environment variables loaded:")
 
 API_KEY = os.getenv("YOUTUBE_DATA_API_KEY")
 CHANNEL_ID = os.getenv("YOUTUBE_CHANNEL_ID")
-
-print("API key configured:", "yes" if API_KEY else "no")
-print("CHANNEL_ID:", CHANNEL_ID)
 
 def verify_channel(channel_id, api_key):
     """Verify that the channel exists and is accessible."""
@@ -169,6 +163,10 @@ def generate_json(videos):
     return json_output
 
 def main():
+    print("Current working directory:", os.getcwd())
+    print("API key configured:", "yes" if API_KEY else "no")
+    print("CHANNEL_ID:", CHANNEL_ID)
+
     # First verify the channel
     if not verify_channel(CHANNEL_ID, API_KEY):
         print("Channel verification failed. Please check the channel ID.")
