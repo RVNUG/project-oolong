@@ -160,35 +160,35 @@ def generate_json(videos):
     json_output = json.dumps(videos, indent=4)
     return json_output
 
-# First verify the channel
-if not verify_channel(CHANNEL_ID, API_KEY):
-    print("Channel verification failed. Please check the channel ID.")
-    exit(1)
+def main():
+    # First verify the channel
+    if not verify_channel(CHANNEL_ID, API_KEY):
+        print("Channel verification failed. Please check the channel ID.")
+        raise SystemExit(1)
 
-# Get the latest 3 videos
-latest_videos = get_latest_videos(CHANNEL_ID, API_KEY)
+    # Get the latest 3 videos
+    latest_videos = get_latest_videos(CHANNEL_ID, API_KEY)
 
-if latest_videos:
-    print("Latest Videos:")
-    for video in latest_videos:
-        print(f"Title: {video['title']}")
-        print(f"Video ID: {video['video_id']}")
-        print(f"Published At: {video['published_at']}")
-        print("-" * 20)
+    if latest_videos:
+        print("Latest Videos:")
+        for video in latest_videos:
+            print(f"Title: {video['title']}")
+            print(f"Video ID: {video['video_id']}")
+            print(f"Published At: {video['published_at']}")
+            print("-" * 20)
 
-    # Generate HTML
-    # html_output = generate_html(latest_videos)
-    # print("\nGenerated HTML:")
-    # print(html_output)
+        json_output = generate_json(latest_videos)
+        print("\nGenerated JSON:", json_output)
 
-    json_output = generate_json(latest_videos)
-    print("\nGenerated JSON:", json_output)
+        # Save the JSON to a file in the public/data directory
+        os.makedirs("public/data", exist_ok=True)
+        with open("public/data/videos.json", "w") as f:
+            f.write(json_output)
+        print("\nJSON saved to public/data/videos.json")
 
-    # Save the JSON to a file in the public/data directory
-    os.makedirs("public/data", exist_ok=True)
-    with open("public/data/videos.json", "w") as f:
-        f.write(json_output)
-    print("\nJSON saved to public/data/videos.json")
+    else:
+        print("Could not retrieve latest videos.")
 
-else:
-    print("Could not retrieve latest videos.")
+
+if __name__ == "__main__":
+    main()

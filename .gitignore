@@ -17,6 +17,7 @@ yarn.lock
 .cache/
 .DS_Store
 coverage/
+coverage-python/
 
 # User-specific files
 *.suo
@@ -387,6 +388,7 @@ dist
 build
 out
 coverage/
+coverage-python/
 
 # Dependency directories
 .pnp
