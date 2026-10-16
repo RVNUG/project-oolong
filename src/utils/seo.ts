@@ -7,10 +7,12 @@ const getBaseUrl = (): string => {
   const baseUrl = import.meta.env.VITE_APP_BASE_URL || '';
   const domainUrl = import.meta.env.VITE_DOMAIN_URL || 'https://rvnug.org';
   
-  // Ensure domainUrl doesn't end with slash if baseUrl starts with one
   const formattedDomainUrl = domainUrl.endsWith('/') ? domainUrl.slice(0, -1) : domainUrl;
-  
-  return `${formattedDomainUrl}${baseUrl}`;
+  const formattedBaseUrl = baseUrl.replace(/^\/+|\/+$/g, '');
+
+  return formattedBaseUrl
+    ? `${formattedDomainUrl}/${formattedBaseUrl}`
+    : formattedDomainUrl;
 };
 
 /**

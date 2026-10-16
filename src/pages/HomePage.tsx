@@ -428,7 +428,7 @@ const HomePage = () => {
         <div className="section-header">
           <h2>Session Recordings</h2>
           <a 
-            href="https://www.youtube.com/@rvnug-roanokevalleydotnetu6781" 
+            href="https://www.youtube.com/@rvnug"
             className="view-all"
             target="_blank"
             rel="noopener noreferrer"
