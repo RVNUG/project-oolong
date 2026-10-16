@@ -43,10 +43,8 @@ jobs:
       - name: Vitest coverage (hard 80% gate)
         run: npm run test:coverage
 
-      - name: Pytest coverage (soft 80% gate)
-        run: |
-          pytest
-          python scripts/check_python_coverage_soft.py coverage-python/coverage.json 80
+      - name: Pytest coverage (hard 80% gate)
+        run: pytest
 
       - name: Generate coverage badges
         run: |

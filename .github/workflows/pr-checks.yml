@@ -48,10 +48,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements-dev.txt
 
-      - name: Pytest with coverage (soft 80% threshold)
-        run: |
-          pytest
-          python scripts/check_python_coverage_soft.py coverage-python/coverage.json 80
+      - name: Pytest with coverage (hard 80% threshold)
+        run: pytest
 
   build-verification:
     name: Build Verification
