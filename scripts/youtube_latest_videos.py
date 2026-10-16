@@ -3,28 +3,36 @@ import json
 import os
 from dotenv import load_dotenv
 
+def _mask_secret(value, visible=4):
+    if not value:
+        return "<not set>"
+    if len(value) <= visible:
+        return "*" * len(value)
+    return ("*" * (len(value) - visible)) + value[-visible:]
+
 # Update the path to point to the project root .env file
 print("Current working directory:", os.getcwd())
 print("Loading .env file...")
 load_dotenv(dotenv_path=".env", override=True)
 print("Environment variables loaded:")
-print("YOUTUBE_DATA_API_KEY:", os.getenv("YOUTUBE_DATA_API_KEY"))
+print("YOUTUBE_DATA_API_KEY: <redacted>")
 print("YOUTUBE_CHANNEL_ID:", os.getenv("YOUTUBE_CHANNEL_ID"))
 
 API_KEY = os.getenv("YOUTUBE_DATA_API_KEY")
 CHANNEL_ID = os.getenv("YOUTUBE_CHANNEL_ID")
 
-print(f"API_KEY: {API_KEY}")
+print(f"API_KEY: {_mask_secret(API_KEY)}")
 print(f"CHANNEL_ID: {CHANNEL_ID}")
 
 def verify_channel(channel_id, api_key):
     """Verify that the channel exists and is accessible."""
     url = f"https://www.googleapis.com/youtube/v3/channels?part=snippet&id={channel_id}&key={api_key}"
-    print(f"Verifying channel with URL: {url}")
+    redacted_url = url.replace(api_key, "<redacted>") if api_key else url
+    print(f"Verifying channel with URL: {redacted_url}")
     
     try:
         response = requests.get(url)
-        print(f"Channel verification response: {response.text}")
+        print(f"Channel verification response status: {response.status_code}")
         response.raise_for_status()
         data = response.json()
         items = data.get("items", [])
@@ -53,12 +61,13 @@ def get_latest_videos(channel_id, api_key, max_results=3):
         contains video details like 'title', 'video_id', and 'published_at'.
     """
     url = f"https://www.googleapis.com/youtube/v3/search?part=snippet&channelId={channel_id}&order=date&type=video&maxResults={max_results}&key={api_key}"
-    print(f"Fetching from URL: {url}")
+    redacted_url = url.replace(api_key, "<redacted>") if api_key else url
+    print(f"Fetching from URL: {redacted_url}")
     
     try:
         response = requests.get(url)
         print(f"Response status code: {response.status_code}")
-        print(f"Response content: {response.text}")
+        print("Response content received.")
         
         response.raise_for_status()  # Raise an exception for bad status codes
 
@@ -82,8 +91,8 @@ def get_latest_videos(channel_id, api_key, max_results=3):
     except requests.exceptions.RequestException as e:
         # Handle network errors, HTTP errors, etc.
         print(f"Error fetching videos: {e}")
-        if hasattr(e.response, 'text'):
-            print(f"Error response: {e.response.text}")
+        if hasattr(e, "response") and e.response is not None:
+            print(f"Error response status: {e.response.status_code}")
         return None
     except ValueError as e:
         print(f"Error parsing JSON response: {e}")
