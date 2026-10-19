@@ -16,7 +16,7 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "dotenv": "^16.4.7",
+    "dotenv": "^18.0.8",
     "lru-cache": "^11.5.3",
     "react": "19.3.1",
     "react-dom": "19.3.1",
