@@ -5,6 +5,7 @@ This directory contains comprehensive documentation for the RVNUG website projec
 ## Core Documentation
 
 - [Migration Plan 2025](core/MIGRATION_2025.md) - Details about the migration from Gatsby to Vite-based React application
+- [Design system](DESIGN_SYSTEM.md) - FigCraft kit and tokens live in sibling repo [RVNUG/rvnug-design-system](https://github.com/RVNUG/rvnug-design-system); this site implements them in CSS
 
 ## Deployment
 

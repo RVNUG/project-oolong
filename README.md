@@ -5,6 +5,8 @@
 
 This is the official website for the Roanoke Valley .NET User Group (RVNUG), a community of developers passionate about .NET technologies in the Roanoke Valley area.
 
+**Design system (FigCraft + tokens):** [RVNUG/rvnug-design-system](https://github.com/RVNUG/rvnug-design-system) — sibling repo. Site CSS implementation notes: [docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md).
+
 ## Technologies Used
 
 - **React**: Frontend UI library
