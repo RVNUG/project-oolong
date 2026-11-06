@@ -7,16 +7,16 @@ import SEO from '../components/SEO';
 import JsonLd from '../components/JsonLd';
 import { createBreadcrumbStructuredData } from '../utils/structuredData';
 import { getCanonicalUrl } from '../utils/seo';
-import { formatHeroEventCtaLabel } from '../utils/dateFormatters';
 import {
   cleanMeetupEventName,
   getLatestPastTalk
 } from '../utils/eventFilters';
+import { buildHeroEventFeature } from '../utils/heroEventFeature';
+import HeroLandscape from '../components/HeroLandscape';
 import '../assets/css/home.css';
 import { useState, useEffect, useRef } from 'react';
 
-// Import logo for use in hero section
-import logo from '../assets/images/roanoke-star-128-logo.png';
+import starAccent from '../assets/images/roanoke-star-128.png';
 // Import icons
 import {
   FaGithub,
@@ -230,15 +230,7 @@ const HomePage = () => {
     { name: 'Home', url: baseUrl }
   ]);
 
-  const heroCta = nextEvent
-    ? {
-        to: `/event/${nextEvent.id}`,
-        label: formatHeroEventCtaLabel(nextEvent.name, nextEvent.local_date)
-      }
-    : {
-        to: '/events',
-        label: 'See upcoming events'
-      };
+  const heroEventFeature = nextEvent ? buildHeroEventFeature(nextEvent) : null;
 
   return (
     <div className="home-page">
@@ -255,26 +247,66 @@ const HomePage = () => {
       {/* Hero Section */}
       <section className="hero">
         <div className="hero-background">
-          <div className="hero-shape shape-1"></div>
-          <div className="hero-shape shape-2"></div>
-          <div className="hero-shape shape-3"></div>
+          <div className="hero-shape shape-soft"></div>
+          <HeroLandscape />
+          <img src={starAccent} alt="" className="hero-star-accent preserve-color" aria-hidden="true" />
         </div>
-        <img src={logo} alt="" className="hero-logo" aria-hidden="true" />
         <div className="hero-content">
           <div className="hero-text">
             <h1>Roanoke Valley <span className="highlight">.NET</span> User Group</h1>
             <p>
-              Meet Roanoke-area developers in person each month for practical talks,
-              code-and-coffee sessions, and real conversations.
+              Practical tech talks, Code &amp; Coffee, and real connections with Roanoke-area
+              developers.
             </p>
           </div>
-          <div className="hero-cta">
-            <Link to={heroCta.to} className="btn btn-primary pulse-btn">
-              {heroCta.label}
-            </Link>
-            <a href="#what-to-expect" className="btn btn-secondary">What to expect</a>
-          </div>
+          {heroEventFeature ? (
+            <div className="hero-event-feature">
+              <p className="hero-event-eyebrow">{heroEventFeature.eyebrow}</p>
+              <h2 className="hero-event-title">{heroEventFeature.title}</h2>
+              {heroEventFeature.subtitle && (
+                <p className="hero-event-subtitle">{heroEventFeature.subtitle}</p>
+              )}
+              <p className="hero-event-meta">{heroEventFeature.meta}</p>
+              <div className="hero-cta">
+                <Link to={heroEventFeature.eventPath} className="btn btn-primary">
+                  View event →
+                </Link>
+                <a href="#what-to-expect" className="hero-link-secondary">
+                  What to expect
+                </a>
+              </div>
+            </div>
+          ) : (
+            <div className="hero-cta">
+              <Link to="/events" className="btn btn-primary">
+                See upcoming events
+              </Link>
+              <a href="#what-to-expect" className="hero-link-secondary">
+                What to expect
+              </a>
+            </div>
+          )}
         </div>
+      </section>
+
+      <section className="community-moment" aria-label="Community moments">
+        <div className="community-moment-photos">
+          <figure className="community-moment-photo">
+            <img
+              src="/images/team/highres_20485341.jpeg"
+              alt="Developers gathered for a tech talk"
+              loading="lazy"
+            />
+          </figure>
+          <figure className="community-moment-photo">
+            <img
+              src="/images/team/highres_283684233.jpeg"
+              alt="Coffee and laptops at a Code and Coffee session"
+              loading="lazy"
+            />
+          </figure>
+        </div>
+        <p className="community-moment-caption">Local developers. Real conversations.</p>
       </section>
 
       {/* Community proof — stats + latest talk */}
