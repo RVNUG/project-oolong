@@ -1,5 +1,5 @@
-import { Helmet } from 'react-helmet-async';
 import type { FC } from 'react';
+import { createPortal } from 'react-dom';
 
 interface JsonLdProps {
   data: Record<string, unknown>;
@@ -10,12 +10,9 @@ interface JsonLdProps {
  * @param data - The structured data object to be rendered as JSON-LD
  */
 const JsonLd: FC<JsonLdProps> = ({ data }) => {
-  return (
-    <Helmet>
-      <script type="application/ld+json">
-        {JSON.stringify(data)}
-      </script>
-    </Helmet>
+  return createPortal(
+    <script type="application/ld+json">{JSON.stringify(data)}</script>,
+    document.head
   );
 };
 
