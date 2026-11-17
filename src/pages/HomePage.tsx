@@ -13,6 +13,8 @@ import {
 } from '../utils/eventFilters';
 import { buildHeroEventFeature } from '../utils/heroEventFeature';
 import HeroLandscape from '../components/HeroLandscape';
+import CommunitySplashFigures from '../components/CommunitySplashFigures';
+import { homepageCommunityMoments } from '../config/communitySplash';
 import '../assets/css/home.css';
 import { useState, useEffect, useRef } from 'react';
 
@@ -290,22 +292,7 @@ const HomePage = () => {
       </section>
 
       <section className="community-moment" aria-label="Community moments">
-        <div className="community-moment-photos">
-          <figure className="community-moment-photo">
-            <img
-              src="/images/team/highres_20485341.jpeg"
-              alt="Developers gathered for a tech talk"
-              loading="lazy"
-            />
-          </figure>
-          <figure className="community-moment-photo">
-            <img
-              src="/images/team/highres_283684233.jpeg"
-              alt="Coffee and laptops at a Code and Coffee session"
-              loading="lazy"
-            />
-          </figure>
-        </div>
+        <CommunitySplashFigures photos={homepageCommunityMoments} />
         <p className="community-moment-caption">Local developers. Real conversations.</p>
       </section>
 

@@ -7,6 +7,8 @@ import { createBreadcrumbStructuredData } from '../utils/structuredData';
 import { getCanonicalUrl } from '../utils/seo';
 import '../assets/css/team.css';
 import { FaUsers, FaHandsHelping } from 'react-icons/fa';
+import CommunitySplashFigures from '../components/CommunitySplashFigures';
+import { teamPageCommunitySplash } from '../config/communitySplash';
 
 const TeamPage = () => {
   const location = useLocation();
@@ -35,6 +37,17 @@ const TeamPage = () => {
         <h1>Our <span className="highlight">Team</span></h1>
         <p>Meet the amazing people who make RVNUG possible. Our dedicated volunteers organize events, create content, and build our community.</p>
       </div>
+
+      <section className="team-community-splash" aria-label="What we do">
+        <CommunitySplashFigures
+          photos={[teamPageCommunitySplash]}
+          className="team-community-splash-photos"
+          showCredits
+        />
+        <p className="team-community-splash-caption">
+          Monthly tech talks, Code &amp; Coffee, and space to learn together in the Roanoke area.
+        </p>
+      </section>
 
       <div className="team-content">
         {loading ? (

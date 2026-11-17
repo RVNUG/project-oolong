@@ -57,6 +57,36 @@
   line-height: 1.6;
 }
 
+.team-community-splash {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.team-community-splash-photos {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+.team-community-splash-photos .community-moment-photo {
+  max-width: 960px;
+  margin: 0 auto;
+  aspect-ratio: 21 / 9;
+}
+
+.team-community-splash-caption {
+  margin: var(--space-2) auto 0;
+  max-width: 42rem;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--text-medium);
+}
+
+.dark-theme .team-community-splash-caption {
+  color: var(--color-neutral-200);
+}
+
 .team-content {
   margin-bottom: 4rem;
 }
