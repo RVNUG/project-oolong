@@ -33,6 +33,10 @@ const EventDetailPage = () => {
     }
   }, [events, loading, error, id, navigate]);
 
+  useEffect(() => {
+    setImageError(false);
+  }, [event?.id]);
+
   if (loading) {
     return <div className="loading">Loading event details...</div>;
   }
@@ -115,6 +119,8 @@ const EventDetailPage = () => {
 
   // Get the formatted venue address
   const venueAddress = formatVenueAddress(event.venue, isOnline);
+  const featuredPhotoUrl =
+    event.featured_photo?.highres_link ?? event.featured_photo?.photo_link;
 
   return (
     <div className="event-detail-page">
@@ -165,22 +171,15 @@ const EventDetailPage = () => {
         </div>
         
         <div className="event-detail-content">
-          {event.featured_photo && !imageError ? (
+          {featuredPhotoUrl && !imageError ? (
             <div className="event-featured-image">
               <img 
-                src={event.featured_photo.photo_link} 
+                src={featuredPhotoUrl} 
                 alt={`${event.name} featured image`}
                 onError={handleImageError} 
               />
             </div>
-          ) : (
-            <div className="event-image-fallback">
-              <div className="event-image-fallback-icon">
-                <i className="fas fa-calendar-alt" aria-hidden="true"></i>
-              </div>
-              <span>{event.name}</span>
-            </div>
-          )}
+          ) : null}
           
           <div className="event-description" dangerouslySetInnerHTML={{ __html: event.description }} />
           
