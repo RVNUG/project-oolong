@@ -1,0 +1,167 @@
+.alert-banner {
+  --banner-bg: var(--alert-banner-bg);
+  --banner-bg-accent: var(--alert-banner-bg-accent);
+  --banner-text: var(--alert-banner-text);
+  --banner-text-muted: var(--alert-banner-text-muted);
+  --banner-cta-bg: var(--alert-banner-cta-bg);
+  --banner-cta-text: var(--alert-banner-cta-text);
+  --banner-cta-secondary-bg: transparent;
+  --banner-cta-secondary-text: var(--banner-text);
+  --banner-cta-secondary-border: color-mix(in srgb, var(--banner-text) 55%, transparent);
+
+  margin-bottom: var(--space-3);
+  border-radius: var(--border-radius-md);
+  background: linear-gradient(
+    135deg,
+    var(--banner-bg),
+    var(--banner-bg-accent, var(--banner-bg))
+  );
+  color: var(--banner-text);
+  box-shadow: var(--shadow-md);
+  border: 1px solid color-mix(in srgb, var(--banner-text) 12%, transparent);
+}
+
+.alert-banner--holiday {
+  --banner-bg: var(--alert-banner-holiday-bg);
+  --banner-bg-accent: var(--alert-banner-holiday-bg-accent);
+  --banner-text: var(--alert-banner-holiday-text);
+  --banner-text-muted: var(--alert-banner-holiday-text-muted);
+  --banner-cta-bg: var(--alert-banner-holiday-cta-bg);
+  --banner-cta-text: var(--alert-banner-holiday-cta-text);
+}
+
+.alert-banner--info {
+  --banner-bg: var(--color-info);
+  --banner-bg-accent: var(--color-accent-blue-700);
+  --banner-text: var(--text-on-primary);
+  --banner-text-muted: rgba(255, 255, 255, 0.88);
+}
+
+.alert-banner__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+}
+
+.alert-banner__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  text-align: left;
+}
+
+.alert-banner__badge {
+  align-self: flex-start;
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: var(--banner-cta-bg);
+  color: var(--banner-cta-text);
+}
+
+.alert-banner__title {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: var(--line-height-tight);
+  font-weight: 700;
+  color: var(--banner-text);
+}
+
+.alert-banner__description {
+  margin: 0;
+  font-size: 1rem;
+  line-height: var(--line-height-normal);
+  color: var(--banner-text-muted);
+}
+
+.alert-banner__details {
+  margin: var(--space-1) 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.95rem;
+  color: var(--banner-text-muted);
+}
+
+.alert-banner__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.alert-banner__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--border-radius-sm);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  text-align: center;
+  transition: filter 0.2s ease, background-color 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.alert-banner__btn:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.alert-banner__btn--primary {
+  background: var(--banner-cta-bg);
+  color: var(--banner-cta-text);
+}
+
+.alert-banner__btn--primary:hover {
+  filter: brightness(1.05);
+}
+
+.alert-banner__btn--secondary {
+  background: var(--banner-cta-secondary-bg);
+  color: var(--banner-cta-secondary-text);
+  border-color: var(--banner-cta-secondary-border);
+}
+
+.alert-banner__btn--secondary:hover {
+  background: color-mix(in srgb, var(--banner-text) 10%, transparent);
+}
+
+@media (min-width: 768px) {
+  .alert-banner__inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .alert-banner__actions {
+    flex-direction: row;
+    flex-shrink: 0;
+    align-items: center;
+  }
+
+  .alert-banner__details {
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: var(--space-4);
+  }
+
+  .alert-banner__title {
+    font-size: 1.35rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .alert-banner__title {
+    font-size: 1.45rem;
+  }
+}

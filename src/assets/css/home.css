@@ -1,6 +1,19 @@
+.main-content:has(.home-page) {
+  padding-top: var(--space-3);
+}
+
 .home-page {
-  padding: var(--space-4);
+  --home-section-gap: var(--layout-block-gap);
+  padding: 0;
   scroll-behavior: smooth;
+}
+
+.home-page > section {
+  margin-bottom: var(--home-section-gap);
+}
+
+.home-page > section:last-child {
+  margin-bottom: 0;
 }
 
 /* Add offset for anchor links to account for fixed header if applicable */
@@ -16,7 +29,6 @@ section[id] {
   color: var(--text-on-primary);
   padding: var(--space-9) var(--space-4);
   text-align: center;
-  margin-bottom: var(--space-8);
   border-radius: var(--border-radius-md);
   position: relative;
   overflow: hidden;
@@ -254,7 +266,7 @@ section[id] {
 
 /* Community proof strip — full-width panel, peers with upcoming-events */
 .community-proof {
-  margin: 0 0 var(--space-8);
+  margin: 0;
   position: relative;
   z-index: 2;
 }
@@ -334,7 +346,7 @@ section[id] {
 /* What to expect — full-width section; 3-up on desktop */
 .what-to-expect {
   width: 100%;
-  margin: 0 0 var(--space-8);
+  margin: 0;
   padding: var(--space-5);
   text-align: center;
   background-color: var(--color-neutral-100);
@@ -440,13 +452,6 @@ section[id] {
   border-radius: 2px;
 }
 
-/* Section styling */
-.upcoming-events,
-.sponsors-section,
-.about-section {
-  margin-bottom: var(--space-8);
-}
-
 .section-header {
   display: flex;
   justify-content: space-between;
@@ -535,7 +540,6 @@ section[id] {
   text-align: center;
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-md);
-  margin-bottom: var(--space-8);
   position: relative;
   overflow: hidden;
 }
@@ -814,10 +818,6 @@ section[id] {
 }
 
 /* YouTube Spotlight Section */
-.youtube-spotlight {
-  margin-bottom: var(--space-8);
-}
-
 .youtube-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1007,7 +1007,6 @@ section[id] {
 .community-showcase-preview {
   background-color: var(--color-neutral-100);
   padding: var(--space-8) var(--space-5);
-  margin-bottom: var(--space-8);
   border-radius: var(--border-radius-md);
 }
 
@@ -1140,7 +1139,6 @@ section[id] {
 
 /* Upcoming Events Section */
 .upcoming-events {
-  margin-bottom: var(--space-8);
   padding: var(--space-5);
   background-color: var(--color-neutral-100);
   border-radius: var(--border-radius-lg);
@@ -1231,7 +1229,6 @@ section[id] {
   .upcoming-events {
     padding: var(--space-4) var(--space-3);
     border-radius: var(--border-radius-md);
-    margin-bottom: var(--space-6);
   }
   
   .upcoming-events .section-header {

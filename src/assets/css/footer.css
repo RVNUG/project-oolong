@@ -4,7 +4,7 @@
   backdrop-filter: blur(10px);
   color: var(--light-text);
   padding: 3rem 0 2rem;
-  margin-top: 3rem;
+  margin-top: var(--layout-block-gap);
   position: relative;
   overflow: hidden;
   min-height: 250px;
