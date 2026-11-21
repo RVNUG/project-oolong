@@ -87,6 +87,7 @@ body {
 .main-content {
   flex: 1;
   padding: var(--space-4);
+  padding-bottom: 0;
   max-width: var(--container-max-width);
   margin: 0 auto;
   width: 100%;
@@ -372,6 +373,7 @@ a:focus {
 @media (max-width: 768px) {
   .main-content {
     padding: var(--space-3);
+    padding-bottom: 0;
   }
   
   h1 {

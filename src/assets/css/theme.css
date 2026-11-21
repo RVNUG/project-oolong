@@ -98,6 +98,9 @@
   --space-9: 4rem;     /* 64px */
   --space-10: 5rem;    /* 80px */
 
+  /* Vertical rhythm between major page blocks (sections, main ↔ footer) */
+  --layout-block-gap: var(--space-4);
+
   /* Typography */
   --font-family-base: 'Segoe UI', system-ui, -apple-system, sans-serif;
   --font-family-code: 'Cascadia Code', 'Consolas', monospace;
