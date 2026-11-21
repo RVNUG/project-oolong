@@ -1,5 +1,9 @@
+.main-content:has(.home-page) {
+  padding-top: var(--space-3);
+}
+
 .home-page {
-  padding: var(--space-4);
+  padding: 0;
   scroll-behavior: smooth;
 }
 
