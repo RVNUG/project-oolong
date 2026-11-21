@@ -110,6 +110,22 @@
   /* Container widths */
   --container-max-width: 1200px;
   --container-padding: var(--space-4);
+
+  /* Reusable alert banner (base / brand) */
+  --alert-banner-bg: var(--color-primary-700);
+  --alert-banner-bg-accent: var(--color-primary-800);
+  --alert-banner-text: var(--text-on-primary);
+  --alert-banner-text-muted: rgba(255, 255, 255, 0.88);
+  --alert-banner-cta-bg: var(--background-card);
+  --alert-banner-cta-text: var(--color-primary-800);
+
+  /* Holiday alert banner variant */
+  --alert-banner-holiday-bg: #1a4d3e;
+  --alert-banner-holiday-bg-accent: #2d6a4f;
+  --alert-banner-holiday-text: #f7f4eb;
+  --alert-banner-holiday-text-muted: #d4e8dc;
+  --alert-banner-holiday-cta-bg: #c9a227;
+  --alert-banner-holiday-cta-text: #1a1a1a;
 }
 
 /* Dark theme overrides */
@@ -141,6 +157,13 @@
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+
+  --alert-banner-holiday-bg: #163d32;
+  --alert-banner-holiday-bg-accent: #1f5244;
+  --alert-banner-holiday-text: #f0ebe0;
+  --alert-banner-holiday-text-muted: #c8ddd4;
+  --alert-banner-holiday-cta-bg: #dbb84a;
+  --alert-banner-holiday-cta-text: #1a1a1a;
 }
 
 /* Dark theme specific component overrides */

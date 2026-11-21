@@ -43,3 +43,28 @@ export const getLatestPastTalk = (
   pastEvents: MeetupEvent[]
 ): MeetupEvent | undefined =>
   pastEvents.find((event) => !isCodeAndCoffeeEvent(event));
+
+const HOLIDAY_MEETUP_ID = 'e-317304849';
+const HOLIDAY_MEETUP_DATE = '2026-12-03';
+
+const isBuffaloWildWingsMeetup = (event: MeetupEvent): boolean =>
+  /buffalo wild wings/i.test(event.name) ||
+  /buffalo wild wings/i.test(event.venue?.name ?? '');
+
+/**
+ * Featured December holiday in-person meetup (e.g. Buffalo Wild Wings).
+ * Used for homepage alert banners without relying on chronological "next" event.
+ */
+export const getFeaturedHolidayMeetup = (
+  upcomingEvents: MeetupEvent[]
+): MeetupEvent | undefined => {
+  const byId = upcomingEvents.find((e) => e.id === HOLIDAY_MEETUP_ID);
+  if (byId) {
+    return byId;
+  }
+
+  return upcomingEvents.find(
+    (e) =>
+      e.local_date === HOLIDAY_MEETUP_DATE && isBuffaloWildWingsMeetup(e)
+  );
+};
