@@ -233,7 +233,7 @@ async def scrape_events_from_page(page, event_type):
                 # Get venue information
                 venue_ref = event_data.get('venue', {})
                 venue = extract_venue_from_apollo(venue_ref, apollo_state, is_online)
-                
+
                 # Determine if upcoming or past based on status and type filter
                 is_upcoming = status == "ACTIVE"
                 event_status = "upcoming" if is_upcoming else "past"
