@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   cleanMeetupEventName,
+  getFeaturedHolidayMeetup,
   getLatestPastTalk,
   isCodeAndCoffeeEvent
 } from '../eventFilters';
@@ -60,6 +61,39 @@ describe('eventFilters', () => {
       expect(
         cleanMeetupEventName('In Person: Code and Coffee on July 25th from 10am-1pm ET')
       ).toBe('Code and Coffee');
+    });
+  });
+
+  describe('getFeaturedHolidayMeetup', () => {
+    const holidayMeetup = event({
+      id: 'e-317304849',
+      name: 'In Person-Roanoke: December Meetup at Buffalo Wild Wings near Valley View Mall',
+      local_date: '2026-12-03',
+      local_time: '18:00',
+      is_upcoming: true,
+      venue: {
+        name: 'Buffalo Wild Wings near Valley View Mall',
+        address_1: '4869 Valley View Blvd NW',
+        city: 'Roanoke',
+        state: 'VA',
+        country: 'us',
+        zip: ''
+      }
+    });
+
+    it('finds the meetup by known id', () => {
+      expect(getFeaturedHolidayMeetup([event({ id: 'other' }), holidayMeetup])?.id).toBe(
+        'e-317304849'
+      );
+    });
+
+    it('finds the meetup by date and venue when id differs', () => {
+      const alt = { ...holidayMeetup, id: 'e-alt' };
+      expect(getFeaturedHolidayMeetup([alt])?.id).toBe('e-alt');
+    });
+
+    it('returns undefined when no matching event', () => {
+      expect(getFeaturedHolidayMeetup([event({ id: 'coffee', name: 'Code & Coffee' })])).toBeUndefined();
     });
   });
 });

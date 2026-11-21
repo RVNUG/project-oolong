@@ -10,8 +10,11 @@ import { getCanonicalUrl } from '../utils/seo';
 import { formatHeroEventCtaLabel } from '../utils/dateFormatters';
 import {
   cleanMeetupEventName,
+  getFeaturedHolidayMeetup,
   getLatestPastTalk
 } from '../utils/eventFilters';
+import { buildHolidayMeetupAlertBannerProps } from '../utils/alertBannerContent';
+import AlertBanner from '../components/AlertBanner';
 import '../assets/css/home.css';
 import { useState, useEffect, useRef } from 'react';
 
@@ -63,6 +66,10 @@ const HomePage = () => {
 
   const nextEvent = upcomingEvents[0];
   const latestPastTalk = getLatestPastTalk(pastEvents);
+  const holidayMeetup = getFeaturedHolidayMeetup(upcomingEvents);
+  const holidayBannerProps = holidayMeetup
+    ? buildHolidayMeetupAlertBannerProps(holidayMeetup)
+    : null;
 
   // Function to fetch the latest YouTube video
   useEffect(() => {
@@ -251,6 +258,10 @@ const HomePage = () => {
       
       {/* Add structured data */}
       <JsonLd data={breadcrumbData} />
+
+      {!eventsLoading && !eventsError && holidayBannerProps && (
+        <AlertBanner {...holidayBannerProps} />
+      )}
 
       {/* Hero Section */}
       <section className="hero">
