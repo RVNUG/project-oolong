@@ -1,25 +1,6 @@
 {
   "events": [
     {
-      "id": "e-317304831",
-      "name": "In Person: Code & Coffee, Saturday, November 21st, 10am-1pm ET",
-      "status": "upcoming",
-      "local_date": "2026-11-21",
-      "local_time": "10:00",
-      "description": "**Join us at Mill Mountain Coffee on Saturday, November 21st, 2026 from 10am-1pm ET for a period of collaboration and community-building! As a software developer or aspiring developer you're invited to meet fellow coders, work on projects, share knowledge, and enjoy good company in a relaxed and welcoming environment. Whether you're looking to learn from others, share your own expertise, or simply hand out with like-minded folks, our Code & Coffee event has got you covered.**\n\n**Come for the coffee, stay for the camaraderie! Our meetup is a judgement-free zone where you can be yourself, ask questions, and get support from fellow developers. You bring your projects, ideas, and enthusiasm, and we provide the atmosphere! See you there!**",
-      "venue": {
-        "name": "Mill Mountain Coffee & Tea",
-        "address_1": "4309 Starkey Rd",
-        "city": "Roanoke",
-        "state": "VA",
-        "country": "us",
-        "zip": ""
-      },
-      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/317304831/",
-      "is_upcoming": true,
-      "is_online": false
-    },
-    {
       "id": "e-317304849",
       "name": "In Person-Roanoke: December Meetup at Buffalo Wild Wings near Valley View Mall",
       "status": "upcoming",
@@ -36,25 +17,6 @@
       },
       "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/317304849/",
       "is_upcoming": true,
-      "is_online": false
-    },
-    {
-      "id": "ep-314708242",
-      "name": "In Person-Salem: presentation by David Bates",
-      "status": "past",
-      "local_date": "2026-06-04",
-      "local_time": "18:00",
-      "description": "From Code to Magic: Building Things That Blink, Talk, and Occasionally Catch Fire by David Bates\n\nHave you ever seen a kid interact with something new for the first time? That spark of magic, they don\u2019t quite understand it, but they know it\u2019s cool. And then the moment they figure it out?\nThis talk is about creating that spark.\n\nI\u2019ll walk through my maker journey and how it leveled up the way I think about systems, electronics, and software.\nWe\u2019ll cover how easy it is to get started, the tools you actually need (not the ones YouTube tells you to buy), and the different paths you can take to start building real things.\n\nI\u2019ll share real examples, a few failures, and how these experiments turned into real, tangible business value.\nYou\u2019ll leave with a clear plan to get started, permission to experiment, and probably a few ideas that make you think, \u201cI could build that.\u201d\n\nAnd yeah, lots of GIFs, videos, and a non-zero chance something catches fire.\n\nPizza and soft drinks will be provided.",
-      "venue": {
-        "name": "Medeco Security Locks Inc",
-        "address_1": "3625 Alleghany Dr",
-        "city": "Salem",
-        "state": "VA",
-        "country": "us",
-        "zip": ""
-      },
-      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/314708242/",
-      "is_upcoming": false,
       "is_online": false
     },
     {
@@ -227,7 +189,26 @@
       "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/316926077/",
       "is_upcoming": false,
       "is_online": false
+    },
+    {
+      "id": "ep-317304831",
+      "name": "In Person: Code & Coffee, Saturday, November 21st, 10am-1pm ET",
+      "status": "past",
+      "local_date": "2026-11-21",
+      "local_time": "10:00",
+      "description": "**Join us at Mill Mountain Coffee on Saturday, November 21st, 2026 from 10am-1pm ET for a period of collaboration and community-building! As a software developer or aspiring developer you're invited to meet fellow coders, work on projects, share knowledge, and enjoy good company in a relaxed and welcoming environment. Whether you're looking to learn from others, share your own expertise, or simply hand out with like-minded folks, our Code & Coffee event has got you covered.**\n\n**Come for the coffee, stay for the camaraderie! Our meetup is a judgement-free zone where you can be yourself, ask questions, and get support from fellow developers. You bring your projects, ideas, and enthusiasm, and we provide the atmosphere! See you there!**",
+      "venue": {
+        "name": "Mill Mountain Coffee & Tea",
+        "address_1": "4309 Starkey Rd",
+        "city": "Roanoke",
+        "state": "VA",
+        "country": "us",
+        "zip": ""
+      },
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/317304831/",
+      "is_upcoming": false,
+      "is_online": false
     }
   ],
-  "updated_at": "2026-11-06T07:44:33.151442"
+  "updated_at": "2026-11-22T07:50:17.462797"
 }
