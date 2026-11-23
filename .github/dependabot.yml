@@ -5,8 +5,9 @@ updates:
   - package-ecosystem: npm
     directory: /
     schedule:
-      interval: weekly
-      day: monday
+      interval: daily
+      time: '01:00'
+      timezone: UTC
     open-pull-requests-limit: 10
     labels:
       - dependencies
@@ -14,8 +15,9 @@ updates:
   - package-ecosystem: npm
     directory: /meetup-proxy
     schedule:
-      interval: weekly
-      day: monday
+      interval: daily
+      time: '01:00'
+      timezone: UTC
     open-pull-requests-limit: 5
     labels:
       - dependencies
