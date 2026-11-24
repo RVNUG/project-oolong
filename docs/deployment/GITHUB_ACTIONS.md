@@ -107,6 +107,8 @@ Features:
    - name: Create .env file
      run: |
        echo "VITE_APP_BASE_URL=/" >> .env
+       # FEATURE_COMMUNITY_SHOWCASE is configured as a GitHub Actions variable/env value (not a secret).
+       # If unset, it defaults to false.
        echo "VITE_FEATURE_COMMUNITY_SHOWCASE=${FEATURE_COMMUNITY_SHOWCASE:-false}" >> .env
    
    - name: Build
@@ -135,7 +137,7 @@ Features:
 
 ### Required Secrets
 
-- `GITHUB_TOKEN`: For repository access
+- `GITHUB_TOKEN`: Automatically provided by GitHub Actions for repository access (no manual secret configuration required)
 - `YOUTUBE_DATA_API_KEY`: For YouTube API access
 - `RVNUG_YT_CHANNEL_ID`: YouTube channel identifier
 - `FEATURE_COMMUNITY_SHOWCASE`: Feature flag control
