@@ -20,8 +20,8 @@
       "is_online": false
     },
     {
-      "id": "e-tmpdcvykccbvb",
-      "name": "In Person: Code & Coffee, Saturday, November 21st, 10am-1pm ET",
+      "id": "e-317566320",
+      "name": "In Person: Code & Coffee, Saturday, January 16, 10am-1pm ET",
       "status": "upcoming",
       "local_date": "2027-01-16",
       "local_time": "10:00",
@@ -34,13 +34,13 @@
         "country": "us",
         "zip": ""
       },
-      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/tmpdcvykccbvb/",
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/317566320/",
       "is_upcoming": true,
       "is_online": false
     },
     {
-      "id": "e-tmpdcvykcdbbc",
-      "name": "In Person: Code & Coffee, Saturday, November 21st, 10am-1pm ET",
+      "id": "e-317566325",
+      "name": "In Person: Code & Coffee, Saturday, February 20th, 10am-1pm ET",
       "status": "upcoming",
       "local_date": "2027-02-20",
       "local_time": "10:00",
@@ -53,13 +53,13 @@
         "country": "us",
         "zip": ""
       },
-      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/tmpdcvykcdbbc/",
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/317566325/",
       "is_upcoming": true,
       "is_online": false
     },
     {
-      "id": "e-tmpdcvykcfbbc",
-      "name": "In Person: Code & Coffee, Saturday, November 21st, 10am-1pm ET",
+      "id": "e-317566327",
+      "name": "In Person: Code & Coffee, Saturday, March 20th, 10am-1pm ET",
       "status": "upcoming",
       "local_date": "2027-03-20",
       "local_time": "10:00",
@@ -72,13 +72,13 @@
         "country": "us",
         "zip": ""
       },
-      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/tmpdcvykcfbbc/",
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/317566327/",
       "is_upcoming": true,
       "is_online": false
     },
     {
-      "id": "e-tmpdcvykcgbwb",
-      "name": "In Person: Code & Coffee, Saturday, November 21st, 10am-1pm ET",
+      "id": "e-317566334",
+      "name": "In Person: Code & Coffee, Saturday, April 17th, 10am-1pm ET",
       "status": "upcoming",
       "local_date": "2027-04-17",
       "local_time": "10:00",
@@ -91,13 +91,13 @@
         "country": "us",
         "zip": ""
       },
-      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/tmpdcvykcgbwb/",
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/317566334/",
       "is_upcoming": true,
       "is_online": false
     },
     {
-      "id": "e-tmpdcvykchbtb",
-      "name": "In Person: Code & Coffee, Saturday, November 21st, 10am-1pm ET",
+      "id": "e-317566340",
+      "name": "In Person: Code & Coffee, Saturday, May 15th, 10am-1pm ET",
       "status": "upcoming",
       "local_date": "2027-05-15",
       "local_time": "10:00",
@@ -110,7 +110,7 @@
         "country": "us",
         "zip": ""
       },
-      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/tmpdcvykchbtb/",
+      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/317566340/",
       "is_upcoming": true,
       "is_online": false
     },
@@ -419,5 +419,5 @@
       "is_online": false
     }
   ],
-  "updated_at": "2026-11-24T10:43:15.176258"
+  "updated_at": "2026-11-25T09:37:58.151453"
 }
