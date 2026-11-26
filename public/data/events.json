@@ -115,25 +115,6 @@
       "is_online": false
     },
     {
-      "id": "e-tmpdcvykcjbzb",
-      "name": "In Person: Code & Coffee, Saturday, November 21st, 10am-1pm ET",
-      "status": "upcoming",
-      "local_date": "2027-06-19",
-      "local_time": "10:00",
-      "description": "**Join us at Mill Mountain Coffee on Saturday from 10am-1pm ET for a period of collaboration and community-building! As a software developer or aspiring developer you're invited to meet fellow coders, work on projects, share knowledge, and enjoy good company in a relaxed and welcoming environment. Whether you're looking to learn from others, share your own expertise, or simply hand out with like-minded folks, our Code & Coffee event has got you covered.**\n\n**Come for the coffee, stay for the camaraderie! Our meetup is a judgement-free zone where you can be yourself, ask questions, and get support from fellow developers. You bring your projects, ideas, and enthusiasm, and we provide the atmosphere! See you there!**",
-      "venue": {
-        "name": "Mill Mountain Coffee & Tea",
-        "address_1": "4309 Starkey Rd",
-        "city": "Roanoke",
-        "state": "VA",
-        "country": "us",
-        "zip": ""
-      },
-      "link": "https://www.meetup.com/roanoke-valley-net-user-group/events/tmpdcvykcjbzb/",
-      "is_upcoming": true,
-      "is_online": false
-    },
-    {
       "id": "e-tmpdcvykckbwb",
       "name": "In Person: Code & Coffee, Saturday, November 21st, 10am-1pm ET",
       "status": "upcoming",
@@ -419,5 +400,5 @@
       "is_online": false
     }
   ],
-  "updated_at": "2026-11-25T09:37:58.151453"
+  "updated_at": "2026-11-26T09:13:33.715828"
 }
